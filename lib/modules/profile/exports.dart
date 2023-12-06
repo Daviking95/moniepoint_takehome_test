@@ -1,0 +1,78 @@
+
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_switch/flutter_switch.dart';
+import 'package:flutter_tawk/flutter_tawk.dart';
+import 'package:intl/intl.dart';
+import 'package:peerlendly/core/utils/extensions/exports.dart';
+import 'package:peerlendly/core/utils/helper_functions/launch_phone_app.dart';
+import 'package:peerlendly/modules/base_module/exports.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:peerlendly/modules/profile/models/CardDetailsRequestModel.dart';
+import 'package:peerlendly/modules/profile/models/UpdateProfileRequestModel.dart';
+import 'package:peerlendly/modules/profile/services/profile_service.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/enums/profile_enum.dart';
+import '../../core/navigation/exports.dart';
+import '../../core/storage/exports.dart';
+import '../../core/utils/constants/exports.dart';
+import '../../core/utils/helper_functions/compress_image.dart';
+import '../../core/utils/helper_functions/exports.dart';
+import '../../shared/design_system/exports.dart';
+import '../../shared/models/error_response_model.dart';
+import '../../shared/models/generic_response_model.dart';
+import '../../shared/widgets/exports.dart';
+import '../authentication/complete_account_setup/exports.dart';
+import '../authentication/login/exports.dart';
+import '../loan/exports.dart';
+import '../wallet/exports.dart';
+import 'package:dartz/dartz.dart' as dartz;
+
+import 'models/BankDetailsResponseModel.dart';
+import 'models/CardDetailsResponseModel.dart';
+import 'models/NigeriaBankResponseModel.dart';
+
+
+part 'screens/profile_screen.dart';
+part 'screens/edit_profile_screen.dart';
+part 'provider/profile_provider.dart';
+part 'screens/app_security_screen.dart';
+part 'screens/change_password_screen.dart';
+part 'screens/change_phone_number_screen.dart';
+part 'screens/change_pin_screen.dart';
+part 'screens/change_manager_id_screen.dart';
+part 'screens/notification_settings_screen.dart';
+part 'screens/biometrics_settings_screen.dart';
+part 'screens/support_screen.dart';
+part 'widgets/profile_completion_card_widget.dart';
+part 'widgets/remove_bank_card_popup.dart';
+part 'screens/profile_details_screen.dart';
+part 'screens/edit_profile_tabs/personal_info_tab.dart';
+part 'widgets/update_profile_popup.dart';
+part 'screens/edit_profile_tabs/next_of_kin_tab.dart';
+part 'screens/edit_profile_tabs/employment_tab.dart';
+part 'screens/edit_profile_tabs/upload_tab.dart';
+part 'screens/banks_and_cards/bank_and_cards_screen.dart';
+part 'screens/banks_and_cards/bank_accounts_list.dart';
+part 'screens/banks_and_cards/card_accounts_list.dart';
+part 'screens/banks_and_cards/add_bank_account_screen.dart';
+part 'screens/banks_and_cards/add_card_account_screen.dart';
+part 'screens/banks_and_cards/verify_bank_account_screen.dart';
+part 'screens/share_and_earn/share_and_earn_screen.dart';
+part 'widgets/empty_referral_widget.dart';
+part 'widgets/referral_list.dart';
+part 'screens/help_and_support.dart';
+part 'screens/help_support/call_us_screen.dart';
+part 'screens/transaction_pin_screen.dart';
+part 'screens/about_us_screen.dart';
+part 'screens/app_setting_screen.dart';

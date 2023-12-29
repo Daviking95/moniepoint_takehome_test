@@ -225,7 +225,7 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
                                 context,
                                 TransferPinActivationWidget(
                                   prevContext: context,
-                                  callBackFunc: () {
+                                  callBackFunc: (value) {
                                     walletWatcher.validateWithdraw(context);
                                   },
                                 ),

@@ -4,13 +4,15 @@ class LoginScreen extends StatelessWidget {
   final bool isSwitchAccount;
   final String otp;
   final String email;
-
   const LoginScreen(
       {Key? key, this.isSwitchAccount = false, this.otp = "", this.email = ""})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    // test1@yopmail.com
+
     return BaseView<LoginProvider>(
       vmBuilder: (context) =>
           LoginProvider(context: context, shouldInitialize: true),

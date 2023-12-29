@@ -6,10 +6,11 @@ class DashboardCTAWidget extends StatelessWidget {
   final String ctaButtonTitle;
   final String assetString;
   final Function actionToTake;
+  final Color ctaColor;
 
   DashboardCTAWidget(this.title, this.description, this.ctaButtonTitle,
       this.assetString, this.actionToTake,
-      {super.key});
+      {super.key, this.ctaColor = PLColors.appPrimaryColorMain500});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,7 @@ class DashboardCTAWidget extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: PLDecorations.borderRadiusGeometryCircular20,
-                  color: PLColors.appPrimaryColorMain500),
+                  color: ctaColor),
               child: PLTextWidget(
                 title: ctaButtonTitle,
                 textColor: PLColors.appWhiteColor,

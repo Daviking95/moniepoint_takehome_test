@@ -17,10 +17,10 @@ import '../models/NigeriaBankResponseModel.dart';
 import '../models/UpdateProfileRequestModel.dart';
 
 abstract class PLProfileService {
-  Future<Either<ErrorResponseModel, GenericResponseModel>>
+  Future<Either<ErrorResponseModel, GetUserProfileResponseModel>>
       getUserProfileService();
 
-  Future<Either<ErrorResponseModel, GenericResponseModel>>
+  Future<Either<ErrorResponseModel, LendlyScoreResponseModel>>
       getLendlyScoreService();
 
   Future<Either<ErrorResponseModel, GenericResponseModel>>
@@ -68,7 +68,7 @@ class PLProfileRepository extends PLProfileService {
   static PLProfileRepository instance = PLProfileRepository._();
 
   @override
-  Future<Either<ErrorResponseModel, GenericResponseModel>>
+  Future<Either<ErrorResponseModel, GetUserProfileResponseModel>>
       getUserProfileService() async {
     // TODO: implement loginService
     try {
@@ -82,10 +82,7 @@ class PLProfileRepository extends PLProfileService {
       GetUserProfileResponseModel getUserProfileResponseModel =
           GetUserProfileResponseModel.fromJson(jsonDecode(decryptedResponse));
 
-      UserData.getUserProfileResponseModel = getUserProfileResponseModel;
-
-      return Right(
-          GenericResponseModel(message: decryptedResponse, success: true));
+      return Right(getUserProfileResponseModel);
     } catch (e) {
       "GetUserProfileError $e".logger();
 
@@ -97,7 +94,7 @@ class PLProfileRepository extends PLProfileService {
   }
 
   @override
-  Future<Either<ErrorResponseModel, GenericResponseModel>>
+  Future<Either<ErrorResponseModel, LendlyScoreResponseModel>>
   getLendlyScoreService() async {
     // TODO: implement loginService
     try {
@@ -111,10 +108,7 @@ class PLProfileRepository extends PLProfileService {
       LendlyScoreResponseModel lendlyScoreResponseModel =
       LendlyScoreResponseModel.fromJson(jsonDecode(decryptedResponse));
 
-      UserData.lendlyScoreResponseModel = lendlyScoreResponseModel;
-
-      return Right(
-          GenericResponseModel(message: decryptedResponse, success: true));
+      return Right(lendlyScoreResponseModel);
     } catch (e) {
       "GetLendlyScoreError $e".logger();
 
@@ -139,10 +133,8 @@ class PLProfileRepository extends PLProfileService {
 
       Uint8List decodedImage = base64.decode(responseData);
 
-      UserData.profilePicture = responseData;
-
       return Right(
-          GenericResponseModel(message: "", success: true));
+          GenericResponseModel(message: responseData, success: true));
     } catch (e) {
       "GetProfilePicError $e".logger();
 

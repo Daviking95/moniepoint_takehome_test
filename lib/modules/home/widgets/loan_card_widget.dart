@@ -33,6 +33,8 @@ class LoanCardWidget extends StatelessWidget {
                     textColor: PLColors.appWhiteColor,
                     maxLines: 1,
                   ),
+
+                  if(UserData.loogedInUserLoan?.loanStatus == 1 || UserData.loogedInUserLoan?.loanStatus == 5)
                   InkWell(
                     onTap: () {
                       AppNavigator.push(RepayLoanScreen());
@@ -54,7 +56,7 @@ class LoanCardWidget extends StatelessWidget {
               Row(
                 children: [
                   PLTextWidget(
-                    title: 40000000
+                    title: (UserData.loogedInUserLoan?.amount ?? 0)
                         .toString()
                         .formatWithCommasAndDecimals(),
                     textStyle: PLTypography.textTitleSmallStyle,
@@ -65,12 +67,12 @@ class LoanCardWidget extends StatelessWidget {
                     maxLines: 1,
                     isCurrency: true,
                   ),
-                  PLHSpace(10),
-                  GestureDetector(
-                      onTap: () async {
-                        walletWatcher.toggleShowBalance();
-                      },
-                      child: const PLImageSvg(svgPath: PLAssets.showBalance)),
+                  // PLHSpace(10),
+                  // GestureDetector(
+                  //     onTap: () async {
+                  //       walletWatcher.toggleShowBalance();
+                  //     },
+                  //     child: const PLImageSvg(svgPath: PLAssets.showBalance)),
                 ],
               ),
             ],
@@ -91,7 +93,7 @@ class LoanCardWidget extends StatelessWidget {
                   ),
                   PLVSpace(2),
                   PLTextWidget(
-                    title: "30 Days",
+                    title: "${(UserData.loogedInUserLoan?.duration ?? 0)} Days",
                     textStyle: PLTypography.textTitleSmallStyle,
                     textSize: PLTypography.fontBodySmall,
                     textColor: PLColors.appWhiteColor,
@@ -111,7 +113,7 @@ class LoanCardWidget extends StatelessWidget {
                   ),
                   PLVSpace(2),
                   PLTextWidget(
-                    title: DateTime.now().toString().formatDateString(),
+                    title: UserData.loogedInUserLoan?.repaymentDate.formatDate(),
                     textStyle: PLTypography.textTitleSmallStyle,
                     textSize: PLTypography.fontBodySmall,
                     textColor: PLColors.appWhiteColor,
@@ -119,26 +121,32 @@ class LoanCardWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  PLTextWidget(
-                    title: "Interest Rate",
-                    textStyle: PLTypography.textTitleSmallStyle,
-                    textSize: PLTypography.fontLabelSmall,
-                    textColor: PLColors.appWhiteColor,
-                    maxLines: 1,
-                  ),
-                  PLVSpace(2),
-                  PLTextWidget(
-                    title: "15%",
-                    textStyle: PLTypography.textTitleSmallStyle,
-                    textSize: PLTypography.fontBodySmall,
-                    textColor: PLColors.appWhiteColor,
-                    maxLines: 1,
-                  ),
-                ],
-              ),
+
+              if(UserData.loogedInUserLoan?.loanStatus == 1 || UserData.loogedInUserLoan?.loanStatus == 5)
+              ...[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    PLTextWidget(
+                      title: "Interest Rate",
+                      textStyle: PLTypography.textTitleSmallStyle,
+                      textSize: PLTypography.fontLabelSmall,
+                      textColor: PLColors.appWhiteColor,
+                      maxLines: 1,
+                    ),
+                    PLVSpace(2),
+                    PLTextWidget(
+                      title: "${(UserData.loogedInUserLoan?.interestRate ?? 0)}%",
+                      textStyle: PLTypography.textTitleSmallStyle,
+                      textSize: PLTypography.fontBodySmall,
+                      textColor: PLColors.appWhiteColor,
+                      maxLines: 1,
+                    ),
+                  ],
+                ),
+              ]
+              else
+                Container()
             ],
           )
         ],

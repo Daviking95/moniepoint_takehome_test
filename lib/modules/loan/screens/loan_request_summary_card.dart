@@ -1,7 +1,28 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
-class LoanRequestSummaryCard extends StatelessWidget {
-  const LoanRequestSummaryCard({Key? key}) : super(key: key);
+class LoanRequestSummaryCard extends StatefulWidget {
+  final MarketplaceResponseModelLoanDetail marketplaceLoan;
+
+  const LoanRequestSummaryCard({
+    Key? key,
+    required this.marketplaceLoan,
+  }) : super(key: key);
+
+  @override
+  State<LoanRequestSummaryCard> createState() => _LoanRequestSummaryCardState();
+}
+
+class _LoanRequestSummaryCardState extends State<LoanRequestSummaryCard> {
+
+  late LoanProvider loanProvider;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loanProvider = Provider.of<LoanProvider>(context, listen: false);
+    loanProvider.getBorrowerLoanHistory(widget.marketplaceLoan.borrowerId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,32 +57,41 @@ class LoanRequestSummaryCard extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  ProfileImageWidget(imageFile: UserData.profilePicture, size: 40),
+                                  ProfileImageWidget(
+                                      imageFile: widget.marketplaceLoan.image,
+                                      size: 40),
                                   PLHSpace(12),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       PLTextWidget(
-                                        title: (UserData.getUserProfileResponseModel?.fullName ?? ""),
-                                        textStyle: PLTypography.textTitleLargeStyle,
+                                        title: widget.marketplaceLoan.fullName,
+                                        textStyle:
+                                            PLTypography.textTitleLargeStyle,
                                         textSize: PLTypography.fontTitleMedium,
                                         fontWeight: FontWeight.w700,
                                       ),
                                       PLVSpace(4),
+
+                                      if(!loanWatcher.isLoading && loanWatcher.borrowerLoanHistory.isNotEmpty)
                                       InkWell(
                                         onTap: () {
                                           modalBottomSheet(
                                               context,
-                                              LoanHistoryScreen(),
+                                              LoanHistoryScreen(borrowerLoanHistory: loanWatcher.borrowerLoanHistory),
                                               true,
                                               context.height / 1.5);
                                         },
                                         child: PLTextWidget(
                                           title: "View transaction history",
-                                          textStyle: PLTypography.textTitleLargeStyle,
-                                          textColor: PLColors.appPrimaryColorMain500,
+                                          textStyle:
+                                              PLTypography.textTitleLargeStyle,
+                                          textColor:
+                                              PLColors.appPrimaryColorMain500,
                                           textSize: PLTypography.fontLabelSmall,
-                                          textDecoration: TextDecoration.underline,
+                                          textDecoration:
+                                              TextDecoration.underline,
                                         ),
                                       ),
                                     ],
@@ -90,11 +120,14 @@ class LoanRequestSummaryCard extends StatelessWidget {
                                           color: PLColors.appGreenColor),
                                       child: Center(
                                         child: PLTextWidget(
-                                          title: (UserData.lendlyScoreResponseModel?.lendlyScore ?? 0).toString(),
+                                          title: widget.marketplaceLoan.lendlyScore
+                                              .toString(),
                                           textColor: PLColors.appWhiteColor,
                                           fontWeight: FontWeight.bold,
-                                          fontFamily: PLTypography.fontFamilyBold,
-                                          textSize: PLTypography.fontHeadlineSmall,
+                                          fontFamily:
+                                              PLTypography.fontFamilyBold,
+                                          textSize:
+                                              PLTypography.fontHeadlineSmall,
                                         ),
                                       ),
                                     ),
@@ -108,14 +141,14 @@ class LoanRequestSummaryCard extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                               borderRadius:
-                              PLDecorations.borderRadiusGeometryCircular8,
+                                  PLDecorations.borderRadiusGeometryCircular8,
                               color: PLColors.appWhiteColor),
                           child: Column(
                             children: [
                               _loanDetailsItem(
                                   'Amount',
                                   PLTextWidget(
-                                    title: 98900
+                                    title: widget.marketplaceLoan.loanAmount
                                         .toString()
                                         .formatWithCommasAndDecimals(),
                                     textStyle: PLTypography.textTitleSmallStyle,
@@ -128,7 +161,7 @@ class LoanRequestSummaryCard extends StatelessWidget {
                               _loanDetailsItem(
                                   'Duration (Days)',
                                   PLTextWidget(
-                                    title: "30 Days",
+                                    title: "${widget.marketplaceLoan.duration} Days",
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
@@ -137,7 +170,7 @@ class LoanRequestSummaryCard extends StatelessWidget {
                               _loanDetailsItem(
                                   'Purpose',
                                   PLTextWidget(
-                                    title: "School Fees",
+                                    title: "${widget.marketplaceLoan.loanReason}",
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
@@ -146,7 +179,7 @@ class LoanRequestSummaryCard extends StatelessWidget {
                               _loanDetailsItem(
                                   'Repayment Date',
                                   PLTextWidget(
-                                    title: DateTime.now().formatDate(),
+                                    title: widget.marketplaceLoan.endDate.formatDate(),
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
@@ -156,7 +189,6 @@ class LoanRequestSummaryCard extends StatelessWidget {
                           ).paddingSymmetric(horizontal: 16, vertical: 16),
                         ),
                         PLVSpace(24),
-
                       ],
                     ),
                     Column(
@@ -165,9 +197,9 @@ class LoanRequestSummaryCard extends StatelessWidget {
                           textTitle: "Make Offer",
                           bgColor: PLColors.appPrimaryColorMain500,
                           borderRadius:
-                          PLDecorations.borderRadiusGeometryCircular8,
+                              PLDecorations.borderRadiusGeometryCircular8,
                           functionToRun: () {
-                            AppNavigator.push(const MakeOfferScreen());
+                            AppNavigator.push( MakeOfferScreen(marketplaceLoan: widget.marketplaceLoan));
                           },
                         ),
                         PLVSpace(24),

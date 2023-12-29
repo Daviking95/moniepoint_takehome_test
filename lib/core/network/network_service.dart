@@ -261,9 +261,18 @@ class NetworkService {
       _responseData =
       await PLLoginRepository.instance.loginService(loginRequestModel);
 
-      return _responseData.fold((errorResponse) {}, (successResponse) {
+      return _responseData.fold((errorResponse) {}, (successResponse) async{
 
-        // AppPreferences.bearerToken = successResponse.message;
+        final dartz.Either<ErrorResponseModel, GetUserProfileResponseModel>
+        _profileResponseData =
+            await PLProfileRepository.instance.getUserProfileService();
+
+        return _profileResponseData.fold((errorResponse) async {
+
+        }, (successResponse) async {
+
+          UserData.getUserProfileResponseModel = successResponse;
+        });
 
       });
     }  on TimeoutException catch (e) {

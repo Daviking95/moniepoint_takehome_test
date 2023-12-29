@@ -1,7 +1,16 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
 class MakeOfferAmountExchangeWidget extends StatelessWidget {
-  const MakeOfferAmountExchangeWidget({Key? key}) : super(key: key);
+  final double amountToPay;
+  final double amountToReceive;
+  final Function() callBack;
+
+  const MakeOfferAmountExchangeWidget(
+      {Key? key,
+      required this.amountToPay,
+      required this.amountToReceive,
+      required this.callBack})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +27,7 @@ class MakeOfferAmountExchangeWidget extends StatelessWidget {
         ),
         PLVSpace(8),
         PLTextWidget(
-          title: 750000
-              .toString()
-              .formatWithCommasAndDecimals(),
+          title: amountToPay.toString().formatWithCommasAndDecimals(),
           textStyle: PLTypography.textTitleSmallStyle,
           textSize: PLTypography.fontTitleLarge,
           fontFamily: PLTypography.fontFamilyMedium,
@@ -36,7 +43,6 @@ class MakeOfferAmountExchangeWidget extends StatelessWidget {
             const PLImageSvg(svgPath: PLAssets.vectorDown),
             PLHSpace(24),
             const PLImageSvg(svgPath: PLAssets.vectorDown),
-
           ],
         ),
         PLVSpace(16),
@@ -47,9 +53,7 @@ class MakeOfferAmountExchangeWidget extends StatelessWidget {
         ),
         PLVSpace(8),
         PLTextWidget(
-          title: 900000
-              .toString()
-              .formatWithCommasAndDecimals(),
+          title: amountToReceive.toString().formatWithCommasAndDecimals(),
           textStyle: PLTypography.textTitleSmallStyle,
           textSize: PLTypography.fontTitleLarge,
           fontFamily: PLTypography.fontFamilyMedium,
@@ -66,15 +70,17 @@ class MakeOfferAmountExchangeWidget extends StatelessWidget {
             Navigator.pop(context);
 
             modalBottomSheet(
-            context,
-            TransferPinActivationWidget(
-              prevContext: context,
-              callBackFunc: () {
-                loanWatcher.processMakingOffer(context);
-              },
-            ),
-            true,
-            context.height / 1.5);
+                context,
+                TransferPinActivationWidget(
+                  prevContext: context,
+                  callBackFunc: (value) {
+                    loanWatcher.verifyPin(context, value, () {
+                      callBack();
+                    });
+                  },
+                ),
+                true,
+                context.height / 1.5);
           },
         ).paddingSymmetric(horizontal: 16)
       ],

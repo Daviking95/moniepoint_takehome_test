@@ -2,7 +2,7 @@ part of 'package:peerlendly/modules/wallet/exports.dart';
 
 class TransferPinActivationWidget extends StatelessWidget {
   final BuildContext? prevContext;
-  final Function callBackFunc;
+  final Function(String value) callBackFunc;
   const TransferPinActivationWidget({super.key, this.prevContext, required this.callBackFunc});
 
   @override
@@ -39,7 +39,7 @@ class TransferPinActivationWidget extends StatelessWidget {
               onChange: (value) {
                 if (value.length == 4) {
                   Navigator.of(context).pop();
-                  callBackFunc();
+                  callBackFunc(value);
                 }
               },
               validation: (val) => val.validateString(strFieldRequiredError),

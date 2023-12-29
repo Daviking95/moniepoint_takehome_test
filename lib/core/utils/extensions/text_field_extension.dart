@@ -24,6 +24,18 @@ extension TextfieldValidator on String? {
     }
   }
 
+  String? validateNumberCap(String errorString, int number) {
+    RegExp regExp = RegExp(r'^[0-9]*$');
+
+    if (this == null || this == "") return errorString;
+    if (this == null && int.parse(this ?? "0") > number) return "You cannot input more than $number";
+    if (regExp.hasMatch(this!)) {
+      return null;
+    } else {
+      return errorString;
+    }
+  }
+
   String? compareNumber(String compareString) {
     RegExp regExp = RegExp(r'^[0-9]*$');
 

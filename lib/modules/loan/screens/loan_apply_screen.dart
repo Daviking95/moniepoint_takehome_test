@@ -95,25 +95,33 @@ class LoanApplyScreen extends StatelessWidget {
                             },
 
                           ),
+                          // PLVSpace(16),
+                          // PLDropDownButton(
+                          //   model.loanPeriod.map((e) => "${e.toString()} Days").toList(),
+                          //   5.0,
+                          //   "Select Loan Period",
+                          //   model.tenor,
+                          //   onChangeFunction: (val) {
+                          //     // model.listenForLoanApplyChanges();
+                          //   },
+                          // ),
                           PLVSpace(16),
-                          PLDropDownButton(
-                            model.loanPeriod.map((e) => "${e.toString()} Days").toList(),
-                            5.0,
-                            "Select Loan Period",
-                            model.tenor,
-                            onChangeFunction: (val) {
-                              // model.listenForLoanApplyChanges();
-                            },
-
+                          PLPrimaryTextField(
+                            textInputType: TextInputType.number,
+                            controller: model.tenor,
+                            // formatter: CurrencyTextInputFormatter(symbol: strCurrency2),
+                            fillColor: PLColors.appWhiteColor,
+                            validation: (val) => val.validateNumber(strFieldRequiredError),
+                            hintText: "When will you repay the Loan? (Specify no of days)",
+                            // onChange: (val) => model.listenForLoanApplyChanges(),
                           ),
-                          PLVSpace(16),
-                          PLDatePickerTextField(text: "When will you repay the Loan?", isTodayFirstDate: true, datePickerController: model.repaymentDate, isRequired: true),
-                          PLTextWidget(
-                            title:
-                            "Loan duration: Sep 16 - Oct 15, 2023",
-                            textColor: PLColors.appGrayText,
-                            textSize: PLTypography.fontLabelSmall,
-                          ),
+                          // PLDatePickerTextField(text: "When will you repay the Loan?", isTodayFirstDate: true, datePickerController: model.repaymentDate, isRequired: true),
+                          // PLTextWidget(
+                          //   title:
+                          //   "Loan duration: Sep 16 - Oct 15, 2023",
+                          //   textColor: PLColors.appGrayText,
+                          //   textSize: PLTypography.fontLabelSmall,
+                          // ),
                           PLVSpace(16),
                           Container(
                             decoration: BoxDecoration(
@@ -195,7 +203,7 @@ class LoanApplyScreen extends StatelessWidget {
                             loadingString: loanWatcher.loadingString,
                             isLoader: loanWatcher.isLoading,
                             functionToRun: () {
-                              loanWatcher.processLoanSummary();
+                              loanWatcher.processLoanSummary(context);
                             },
                           ),
                           PLVSpace(24),

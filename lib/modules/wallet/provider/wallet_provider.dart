@@ -205,7 +205,7 @@ class WalletProvider extends BaseViewModel {
           context,
           TransferPinActivationWidget(
             prevContext: context,
-            callBackFunc: () {
+            callBackFunc: (value) {
               processAirtimePayment(context);
             },
           ),
@@ -226,7 +226,7 @@ class WalletProvider extends BaseViewModel {
           context,
           TransferPinActivationWidget(
             prevContext: context,
-            callBackFunc: () {
+            callBackFunc: (value) {
               processBillPayment(context);
             },
           ),
@@ -235,12 +235,12 @@ class WalletProvider extends BaseViewModel {
     }
   }
 
-  validateTransactionPin(BuildContext context, Function func) {
-    showAlertDialog(context, "", TransferPinActivationWidget(prevContext: context, callBackFunc: func,));
-    // modalBottomSheet(
-    //     context,
-    //     const TransferPinActivationWidget(), true, context.height / 2.3);
-  }
+  // validateTransactionPin(BuildContext context, Function func) {
+  //   showAlertDialog(context, "", TransferPinActivationWidget(prevContext: context, callBackFunc: func,));
+  //   // modalBottomSheet(
+  //   //     context,
+  //   //     const TransferPinActivationWidget(), true, context.height / 2.3);
+  // }
 
   void confirmTransactionPin(BuildContext context) {
     modalBottomSheet(

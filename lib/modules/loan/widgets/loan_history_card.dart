@@ -1,7 +1,8 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
 class LoanHistoryCard extends StatelessWidget {
-  const LoanHistoryCard({Key? key}) : super(key: key);
+  final MarketplaceResponseModelLoanDetail loanDetail;
+  const LoanHistoryCard({Key? key, required this.loanDetail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class LoanHistoryCard extends StatelessWidget {
                   backgroundColor: PLColors.appPrimaryColorMain500,
                   radius: 20,
                   child: Text(
-                    "JA",
+                    loanDetail.fullName.substring(0,2),
                     style: context.textTheme.bodyMedium!
                         .copyWith(color: PLColors.appWhiteColor),
                   ),
@@ -33,7 +34,7 @@ class LoanHistoryCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       PLTextWidget(
-                        title: "30 Days",
+                        title: "${loanDetail.duration} Days",
                         textColor: PLColors.appPrimaryText,
                         fontFamily: PLTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w500,
@@ -41,7 +42,7 @@ class LoanHistoryCard extends StatelessWidget {
                       ),
                       PLVSpace(8),
                       PLTextWidget(
-                        title: DateTime.now().formatDate(),
+                        title: loanDetail.endDate.formatDate(),
                         textColor: PLColors.appGrayText,
                         textSize: PLTypography.fontLabelSmall,
                       ),
@@ -53,7 +54,7 @@ class LoanHistoryCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     PLTextWidget(
-                      title: 4000000.toString().formatWithCommasAndDecimals(),
+                      title: loanDetail.loanAmount.toString().formatWithCommasAndDecimals(),
                       textStyle: PLTypography.textTitleSmallStyle,
                       textSize: PLTypography.fontBodyMedium,
                       fontFamily: PLTypography.fontFamilyMedium,
@@ -64,7 +65,7 @@ class LoanHistoryCard extends StatelessWidget {
                     ),
                     PLVSpace(8),
                     PLTextWidget(
-                      title: "Paid",
+                      title: getLoanStatus(loanDetail.loanStatus),
                       textColor: PLColors.appPrimaryColorMain500,
                       textSize: PLTypography.fontLabelSmall,
                     ),

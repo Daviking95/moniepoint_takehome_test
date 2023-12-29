@@ -1,7 +1,22 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
-class MarketplaceLoanList extends StatelessWidget {
+class MarketplaceLoanList extends StatefulWidget {
   const MarketplaceLoanList({Key? key}) : super(key: key);
+
+  @override
+  State<MarketplaceLoanList> createState() => _MarketplaceLoanListState();
+}
+
+class _MarketplaceLoanListState extends State<MarketplaceLoanList> {
+  late LoanProvider loanProvider;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loanProvider = Provider.of<LoanProvider>(context, listen: false);
+    loanProvider.getMarketplaceLoans();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,49 +64,30 @@ class MarketplaceLoanList extends StatelessWidget {
                             ),
                           ),
                           PLVSpace(24),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              _showCardWithDate(
-                                  context,
-                                  0,
-                                  NotificationType.loanAccepted,
-                                  DateTime.now().add(const Duration(days: 1))),
-                              _showCardWithDate(
-                                  context,
-                                  1,
-                                  NotificationType.loanReceived,
-                                  DateTime.now().add(const Duration(days: 1))),
-                              _showCardWithDate(
-                                  context,
-                                  2,
-                                  NotificationType.loanOffer,
-                                  DateTime.now().add(const Duration(days: 2))),
-                              _showCardWithDate(context, 3,
-                                  NotificationType.loanCharges, DateTime.now()),
-                              _showCardWithDate(
-                                  context,
-                                  4,
-                                  NotificationType.walletWithdrawal,
-                                  DateTime.now()),
-                              _showCardWithDate(
-                                  context,
-                                  5,
-                                  NotificationType.walletFunded,
-                                  DateTime.now().add(const Duration(days: 2))),
-                              _showCardWithDate(
-                                  context,
-                                  6,
-                                  NotificationType.loanOffer,
-                                  DateTime.now().add(const Duration(days: 3))),
-                              _showCardWithDate(context, 7,
-                                  NotificationType.loanCharges, DateTime.now()),
-
-                              // for (var index = 0; index < 6; index++) ...[
-                              //   _showCardWithDate(context, index),
-                              // ]
-                            ],
-                          ),
+                          loanWatcher.isLoading && UserData.marketplaceLoans.isEmpty
+                              ? const Center(child: CircularProgressIndicator())
+                              : Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    if (UserData.marketplaceLoans.isEmpty) ...[
+                                      Center(
+                                        child: EmptyLoanScreenWithTextOnly(
+                                            text: 'No loan request yet'),
+                                      )
+                                    ] else ...[
+                                      for (var index = 0;
+                                          index <
+                                              UserData.marketplaceLoans.length;
+                                          index++) ...[
+                                        _showCardWithDate(
+                                            context,
+                                            index,
+                                            NotificationType.loanOffer,
+                                            UserData.marketplaceLoans[index]),
+                                      ]
+                                    ]
+                                  ],
+                                ),
                         ],
                       ),
                     ],
@@ -103,32 +99,37 @@ class MarketplaceLoanList extends StatelessWidget {
     );
   }
 
+  _showCardWithDate(BuildContext context, int index,
+      NotificationType notificationType, MarketplaceResponseModelLoanDetail marketplaceLoan) {
+    DateTime currentDateFormatted = marketplaceLoan.endDate;
+    DateTime prevCurrentDateFormatted = index - 1 == -1
+        ? DateTime.now()
+        : marketplaceLoan.endDate.subtract(const Duration(days: 1));
 
-
-  _showCardWithDate(
-      BuildContext context, int index, NotificationType notificationType, DateTime dateCreated) {
-    DateTime currentDateFormatted = dateCreated;
-    DateTime prevCurrentDateFormatted = index - 1 == -1 ? DateTime.now() : dateCreated.subtract(const Duration(days: 1));
-
-    if (index == 0 || currentDateFormatted.day != prevCurrentDateFormatted.day) {
+    if (index == 0 ||
+        currentDateFormatted.day != prevCurrentDateFormatted.day) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(bottom: 5),
             child: PLTextWidget(
-              title: dateCreated.formatDate(),
+              title: marketplaceLoan.endDate.formatDate(),
               textSize: PLTypography.fontLabelSmall,
               fontWeight: FontWeight.w600,
               textColor: PLColors.appGrayText,
             ),
             // Text(),
           ),
-          LoanRequestCardWidget(dateCreated: dateCreated.formatDate()),
+          LoanRequestCardWidget(
+              dateCreated: marketplaceLoan.endDate.formatDate(),
+              marketplaceLoan: marketplaceLoan),
         ],
       );
     } else {
-      return LoanRequestCardWidget(dateCreated: dateCreated.formatDate());
+      return LoanRequestCardWidget(
+          dateCreated: marketplaceLoan.endDate.formatDate(),
+          marketplaceLoan: marketplaceLoan);
     }
   }
 }

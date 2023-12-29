@@ -1,7 +1,24 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
-class MarketplaceScreen extends StatelessWidget {
+class MarketplaceScreen extends StatefulWidget {
   const MarketplaceScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MarketplaceScreen> createState() => _MarketplaceScreenState();
+}
+
+class _MarketplaceScreenState extends State<MarketplaceScreen> {
+
+  late LoanProvider loanProvider;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loanProvider = Provider.of<LoanProvider>(context, listen: false);
+    loanProvider.getActivePendingLoanOffers(1);
+    loanProvider.getActivePendingLoanOffers(2);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +48,10 @@ class MarketplaceScreen extends StatelessWidget {
                     PLVSpace(24),
                     const MarketplaceWalletCardWidget(),
                     PLVSpace(24),
-                    const Expanded(
+                    Expanded(
                       child: CustomTab(
-                        tabTitleStringList: ['Active', 'Pending'],
-                        tabWidgetsList: [EmptyLoanScreen(), ActivePendingLoanList()],
+                        tabTitleStringList: const ['Active', 'Pending'],
+                        tabWidgetsList: [ActivePendingLoanList(loanDetails: loanWatcher.activeLoanDetails), ActivePendingLoanList(loanDetails: loanWatcher.pendingLoanDetails)],
                       ),
                     )
                   ],

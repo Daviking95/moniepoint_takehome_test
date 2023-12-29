@@ -1,8 +1,10 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
-
 class AcceptRejectOfferSummaryScreen extends StatelessWidget {
-  const AcceptRejectOfferSummaryScreen({Key? key}) : super(key: key);
+  final LenderOffersResponseModelLoanDetail loanDetail;
+
+  const AcceptRejectOfferSummaryScreen({Key? key, required this.loanDetail})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,9 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         PLVSpace(48),
-                        PLBackIcon(onTap: () => Navigator.pop(context),),
+                        PLBackIcon(
+                          onTap: () => Navigator.pop(context),
+                        ),
                         PLVSpace(16),
                         PLTextWidget(
                           title: "Offer details",
@@ -48,31 +52,41 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                    PLDecorations.borderRadiusGeometryCircular16,
+                                    borderRadius: PLDecorations
+                                        .borderRadiusGeometryCircular16,
                                     color: PLColors.appWhiteColor),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
-                                        ProfileImageWidget(imageFile: UserData.profilePicture, size: 40),
-                                        PLHSpace(12),
+                                        if(loanDetail.image.isNotEmpty && loanDetail.image != 'N/A') ...[
+                                          ProfileImageWidget(
+                                              imageFile: loanDetail.image,
+                                              size: 40),
+                                          PLHSpace(12),
+                                        ],
                                         Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             PLTextWidget(
-                                              title: (UserData.getUserProfileResponseModel?.fullName ?? ""),
-                                              textStyle: PLTypography.textTitleLargeStyle,
-                                              textSize: PLTypography.fontTitleMedium,
+                                              title: loanDetail.name,
+                                              textStyle: PLTypography
+                                                  .textTitleLargeStyle,
+                                              textSize:
+                                                  PLTypography.fontTitleMedium,
                                               fontWeight: FontWeight.w700,
                                             ),
                                             PLVSpace(4),
                                             PLTextWidget(
                                               title: "Lender",
-                                              textStyle: PLTypography.textTitleLargeStyle,
+                                              textStyle: PLTypography
+                                                  .textTitleLargeStyle,
                                               textColor: PLColors.appGrayText,
-                                              textSize: PLTypography.fontLabelSmall,
+                                              textSize:
+                                                  PLTypography.fontLabelSmall,
                                             ),
                                           ],
                                         ),
@@ -84,18 +98,21 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                               PLVSpace(24),
                               Container(
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                    PLDecorations.borderRadiusGeometryCircular8,
+                                    borderRadius: PLDecorations
+                                        .borderRadiusGeometryCircular8,
                                     color: PLColors.appWhiteColor),
                                 child: Column(
                                   children: [
                                     _loanDetailsItem(
                                         'Amount to receive',
                                         PLTextWidget(
-                                          title: 98900
+                                          title: (UserData.loogedInUserLoan
+                                                      ?.amount ??
+                                                  0)
                                               .toString()
                                               .formatWithCommasAndDecimals(),
-                                          textStyle: PLTypography.textTitleSmallStyle,
+                                          textStyle:
+                                              PLTypography.textTitleSmallStyle,
                                           textSize: PLTypography.fontLabelSmall,
                                           fontWeight: FontWeight.w600,
                                           textColor: PLColors.appPrimaryText,
@@ -105,8 +122,10 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                     _loanDetailsItem(
                                         'Interest Rate',
                                         PLTextWidget(
-                                          title: "15%",
-                                          textStyle: PLTypography.textTitleLargeStyle,
+                                          title:
+                                              "${loanDetail.loanPercentage}%",
+                                          textStyle:
+                                              PLTypography.textTitleLargeStyle,
                                           textColor: PLColors.appPrimaryText,
                                           fontWeight: FontWeight.w600,
                                           textSize: PLTypography.fontLabelSmall,
@@ -114,8 +133,10 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                     _loanDetailsItem(
                                         'Duration (Days)',
                                         PLTextWidget(
-                                          title: "30 Days",
-                                          textStyle: PLTypography.textTitleLargeStyle,
+                                          title:
+                                              "${(UserData.loogedInUserLoan?.duration ?? 0)} Days",
+                                          textStyle:
+                                              PLTypography.textTitleLargeStyle,
                                           textColor: PLColors.appPrimaryText,
                                           fontWeight: FontWeight.w600,
                                           textSize: PLTypography.fontLabelSmall,
@@ -123,23 +144,27 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                     _loanDetailsItem(
                                         'Interest Value',
                                         PLTextWidget(
-                                          title: 98900
+                                          title: (UserData.loogedInUserLoan
+                                                      ?.interestValue ??
+                                                  0)
                                               .toString()
                                               .formatWithCommasAndDecimals(),
-                                          textStyle: PLTypography.textTitleSmallStyle,
+                                          textStyle:
+                                              PLTypography.textTitleSmallStyle,
                                           textSize: PLTypography.fontLabelSmall,
                                           fontWeight: FontWeight.w600,
                                           textColor: PLColors.appPrimaryText,
                                           maxLines: 1,
                                           isCurrency: true,
                                         )),
-
-
                                     _loanDetailsItem(
                                         'Repayment Date',
                                         PLTextWidget(
-                                          title: DateTime.now().formatDate(),
-                                          textStyle: PLTypography.textTitleLargeStyle,
+                                          title: UserData
+                                              .loogedInUserLoan?.repaymentDate
+                                              .formatDate(),
+                                          textStyle:
+                                              PLTypography.textTitleLargeStyle,
                                           textColor: PLColors.appPrimaryText,
                                           fontWeight: FontWeight.w600,
                                           textSize: PLTypography.fontLabelSmall,
@@ -147,10 +172,13 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                     _loanDetailsItem(
                                         'Amount to Repay',
                                         PLTextWidget(
-                                          title: 98900
+                                          title: (UserData.loogedInUserLoan
+                                                      ?.amountToPay ??
+                                                  0)
                                               .toString()
                                               .formatWithCommasAndDecimals(),
-                                          textStyle: PLTypography.textTitleSmallStyle,
+                                          textStyle:
+                                              PLTypography.textTitleSmallStyle,
                                           textSize: PLTypography.fontLabelSmall,
                                           fontWeight: FontWeight.w600,
                                           textColor: PLColors.appPrimaryText,
@@ -158,13 +186,14 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                           isCurrency: true,
                                         )),
                                   ],
-                                ).paddingSymmetric(horizontal: 16, vertical: 16),
+                                ).paddingSymmetric(
+                                    horizontal: 16, vertical: 16),
                               ),
                               PLVSpace(24),
                               Container(
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                    PLDecorations.borderRadiusGeometryCircular8,
+                                    borderRadius: PLDecorations
+                                        .borderRadiusGeometryCircular8,
                                     color: PLColors.appWhiteColor),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,38 +203,46 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                       width: 15,
                                       child: Checkbox(
                                         value: loanWatcher.agreeToAcceptOffer,
-                                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                        activeColor: PLColors.appPrimaryColorMain500,
+                                        materialTapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap,
+                                        activeColor:
+                                            PLColors.appPrimaryColorMain500,
                                         onChanged: (bool? value) {
-                                          loanWatcher.agreeToAcceptOffer = value!;
+                                          loanWatcher.agreeToAcceptOffer =
+                                              value!;
                                         },
                                       ),
                                     ),
                                     PLHSpace(16),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           PLTextWidget(
-                                            title: "You are agreeing to lend the amount above to Jide. Funds will be debited from your account",
+                                            title:
+                                                "You are agreeing to lend the amount above to Jide. Funds will be debited from your account",
                                             textColor: PLColors.appPrimaryText,
                                             fontWeight: FontWeight.w600,
-                                            textSize: PLTypography.fontLabelSmall,
+                                            textSize:
+                                                PLTypography.fontLabelSmall,
                                           ),
                                           PLVSpace(8),
                                           PLTextWidget(
-                                            title: "I authorize PeerLendly to debit my account for the amount noted on today’s date and will not dispute PeerLendly debiting my account as the transaction corresponds to the terms in this online form and my agreement with PeerLendly. I understand that the payback date may be later than 15 Oct, 2023 if the borrower does not pay on time.",
+                                            title:
+                                                "I authorize PeerLendly to debit my account for the amount noted on today’s date and will not dispute PeerLendly debiting my account as the transaction corresponds to the terms in this online form and my agreement with PeerLendly. I understand that the payback date may be later than 15 Oct, 2023 if the borrower does not pay on time.",
                                             textColor: PLColors.appPrimaryText,
-                                            textSize: PLTypography.fontLabelSmall,
+                                            textSize:
+                                                PLTypography.fontLabelSmall,
                                           ),
                                         ],
                                       ),
                                     ),
                                   ],
-                                ).paddingSymmetric(horizontal: 16, vertical: 16),
+                                ).paddingSymmetric(
+                                    horizontal: 16, vertical: 16),
                               ),
                               PLVSpace(24),
-
                             ],
                           ),
                         ],
@@ -217,12 +254,26 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                           textTitle: "Accept Offer",
                           bgColor: PLColors.appPrimaryColorMain500,
                           borderRadius:
-                          PLDecorations.borderRadiusGeometryCircular8,
+                              PLDecorations.borderRadiusGeometryCircular8,
                           isFormValidated: loanWatcher.agreeToAcceptOffer,
                           isLoader: loanWatcher.isLoading,
                           loadingString: loanWatcher.loadingString,
                           functionToRun: () {
-                            showAlertDialog(context, "", const MakeOfferAmountExchangeWidget());
+                            showAlertDialog(
+                                context,
+                                "",
+                                MakeOfferAmountExchangeWidget(
+                                    amountToPay: (UserData.loogedInUserLoan
+                                                ?.amountToPay ??
+                                            0)
+                                        .toDouble(),
+                                    amountToReceive: (UserData.loogedInUserLoan
+                                                ?.amountToRecieve ??
+                                            0)
+                                        .toDouble(),
+                                    callBack: () {
+                                      loanWatcher.acceptLoanOffer(loanDetail.offerId);
+                                    }));
                           },
                         ),
                         PLVSpace(24),

@@ -1,7 +1,8 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
 class LoanHistoryScreen extends StatelessWidget {
-  const LoanHistoryScreen({Key? key}) : super(key: key);
+  final List<MarketplaceResponseModelLoanDetail> borrowerLoanHistory;
+  const LoanHistoryScreen({Key? key, required this.borrowerLoanHistory}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class LoanHistoryScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             PLTextWidget(
-              title: "Loan Repaid (4)",
+              title: "Loan Repaid (${borrowerLoanHistory.length})",
               textColor: PLColors.appPrimaryText,
               fontFamily: PLTypography.fontFamilyMedium,
               fontWeight: FontWeight.w600,
@@ -34,11 +35,9 @@ class LoanHistoryScreen extends StatelessWidget {
         Expanded(
             child: ListView(
           children: [
-            LoanHistoryCard(),
-            LoanHistoryCard(),
-            LoanHistoryCard(),
-            LoanHistoryCard(),
-            LoanHistoryCard(),
+            for (var index = 0; index < borrowerLoanHistory.length; index++) ...[
+              LoanHistoryCard(loanDetail: borrowerLoanHistory[index]),
+            ],
           ],
         ))
       ],

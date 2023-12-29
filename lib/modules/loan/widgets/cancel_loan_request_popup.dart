@@ -1,12 +1,10 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
-class CancelLoanOfferPopup extends StatelessWidget {
-  final ActivePendingLoansResponseModelLoanDetail loanDetail;
-  // final LoanProvider loanWatcher;
 
-  const CancelLoanOfferPopup({Key? key, required this.loanDetail,
-    // required this.loanWatcher
-  }) : super(key: key);
+class CancelLoanRequestPopup extends StatelessWidget {
+  final LoogedInUserLoanResponseModel? loanDetail;
+
+  const CancelLoanRequestPopup({Key? key, this.loanDetail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +21,14 @@ class CancelLoanOfferPopup extends StatelessWidget {
           ),
           PLVSpace(24),
           PLTextWidget(
-            title: 'You are about to cancel your loan offer',
+            title: 'You are about to cancel your loan request',
             textSize: PLTypography.fontLabelMedium,
             textAlign: TextAlign.center,
             textColor: PLColors.appGrayText,
           ),
           PLVSpace(4),
           PLTextWidget(
-            title: loanDetail.loanAmount.toString().formatWithCommasAndDecimals(),
+            title: loanDetail?.amount.toString().formatWithCommasAndDecimals(),
             textStyle: PLTypography.textTitleSmallStyle,
             textSize: PLTypography.fontBodyMedium,
             fontWeight: FontWeight.w600,
@@ -59,7 +57,7 @@ class CancelLoanOfferPopup extends StatelessWidget {
                     bgColor: PLColors.appErrorColor,
                     functionToRun: () {
                       Navigator.pop(context);
-                      loanWatcher.canceloanOffer(loanDetail);
+                      loanWatcher.canceloanApplication(loanDetail!);
                     }),
               ),
             ],

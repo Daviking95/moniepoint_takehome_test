@@ -38,3 +38,4 @@ part 'widgets/fund_wallet_pop_up.dart';
 part 'screens/withdraw_wallet_amount_screen.dart';
 part 'screens/bills_payment_options_screen.dart';
 part 'widgets/bills_payment_popup.dart';
+part 'widgets/update_profile_pop_up.dart';

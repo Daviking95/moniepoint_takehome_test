@@ -3,8 +3,8 @@ part of 'package:peerlendly/modules/loan/exports.dart';
 
 class SingleLoanScreen extends StatelessWidget {
   final LoanStatus loanStatus;
-
-  const SingleLoanScreen({Key? key, required this.loanStatus})
+  final ActivePendingLoansResponseModelLoanDetail loanDetail;
+  const SingleLoanScreen({Key? key, required this.loanStatus, required this.loanDetail})
       : super(key: key);
 
 
@@ -42,7 +42,7 @@ class SingleLoanScreen extends StatelessWidget {
                                   ProfileImageWidget(imageFile: UserData.profilePicture, size: 40),
                                   PLHSpace(12),
                                   PLTextWidget(
-                                    title: (UserData.getUserProfileResponseModel?.fullName ?? ""),
+                                    title: (loanDetail.borrowerName ?? ""),
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appPrimaryColorMain500,
                                     textSize: PLTypography.fontTitleMedium,
@@ -72,7 +72,7 @@ class SingleLoanScreen extends StatelessWidget {
                                           color: PLColors.appGreenColor),
                                       child: Center(
                                         child: PLTextWidget(
-                                          title: (UserData.lendlyScoreResponseModel?.lendlyScore ?? 0).toString(),
+                                          title: (loanDetail.lendlyScore ?? 0).toString(),
                                           textColor: PLColors.appWhiteColor,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: PLTypography.fontFamilyBold,
@@ -97,7 +97,7 @@ class SingleLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Amount',
                                   PLTextWidget(
-                                    title: 98900
+                                    title: loanDetail.loanAmount
                                         .toString()
                                         .formatWithCommasAndDecimals(),
                                     textStyle: PLTypography.textTitleSmallStyle,
@@ -110,7 +110,7 @@ class SingleLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Interest Rate',
                                   PLTextWidget(
-                                    title: "15%",
+                                    title: "${loanDetail.interestRate}%",
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
@@ -119,7 +119,7 @@ class SingleLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Duration (Days)',
                                   PLTextWidget(
-                                    title: "30 Days",
+                                    title: "${loanDetail.duration} Days",
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
@@ -128,7 +128,7 @@ class SingleLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Purpose',
                                   PLTextWidget(
-                                    title: "School Fees",
+                                    title: "${loanDetail.purpose}",
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
@@ -141,7 +141,7 @@ class SingleLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Amount to Pay',
                                   PLTextWidget(
-                                    title: 98900
+                                    title: loanDetail.amountToPay
                                         .toString()
                                         .formatWithCommasAndDecimals(),
                                     textStyle: PLTypography.textTitleSmallStyle,
@@ -159,7 +159,7 @@ class SingleLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Interest Value',
                                   PLTextWidget(
-                                    title: 98900
+                                    title: loanDetail.interestValue
                                         .toString()
                                         .formatWithCommasAndDecimals(),
                                     textStyle: PLTypography.textTitleSmallStyle,
@@ -169,23 +169,23 @@ class SingleLoanScreen extends StatelessWidget {
                                     maxLines: 1,
                                     isCurrency: true,
                                   )),
-                              _loanDetailsItem(
-                                  'Protection Fee',
-                                  PLTextWidget(
-                                    title: 98900
-                                        .toString()
-                                        .formatWithCommasAndDecimals(),
-                                    textStyle: PLTypography.textTitleSmallStyle,
-                                    textSize: PLTypography.fontLabelSmall,
-                                    fontWeight: FontWeight.w600,
-                                    textColor: PLColors.appPrimaryText,
-                                    maxLines: 1,
-                                    isCurrency: true,
-                                  )),
+                              // _loanDetailsItem(
+                              //     'Protection Fee',
+                              //     PLTextWidget(
+                              //       title: 98900
+                              //           .toString()
+                              //           .formatWithCommasAndDecimals(),
+                              //       textStyle: PLTypography.textTitleSmallStyle,
+                              //       textSize: PLTypography.fontLabelSmall,
+                              //       fontWeight: FontWeight.w600,
+                              //       textColor: PLColors.appPrimaryText,
+                              //       maxLines: 1,
+                              //       isCurrency: true,
+                              //     )),
                               _loanDetailsItem(
                                   'Platform Fee',
                                   PLTextWidget(
-                                    title: 98900
+                                    title: loanDetail.platformFee
                                         .toString()
                                         .formatWithCommasAndDecimals(),
                                     textStyle: PLTypography.textTitleSmallStyle,
@@ -198,7 +198,7 @@ class SingleLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Final Repayment Date',
                                   PLTextWidget(
-                                    title: DateTime.now().formatDate(),
+                                    title: loanDetail.repaymentDate.formatDate(),
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
@@ -207,7 +207,7 @@ class SingleLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Amount to be Received',
                                   PLTextWidget(
-                                    title: 98900
+                                    title: loanDetail.amountToRecieve
                                         .toString()
                                         .formatWithCommasAndDecimals(),
                                     textStyle: PLTypography.textTitleSmallStyle,
@@ -223,14 +223,14 @@ class SingleLoanScreen extends StatelessWidget {
                         PLVSpace(32),
                       ],
                     ),
-                    if(loanStatus == LoanStatus.delayed || loanStatus == LoanStatus.loanOffer)
+                    if(loanDetail.loanStatus == 5 || loanDetail.loanStatus == 2)
                     Column(
                       children: [
                         PLButtonRound(
-                          textTitle: loanStatus == LoanStatus.delayed ? "Report" : "Cancel Offer",
+                          textTitle: loanDetail.loanStatus == 5 ? "Report" : "Cancel Offer",
                           borderRadius: PLDecorations.borderRadiusGeometryCircular8,
                           bgColor: PLColors.appErrorColor,
-                          functionToRun: loanStatus == LoanStatus.loanOffer ? () => _cancelOffer(context) : null,
+                          functionToRun: loanDetail.loanStatus == 5 ? null : () => _cancelOffer(context),
                         ),
                         PLVSpace(24),
                       ],
@@ -247,7 +247,7 @@ class SingleLoanScreen extends StatelessWidget {
     showAlertDialog(
         context,
         '',
-        const CancelLoanOfferPopup());
+        CancelLoanOfferPopup(loanDetail: loanDetail));
   }
 
   _loanDetailsItem(String title, Widget child) {

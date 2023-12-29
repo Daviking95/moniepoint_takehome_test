@@ -2,13 +2,14 @@ part of 'package:peerlendly/modules/loan/exports.dart';
 
 
 class LoanOffersCard extends StatelessWidget {
-  const LoanOffersCard({Key? key}) : super(key: key);
+  final LenderOffersResponseModelLoanDetail loanDetail;
+  const LoanOffersCard({Key? key, required this.loanDetail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        AppNavigator.push(const AcceptRejectOfferSummaryScreen());
+        AppNavigator.push( AcceptRejectOfferSummaryScreen(loanDetail: loanDetail));
       },
       child: Column(
         children: [
@@ -24,7 +25,7 @@ class LoanOffersCard extends StatelessWidget {
                   backgroundColor: PLColors.appPrimaryColorMain500,
                   radius: 20,
                   child: Text(
-                    "JA",
+                    loanDetail.name.substring(0, 2).toUpperCase(),
                     style: context.textTheme.bodyMedium!
                         .copyWith(color: PLColors.appWhiteColor),
                   ),
@@ -56,7 +57,7 @@ class LoanOffersCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     PLTextWidget(
-                      title: "17%",
+                      title: "${loanDetail.loanPercentage}%",
                       textStyle: PLTypography.textTitleSmallStyle,
                       textSize: PLTypography.fontBodyMedium,
                       fontFamily: PLTypography.fontFamilyMedium,

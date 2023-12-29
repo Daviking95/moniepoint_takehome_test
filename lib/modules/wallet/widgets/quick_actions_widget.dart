@@ -12,7 +12,8 @@ class QuickActionsWidget extends StatelessWidget {
             () {
           if (!_isUserBVNValidated(context)) return;
 
-          modalBottomSheet(context, const WalletAccountDetailsWidget(), true, context.height / 2.2);
+          modalBottomSheet(context, const WalletAccountDetailsWidget(), true,
+              context.height / 2.2);
         }),
         _singleServiceIcon(context, PLAssets.getALoanIcon, "Get A Loan",
             const Color(0xff5D07CD), () {
@@ -27,6 +28,8 @@ class QuickActionsWidget extends StatelessWidget {
         }),
         _singleServiceIcon(context, PLAssets.marketplaceIcon, "Marketplace",
             PLColors.appSecondaryText, () {
+          if (!_isUserBVNValidated(context)) return;
+
           PersistentNavBarNavigator.pushNewScreen(
             context,
             screen: const MarketplaceScreen(),
@@ -91,6 +94,11 @@ class QuickActionsWidget extends StatelessWidget {
   bool _isUserBVNValidated(BuildContext context) {
     if (!(UserData.getUserProfileResponseModel?.bvnVerified ?? false)) {
       showAlertDialog(context, '', const VerifyAccountPopUp());
+      return false;
+    } else if ((UserData.getUserProfileResponseModel?.fullName ?? "").isEmpty ||
+        (UserData.getUserProfileResponseModel?.fullName ?? "")
+            .contains("N/A")) {
+      showAlertDialog(context, '', const UpdateProfilePopUp());
       return false;
     } else {
       return true;

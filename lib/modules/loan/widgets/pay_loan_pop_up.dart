@@ -81,7 +81,7 @@ class _PayLoanPopUpState extends State<PayLoanPopUp> {
                           context,
                           TransferPinActivationWidget(
                             prevContext: context,
-                            callBackFunc: () {
+                            callBackFunc: (value) {
                               widget.loanWatcher.processPayment(context);
                             },
                           ),

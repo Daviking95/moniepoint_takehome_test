@@ -2,8 +2,10 @@ part of 'package:peerlendly/modules/loan/exports.dart';
 
 class RepayLoanScreen extends StatelessWidget {
   final LoanStatus loanStatus;
+  final LoogedInUserLoanResponseModel? loanDetails;
 
-  const RepayLoanScreen({Key? key, this.loanStatus = LoanStatus.active})
+  const RepayLoanScreen(
+      {Key? key, this.loanStatus = LoanStatus.active, this.loanDetails})
       : super(key: key);
 
   @override
@@ -47,23 +49,18 @@ class RepayLoanScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: PLDecorations
-                                        .borderRadiusGeometryCircular16,
-                                  ),
-                                  child: PLImagePng(
-                                    imgPath: PLAssets.loanDefaultProfile,
-                                    width: 48.w,
-                                    height: 48.h,
-                                  ),
-                                ),
-                                PLHSpace(12),
+                                if (loanDetails!.lenderImage.isNotEmpty &&
+                                    loanDetails!.lenderImage != 'N/A') ...[
+                                  ProfileImageWidget(
+                                      imageFile: loanDetails!.lenderImage,
+                                      size: 40),
+                                  PLHSpace(12),
+                                ],
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     PLTextWidget(
-                                      title: "Jide Ayo",
+                                      title: loanDetails?.lenderName ?? "",
                                       textStyle:
                                           PLTypography.textTitleLargeStyle,
                                       textColor:
@@ -96,7 +93,7 @@ class RepayLoanScreen extends StatelessWidget {
                             _loanDetailsItem(
                                 'Amount Received',
                                 PLTextWidget(
-                                  title: 98900
+                                  title: (loanDetails?.amountToRecieve ?? 0)
                                       .toString()
                                       .formatWithCommasAndDecimals(),
                                   textStyle: PLTypography.textTitleSmallStyle,
@@ -109,7 +106,7 @@ class RepayLoanScreen extends StatelessWidget {
                             _loanDetailsItem(
                                 'Interest Rate',
                                 PLTextWidget(
-                                  title: "15%",
+                                  title: "${(loanDetails?.interestRate ?? 0)}%",
                                   textStyle: PLTypography.textTitleLargeStyle,
                                   textColor: PLColors.appPrimaryText,
                                   fontWeight: FontWeight.w600,
@@ -118,7 +115,7 @@ class RepayLoanScreen extends StatelessWidget {
                             _loanDetailsItem(
                                 'Duration (Days)',
                                 PLTextWidget(
-                                  title: "30 Days",
+                                  title: "${(loanDetails?.duration ?? 0)} Days",
                                   textStyle: PLTypography.textTitleLargeStyle,
                                   textColor: PLColors.appPrimaryText,
                                   fontWeight: FontWeight.w600,
@@ -127,7 +124,7 @@ class RepayLoanScreen extends StatelessWidget {
                             _loanDetailsItem(
                                 'Purpose',
                                 PLTextWidget(
-                                  title: "School Fees",
+                                  title: "${(loanDetails?.purpose ?? "")}",
                                   textStyle: PLTypography.textTitleLargeStyle,
                                   textColor: PLColors.appPrimaryText,
                                   fontWeight: FontWeight.w600,
@@ -139,7 +136,7 @@ class RepayLoanScreen extends StatelessWidget {
                             _loanDetailsItem(
                                 'Interest Value',
                                 PLTextWidget(
-                                  title: 15000
+                                  title: (loanDetails?.interestValue ?? 0)
                                       .toString()
                                       .formatWithCommasAndDecimals(),
                                   textStyle: PLTypography.textTitleSmallStyle,
@@ -152,7 +149,9 @@ class RepayLoanScreen extends StatelessWidget {
                             _loanDetailsItem(
                                 'Repayment Date',
                                 PLTextWidget(
-                                  title: DateTime.now().formatDate(),
+                                  title: (loanDetails?.repaymentDate ??
+                                          DateTime.now())
+                                      .formatDate(),
                                   textStyle: PLTypography.textTitleLargeStyle,
                                   textColor: PLColors.appPrimaryText,
                                   fontWeight: FontWeight.w600,
@@ -165,7 +164,8 @@ class RepayLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'No of Delayed Days',
                                   PLTextWidget(
-                                    title: "12 Days",
+                                    title:
+                                        "${(loanDetails?.numberOfDaysDelayed ?? 0)} Days",
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appErrorColor,
                                     fontWeight: FontWeight.w600,
@@ -174,7 +174,7 @@ class RepayLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Amount to Repay',
                                   PLTextWidget(
-                                    title: 15000
+                                    title: (loanDetails?.amountToPay ?? 0)
                                         .toString()
                                         .formatWithCommasAndDecimals(),
                                     textStyle: PLTypography.textTitleSmallStyle,
@@ -212,9 +212,12 @@ class RepayLoanScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             PLImageSvg(
-                                svgPath: loanStatus == LoanStatus.delayed
-                                    ? PLAssets.infoIconRed
-                                    : PLAssets.infoIcon, width: 40.w, height: 40.h,),
+                              svgPath: loanStatus == LoanStatus.delayed
+                                  ? PLAssets.infoIconRed
+                                  : PLAssets.infoIcon,
+                              width: 40.w,
+                              height: 40.h,
+                            ),
                             PLHSpace(16),
                             Expanded(
                               child: PLTextWidget(

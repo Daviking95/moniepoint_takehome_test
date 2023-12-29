@@ -2,8 +2,9 @@ part of 'package:peerlendly/modules/loan/exports.dart';
 
 class PendingActiveLoanItem extends StatelessWidget {
   final LoanStatus loanStatus;
+  final ActivePendingLoansResponseModelLoanDetail loanDetail;
 
-  const PendingActiveLoanItem({Key? key, required this.loanStatus})
+  const PendingActiveLoanItem({Key? key, required this.loanStatus, required this.loanDetail})
       : super(key: key);
 
   @override
@@ -15,6 +16,7 @@ class PendingActiveLoanItem extends StatelessWidget {
             routeType: 7,
             route: SingleLoanScreen(
               loanStatus: loanStatus,
+                loanDetail: loanDetail
             ));
       },
       child: Column(
@@ -31,7 +33,7 @@ class PendingActiveLoanItem extends StatelessWidget {
                   backgroundColor: PLColors.appPrimaryColorMain500,
                   radius: 20,
                   child: Text(
-                    "JA",
+                    loanDetail.borrowerName.substring(0,2).toUpperCase(),
                     style: context.textTheme.bodyMedium!
                         .copyWith(color: PLColors.appWhiteColor),
                   ),
@@ -43,7 +45,7 @@ class PendingActiveLoanItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       PLTextWidget(
-                        title: 4000000.toString().formatWithCommasAndDecimals(),
+                        title: loanDetail.loanAmount.toString().formatWithCommasAndDecimals(),
                         isCurrency: true,
                         textColor: PLColors.appPrimaryText,
                         fontFamily: PLTypography.fontFamilyMedium,
@@ -64,8 +66,8 @@ class PendingActiveLoanItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     PLTextWidget(
-                      title: loanStatus.name.toString().toTitleCase,
-                      textColor: loanStatus == LoanStatus.delayed
+                      title: getLoanStatus(loanDetail.loanStatus.toInt()),
+                      textColor: loanDetail.loanStatus.toInt() == 5
                           ? PLColors.appErrorColor
                           : PLColors.appGreenColor,
                       textSize: PLTypography.fontLabelSmall,

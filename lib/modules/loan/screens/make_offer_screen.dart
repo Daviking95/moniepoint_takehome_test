@@ -1,7 +1,11 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
 class MakeOfferScreen extends StatelessWidget {
-  const MakeOfferScreen({Key? key}) : super(key: key);
+  final MarketplaceResponseModelLoanDetail marketplaceLoan;
+
+  const MakeOfferScreen({Key? key,
+    required this.marketplaceLoan,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +106,7 @@ class MakeOfferScreen extends StatelessWidget {
                                         hasSuffixIcon: true,
                                         suffixText: "%",
                                         validation: (val) =>
-                                            val.validateNumber(strFieldRequiredError),
+                                            val.validateNumberCap(strFieldRequiredError, 15),
                                         onChange: (val) => loanWatcher.listenForInterestChanges(),
                                       ),
                                     ),
@@ -166,7 +170,7 @@ class MakeOfferScreen extends StatelessWidget {
                             isFormValidated: loanWatcher.isFormValidated,
                             isLoader: loanWatcher.isLoading,
                             functionToRun: () {
-                              AppNavigator.push(MakeOfferSummaryScreen());
+                              loanWatcher.calculateLoan(marketplaceLoan.loanId, loanWatcher.interestRate.text, marketplaceLoan);
                               },
                           ),
                           PLVSpace(24),

@@ -24,4 +24,18 @@ class NetworkConstants {
   static const String profilePictureUrl = "$profileModule/profilepicture";
   static const String lendlyScoreUrl = "$profileModule/lendlyscore";
   static const String loanApplyUrl = "$loanModule/applyforloan";
+  static const String offersFromLendersUrl = "$loanModule/myoffers";
+  static const String loanMarketplaceUrl = "$loanModule/marketplaceloans";
+  static const String activePendingLoanOffersUrl = "$loanModule/loans";
+  static const String singleLoanOfferUrl = "$loanModule/offerdetail";
+  static const String loggedInUserLoanDetailsUrl = "$loanModule/loandetails";
+  static const String repayLoanWithWalletUrl = "$loanModule/repayloanwithwallet";
+  static const String repayLoanWithCardUrl = "$loanModule/repayloanwithdebitcard";
+  static const String acceptOfferUrl = "$loanModule/acceptoffer";
+  static const String calculateLoanUrl = "$loanModule/calculateloan";
+  static const String makeLoanOfferUrl = "$loanModule/makeoffer";
+  static const String cancelLoanOfferUrl = "$loanModule/cancel";
+  static const String cancelLoanRequestUrl = "$loanModule/deleteloan";
+  static const String verifyPinUrl = "$loanModule/verifypin";
+  static const String loanHistoryUrl = "$loanModule/loanhistory";
 }

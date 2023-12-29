@@ -865,7 +865,6 @@ class ProfileProvider extends BaseViewModel {
 
   void changeTransactionPin() async {}
 
-
   void changePhoto(BuildContext context) {
     modalBottomSheet(
         context,

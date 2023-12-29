@@ -2,10 +2,10 @@ part of 'package:peerlendly/modules/loan/exports.dart';
 
 class LoanRequestCardWidget extends StatelessWidget {
   final String dateCreated;
-
+  final MarketplaceResponseModelLoanDetail marketplaceLoan;
   const LoanRequestCardWidget({
     Key? key,
-    required this.dateCreated,
+    required this.dateCreated, required this.marketplaceLoan,
   }) : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class LoanRequestCardWidget extends StatelessWidget {
         AppNavigator.navigateRoute(
             context: context,
             routeType: 7,
-            route: const LoanRequestSummaryCard());
+            route: LoanRequestSummaryCard(marketplaceLoan: marketplaceLoan));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +36,7 @@ class LoanRequestCardWidget extends StatelessWidget {
                       color: PLColors.appGreenColor),
                   child: Center(
                     child: PLTextWidget(
-                      title: (UserData.lendlyScoreResponseModel?.lendlyScore ?? 0).toString(),
+                      title: marketplaceLoan.lendlyScore.toString(),
                       textColor: PLColors.appWhiteColor,
                       // fontWeight: FontWeight.bold,
                       // fontFamily: PLTypography.fontFamilyBold,
@@ -51,7 +51,7 @@ class LoanRequestCardWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       PLTextWidget(
-                        title: "Jide A",
+                        title: marketplaceLoan.fullName,
                         textColor: PLColors.appPrimaryText,
                         fontFamily: PLTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w500,
@@ -59,7 +59,7 @@ class LoanRequestCardWidget extends StatelessWidget {
                       ),
                       PLVSpace(8),
                       PLTextWidget(
-                        title: "Payback Period - 30 Days",
+                        title: "Payback Period - ${marketplaceLoan.duration} Days",
                         textColor: PLColors.appGrayText,
                         textSize: PLTypography.fontLabelSmall,
                       ),
@@ -71,7 +71,7 @@ class LoanRequestCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     PLTextWidget(
-                      title: 40000000.toString().formatWithCommasAndDecimals(),
+                      title: marketplaceLoan.loanAmount.toString().formatWithCommasAndDecimals(),
                       textStyle: PLTypography.textTitleSmallStyle,
                       textSize: PLTypography.fontBodyMedium,
                       fontFamily: PLTypography.fontFamilyMedium,

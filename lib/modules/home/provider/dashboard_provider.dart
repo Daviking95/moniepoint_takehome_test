@@ -23,23 +23,71 @@ class DashboardProvider extends BaseViewModel {
   }
 
   void getUserProfile() async {
-    final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
+    final dartz.Either<ErrorResponseModel, GetUserProfileResponseModel> responseData =
         await PLProfileRepository.instance.getUserProfileService();
 
-    "responseDataGetUserProfile $responseData".logger();
+    return responseData.fold((errorResponse) async {
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+
+      return;
+    }, (successResponse) async {
+      // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
+
+      UserData.getUserProfileResponseModel = successResponse;
+
+      "responseDataGetUserProfile $responseData".logger();
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+    });
+
   }
 
   void getLendlyScoreProfile() async {
-    final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
+    final dartz.Either<ErrorResponseModel, LendlyScoreResponseModel> responseData =
         await PLProfileRepository.instance.getLendlyScoreService();
 
-    "responseDataGetLendlyScore $responseData".logger();
+    return responseData.fold((errorResponse) async {
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+
+      return;
+    }, (successResponse) async {
+      // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
+
+      UserData.lendlyScoreResponseModel = successResponse;
+
+      "responseDataGetLendlyScore $responseData".logger();
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+    });
+
   }
 
   void getProfilePic() async {
     final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
         await PLProfileRepository.instance.getProfilePicService();
 
-    "responseDataGetProfilePic $responseData".logger();
+    return responseData.fold((errorResponse) async {
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+
+      return;
+    }, (successResponse) async {
+      // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
+
+      "responseDataGetProfilePic $responseData".logger();
+
+      UserData.profilePicture = successResponse.message;
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+    });
+
   }
 }

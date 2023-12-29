@@ -28,4 +28,10 @@ class UserData {
 
   static String profilePicture = "";
 
+  static List<MarketplaceResponseModelLoanDetail> marketplaceLoans = [];
+
+  static LoogedInUserLoanResponseModel? loogedInUserLoan;
+
+  static List<LenderOffersResponseModelLoanDetail> loanOffersFromLenders = [];
+
 }

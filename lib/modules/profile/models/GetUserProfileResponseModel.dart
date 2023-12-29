@@ -3,6 +3,7 @@ import 'dart:convert';
 
 class GetUserProfileResponseModel {
   final String fullName;
+  final int userId;
   final String emailAddress;
   final String phoneNumber;
   final String address;
@@ -14,10 +15,13 @@ class GetUserProfileResponseModel {
   final DateTime startDate;
   final String monthlyEarnings;
   final String proofOfEmployment;
+  final String borrowerLimit;
+  final String lendingLimit;
   final bool bvnVerified;
 
   GetUserProfileResponseModel({
     required this.fullName,
+    required this.userId,
     required this.emailAddress,
     required this.phoneNumber,
     required this.address,
@@ -30,10 +34,13 @@ class GetUserProfileResponseModel {
     required this.monthlyEarnings,
     required this.proofOfEmployment,
     required this.bvnVerified,
+    required this.borrowerLimit,
+    required this.lendingLimit,
   });
 
   GetUserProfileResponseModel copyWith({
     String? fullName,
+    int? userId,
     String? emailAddress,
     String? phoneNumber,
     String? address,
@@ -45,10 +52,13 @@ class GetUserProfileResponseModel {
     DateTime? startDate,
     String? monthlyEarnings,
     String? proofOfEmployment,
+    String? lendingLimit,
+    String? borrowerLimit,
     bool? bvnVerified,
   }) =>
       GetUserProfileResponseModel(
         fullName: fullName ?? this.fullName,
+        userId: userId ?? this.userId,
         emailAddress: emailAddress ?? this.emailAddress,
         phoneNumber: phoneNumber ?? this.phoneNumber,
         address: address ?? this.address,
@@ -61,6 +71,8 @@ class GetUserProfileResponseModel {
         monthlyEarnings: monthlyEarnings ?? this.monthlyEarnings,
         proofOfEmployment: proofOfEmployment ?? this.proofOfEmployment,
         bvnVerified: bvnVerified ?? this.bvnVerified,
+        lendingLimit: lendingLimit ?? this.lendingLimit,
+        borrowerLimit: borrowerLimit ?? this.borrowerLimit,
       );
 
   factory GetUserProfileResponseModel.fromRawJson(String str) => GetUserProfileResponseModel.fromJson(json.decode(str));
@@ -68,23 +80,27 @@ class GetUserProfileResponseModel {
   String toRawJson() => json.encode(toJson());
 
   factory GetUserProfileResponseModel.fromJson(Map<String, dynamic> json) => GetUserProfileResponseModel(
-    fullName: json["FullName"],
-    emailAddress: json["EmailAddress"],
-    phoneNumber: json["PhoneNumber"],
-    address: json["Address"],
-    lga: json["LGA"],
-    referralCode: json["ReferralCode"],
-    state: json["State"],
-    employmentStatus: json["EmploymentStatus"],
-    companyName: json["CompanyName"],
+    fullName: json["FullName"] ?? "",
+    userId: json["UserId"] ?? 0,
+    emailAddress: json["EmailAddress"] ?? "",
+    phoneNumber: json["PhoneNumber"] ?? "",
+    address: json["Address"] ?? "",
+    lga: json["LGA"] ?? "",
+    referralCode: json["ReferralCode"] ?? "",
+    state: json["State"] ?? "",
+    employmentStatus: json["EmploymentStatus"] ?? "",
+    companyName: json["CompanyName"] ?? "",
     startDate: DateTime.parse(json["StartDate"]),
-    monthlyEarnings: json["MonthlyEarnings"],
-    proofOfEmployment: json["ProofOfEmployment"],
+    monthlyEarnings: json["MonthlyEarnings"] ?? "",
+    proofOfEmployment: json["ProofOfEmployment"] ?? "",
     bvnVerified: json["BvnVerified"],
+    lendingLimit: json["LendingLimit"] ?? "",
+    borrowerLimit: json["BorrowerLimit"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
     "FullName": fullName,
+    "UserId": userId,
     "EmailAddress": emailAddress,
     "PhoneNumber": phoneNumber,
     "Address": address,
@@ -97,5 +113,7 @@ class GetUserProfileResponseModel {
     "MonthlyEarnings": monthlyEarnings,
     "ProofOfEmployment": proofOfEmployment,
     "BvnVerified": bvnVerified,
+    "BorrowerLimit": borrowerLimit,
+    "LendingLimit": lendingLimit,
   };
 }

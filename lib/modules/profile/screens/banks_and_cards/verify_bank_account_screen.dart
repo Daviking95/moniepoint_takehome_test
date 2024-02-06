@@ -41,7 +41,6 @@ class VerifyBankAccountScreen extends StatelessWidget {
                             MonoFlutter().launch(
                               context,
                               dotenv.env['MONO_PUBLIC_KEY'] ?? "",
-                              // authCode: 'code_sGjE1Zh48lFR8vr3FkrD',
                               reference: DateTime.now().millisecondsSinceEpoch.toString(),
                               config: {
                                 "selectedInstitution": {

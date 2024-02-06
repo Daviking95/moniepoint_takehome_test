@@ -5,6 +5,7 @@ class AppBaseWidget extends StatelessWidget {
   final Widget buildWidget;
   final double topHeight;
   final bool hasNoColumn;
+  final bool hasBackButton;
   final Color bgColor;
 
   const AppBaseWidget(
@@ -13,6 +14,7 @@ class AppBaseWidget extends StatelessWidget {
       required this.buildWidget,
       required this.topHeight,
       this.hasNoColumn = false,
+      this.hasBackButton = false,
       this.bgColor = PLColors.appPrimaryColorMain500})
       : super(key: key);
 
@@ -33,7 +35,18 @@ class AppBaseWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       PLVSpace(48),
-                      iconSet,
+                      Row(
+                        mainAxisAlignment: hasBackButton ? MainAxisAlignment.start : MainAxisAlignment.center,
+                        crossAxisAlignment: hasBackButton ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+                        children: [
+                          if(hasBackButton)
+                          PLBackIcon(onTap: () => Navigator.pop(context)).paddingOnly(left: 10),
+                          iconSet,
+                          if(hasBackButton)
+                          Container(width: 60,),
+
+                        ],
+                      ),
                       // PLVSpace(16),
                     ],
                   ),

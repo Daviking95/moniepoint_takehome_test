@@ -6,7 +6,8 @@ class LoogedInUserLoanResponseModel {
   final String lenderName;
   final String lenderImage;
   final num amount;
-  final dynamic interestRate;
+  final num loanId;
+  final num interestRate;
   final num duration;
   final String purpose;
   final num amountToPay;
@@ -20,6 +21,7 @@ class LoogedInUserLoanResponseModel {
   LoogedInUserLoanResponseModel({
     required this.bankAccount,
     required this.lenderName,
+    required this.loanId,
     required this.lenderImage,
     required this.amount,
     required this.interestRate,
@@ -39,7 +41,8 @@ class LoogedInUserLoanResponseModel {
     String? lenderName,
     String? lenderImage,
     num? amount,
-    dynamic? interestRate,
+    num? loanId,
+    num? interestRate,
     num? duration,
     String? purpose,
     num? amountToPay,
@@ -53,6 +56,7 @@ class LoogedInUserLoanResponseModel {
       LoogedInUserLoanResponseModel(
         bankAccount: bankAccount ?? this.bankAccount,
         lenderName: lenderName ?? this.lenderName,
+        loanId: loanId ?? this.loanId,
         lenderImage: lenderImage ?? this.lenderImage,
         amount: amount ?? this.amount,
         interestRate: interestRate ?? this.interestRate,
@@ -74,9 +78,10 @@ class LoogedInUserLoanResponseModel {
   factory LoogedInUserLoanResponseModel.fromJson(Map<String, dynamic> json) => LoogedInUserLoanResponseModel(
     bankAccount: json["BankAccount"] ?? "",
     lenderName: json["LenderName"] ?? "",
+    loanId: json["LoanId"] ?? 0,
     lenderImage: json["LenderImage"] ?? "",
     amount: json["Amount"] ?? 0,
-    interestRate: json["InterestRate"] ?? "0",
+    interestRate: json["InterestRate"] ?? 0,
     duration: json["Duration"] ?? 0,
     purpose: json["Purpose"] ?? "",
     amountToPay: json["AmountToPay"] ?? 0,
@@ -91,6 +96,7 @@ class LoogedInUserLoanResponseModel {
   Map<String, dynamic> toJson() => {
     "BankAccount": bankAccount,
     "LenderName": lenderName,
+    "LoanId": loanId,
     "LenderImage": lenderImage,
     "Amount": amount,
     "InterestRate": interestRate,

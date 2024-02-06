@@ -1,7 +1,27 @@
 part of 'package:peerlendly/modules/profile/exports.dart';
 
-class PersonalInfoTab extends StatelessWidget {
+class PersonalInfoTab extends StatefulWidget {
   const PersonalInfoTab({Key? key}) : super(key: key);
+
+  @override
+  State<PersonalInfoTab> createState() => _PersonalInfoTabState();
+}
+
+class _PersonalInfoTabState extends State<PersonalInfoTab> {
+
+  late ProfileProvider profileProvider;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+
+      profileProvider.fillProfileDetails();
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +49,14 @@ class PersonalInfoTab extends StatelessWidget {
             PLPrimaryTextField(
               textInputType: TextInputType.emailAddress,
               controller: model.email,
-              // isReadOnly: true,
+              isReadOnly: true,
               hintText: strEmail,
               onChange: (val) => model.listenForPersonalInfoChanges(),
             ),
             PLPrimaryTextField(
                 textInputType: TextInputType.number,
                 controller: model.phoneNumber,
-                formatter: FilteringTextInputFormatter.digitsOnly,
+                formatter: [FilteringTextInputFormatter.digitsOnly],
                 maxLength: 11,
                 onChange: (val) => model.listenForPersonalInfoChanges(),
                 hintText: strPhoneNumber),
@@ -44,13 +64,14 @@ class PersonalInfoTab extends StatelessWidget {
                 datePickerController: model.dateOfBirth,
                 noOfYears: 16,
                 isTodayLastDate: true,
+                hasNoTapFunction: (AppData.getUserProfileResponseModel?.bvnVerified ?? false),
                 onChange: (val) {
 
                   model.listenForPersonalInfoChanges();
                 },
                 text: strDateOfBirth),
             PLDropDownButtonWithIcon(
-              list: UserData.meansOfId,
+              list: AppData.meansOfId,
               title: "ID Type",
               value: model.idType,
               callBack: (val) {
@@ -64,7 +85,7 @@ class PersonalInfoTab extends StatelessWidget {
                 onChange: (val) => model.listenForPersonalInfoChanges(),
                 hintText: "ID Number"),
             PLDropDownButtonWithIcon(
-              list: UserData.gender,
+              list: AppData.gender,
               title: "Gender",
               value: model.gender,
               callBack: (val) {
@@ -72,7 +93,7 @@ class PersonalInfoTab extends StatelessWidget {
               },
             ),
             PLDropDownButtonWithIcon(
-              list: UserData.maritalStatus,
+              list: AppData.maritalStatus,
               title: "Marital Status",
               value: model.maritalStatus,
               callBack: (val) {
@@ -80,7 +101,7 @@ class PersonalInfoTab extends StatelessWidget {
               },
             ),
             PLDropDownButtonWithIcon(
-              list: UserData.meansOfAddress,
+              list: AppData.meansOfAddress,
               title: "Select Means of Address Verification (3 Months validity)",
               value: model.meansOfAddress,
               callBack: (val) {

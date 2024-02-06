@@ -19,7 +19,7 @@ class NextOfKinTab extends StatelessWidget {
               hintText: strFulllName,
             ),
             PLDropDownButtonWithIcon(
-              list: UserData.relationship,
+              list: AppData.relationship,
               title: "Relationship",
               value: model.nokRelationship,
               callBack: (val) {
@@ -36,7 +36,7 @@ class NextOfKinTab extends StatelessWidget {
                 textInputType: TextInputType.number,
                 controller: model.nokPhone,
                 onChange: (val) => model.listenForNOKChanges(),
-                formatter: FilteringTextInputFormatter.digitsOnly,
+                formatter: [FilteringTextInputFormatter.digitsOnly],
                 maxLength: 11,
                 hintText: strPhoneNumber),
             PLPrimaryTextField(

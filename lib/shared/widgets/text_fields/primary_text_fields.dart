@@ -18,7 +18,7 @@ class PLPrimaryTextField extends StatelessWidget {
   final TextInputAction textInputAction;
   final bool hasSuffixIcon;
   final String suffixText;
-  final TextInputFormatter? formatter;
+  final List<TextInputFormatter>? formatter;
   final String? Function(String? value)? validation;
   final Color? fillColor;
   final FocusNode? focusNode;
@@ -54,7 +54,7 @@ class PLPrimaryTextField extends StatelessWidget {
       this.focusNode,
       this.textAlign = TextAlign.start,
       this.textInputAction = TextInputAction.next,
-      this.borderRadius = 5.0,
+      this.borderRadius = 8.0,
       this.hasSuffixIcon = false,
       this.hasDecoration = false,
       this.validation,
@@ -101,8 +101,8 @@ class PLPrimaryTextField extends StatelessWidget {
               copy: true,
               selectAll: true,
             ),
-            inputFormatters: <TextInputFormatter>[formatter ?? FilteringTextInputFormatter.singleLineFormatter],
-            // autovalidateMode: AutovalidateMode.onUserInteraction,
+            inputFormatters: formatter ??  <TextInputFormatter>[FilteringTextInputFormatter.singleLineFormatter],
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             textInputAction: textInputAction,
             autocorrect: true,
             onChanged: onChange,
@@ -117,7 +117,7 @@ class PLPrimaryTextField extends StatelessWidget {
   }
 }
 
-InputDecoration buildInputDecoration(BuildContext context, String label, [Widget? suffixIcon, String hintText = "", bool enabled = true, double borderRadius = 5.0, Color? fillColor, String? suffixText]) {
+InputDecoration buildInputDecoration(BuildContext context, String label, [Widget? suffixIcon, String hintText = "", bool enabled = true, double borderRadius = 8.0, Color? fillColor, String? suffixText]) {
   return InputDecoration(
     errorMaxLines: 3,
     errorStyle: const TextStyle(fontSize: 10),
@@ -137,12 +137,14 @@ InputDecoration buildInputDecoration(BuildContext context, String label, [Widget
     border: InputBorder.none,
     contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
     enabledBorder: OutlineInputBorder(
+      borderRadius: PLDecorations.borderRadiusGeometryCircular8,
       borderSide: BorderSide(
         color: borderRadius == 0 ? Colors.transparent : PLColors.appBorderColor,
         width: 1,
       ),
     ),
     disabledBorder: OutlineInputBorder(
+      borderRadius: PLDecorations.borderRadiusGeometryCircular8,
       borderSide: BorderSide(
         color: borderRadius == 0 ? Colors.grey : Colors.grey,
         width: 0.5,
@@ -150,18 +152,21 @@ InputDecoration buildInputDecoration(BuildContext context, String label, [Widget
     ),
     enabled: enabled,
     focusedBorder: OutlineInputBorder(
+      borderRadius: PLDecorations.borderRadiusGeometryCircular8,
       borderSide: BorderSide(
         color: borderRadius == 0 ? Colors.transparent : Theme.of(context).primaryColor,
         width: 1.0,
       ),
     ),
     focusedErrorBorder: OutlineInputBorder(
+      borderRadius: PLDecorations.borderRadiusGeometryCircular8,
       borderSide: BorderSide(
         color: borderRadius == 0 ? Colors.transparent : Theme.of(context).colorScheme.error,
         width: 1.0,
       ),
     ),
     errorBorder: OutlineInputBorder(
+      borderRadius: PLDecorations.borderRadiusGeometryCircular8,
       borderSide: BorderSide(
         color: borderRadius == 0 ? Colors.transparent : Theme.of(context).colorScheme.error,
         width: 1.0,

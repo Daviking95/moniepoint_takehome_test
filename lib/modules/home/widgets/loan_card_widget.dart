@@ -34,7 +34,7 @@ class LoanCardWidget extends StatelessWidget {
                     maxLines: 1,
                   ),
 
-                  if(UserData.loogedInUserLoan?.loanStatus == 1 || UserData.loogedInUserLoan?.loanStatus == 5)
+                  if(AppData.loogedInUserLoan?.loanStatus == 1 || AppData.loogedInUserLoan?.loanStatus == 5)
                   InkWell(
                     onTap: () {
                       AppNavigator.push(RepayLoanScreen());
@@ -56,7 +56,7 @@ class LoanCardWidget extends StatelessWidget {
               Row(
                 children: [
                   PLTextWidget(
-                    title: (UserData.loogedInUserLoan?.amount ?? 0)
+                    title: (AppData.loogedInUserLoan?.amount ?? 0)
                         .toString()
                         .formatWithCommasAndDecimals(),
                     textStyle: PLTypography.textTitleSmallStyle,
@@ -93,7 +93,7 @@ class LoanCardWidget extends StatelessWidget {
                   ),
                   PLVSpace(2),
                   PLTextWidget(
-                    title: "${(UserData.loogedInUserLoan?.duration ?? 0)} Days",
+                    title: "${(AppData.loogedInUserLoan?.duration ?? 0)} Days",
                     textStyle: PLTypography.textTitleSmallStyle,
                     textSize: PLTypography.fontBodySmall,
                     textColor: PLColors.appWhiteColor,
@@ -113,7 +113,7 @@ class LoanCardWidget extends StatelessWidget {
                   ),
                   PLVSpace(2),
                   PLTextWidget(
-                    title: UserData.loogedInUserLoan?.repaymentDate.formatDate(),
+                    title: AppData.loogedInUserLoan?.repaymentDate.formatDate(),
                     textStyle: PLTypography.textTitleSmallStyle,
                     textSize: PLTypography.fontBodySmall,
                     textColor: PLColors.appWhiteColor,
@@ -122,7 +122,7 @@ class LoanCardWidget extends StatelessWidget {
                 ],
               ),
 
-              if(UserData.loogedInUserLoan?.loanStatus == 1 || UserData.loogedInUserLoan?.loanStatus == 5)
+              if(AppData.loogedInUserLoan?.loanStatus == 1 || AppData.loogedInUserLoan?.loanStatus == 5)
               ...[
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +136,7 @@ class LoanCardWidget extends StatelessWidget {
                     ),
                     PLVSpace(2),
                     PLTextWidget(
-                      title: "${(UserData.loogedInUserLoan?.interestRate ?? 0)}%",
+                      title: "${(AppData.loogedInUserLoan?.interestRate ?? 0)}%",
                       textStyle: PLTypography.textTitleSmallStyle,
                       textSize: PLTypography.fontBodySmall,
                       textColor: PLColors.appWhiteColor,

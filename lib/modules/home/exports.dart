@@ -44,3 +44,4 @@ part 'widgets/wallet_card_carousel_widget.dart';
 part 'widgets/loan_card_widget.dart';
 part 'widgets/lendly_score_snippet.dart';
 part 'widgets/banner_carousel_widget.dart';
+part 'widgets/lendly_score_card.dart';

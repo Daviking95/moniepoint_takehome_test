@@ -75,10 +75,10 @@ class FundWalletAmountScreen extends StatelessWidget {
                                 fontSize: 30,
                                 // autoFocus: true,
                                 fillColor: Colors.transparent,
-                                formatter: CurrencyTextInputFormatter(
-                                    symbol: strCurrency2),
+                                formatter: [CurrencyTextInputFormatter(
+                                    symbol: strCurrency2)],
                                 validation: (val) =>
-                                    val.validateAmount(strFieldRequiredError),
+                                    val.validateAmount(strFieldRequiredError, 0),
                                 // onChange: (val) => walletWatcher.listenForTransferChanges(),
                               ),
                             ),

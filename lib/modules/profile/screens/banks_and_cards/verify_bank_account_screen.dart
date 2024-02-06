@@ -38,28 +38,46 @@ class VerifyBankAccountScreen extends StatelessWidget {
                           title: "Verify with Mono",
                           desc: strHelpSupportDesc,
                           func: () {
-                            // PersistentNavBarNavigator.pushNewScreen(
-                            //   context,
-                            //   screen: const BankAccountsList(),
-                            //   withNavBar: false,
-                            //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                            // );
+                            MonoFlutter().launch(
+                              context,
+                              dotenv.env['MONO_PUBLIC_KEY'] ?? "",
+                              // authCode: 'code_sGjE1Zh48lFR8vr3FkrD',
+                              reference: DateTime.now().millisecondsSinceEpoch.toString(),
+                              config: {
+                                "selectedInstitution": {
+                                  "id": "5f2d08bf60b92e2888287703",
+                                  "auth_method": "internet_banking"
+                                }
+                              },
+                              onEvent: (event, data) {
+                                print('event: $event, data: $data');
+                              },
+                              onClosed: () {
+                                print('Modal closed');
+                              },
+                              onLoad: () {
+                                print('Mono loaded successfully');
+                              },
+                              onSuccess: (code) {
+                                print('Mono Success $code');
+                              },
+                            );
                           }),
                     ]),
-                    ProfileItemCard(profileItems: [
-                      ProfileItem(
-                          icon: PLAssets.okraIcon,
-                          title: "Verify with Okra",
-                          desc: strHelpSupportDesc,
-                          func: () {
-                            // PersistentNavBarNavigator.pushNewScreen(
-                            //   context,
-                            //   screen: const CardAccountsList(),
-                            //   withNavBar: false,
-                            //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                            // );
-                          }),
-                    ]),
+                    // ProfileItemCard(profileItems: [
+                    //   ProfileItem(
+                    //       icon: PLAssets.okraIcon,
+                    //       title: "Verify with Okra",
+                    //       desc: strHelpSupportDesc,
+                    //       func: () {
+                    //         // PersistentNavBarNavigator.pushNewScreen(
+                    //         //   context,
+                    //         //   screen: const CardAccountsList(),
+                    //         //   withNavBar: false,
+                    //         //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    //         // );
+                    //       }),
+                    // ]),
                   ],
                 ),
               )),

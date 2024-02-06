@@ -147,7 +147,7 @@ class CompleteAccountSetupProvider extends BaseViewModel {
 
         return;
       }, (successResponse) async {
-        // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
+        showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
 
         if(!isResend) {
           AppNavigator.push( VerifyPhoneNumberScreen(bvnValue, successResponse.phoneNumber));
@@ -289,7 +289,7 @@ class CompleteAccountSetupProvider extends BaseViewModel {
         VerifyCustomerDetailsRequestModel(
             otp: otp,
             customerImage: base64image,
-            meansOfId: UserData.meansOfId.indexWhere(
+            meansOfId: AppData.meansOfId.indexWhere(
                     (element) => element.values.first == meansOfId.text) +
                 1,
             idNumber: idNumber.text,
@@ -311,7 +311,7 @@ class CompleteAccountSetupProvider extends BaseViewModel {
 
       return;
     }, (successResponse) async {
-      // showSnackAtTheTop(message: successResponse.message, isSuccess: true);
+      showSnackAtTheTop(message: successResponse.message, isSuccess: true);
 
       AppPreferences.isUserDocumentVerified = true;
       AppPreferences.isUserPhotoTaken = true;

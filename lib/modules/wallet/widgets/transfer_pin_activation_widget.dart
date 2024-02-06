@@ -38,8 +38,8 @@ class TransferPinActivationWidget extends StatelessWidget {
               boxSize: 52,
               onChange: (value) {
                 if (value.length == 4) {
-                  Navigator.of(context).pop();
                   callBackFunc(value);
+                  Navigator.of(context).pop();
                 }
               },
               validation: (val) => val.validateString(strFieldRequiredError),

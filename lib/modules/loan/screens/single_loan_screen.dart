@@ -10,6 +10,8 @@ class SingleLoanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loanWatcher = context.watch<LoanProvider>();
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
@@ -39,10 +41,10 @@ class SingleLoanScreen extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  ProfileImageWidget(imageFile: UserData.profilePicture, size: 40),
+                                  ProfileImageWidget(imageFile: AppData.profilePicture, size: 40),
                                   PLHSpace(12),
                                   PLTextWidget(
-                                    title: (loanDetail.borrowerName ?? ""),
+                                    title: (loanDetail.borrowerName.toTitleCase ?? ""),
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appPrimaryColorMain500,
                                     textSize: PLTypography.fontTitleMedium,
@@ -63,22 +65,9 @@ class SingleLoanScreen extends StatelessWidget {
                                   PLVSpace(4),
                                   InkWell(
                                     onTap: () {},
-                                    child: Container(
-                                      height: 38.h,
-                                      width: 38.w,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                          PLDecorations.borderRadiusGeometryCircular8,
-                                          color: PLColors.appGreenColor),
-                                      child: Center(
-                                        child: PLTextWidget(
-                                          title: (loanDetail.lendlyScore ?? 0).toString(),
-                                          textColor: PLColors.appWhiteColor,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: PLTypography.fontFamilyBold,
-                                          textSize: PLTypography.fontHeadlineSmall,
-                                        ),
-                                      ),
+                                    child: LendlyScoreCard(
+                                      score: int.parse(loanDetail.lendlyScore),
+                                      bgColor: PLColors.appGreenColor,
                                     ),
                                   )
                                 ],
@@ -228,6 +217,8 @@ class SingleLoanScreen extends StatelessWidget {
                       children: [
                         PLButtonRound(
                           textTitle: loanDetail.loanStatus == 5 ? "Report" : "Cancel Offer",
+                          loadingString: loanWatcher.loadingString,
+                          isLoader: loanWatcher.isLoading,
                           borderRadius: PLDecorations.borderRadiusGeometryCircular8,
                           bgColor: PLColors.appErrorColor,
                           functionToRun: loanDetail.loanStatus == 5 ? null : () => _cancelOffer(context),

@@ -35,10 +35,10 @@ class _BannerCarouselWidgetState extends State<BannerCarouselWidget> {
                   borderRadius: PLDecorations.borderRadiusGeometryCircular16,
                   color: PLColors.appGreenColor,
                 ),
-                height: 120.h,
+                height: 100.h,
               ).marginOnly(right: 12),
               Container(
-                height: 120.h,
+                height: 100.h,
                 decoration: BoxDecoration(
                   borderRadius: PLDecorations.borderRadiusGeometryCircular16,
                   color: PLColors.appPrimaryText,
@@ -46,7 +46,7 @@ class _BannerCarouselWidgetState extends State<BannerCarouselWidget> {
               ),
             ],
             options: CarouselOptions(
-              height: 125.h,
+              height: 105.h,
               enableInfiniteScroll: false,
               viewportFraction: 0.95,
               initialPage: 0,

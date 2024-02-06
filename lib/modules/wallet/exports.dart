@@ -10,6 +10,7 @@ import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:peerlendly/core/exports.dart';
 import 'package:peerlendly/modules/home/exports.dart';
+import 'package:peerlendly/modules/wallet/widgets/select_phone_contact.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
@@ -39,3 +40,4 @@ part 'screens/withdraw_wallet_amount_screen.dart';
 part 'screens/bills_payment_options_screen.dart';
 part 'widgets/bills_payment_popup.dart';
 part 'widgets/update_profile_pop_up.dart';
+part 'widgets/existing_loan_pop_up.dart';

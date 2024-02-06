@@ -30,7 +30,7 @@ class ChangePinScreen extends StatelessWidget {
                         PLVSpace(16),
                         PLPrimaryTextField(
                             textInputType: TextInputType.number,
-                            formatter: FilteringTextInputFormatter.digitsOnly,
+                            formatter: [FilteringTextInputFormatter.digitsOnly],
                             controller: profileWatcher.oldPin,
                             maxLength: 4,
                             onChange: (val) => profileWatcher.listenForChangePinChanges(),
@@ -38,7 +38,7 @@ class ChangePinScreen extends StatelessWidget {
                             hintText: strOldPin),
                         PLPrimaryTextField(
                             textInputType: TextInputType.number,
-                            formatter: FilteringTextInputFormatter.digitsOnly,
+                            formatter: [FilteringTextInputFormatter.digitsOnly],
                             controller: profileWatcher.newPin,
                             maxLength: 4,
                             onChange: (val) => profileWatcher.listenForChangePinChanges(),

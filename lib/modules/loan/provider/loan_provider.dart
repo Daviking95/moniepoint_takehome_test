@@ -32,7 +32,21 @@ class LoanProvider extends BaseViewModel {
     throw UnimplementedError();
   }
 
+  final GlobalKey<FormState> formKeyForLoanApply = GlobalKey<FormState>();
+
+  String _selectedDate = "";
+
+
+  String get selectedDate => _selectedDate;
+
+  set selectedDate(String value) {
+    _selectedDate = value;
+    notifyListeners();
+  }
+
   bool _isFormValidated = false;
+
+  bool _isLoanFormValidated = false;
   bool _addLendlyProtection = false;
   bool _agreeToMakeOffer = false;
   bool _agreeToAcceptOffer = false;
@@ -44,12 +58,29 @@ class LoanProvider extends BaseViewModel {
 
   List<int> loanPeriod = [30, 60, 120];
 
+  int _selectedIndex = 0;
+
+
+  int get selectedIndex => _selectedIndex;
+
+  set selectedIndex(int value) {
+    _selectedIndex = value;
+    notifyListeners();
+  }
+
   List<MarketplaceResponseModelLoanDetail> _borrowerLoanHistory = [];
   List<ActivePendingLoansResponseModelLoanDetail> _activeLoanDetails = [];
   List<ActivePendingLoansResponseModelLoanDetail> _pendingLoanDetails = [];
 
   List<ActivePendingLoansResponseModelLoanDetail> get pendingLoanDetails =>
       _pendingLoanDetails;
+
+  bool get isLoanFormValidated => _isLoanFormValidated;
+
+  set isLoanFormValidated(bool value) {
+    _isLoanFormValidated = value;
+    notifyListeners();
+  }
 
   set pendingLoanDetails(
       List<ActivePendingLoansResponseModelLoanDetail> value) {
@@ -114,6 +145,17 @@ class LoanProvider extends BaseViewModel {
 
   set addLendlyProtection(bool value) {
     _addLendlyProtection = value;
+    notifyListeners();
+  }
+
+  listenForLoanApplyChanges() {
+    if (tenor.text.isNotEmpty && amount.text.isNotEmpty && loanPurpose.text.isNotEmpty) {
+      _isLoanFormValidated = true;
+    } else {
+      _isLoanFormValidated = false;
+    }
+
+    "isLoanFormValidated $_isLoanFormValidated".logger();
     notifyListeners();
   }
 
@@ -199,6 +241,57 @@ class LoanProvider extends BaseViewModel {
     });
   }
 
+  void processLoanRepaymentViaWallet(BuildContext context, double amount, int loanID) async {
+    await changeLoaderStatus(true, "Repaying Loan");
+    notifyListeners();
+
+    // Future.delayed(const Duration(seconds: 3), () async {
+    //   // showSnackAtTheTop(message: "Success", isSuccess: true);
+    //   await changeLoaderStatus(false, "");
+    //   notifyListeners();
+    //
+    //   AppNavigator.push(const SuccessWidget(
+    //     primaryBtnText: "Okay",
+    //     hasPrimaryBtn: true,
+    //     navigateToWidgetOnDone: PersistentTab(),
+    //     message: "Offer Sent",
+    //     desc: "Your Offer has been sent to the Borrower",
+    //   ));
+    //
+    //   // AppNavigator.push(const MarketplaceScreen());
+    // });
+    // return;
+
+    final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
+    await PLLoanRepository.instance.repayLoanWitWalletService(loanID, amount.toInt());
+
+    return responseData.fold((errorResponse) async {
+      showSnackAtTheTop(
+        message: errorResponse.message,
+      );
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+
+      return;
+    }, (successResponse) async {
+      // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
+
+      AppNavigator.push(const SuccessWidget(
+        primaryBtnText: "Okay",
+        hasPrimaryBtn: true,
+        navigateToWidgetOnDone: PersistentTab(),
+        message: "Loan Repaid",
+        desc: "Your loan has been repaid",
+      ));
+
+      "responseDataprocessLoanRepaymentViaWallet $responseData".logger();
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+    });
+  }
+
   void uploadLoanToMarketplace(LoanProvider loanWatcher) async {
     await changeLoaderStatus(true, "Processing request");
     notifyListeners();
@@ -242,7 +335,7 @@ class LoanProvider extends BaseViewModel {
     });
   }
 
-  void getMarketplaceLoans() async {
+  getMarketplaceLoans() async {
     await changeLoaderStatus(true, "");
     notifyListeners();
 
@@ -250,6 +343,9 @@ class LoanProvider extends BaseViewModel {
         responseData = await PLLoanRepository.instance.loanMarketplaceService();
 
     return responseData.fold((errorResponse) async {
+
+      AppData.marketplaceLoans = [];
+
       await changeLoaderStatus(false, "");
       notifyListeners();
 
@@ -257,7 +353,7 @@ class LoanProvider extends BaseViewModel {
     }, (successResponse) async {
       // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
 
-      UserData.marketplaceLoans = successResponse.loanDetails;
+      AppData.marketplaceLoans = successResponse.loanDetails.where((element) => element.loanStatus == 2).toList();
 
       "responseDataGetMarketplaceLoans $responseData".logger();
 
@@ -269,6 +365,10 @@ class LoanProvider extends BaseViewModel {
   void changeInterest(bool shouldReduceAmount) {
     int amountInDouble = int.parse(interestRate.text);
 
+    if(!shouldReduceAmount && amountInDouble > 15){
+      return;
+    }
+
     if (shouldReduceAmount && amountInDouble > 0) {
       amountInDouble -= 1;
     } else if (!shouldReduceAmount) {
@@ -279,6 +379,7 @@ class LoanProvider extends BaseViewModel {
 
     interestRate.text = amountInDouble.toString();
 
+    listenForInterestChanges();
     // notifyListeners();
   }
 
@@ -304,6 +405,8 @@ class LoanProvider extends BaseViewModel {
         await PLLoanRepository.instance.getLoanOffersFromLendersService();
 
     return responseData.fold((errorResponse) async {
+
+      AppData.loanOffersFromLenders = [];
       await changeLoaderStatus(false, "");
       notifyListeners();
 
@@ -311,7 +414,7 @@ class LoanProvider extends BaseViewModel {
     }, (successResponse) async {
       // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
 
-      UserData.loanOffersFromLenders = successResponse.loanDetails;
+      AppData.loanOffersFromLenders = successResponse.loanDetails;
 
       "responseDataGetLoanOffersFromLenders $responseData".logger();
 
@@ -329,6 +432,13 @@ class LoanProvider extends BaseViewModel {
             .getActivePendingLoanOffersService(loanStatus);
 
     return responseData.fold((errorResponse) async {
+
+      if (loanStatus == 1) {
+        activeLoanDetails = [];
+      } else {
+        pendingLoanDetails = [];
+      }
+
       await changeLoaderStatus(false, "");
       notifyListeners();
 
@@ -348,11 +458,15 @@ class LoanProvider extends BaseViewModel {
   }
 
   void getUserLoanDetails() async {
+
     final dartz.Either<ErrorResponseModel, LoogedInUserLoanResponseModel>
         responseData =
         await PLLoanRepository.instance.getLoggedInUserLoanDetailsService();
 
     return responseData.fold((errorResponse) async {
+
+      AppData.loogedInUserLoan = null;
+
       await changeLoaderStatus(false, "");
       notifyListeners();
 
@@ -360,7 +474,7 @@ class LoanProvider extends BaseViewModel {
     }, (successResponse) async {
       // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
 
-      UserData.loogedInUserLoan = successResponse;
+      AppData.loogedInUserLoan = successResponse;
 
       "responseDataGetLoggedInUserLoanDetails $responseData".logger();
 
@@ -430,7 +544,7 @@ class LoanProvider extends BaseViewModel {
         MakeLoanOfferRequestModel(
             loanId: loanDetail.loanId,
             percentage: calculatedResult.interestRate.toInt(),
-            lenderUserId: UserData.getUserProfileResponseModel?.userId ?? 0,
+            lenderUserId: AppData.getUserProfileResponseModel?.userId ?? 0,
             borrowerUserId: loanDetail.borrowerId);
 
     final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
@@ -525,7 +639,7 @@ class LoanProvider extends BaseViewModel {
 
     final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
     await PLLoanRepository.instance
-        .cancelLoanRequestService("1");
+        .cancelLoanRequestService(loanDetail.loanId.toString());
 
     return responseData.fold((errorResponse) async {
       await changeLoaderStatus(false, "");

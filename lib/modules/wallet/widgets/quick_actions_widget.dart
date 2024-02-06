@@ -9,56 +9,57 @@ class QuickActionsWidget extends StatelessWidget {
       children: [
         _singleServiceIcon(
             context, PLAssets.fundWalletIcon, "Wallet", PLColors.appBlackColor,
-            () {
-          if (!_isUserBVNValidated(context)) return;
+                () {
+              if (!_isUserBVNValidated(context)) return;
 
-          modalBottomSheet(context, const WalletAccountDetailsWidget(), true,
-              context.height / 2.2);
-        }),
+              modalBottomSheet(
+                  context, const WalletAccountDetailsWidget(), true,
+                  context.height / 2.2);
+            }),
         _singleServiceIcon(context, PLAssets.getALoanIcon, "Get A Loan",
             const Color(0xff5D07CD), () {
-          if (!_isUserBVNValidated(context)) return;
+              if (!_isUserBVNValidated(context)) return;
 
-          PersistentNavBarNavigator.pushNewScreen(
-            context,
-            screen: const LoanApplyScreen(),
-            withNavBar: false,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
-        }),
+              if (_isLoanActive(context)) return;
+
+              PersistentNavBarNavigator.pushNewScreen(
+                context,
+                screen: const LoanApplyScreen(),
+                withNavBar: false,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
+            }),
         _singleServiceIcon(context, PLAssets.marketplaceIcon, "Marketplace",
             PLColors.appSecondaryText, () {
-          if (!_isUserBVNValidated(context)) return;
+              if (!_isUserBVNValidated(context)) return;
 
-          PersistentNavBarNavigator.pushNewScreen(
-            context,
-            screen: const MarketplaceScreen(),
-            withNavBar: false,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
-        }),
+              PersistentNavBarNavigator.pushNewScreen(
+                context,
+                screen: const MarketplaceScreen(),
+                withNavBar: false,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
+            }),
         _singleServiceIcon(context, PLAssets.airtimeBillsIcon,
             "Airtime and Bills", PLColors.appSecondaryColorMain500, () {
-          if (!_isUserBVNValidated(context)) return;
+              if (!_isUserBVNValidated(context)) return;
 
-          PersistentNavBarNavigator.pushNewScreen(
-            context,
-            screen: const BillsPaymentOptionsScreen(),
-            withNavBar: false,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
-        }),
+              PersistentNavBarNavigator.pushNewScreen(
+                context,
+                screen: const BillsPaymentOptionsScreen(),
+                withNavBar: false,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
+            }),
       ],
     );
   }
 
-  _singleServiceIcon(
-    BuildContext context,
-    String imgString,
-    String title,
-    Color bgColor,
-    Function() param3,
-  ) {
+  _singleServiceIcon(BuildContext context,
+      String imgString,
+      String title,
+      Color bgColor,
+      Function() param3,) {
     return Expanded(
       child: GestureDetector(
         onTap: param3,
@@ -92,16 +93,26 @@ class QuickActionsWidget extends StatelessWidget {
   }
 
   bool _isUserBVNValidated(BuildContext context) {
-    if (!(UserData.getUserProfileResponseModel?.bvnVerified ?? false)) {
+    if (!(AppData.getUserProfileResponseModel?.bvnVerified ?? false)) {
       showAlertDialog(context, '', const VerifyAccountPopUp());
       return false;
-    } else if ((UserData.getUserProfileResponseModel?.fullName ?? "").isEmpty ||
-        (UserData.getUserProfileResponseModel?.fullName ?? "")
+    } else if ((AppData.getUserProfileResponseModel?.fullName ?? "").isEmpty ||
+        (AppData.getUserProfileResponseModel?.fullName ?? "")
             .contains("N/A")) {
       showAlertDialog(context, '', const UpdateProfilePopUp());
       return false;
     } else {
       return true;
     }
+  }
+
+  bool _isLoanActive(BuildContext context) {
+    if (AppData.loogedInUserLoan?.loanStatus == 1 ||
+        AppData.loogedInUserLoan?.loanStatus == 2 ||
+        AppData.loogedInUserLoan?.loanStatus == 5){
+      showAlertDialog(context, '', const ExistingLoanPopUp());
+      return true;
+    }
+    return false;
   }
 }

@@ -22,6 +22,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
     onboardingReader = AppNavigator.appContext!.read<OnboardingProvider>();
 
+    AppPreferences.isOnboardingCarouselSeenOnce = true;
+
     // WidgetsBinding.instance.addPostFrameCallback((_) async {
     //   onboardingWatcher.setAnimationController(this);
     //   onboardingWatcher.animateSlider();

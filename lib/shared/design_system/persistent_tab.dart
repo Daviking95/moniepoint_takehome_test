@@ -55,6 +55,9 @@ class _PersistentTabState extends State<PersistentTab> {
       onItemSelected: (index) {
         setState(() {
           _currentIndex = index;
+
+          AppData.currentIndex = index;
+
         });
       },
       navBarStyle: NavBarStyle.style3, // Choose the nav bar style with this property.
@@ -63,7 +66,7 @@ class _PersistentTabState extends State<PersistentTab> {
 
   List<Widget> _buildScreens() {
     return [
-      const DashboardScreen(),
+      DashboardScreen(currentIndex: AppData.currentIndex),
       const TransactionScreen(),
       const ProfileScreen(),
     ];

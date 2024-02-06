@@ -116,9 +116,9 @@ extension FormatCurrency on String {
 extension FormatToNairaCurrency on String {
   String formatToNairaCurrency() {
     if (isEmpty) return "";
-    double value = double.parse(this);
+    // double value = double.parse(this);
 
-    String newText = "₦ $value";
+    String newText = "\₦ $this";
 
     return newText;
   }

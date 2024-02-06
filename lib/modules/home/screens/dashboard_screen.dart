@@ -1,7 +1,10 @@
 part of 'package:peerlendly/modules/home/exports.dart';
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+
+  final int currentIndex;
+
+  const DashboardScreen({Key? key, this.currentIndex = 0}) : super(key: key);
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -13,6 +16,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   late ProfileProvider profileProvider;
   late LoanProvider loanProvider;
 
+  bool isStopped = false;
+  late Timer _timer;
+
+
   @override
   void initState() {
     super.initState();
@@ -22,24 +29,59 @@ class _DashboardScreenState extends State<DashboardScreen> {
       profileProvider = Provider.of<ProfileProvider>(context, listen: false);
       loanProvider = Provider.of<LoanProvider>(context, listen: false);
 
+      loadData();
+      profileProvider.getNigeriaBanks();
+
+
+    });
+  }
+
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    "didChangeDependencies ${widget.currentIndex}".logger();
+  }
+
+  @override
+  void didUpdateWidget(covariant DashboardScreen oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    // if(widget.currentIndex == 0) {
+    //   isStopped = false;
+    //   _runPeriodicUpdate(myProvider);
+    //
+    // } else {
+    //   isStopped = true;
+    //   _timer.cancel();
+    // }
+
+    "didUpdateWidget $mounted  ${widget.currentIndex}".logger();
+    "isStopped didUpdateWidget $isStopped".logger();
+
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    myProvider.dispose();
+    _timer.cancel();
+    isStopped = true;
+    super.dispose();
+  }
+
+  loadData(){
+    if(mounted) {
       walletProvider.getShowBalance();
       myProvider.getUserProfile();
       myProvider.getLendlyScoreProfile();
       myProvider.getProfilePic();
 
       profileProvider.getBankDetails();
-      profileProvider.getNigeriaBanks();
-
       loanProvider.getUserLoanDetails();
-    });
+    }
   }
-
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   myProvider.dispose();
-  //   super.dispose();
-  // }
 
   // @override
   @override
@@ -47,7 +89,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final dashboardWatcher = context.watch<DashboardProvider>();
     final dashboardReader = context.read<DashboardProvider>();
 
-    "userID ${UserData.loogedInUserLoan?.loanStatus}".logger();
+    "userID ${AppData.loogedInUserLoan?.loanStatus}".logger();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -58,86 +100,94 @@ class _DashboardScreenState extends State<DashboardScreen> {
           // floatingActionButtonLocation: ExpandableFab.location,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: SingleChildScrollView(
-                child: PLPaddedWidget(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      PLVSpace(48),
-                      const TopRowWidget(),
-                      PLVSpace(16),
-                      AppPreferences.isUserBvnVerified &&
-                              UserData.loogedInUserLoan != null
-                          ? const WalletCardCarouselWidget()
-                          : const WalletCardWidget(),
-                      PLVSpace(16),
-                      const QuickActionsWidget(),
-                      PLVSpace(24),
-                      AppPreferences.isUserBvnVerified &&
-                              AppPreferences.isUserDocumentVerified
-                          ? const BannerCarouselWidget()
-                          : const ProfileCompletionCardWidget(),
-                      PLVSpace(24),
+              child: RefreshIndicator(
+                onRefresh: () {
+                  return loadData();
+                },
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  child: PLPaddedWidget(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        PLVSpace(48),
+                        TopRowWidget(
+                            dashboardRefreshCallback: () => loadData()
+                        ),
+                        PLVSpace(16),
+                        AppPreferences.isUserBvnVerified &&
+                                AppData.loogedInUserLoan != null
+                            ? const WalletCardCarouselWidget()
+                            : const WalletCardWidget(),
+                        PLVSpace(16),
+                        const QuickActionsWidget(),
+                        PLVSpace(16),
+                        AppPreferences.isUserBvnVerified
+                            // &&
+                            //     AppPreferences.isUserDocumentVerified
+                            ? const BannerCarouselWidget()
+                            : const ProfileCompletionCardWidget(),
+                        PLVSpace(16),
 
-                      // if((UserData.getUserProfileResponseModel?.bvnVerified ?? false))
-                      DashboardCTAWidget(
-                        "Get a Loan",
-                        "Money in your bank account within minutes ",
-                        UserData.loogedInUserLoan?.loanStatus == 0 ||
-                                UserData.loogedInUserLoan?.loanStatus == null ||
-                                UserData.loogedInUserLoan?.loanStatus == 3 ||
-                                UserData.loogedInUserLoan?.loanStatus == 4 ||
-                                UserData.loogedInUserLoan?.loanStatus == 6
-                            ? "Apply Now"
-                            : "View Loan",
-                        PLAssets.getALoanIcon,
-                        () {
-                          if (!_isUserBVNValidated(context)) return;
+                        // if((UserData.getUserProfileResponseModel?.bvnVerified ?? false))
+                        DashboardCTAWidget(
+                          "Get a Loan",
+                          "Money in your bank account within minutes ",
+                          AppData.loogedInUserLoan?.loanStatus == 0 ||
+                                  AppData.loogedInUserLoan?.loanStatus == null ||
+                                  AppData.loogedInUserLoan?.loanStatus == 3 ||
+                                  AppData.loogedInUserLoan?.loanStatus == 4 ||
+                                  AppData.loogedInUserLoan?.loanStatus == 6
+                              ? "Apply Now"
+                              : "View Loan",
+                          PLAssets.getALoanIcon,
+                          () {
+                            if (!_isUserBVNValidated(context)) return;
 
-                          if ((UserData.loogedInUserLoan?.loanStatus ?? 0) ==
-                              1) {
-                            AppNavigator.push(RepayLoanScreen(
-                              loanDetails: UserData.loogedInUserLoan,
-                              loanStatus:
-                                  UserData.loogedInUserLoan?.loanStatus == 5
-                                      ? LoanStatus.delayed
-                                      : LoanStatus.active,
-                            ));
-                          } else if ((UserData.loogedInUserLoan?.loanStatus ??
-                                  0) ==
-                              2) {
-                            AppNavigator.push(AcceptLoanOffersScreen(
-                              loanDetails: UserData.loogedInUserLoan,
-                            ));
-                          } else {
-                            AppNavigator.push(const LoanApplyScreen());
-                          }
+                            if ((AppData.loogedInUserLoan?.loanStatus ?? 0) ==
+                                1) {
+                              AppNavigator.push(RepayLoanScreen(
+                                loanDetails: AppData.loogedInUserLoan,
+                                loanStatus:
+                                    AppData.loogedInUserLoan?.loanStatus == 5
+                                        ? LoanStatus.delayed
+                                        : LoanStatus.active,
+                              ));
+                            } else if ((AppData.loogedInUserLoan?.loanStatus ??
+                                    0) ==
+                                2) {
+                              AppNavigator.push(AcceptLoanOffersScreen(
+                                loanDetails: AppData.loogedInUserLoan,
+                              ));
+                            } else {
+                              AppNavigator.push(const LoanApplyScreen());
+                            }
 
-                          // AppNavigator.push(UserData.loanStatus == LoanStatus.delayed ? const RepayLoanScreen(loanStatus: LoanStatus.delayed,) : const LoanApplyScreen());
-                        },
-                        ctaColor: UserData.loogedInUserLoan?.loanStatus == 5
-                            ? PLColors.appErrorColor
-                            : PLColors.appPrimaryColorMain500,
-                      ),
-                      PLVSpace(16),
-                      DashboardCTAWidget(
-                          "Lendly Marketplace",
-                          "Explore the Marketplace and earn returns",
-                          "View Requests",
-                          PLAssets.marketplaceIcon, () {
-                        if (!_isUserBVNValidated(context)) return;
+                            // AppNavigator.push(UserData.loanStatus == LoanStatus.delayed ? const RepayLoanScreen(loanStatus: LoanStatus.delayed,) : const LoanApplyScreen());
+                          },
+                          ctaColor: AppData.loogedInUserLoan?.loanStatus == 5
+                              ? PLColors.appErrorColor
+                              : PLColors.appPrimaryColorMain500,
+                        ),
+                        PLVSpace(16),
+                        DashboardCTAWidget(
+                            "Lendly Marketplace",
+                            "Explore the Marketplace and earn returns",
+                            "View Requests",
+                            PLAssets.marketplaceIcon, () {
 
-                        PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          screen: const MarketplaceLoanList(),
-                          withNavBar: false,
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
-                      }),
-                      PLVSpace(24),
-                    ],
+                          PersistentNavBarNavigator.pushNewScreen(
+                            context,
+                            screen: const MarketplaceLoanList(),
+                            withNavBar: false,
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          );
+                        }),
+                        PLVSpace(24),
+                      ],
+                    ),
                   ),
                 ),
               )),
@@ -147,16 +197,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   bool _isUserBVNValidated(BuildContext context) {
-    if (!(UserData.getUserProfileResponseModel?.bvnVerified ?? false)) {
+    if (!(AppData.getUserProfileResponseModel?.bvnVerified ?? false)) {
       showAlertDialog(context, '', const VerifyAccountPopUp());
       return false;
-    } else if ((UserData.getUserProfileResponseModel?.fullName ?? "").isEmpty ||
-        (UserData.getUserProfileResponseModel?.fullName ?? "")
+    } else if ((AppData.getUserProfileResponseModel?.fullName ?? "").isEmpty ||
+        (AppData.getUserProfileResponseModel?.fullName ?? "")
             .contains("N/A")) {
       showAlertDialog(context, '', const UpdateProfilePopUp());
       return false;
     } else {
       return true;
+    }
+  }
+
+
+  void _runPeriodicUpdate(DashboardProvider myProvider) {
+
+    "isStopped _runPeriodicUpdate $isStopped $mounted".logger();
+    if (isStopped) {
+      _timer.cancel();
+    }else {
+      _timer = Timer.periodic(
+        const Duration(seconds: 20),
+            (Timer timer) async {
+
+          if (isStopped || !mounted) {
+            timer.cancel();
+            _timer.cancel();
+          }
+
+          loadData();
+
+        },
+      );
     }
   }
 }

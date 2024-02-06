@@ -37,7 +37,7 @@ class PLScaffold extends StatelessWidget {
             )),
         key: _scaffoldKey,
         drawerEnableOpenDragGesture: false,
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         floatingActionButton: floatingButtonWidget,
       ),
     );

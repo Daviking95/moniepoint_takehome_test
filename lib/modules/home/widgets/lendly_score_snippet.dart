@@ -31,10 +31,13 @@ class LendlyScoreSnippet extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    ProfileImageWidget(imageFile: UserData.profilePicture, size: 40),
+                    ProfileImageWidget(
+                        imageFile: AppData.profilePicture, size: 40),
                     PLHSpace(12),
                     PLTextWidget(
-                      title: (UserData.getUserProfileResponseModel?.fullName ?? ""),
+                      title: (AppData.getUserProfileResponseModel?.fullName
+                              .toTitleCase ??
+                          ""),
                       textStyle: PLTypography.textTitleLargeStyle,
                       textColor: PLColors.appPrimaryColorMain500,
                       textSize: PLTypography.fontTitleMedium,
@@ -55,22 +58,10 @@ class LendlyScoreSnippet extends StatelessWidget {
                     PLVSpace(4),
                     InkWell(
                       onTap: () {},
-                      child: Container(
-                        height: 38.h,
-                        width: 38.w,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                PLDecorations.borderRadiusGeometryCircular8,
-                            color: PLColors.appGreenColor),
-                        child: Center(
-                          child: PLTextWidget(
-                            title: (UserData.lendlyScoreResponseModel?.lendlyScore ?? 0).toString(),
-                            textColor: PLColors.appWhiteColor,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: PLTypography.fontFamilyBold,
-                            textSize: PLTypography.fontHeadlineSmall,
-                          ),
-                        ),
+                      child: LendlyScoreCard(
+                        score:
+                            AppData.lendlyScoreResponseModel?.lendlyScore ?? 0,
+                        bgColor: PLColors.appGreenColor,
                       ),
                     )
                   ],
@@ -80,9 +71,7 @@ class LendlyScoreSnippet extends StatelessWidget {
           ),
           PLVSpace(24),
           PLTextWidget(
-            title: 750000
-                .toString()
-                .formatWithCommasAndDecimals(),
+            title: 750000.toString().formatWithCommasAndDecimals(),
             textStyle: PLTypography.textTitleSmallStyle,
             textSize: PLTypography.fontTitleLarge,
             fontFamily: PLTypography.fontFamilyMedium,
@@ -112,7 +101,8 @@ class LendlyScoreSnippet extends StatelessWidget {
               ),
               PLVSpace(8),
               PLTextWidget(
-                title: "Your Lendly Score is our proprietary metric that represents the probability of your ability to repay a loan. ",
+                title:
+                    "Your Lendly Score is our proprietary metric that represents the probability of your ability to repay a loan. ",
                 textStyle: PLTypography.textTitleLargeStyle,
                 textColor: PLColors.appGrayText,
                 textSize: PLTypography.fontLabelMedium,
@@ -148,7 +138,8 @@ class LendlyScoreSnippet extends StatelessWidget {
               ),
               PLVSpace(4),
               PLTextWidget(
-                title: "Lendly Score benefits everyone, so every transaction is a win-win. A Lender needs to assess the risk involved before fulfilling your request. The Lendly Score helps do just that, faster and easier. ",
+                title:
+                    "Lendly Score benefits everyone, so every transaction is a win-win. A Lender needs to assess the risk involved before fulfilling your request. The Lendly Score helps do just that, faster and easier. ",
                 textStyle: PLTypography.textTitleLargeStyle,
                 textColor: PLColors.appGrayText,
                 textSize: PLTypography.fontLabelMedium,
@@ -161,7 +152,8 @@ class LendlyScoreSnippet extends StatelessWidget {
                 textSize: PLTypography.fontLabelMedium,
               ),
               PLTextWidget(
-                title: "* For Lenders, it helps to assess the Borrower’s repayment capability.",
+                title:
+                    "* For Lenders, it helps to assess the Borrower’s repayment capability.",
                 textStyle: PLTypography.textTitleLargeStyle,
                 textColor: PLColors.appGrayText,
                 textSize: PLTypography.fontLabelMedium,

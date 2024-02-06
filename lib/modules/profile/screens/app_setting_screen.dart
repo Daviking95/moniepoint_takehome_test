@@ -57,6 +57,20 @@ class AppSettingScreen extends StatelessWidget {
                           },
                       ),
                     ]),
+                    // ProfileItemCard(profileItems: [
+                    //   ProfileItem(
+                    //       icon: PLAssets.transactionPin,
+                    //       title: "Login PIN",
+                    //       desc: strAppSecurityDesc,
+                    //       func: () {
+                    //         PersistentNavBarNavigator.pushNewScreen(
+                    //           context,
+                    //           screen: const LoginPinChangeScreen(),
+                    //           withNavBar: false,
+                    //           pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    //         );
+                    //       }),
+                    // ]),
                     ProfileItemCard(profileItems: [
                       ProfileItem(
                           icon: PLAssets.transactionPin,

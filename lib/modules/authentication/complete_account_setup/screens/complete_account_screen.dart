@@ -100,7 +100,7 @@ class CompleteAccountScreen extends StatelessWidget {
                       PLButtonRound(
                         textTitle: strProceed,
                         functionToRun: () {
-                          // if(!AppPreferences.isUserBvnVerified){
+                          // if(!(AppData.getUserProfileResponseModel?.bvnVerified ?? false)){
                             AppNavigator.push(const AddBvnScreen());
                           // }
                           // else if(!AppPreferences.isUserPhotoTaken){

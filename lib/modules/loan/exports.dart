@@ -10,6 +10,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'package:peerlendly/modules/loan/models/LoanApplyRequestModel.dart';
 import 'package:peerlendly/modules/loan/models/LoogedInUserLoanResponseModel.dart';
 import 'package:peerlendly/modules/loan/models/MakeLoanOfferRequestModel.dart';

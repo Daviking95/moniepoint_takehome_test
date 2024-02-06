@@ -22,7 +22,7 @@ class DashboardProvider extends BaseViewModel {
     throw UnimplementedError();
   }
 
-  void getUserProfile() async {
+  getUserProfile() async {
     final dartz.Either<ErrorResponseModel, GetUserProfileResponseModel> responseData =
         await PLProfileRepository.instance.getUserProfileService();
 
@@ -35,8 +35,11 @@ class DashboardProvider extends BaseViewModel {
     }, (successResponse) async {
       // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
 
-      UserData.getUserProfileResponseModel = successResponse;
+      AppData.getUserProfileResponseModel = successResponse;
 
+      AppData.mixpanel!.identify(AppData.getUserProfileResponseModel?.fullName ?? "");
+
+      AppPreferences.isUserBvnVerified = (AppData.getUserProfileResponseModel?.bvnVerified ?? false);
       "responseDataGetUserProfile $responseData".logger();
 
       await changeLoaderStatus(false, "");
@@ -58,7 +61,7 @@ class DashboardProvider extends BaseViewModel {
     }, (successResponse) async {
       // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
 
-      UserData.lendlyScoreResponseModel = successResponse;
+      AppData.lendlyScoreResponseModel = successResponse;
 
       "responseDataGetLendlyScore $responseData".logger();
 
@@ -83,7 +86,7 @@ class DashboardProvider extends BaseViewModel {
 
       "responseDataGetProfilePic $responseData".logger();
 
-      UserData.profilePicture = successResponse.message;
+      AppData.profilePicture = successResponse.message;
 
       await changeLoaderStatus(false, "");
       notifyListeners();

@@ -78,10 +78,10 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
                                 fontSize: 30,
                                 // autoFocus: true,
                                 fillColor: Colors.transparent,
-                                formatter: CurrencyTextInputFormatter(
-                                    symbol: strCurrency2),
+                                formatter: [CurrencyTextInputFormatter(
+                                    symbol: strCurrency2)],
                                 validation: (val) =>
-                                    val.validateAmount(strFieldRequiredError),
+                                    val.validateAmount(strFieldRequiredError, 0),
                                 // onChange: (val) => walletWatcher.listenForTransferChanges(),
                               ),
                             ),
@@ -143,7 +143,7 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               PLTextWidget(
-                                title: UserData.getUserProfileResponseModel?.fullName ?? '',
+                                title: AppData.getUserProfileResponseModel?.fullName ?? '',
                                 textStyle: PLTypography.textTitleLargeStyle,
                                 textColor: PLColors.appGrayText,
                                 textSize: PLTypography.fontLabelMedium,

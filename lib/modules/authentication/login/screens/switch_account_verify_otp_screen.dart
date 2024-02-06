@@ -22,6 +22,7 @@ class SwitchAccountVerifyOtpScreen extends StatelessWidget {
         height: 180.h,
         boxFit: BoxFit.contain,
       ),
+      hasBackButton: true,
       buildWidget: PLOverlayLoader(
           startLoader: model.isLoading,
           loadingString: model.loadingString,

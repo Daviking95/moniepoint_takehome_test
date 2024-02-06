@@ -4,6 +4,8 @@ const String dateFormatter = 'dd MMMM yyyy';
 const String dateFormatterv2 = 'yyyy-MM-dd';
 const String dateFormatterv22 = 'yyyy-MM-dd';
 const String dateFormatterv3 = 'dd/MM/yyyy';
+const String dateFormatterv4 = 'dd MMM yyyy';
+const String dateFormatterv5 = 'dd-MMM-yyyy';
 const String timeFormatter = 'E dd MMM,';
 
 extension DateTimePlugin on String {
@@ -17,6 +19,9 @@ extension DateTimePlugin on String {
 
   String formatDateStringv3() {
     return DateFormat("dd-MMM-yyyy").format(DateTime.parse(this));
+  }
+  String formatDateStringv4() {
+    return DateFormat(dateFormatterv3).format(DateTime.parse(this));
   }
 }
 
@@ -34,6 +39,11 @@ extension DateHelper on DateTime {
 
   String formatDatev3() {
     final formatter = DateFormat(dateFormatterv3);
+    return formatter.format(this);
+  }
+
+  String formatDatev4() {
+    final formatter = DateFormat(dateFormatterv4);
     return formatter.format(this);
   }
 

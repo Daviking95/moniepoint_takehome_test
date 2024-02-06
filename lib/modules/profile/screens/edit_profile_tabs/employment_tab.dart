@@ -13,7 +13,7 @@ class EmploymentTab extends StatelessWidget {
         child: Column(
           children: [
             PLDropDownButtonWithIcon(
-              list: UserData.employmentType,
+              list: AppData.employmentType,
               title: "Employment Type",
               value: model.empEmploymentType,
               callBack: (val) {
@@ -23,16 +23,16 @@ class EmploymentTab extends StatelessWidget {
             PLPrimaryTextField(
               textInputType: TextInputType.number,
               controller: model.empMonthlyIncome,
-              formatter: CurrencyTextInputFormatter(symbol: strCurrency2),
+              formatter: [CurrencyTextInputFormatter(symbol: strCurrency2)],
               fillColor: PLColors.appWhiteColor,
               onChange: (val) => model.listenForEmploymentTabChanges(),
 
-              validation: (val) => val.validateAmount(strFieldRequiredError),
+              validation: (val) => val.validateAmount(strFieldRequiredError, 0),
               hintText: "Approximately how much do you make every month?",
               // onChange: (val) => model.listenForLoanApplyChanges(),
             ),
             PLDropDownButtonWithIcon(
-              list: UserData.salaryDay,
+              list: AppData.salaryDay,
               title: "Salary Day",
               value: model.empSalaryDay,
               callBack: (val) {
@@ -66,7 +66,7 @@ class EmploymentTab extends StatelessWidget {
                 onChange: (val) => model.listenForEmploymentTabChanges(),
                 hintText: "Office Address"),
             PLDropDownButtonWithIcon(
-              list: UserData.localGovernment,
+              list: AppData.localGovernment,
               title: "Local Government",
               value: model.empLocalGov,
               callBack: (val) {
@@ -74,7 +74,7 @@ class EmploymentTab extends StatelessWidget {
               },
             ),
             PLDropDownButtonWithIcon(
-              list: UserData.state,
+              list: AppData.state,
               title: "State",
               value: model.empState,
               callBack: (val) {

@@ -33,7 +33,7 @@ class PendingActiveLoanItem extends StatelessWidget {
                   backgroundColor: PLColors.appPrimaryColorMain500,
                   radius: 20,
                   child: Text(
-                    loanDetail.borrowerName.substring(0,2).toUpperCase(),
+                    loanDetail.borrowerName.length < 2 ? loanDetail.borrowerName : loanDetail.borrowerName.substring(0,2).toUpperCase(),
                     style: context.textTheme.bodyMedium!
                         .copyWith(color: PLColors.appWhiteColor),
                   ),

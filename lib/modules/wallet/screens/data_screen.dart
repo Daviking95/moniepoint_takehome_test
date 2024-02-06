@@ -66,7 +66,7 @@ class DataScreen extends StatelessWidget {
                             PLPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: walletWatcher.mobileNo,
-                              formatter: FilteringTextInputFormatter.digitsOnly,
+                              formatter: [FilteringTextInputFormatter.digitsOnly],
                               maxLength: 10,
                               fillColor: PLColors.appWhiteColor,
                               validation: (val) => val.validateString(strFieldRequiredError),
@@ -76,9 +76,9 @@ class DataScreen extends StatelessWidget {
                             PLPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: walletWatcher.amount,
-                              formatter: CurrencyTextInputFormatter(symbol: strCurrency2),
+                              formatter: [CurrencyTextInputFormatter(symbol: strCurrency2)],
                               fillColor: PLColors.appWhiteColor,
-                              validation: (val) => val.validateAmount(strFieldRequiredError),
+                              validation: (val) => val.validateAmount(strFieldRequiredError, 0),
                               hintText: strAmount,
                               onChange: (val) => walletWatcher.listenForDataChanges(),
                             ),

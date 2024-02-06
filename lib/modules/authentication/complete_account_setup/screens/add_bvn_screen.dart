@@ -59,7 +59,7 @@ class AddBvnScreen extends StatelessWidget {
                         suffixIcon: const PLTooltip(
                           message: "Your BVN only gives us access to your Full name, Phone number, and Date of birth.",
                             child: Icon(Icons.info_outline, color: PLColors.appPrimaryColorMain500,)),
-                        formatter: FilteringTextInputFormatter.digitsOnly,
+                        formatter: [FilteringTextInputFormatter.digitsOnly],
                         validation: (val) => val.validateNumber(strFieldRequiredError),
                         hintText: strBVN,
                       ),

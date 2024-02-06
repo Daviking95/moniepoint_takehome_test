@@ -263,16 +263,27 @@ class NetworkService {
 
       return _responseData.fold((errorResponse) {}, (successResponse) async{
 
-        final dartz.Either<ErrorResponseModel, GetUserProfileResponseModel>
-        _profileResponseData =
-            await PLProfileRepository.instance.getUserProfileService();
-
-        return _profileResponseData.fold((errorResponse) async {
-
-        }, (successResponse) async {
-
-          UserData.getUserProfileResponseModel = successResponse;
-        });
+        // final dartz.Either<ErrorResponseModel, GetUserProfileResponseModel>
+        // _profileResponseData =
+        //     await PLProfileRepository.instance.getUserProfileService();
+        //
+        // return _profileResponseData.fold((errorResponse) async {
+        //   return;
+        // }, (successResponse) async {
+        //
+        //   AppData.getUserProfileResponseModel = successResponse;
+        //
+        //   final dartz.Either<ErrorResponseModel, LoogedInUserLoanResponseModel>
+        //   loanResponseData =
+        //   await PLLoanRepository.instance.getLoggedInUserLoanDetailsService();
+        //
+        //   return loanResponseData.fold((errorResponse) async {
+        //     return;
+        //   }, (successResponse) async {
+        //
+        //     AppData.loogedInUserLoan = successResponse;
+        //   });
+        // });
 
       });
     }  on TimeoutException catch (e) {

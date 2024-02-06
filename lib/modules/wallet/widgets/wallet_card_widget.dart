@@ -77,22 +77,10 @@ class WalletCardWidget extends StatelessWidget {
                       maxLines: 1,
                     ),
                     PLVSpace(4),
-                    Container(
-                      height: 38.h,
-                      width: 38.w,
-                      decoration: BoxDecoration(
-                          borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-                          color: PLColors.appWhiteColor),
-                      child: Center(
-                        child: PLTextWidget(
-                          title: (UserData.lendlyScoreResponseModel?.lendlyScore ?? 0).toString(),
-                          textColor: PLColors.appPrimaryColorMain500,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: PLTypography.fontFamilyBold,
-                          textSize: PLTypography.fontHeadlineSmall,
-                        ),
-                      ),
-                    )
+                    LendlyScoreCard(
+                      score:
+                      AppData.lendlyScoreResponseModel?.lendlyScore ?? 0,
+                    ),
                   ],
                 ),
               )

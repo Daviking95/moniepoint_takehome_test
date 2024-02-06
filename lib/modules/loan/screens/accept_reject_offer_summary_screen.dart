@@ -72,7 +72,7 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             PLTextWidget(
-                                              title: loanDetail.name,
+                                              title: loanDetail.name.toTitleCase,
                                               textStyle: PLTypography
                                                   .textTitleLargeStyle,
                                               textSize:
@@ -106,8 +106,7 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                     _loanDetailsItem(
                                         'Amount to receive',
                                         PLTextWidget(
-                                          title: (UserData.loogedInUserLoan
-                                                      ?.amount ??
+                                          title: (loanDetail.amountToRecieve ??
                                                   0)
                                               .toString()
                                               .formatWithCommasAndDecimals(),
@@ -134,7 +133,7 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                         'Duration (Days)',
                                         PLTextWidget(
                                           title:
-                                              "${(UserData.loogedInUserLoan?.duration ?? 0)} Days",
+                                              "${(AppData.loogedInUserLoan?.duration ?? 0)} Days",
                                           textStyle:
                                               PLTypography.textTitleLargeStyle,
                                           textColor: PLColors.appPrimaryText,
@@ -144,9 +143,7 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                     _loanDetailsItem(
                                         'Interest Value',
                                         PLTextWidget(
-                                          title: (UserData.loogedInUserLoan
-                                                      ?.interestValue ??
-                                                  0)
+                                          title: (loanDetail.interestValue)
                                               .toString()
                                               .formatWithCommasAndDecimals(),
                                           textStyle:
@@ -160,7 +157,7 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                     _loanDetailsItem(
                                         'Repayment Date',
                                         PLTextWidget(
-                                          title: UserData
+                                          title: AppData
                                               .loogedInUserLoan?.repaymentDate
                                               .formatDate(),
                                           textStyle:
@@ -172,9 +169,7 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                     _loanDetailsItem(
                                         'Amount to Repay',
                                         PLTextWidget(
-                                          title: (UserData.loogedInUserLoan
-                                                      ?.amountToPay ??
-                                                  0)
+                                          title: (loanDetail.repaymentAmount)
                                               .toString()
                                               .formatWithCommasAndDecimals(),
                                           textStyle:
@@ -221,20 +216,20 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                         children: [
                                           PLTextWidget(
                                             title:
-                                                "You are agreeing to lend the amount above to Jide. Funds will be debited from your account",
+                                                "You are agreeing to borrow the amount above from ${loanDetail.name}. Funds will be credited to your account",
                                             textColor: PLColors.appPrimaryText,
                                             fontWeight: FontWeight.w600,
                                             textSize:
                                                 PLTypography.fontLabelSmall,
                                           ),
-                                          PLVSpace(8),
-                                          PLTextWidget(
-                                            title:
-                                                "I authorize PeerLendly to debit my account for the amount noted on today’s date and will not dispute PeerLendly debiting my account as the transaction corresponds to the terms in this online form and my agreement with PeerLendly. I understand that the payback date may be later than 15 Oct, 2023 if the borrower does not pay on time.",
-                                            textColor: PLColors.appPrimaryText,
-                                            textSize:
-                                                PLTypography.fontLabelSmall,
-                                          ),
+                                          // PLVSpace(8),
+                                          // PLTextWidget(
+                                          //   title:
+                                          //       "I authorize PeerLendly to debit my account for the amount noted on today’s date and will not dispute PeerLendly debiting my account as the transaction corresponds to the terms in this online form and my agreement with PeerLendly. I understand that the payback date may be later than 15 Oct, 2023 if the borrower does not pay on time.",
+                                          //   textColor: PLColors.appPrimaryText,
+                                          //   textSize:
+                                          //       PLTypography.fontLabelSmall,
+                                          // ),
                                         ],
                                       ),
                                     ),
@@ -263,17 +258,17 @@ class AcceptRejectOfferSummaryScreen extends StatelessWidget {
                                 context,
                                 "",
                                 MakeOfferAmountExchangeWidget(
-                                    amountToPay: (UserData.loogedInUserLoan
-                                                ?.amountToPay ??
+                                    amountToPay: (loanDetail.repaymentAmount ??
                                             0)
                                         .toDouble(),
-                                    amountToReceive: (UserData.loogedInUserLoan
-                                                ?.amountToRecieve ??
+                                    amountToReceive: (loanDetail.amountToRecieve ??
                                             0)
                                         .toDouble(),
                                     callBack: () {
                                       loanWatcher.acceptLoanOffer(loanDetail.offerId);
-                                    }));
+                                    },
+                                  isBorrower: true
+                                ));
                           },
                         ),
                         PLVSpace(24),

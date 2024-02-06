@@ -78,6 +78,7 @@ class _CustomTabRoundedState extends State<CustomTabRounded>
                         onTap: (value) {
                           if(widget.callBack != null) {
                             widget.callBack!(_activeIndex);
+
                           }
                         },
                         tabs: [

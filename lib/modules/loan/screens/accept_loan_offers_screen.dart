@@ -97,7 +97,7 @@ class _AcceptLoanOffersScreenState extends State<AcceptLoanOffersScreen> {
                                     'Amount',
                                     PLTextWidget(
                                       title:
-                                      (UserData.loogedInUserLoan?.amount ??
+                                      (AppData.loogedInUserLoan?.amount ??
                                           0)
                                           .toString()
                                           .formatWithCommasAndDecimals(),
@@ -113,7 +113,7 @@ class _AcceptLoanOffersScreenState extends State<AcceptLoanOffersScreen> {
                                     'Duration (Days)',
                                     PLTextWidget(
                                       title:
-                                      "${(UserData.loogedInUserLoan?.duration ??
+                                      "${(AppData.loogedInUserLoan?.duration ??
                                           0)} Days",
                                       textStyle:
                                       PLTypography.textTitleLargeStyle,
@@ -137,7 +137,7 @@ class _AcceptLoanOffersScreenState extends State<AcceptLoanOffersScreen> {
                                 _loanDetailsItem(
                                     'Repayment Date',
                                     PLTextWidget(
-                                      title: UserData
+                                      title: AppData
                                           .loogedInUserLoan?.repaymentDate
                                           .formatDate(),
                                       textStyle:
@@ -183,23 +183,23 @@ class _AcceptLoanOffersScreenState extends State<AcceptLoanOffersScreen> {
                           ),
                           PLVSpace(16),
                           if(loanWatcher.isLoading &&
-                              UserData.loanOffersFromLenders.isEmpty) ...[
+                              AppData.loanOffersFromLenders.isEmpty) ...[
                             const Center(
                               child: CircularProgressIndicator(),)
                           ],
 
-                          if (!loanWatcher.isLoading && UserData.loanOffersFromLenders.isEmpty) ...[
+                          if (!loanWatcher.isLoading && AppData.loanOffersFromLenders.isEmpty) ...[
                             const Center(
                               child: EmptyLoanScreenWithTextOnly(
                                   text: 'No loan offer yet'),
                             )
                           ] else ...[
                           for (var index = 0;
-                          index < UserData.loanOffersFromLenders.length;
+                          index < AppData.loanOffersFromLenders.length;
                           index++) ...[
                             LoanOffersCard(
                                 loanDetail:
-                                UserData.loanOffersFromLenders[index]),
+                                AppData.loanOffersFromLenders[index]),
                           ]
                           ]
                         ],

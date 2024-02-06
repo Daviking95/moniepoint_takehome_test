@@ -96,13 +96,13 @@ class _BankAccountsListState extends State<BankAccountsList> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   PLTextWidget(
-                                    title: UserData.getUserProfileResponseModel?.fullName ?? '',
+                                    title: AppData.getUserProfileResponseModel?.fullName ?? '',
                                     textStyle: PLTypography.textTitleLargeStyle,
                                     textColor: PLColors.appGrayText,
                                     textSize: PLTypography.fontLabelMedium,
                                   ),
 
-                                  if(!(UserData.getUserProfileResponseModel?.bvnVerified ?? false))
+                                  // if(!(AppData.getUserProfileResponseModel?.bvnVerified ?? false))
                                   InkWell(
                                     onTap: (){
                                       PersistentNavBarNavigator.pushNewScreen(

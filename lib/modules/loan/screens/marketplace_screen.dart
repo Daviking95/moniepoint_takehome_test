@@ -8,7 +8,6 @@ class MarketplaceScreen extends StatefulWidget {
 }
 
 class _MarketplaceScreenState extends State<MarketplaceScreen> {
-
   late LoanProvider loanProvider;
 
   @override
@@ -46,12 +45,23 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       // onTap: () => AppNavigator.push(const PersistentTab()),
                     ),
                     PLVSpace(24),
-                    const MarketplaceWalletCardWidget(),
+                    MarketplaceWalletCardWidget(
+                        selectedIndex: loanWatcher.selectedIndex),
                     PLVSpace(24),
                     Expanded(
-                      child: CustomTab(
+                      child: CustomTabRounded(
                         tabTitleStringList: const ['Active', 'Pending'],
-                        tabWidgetsList: [ActivePendingLoanList(loanDetails: loanWatcher.activeLoanDetails), ActivePendingLoanList(loanDetails: loanWatcher.pendingLoanDetails)],
+                        callBack: (indexSelected) {
+                          "indexSelected $indexSelected".logger();
+                          loanWatcher.selectedIndex = indexSelected;
+                        },
+                        currentSelectionController: loanWatcher.selectedIndex,
+                        tabWidgetsList: [
+                          ActivePendingLoanList(
+                              loanDetails: loanWatcher.activeLoanDetails),
+                          ActivePendingLoanList(
+                              loanDetails: loanWatcher.pendingLoanDetails)
+                        ],
                       ),
                     )
                   ],

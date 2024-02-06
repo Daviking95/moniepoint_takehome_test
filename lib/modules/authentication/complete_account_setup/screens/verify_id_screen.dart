@@ -46,7 +46,7 @@ class VerifyIdScreen extends StatelessWidget {
                         ),
                         PLVSpace(32),
                         PLDropDownButtonWithIcon(
-                          list: UserData.meansOfId,
+                          list: AppData.meansOfId,
                           title: "Select means of ID verification",
                           value: completeAccountWatcher.meansOfId,
                           callBack: (val) {

@@ -9,6 +9,8 @@ class ShareAndEarnScreen extends StatelessWidget {
     final profileWatcher = context.watch<ProfileProvider>();
     final profileReader = context.read<ProfileProvider>();
 
+    String referralCode = "https://peerlendly.com/${AppData.getUserProfileResponseModel?.referralCode ?? ''}";
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
@@ -72,7 +74,7 @@ class ShareAndEarnScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: PLTextWidget(
-                                    title: "https://peerlendly.com/${UserData.getUserProfileResponseModel?.referralCode ?? ''}",
+                                    title: referralCode,
                                     textColor: PLColors.appPrimaryColorMain500,
                                     textSize: PLTypography.fontLabelMedium,
                                   ),
@@ -84,7 +86,9 @@ class ShareAndEarnScreen extends StatelessWidget {
                         ),
                         PLHSpace(8),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Share.share(referralCode, subject: 'My Peerlendly referral link');
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: PLDecorations

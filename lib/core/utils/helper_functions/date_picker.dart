@@ -42,6 +42,8 @@ String showCupertinoDatePicker(
       TextEditingController? startDate,
       bool isLastDate = false,
       bool isTodayLastDate = false,
+      Function()? callback,
+      int noOfDays = 365000,
       required int noOfYears}) {
   final dateFormat = DateFormat(dateFormatterv3);
   DateTime dateTime = DateTime.now();
@@ -86,13 +88,16 @@ String showCupertinoDatePicker(
                       : isLastDate
                       ? DateFormat(dateFormatterv3).parse(dateFormat
                       .format(DateTime(DateTime.now().year - noOfYears)))
-                      : dateTime.add(const Duration(days: 365000)),
+                      : dateTime.add(Duration(days: noOfDays)),
                 ),
               ),
               PLPaddedWidget(
                 child: PLButtonRound(
                   textTitle: "Confirm",
-                  functionToRun: () => Navigator.of(context).pop(),
+                  functionToRun: () {
+                    if(callback != null) callback();
+                    Navigator.of(context).pop();
+                  },
                 ),
               ),
             ],

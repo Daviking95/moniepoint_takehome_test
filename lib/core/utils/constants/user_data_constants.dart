@@ -1,13 +1,15 @@
 part of 'package:peerlendly/core/utils/constants/exports.dart';
 
-class UserData {
+class AppData {
   static LoanStatus loanStatus = LoanStatus.noLoan;
 
   static GetUserProfileResponseModel? getUserProfileResponseModel;
 
   static List<Map<String, dynamic>> meansOfId = [{'': 'International Passport'}, {'': 'NIN'}, {'': 'Driver Licence'}];
 
-  static List<Map<String, dynamic>> loanPurpose = [{'': 'Personal'}, {'': 'Housing'}, {'': 'Rent'}, {'': 'Phone'}];
+  static List<Map<String, dynamic>> loanPurpose = [{'': 'Personal'}, {'': 'Business'}, {'': 'Auto'}, {'': 'Home'}, {'': 'Education'},
+    {'': 'Vacation'},
+    {'': 'Wedding'}, {'': 'Home Improvement'}, {'': 'Emergency'}, {'': 'Payday'}, {'': 'Healthcare'}, {'': 'Others'}];
 
   static List<Map<String, dynamic>> maritalStatus = [{'': 'Single'}, {'': 'Married'}, {'': 'Divorced'}, {'': 'Others'}];
 
@@ -33,5 +35,9 @@ class UserData {
   static LoogedInUserLoanResponseModel? loogedInUserLoan;
 
   static List<LenderOffersResponseModelLoanDetail> loanOffersFromLenders = [];
+
+  static Mixpanel? mixpanel;
+
+  static int currentIndex = 0;
 
 }

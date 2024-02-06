@@ -1,7 +1,29 @@
 part of 'package:peerlendly/modules/profile/exports.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+
+  late ProfileProvider profileProvider;
+  late DashboardProvider dashboardProvider;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+    dashboardProvider = Provider.of<DashboardProvider>(context, listen: false);
+
+    dashboardProvider.getUserProfile();
+    dashboardProvider.getProfilePic();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -276,7 +298,7 @@ class ProfileImageWithDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // const ProfileImageWidget(imageFile: "", size: 70),
-        ProfileImageWidget(imageFile: UserData.profilePicture,
+        ProfileImageWidget(imageFile: AppData.profilePicture,
           size: 70,
           memoryImage: profileWatcher.changeAvatar.text,),
         PLVSpace(8),
@@ -299,11 +321,19 @@ class ProfileImageWithDetails extends StatelessWidget {
         ),
         PLVSpace(16),
         PLTextWidget(
-          title: UserData.getUserProfileResponseModel?.fullName ?? "",
+          title: AppData.getUserProfileResponseModel?.fullName ?? "",
           fontWeight: FontWeight.w600,
           textSize: PLTypography.fontBodyLarge,
           fontFamily: PLTypography.fontFamilyBold,
           textColor: PLColors.appPrimaryText,
+        ),
+        PLVSpace(8),
+        PLTextWidget(
+          title: "Lendly Score ${(AppData.lendlyScoreResponseModel?.lendlyScore ?? 0).toString()}",
+          textStyle: PLTypography.textBodySmallStyle,
+          textSize: PLTypography.fontLabelSmall,
+          textColor: PLColors.appPrimaryColorMain500,
+          maxLines: 1,
         ),
       ],
     );

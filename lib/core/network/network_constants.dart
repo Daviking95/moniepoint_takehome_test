@@ -22,6 +22,8 @@ class NetworkConstants {
   static const String cardDetailsUrl = "$profileModule/carddetails";
   static const String customerUrl = "$profileModule/customer";
   static const String profilePictureUrl = "$profileModule/profilepicture";
+  static const String createTransactionPinUrl = "$profileModule/settransactionpin";
+  static const String resetTransactionPinUrl = "$profileModule/resettransactionpin";
   static const String lendlyScoreUrl = "$profileModule/lendlyscore";
   static const String loanApplyUrl = "$loanModule/applyforloan";
   static const String offersFromLendersUrl = "$loanModule/myoffers";
@@ -36,6 +38,6 @@ class NetworkConstants {
   static const String makeLoanOfferUrl = "$loanModule/makeoffer";
   static const String cancelLoanOfferUrl = "$loanModule/cancel";
   static const String cancelLoanRequestUrl = "$loanModule/deleteloan";
-  static const String verifyPinUrl = "$loanModule/verifypin";
+  static const String verifyPinUrl = "$loanModule/verifytransactionpin";
   static const String loanHistoryUrl = "$loanModule/loanhistory";
 }

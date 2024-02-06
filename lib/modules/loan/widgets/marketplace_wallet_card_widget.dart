@@ -1,8 +1,10 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
-
 class MarketplaceWalletCardWidget extends StatelessWidget {
-  const MarketplaceWalletCardWidget({Key? key}) : super(key: key);
+  final int selectedIndex;
+
+  const MarketplaceWalletCardWidget({Key? key, required this.selectedIndex})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,9 @@ class MarketplaceWalletCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   PLTextWidget(
-                    title: "Current Balance",
+                    title: selectedIndex == 0
+                        ? "Current Balance"
+                        : "Investment Balance",
                     textStyle: PLTypography.textBodySmallStyle,
                     textSize: PLTypography.fontBodySmall,
                     textColor: PLColors.appWhiteColor,
@@ -56,12 +60,17 @@ class MarketplaceWalletCardWidget extends StatelessWidget {
                           onTap: () async {
                             walletWatcher.toggleShowBalance();
                           },
-                          child: const PLImageSvg(svgPath: PLAssets.showBalance)),
+                          child:
+                              const PLImageSvg(svgPath: PLAssets.showBalance)),
                     ],
                   ),
                 ],
               ),
-              PLImagePng(imgPath: PLAssets.marketplaceCardIcon, width: 80.w, height: 50.h,)
+              PLImagePng(
+                imgPath: PLAssets.marketplaceCardIcon,
+                width: 80.w,
+                height: 50.h,
+              )
             ],
           ),
           PLVSpace(16),

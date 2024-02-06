@@ -72,12 +72,14 @@ class HelpAndSupport extends StatelessWidget {
                           title: "FAQs",
                           desc: strAppSecurityDesc,
                           func: () {
-                            // PersistentNavBarNavigator.pushNewScreen(
-                            //   context,
-                            //   screen: const ProfileDetailsScreen(),
-                            //   withNavBar: false,
-                            //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                            // );
+                            // https://peerlendly.com/faqs/
+
+                            PersistentNavBarNavigator.pushNewScreen(
+                              context,
+                              screen: WebViewWidget("https://peerlendly.com/faqs/", "FAQs"),
+                              withNavBar: false,
+                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            );
                           }),
                     ]),
                   ],

@@ -60,7 +60,7 @@ class RepayLoanScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     PLTextWidget(
-                                      title: loanDetails?.lenderName ?? "",
+                                      title: loanDetails?.lenderName.toTitleCase ?? "",
                                       textStyle:
                                           PLTypography.textTitleLargeStyle,
                                       textColor:
@@ -157,7 +157,7 @@ class RepayLoanScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   textSize: PLTypography.fontLabelSmall,
                                 )),
-                            if (loanStatus == LoanStatus.delayed) ...[
+                            if (AppData.loogedInUserLoan?.loanStatus == 6) ...[
                               Divider(
                                 color: PLColors.appGrayText.withOpacity(.6),
                               ),
@@ -174,7 +174,7 @@ class RepayLoanScreen extends StatelessWidget {
                               _loanDetailsItem(
                                   'Amount to Repay',
                                   PLTextWidget(
-                                    title: (loanDetails?.amountToPay ?? 0)
+                                    title: ((loanDetails?.amountToPay)! + (loanDetails!.interestValue))
                                         .toString()
                                         .formatWithCommasAndDecimals(),
                                     textStyle: PLTypography.textTitleSmallStyle,
@@ -188,7 +188,7 @@ class RepayLoanScreen extends StatelessWidget {
                             _loanDetailsItem(
                                 'Amount to Repay',
                                 PLTextWidget(
-                                  title: 115000
+                                  title: ((loanDetails?.amountToPay)! + (loanDetails!.interestValue))
                                       .toString()
                                       .formatWithCommasAndDecimals(),
                                   textStyle: PLTypography.textTitleSmallStyle,
@@ -212,7 +212,7 @@ class RepayLoanScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             PLImageSvg(
-                              svgPath: loanStatus == LoanStatus.delayed
+                              svgPath: AppData.loogedInUserLoan?.loanStatus == 6
                                   ? PLAssets.infoIconRed
                                   : PLAssets.infoIcon,
                               width: 40.w,
@@ -221,7 +221,7 @@ class RepayLoanScreen extends StatelessWidget {
                             PLHSpace(16),
                             Expanded(
                               child: PLTextWidget(
-                                title: loanStatus == LoanStatus.delayed
+                                title: AppData.loogedInUserLoan?.loanStatus == 6
                                     ? 'You are being charged an extra fee 1% per day for delayed repayment. Kindly make payment on time to avoid incurring more charges'
                                     : 'You will be charged an extra fee of 1% per day for delayed repayment. Ensure your wallet is funded and make payment on time to avoid this.',
                                 textStyle: PLTypography.textTitleLargeStyle,
@@ -234,16 +234,18 @@ class RepayLoanScreen extends StatelessWidget {
                       ),
                       PLVSpace(32),
                       PLButtonRound(
-                        textTitle: loanStatus == LoanStatus.delayed
+                        loadingString: loanWatcher.loadingString,
+                        isLoader: loanWatcher.isLoading,
+                        textTitle: AppData.loogedInUserLoan?.loanStatus == 6
                             ? "Pay Now"
                             : "Repay Loan Now",
-                        bgColor: loanStatus == LoanStatus.delayed
+                        bgColor: AppData.loogedInUserLoan?.loanStatus == 6
                             ? PLColors.appErrorColor
                             : PLColors.appPrimaryColorMain500,
                         borderRadius:
                             PLDecorations.borderRadiusGeometryCircular8,
                         functionToRun: () {
-                          AppNavigator.push(const PayLoanOptionsScreen());
+                          AppNavigator.push( PayLoanOptionsScreen(amountToPay: ((loanDetails?.amountToPay) ?? 0 + (loanDetails!.interestValue)).toDouble(), loanDetails: loanDetails));
                         },
                       ),
                       PLVSpace(24),

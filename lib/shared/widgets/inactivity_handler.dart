@@ -71,7 +71,9 @@ class _InactivityHandlerState extends State<InactivityHandler> with WidgetsBindi
   void _getNewRefreshToken() {
     networkTimer = Timer.periodic(Duration(minutes: 1), (timer) {
       // if ((AppConstants.currentWidget != null) && (AppConstants.currentWidget != LoginScreen())) {
+      if(AppPreferences.bearerToken.isNotEmpty) {
         NetworkService.checkIfTokenHasExpiredOutsideDio();
+      }
       // }
     });
   }

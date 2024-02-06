@@ -17,7 +17,6 @@ class SetActivityPinScreen extends StatefulWidget {
 }
 
 class _SetActivityPinScreenState extends State<SetActivityPinScreen> {
-  TextEditingController activityPin = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +30,13 @@ class _SetActivityPinScreenState extends State<SetActivityPinScreen> {
         height: 130.h,
         boxFit: BoxFit.contain,
       ),
+      hasBackButton: true,
       buildWidget: PLOverlayLoader(
         startLoader: completeAccountWatcher.isLoading,
         loadingString: completeAccountWatcher.loadingString,
         child: ActivityPinSetupWidget(
             completeAccountWatcher: completeAccountWatcher,
-            activityPin: activityPin,
+            // activityPin: activityPin,
             isPinReEnter: widget.isPinReEnter,
             otp: widget.otp,
             emailAddress: widget.emailAddress),
@@ -46,24 +46,46 @@ class _SetActivityPinScreenState extends State<SetActivityPinScreen> {
   }
 }
 
-class ActivityPinSetupWidget extends StatelessWidget {
+class ActivityPinSetupWidget extends StatefulWidget {
   const ActivityPinSetupWidget(
       {super.key,
       required this.completeAccountWatcher,
-      required this.activityPin,
+      // required this.activityPin,
       this.isPinReEnter = false,
       this.otp = "",
       this.emailAddress = ""});
 
   final CompleteAccountSetupProvider completeAccountWatcher;
-  final TextEditingController activityPin;
+  // final TextEditingController activityPin;
   final bool isPinReEnter;
   final String otp;
   final String emailAddress;
 
   @override
+  State<ActivityPinSetupWidget> createState() => _ActivityPinSetupWidgetState();
+}
+
+class _ActivityPinSetupWidgetState extends State<ActivityPinSetupWidget> {
+
+  TextEditingController activityPin = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    activityPin = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    activityPin.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    "validateEmailVerifyForm $otp $emailAddress".log();
+    "validateEmailVerifyForm ${widget.otp} ${widget.emailAddress}".log();
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
@@ -87,7 +109,7 @@ class ActivityPinSetupWidget extends StatelessWidget {
                     PLVSpace(40),
                     PLTextWidget(
                       title:
-                          isPinReEnter ? "Re-enter New Pin" : "Enter New Pin",
+                          widget.isPinReEnter ? "Re-enter New Pin" : "Enter New Pin",
                       isTitle: true,
                       textStyle: PLTypography.textHeadlineMediumStyle,
                       textSize: PLTypography.fontHeadlineSmall,
@@ -107,15 +129,15 @@ class ActivityPinSetupWidget extends StatelessWidget {
                         controller: activityPin,
                         onChange: (value) {
                           if (value.length == 4) {
-                            if (isPinReEnter) {
-                              completeAccountWatcher
+                            if (widget.isPinReEnter) {
+                              widget.completeAccountWatcher
                                   .validateActivityPinSetupForm(
-                                      context, otp, emailAddress, activityPin);
+                                      context, widget.otp, widget.emailAddress, activityPin);
                             } else {
                               AppNavigator.push(SetActivityPinScreen(
                                 isPinReEnter: true,
-                                otp: otp,
-                                emailAddress: emailAddress,
+                                otp: widget.otp,
+                                emailAddress: widget.emailAddress,
                               ));
                             }
                           }

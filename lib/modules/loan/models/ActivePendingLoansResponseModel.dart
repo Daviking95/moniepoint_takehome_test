@@ -107,7 +107,7 @@ class ActivePendingLoansResponseModelLoanDetail {
     offerId: json["OfferId"] ?? 0,
     purpose: json["Purpose"] ?? "",
     lendlyScore: json["LendlyScore"] ?? "",
-    borrowerName: json["borrowerName"] ?? "",
+    borrowerName: json["BorrowerName"] ?? json["borrowerName"] ?? "",
     amountToPay: json["AmountToPay"] ?? 0,
     interestValue: json["InterestValue"] ?? 0,
     platformFee: json["PlatformFee"]?.toDouble() ?? 0,

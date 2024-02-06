@@ -8,7 +8,7 @@ class AlreadyHaveAccountWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.login);
+        Navigator.pushNamed(context, AppRoutes.switchAccountLogin);
       },
       child: Column(
         children: [

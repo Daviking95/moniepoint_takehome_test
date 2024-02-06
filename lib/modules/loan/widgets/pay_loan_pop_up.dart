@@ -4,11 +4,14 @@ class PayLoanPopUp extends StatefulWidget {
   final bool isWallet;
   final double amount;
   final LoanProvider loanWatcher;
+  final LoogedInUserLoanResponseModel? loanDetails;
+
 
   const PayLoanPopUp(
       {Key? key,
       this.isWallet = true,
       required this.amount,
+      required this.loanDetails,
       required this.loanWatcher})
       : super(key: key);
 
@@ -73,8 +76,11 @@ class _PayLoanPopUpState extends State<PayLoanPopUp> {
                 child: PLButtonRound(
                     textTitle: "Yes pay",
                     borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                    loadingString: widget.loanWatcher.loadingString,
+                    isLoader: widget.loanWatcher.isLoading,
                     functionToRun: () {
-                      Navigator.pop(context);
+
+                      Navigator.of(context).pop();
 
                       widget.isWallet ?
                       modalBottomSheet(
@@ -82,11 +88,12 @@ class _PayLoanPopUpState extends State<PayLoanPopUp> {
                           TransferPinActivationWidget(
                             prevContext: context,
                             callBackFunc: (value) {
-                              widget.loanWatcher.processPayment(context);
+                              widget.loanWatcher.processLoanRepaymentViaWallet(context, widget.amount, widget.loanDetails!.loanId.toInt());
                             },
                           ),
                           true,
                           context.height / 1.5) : _paystackCharge(context);
+
                     }),
               ),
             ],

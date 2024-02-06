@@ -27,7 +27,7 @@ class PLBackIcon extends StatelessWidget {
         : Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
+              InkWell(
                 onTap: () => onTap(),
                 child: isCancel ? PLImageSvg(svgPath: PLAssets.closeIcon, width: 15.w, height: 15.h,) : CircleAvatar(
                   backgroundColor: const Color(0x4CD9E1FC), // PLColors.neutralColor300.withOpacity(.2),

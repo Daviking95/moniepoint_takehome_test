@@ -12,6 +12,8 @@ import 'package:peerlendly/modules/profile/services/profile_service.dart';
 import '../../../flavors.dart';
 import '../../modules/authentication/login/models/LoginRequestModel.dart';
 import '../../modules/authentication/login/services/login_service.dart';
+import '../../modules/loan/models/LoogedInUserLoanResponseModel.dart';
+import '../../modules/loan/services/loan_services.dart';
 import '../../shared/models/error_response_model.dart';
 import '../../shared/models/generic_response_model.dart';
 

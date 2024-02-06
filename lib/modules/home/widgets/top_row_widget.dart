@@ -1,7 +1,8 @@
 part of 'package:peerlendly/modules/home/exports.dart';
 
 class TopRowWidget extends StatelessWidget {
-  const TopRowWidget({Key? key}) : super(key: key);
+  final Function() dashboardRefreshCallback;
+  const TopRowWidget({Key? key, required this.dashboardRefreshCallback}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,20 +11,20 @@ class TopRowWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: AppPreferences.isUserDocumentVerified ? null : () {
+            onTap: () {
               PersistentNavBarNavigator.pushNewScreen(
                 context,
-                screen: const CompleteAccountScreen(),
+                screen: (AppData.getUserProfileResponseModel?.bvnVerified ?? false) ? const ProfileScreen() : const CompleteAccountScreen(),
                 withNavBar: false,
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
             },
             child: Row(
               children: [
-                ProfileImageWidget(imageFile: UserData.profilePicture, size: 40),
+                ProfileImageWidget(imageFile: AppData.profilePicture, size: 40),
                 PLHSpace(12),
                 PLTextWidget(
-                  title: (UserData.getUserProfileResponseModel?.bvnVerified ?? false) ? (UserData.getUserProfileResponseModel?.fullName ?? "") : "Verify Account",
+                  title: (AppData.getUserProfileResponseModel?.bvnVerified ?? false) ? (AppData.getUserProfileResponseModel?.fullName.toTitleCase ?? "") : "Verify Account",
                   textStyle: PLTypography.textTitleLargeStyle,
                   textColor: PLColors.appPrimaryColorMain500,
                   textSize: PLTypography.fontTitleMedium,
@@ -45,6 +46,10 @@ class TopRowWidget extends StatelessWidget {
                 },
                 child: PLImageSvg(svgPath: PLAssets.notificationBell, width: 24.w, height: 24.h,),
               ),
+              // PLHSpace(8),
+              // InkWell(
+              //   onTap: () => dashboardRefreshCallback(),
+              //     child: const Icon(Icons.refresh))
             ],
           )
         ],

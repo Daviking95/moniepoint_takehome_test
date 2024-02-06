@@ -78,7 +78,7 @@ class PayBillsScreen extends StatelessWidget {
                             PLPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: model.accountNo,
-                              formatter: FilteringTextInputFormatter.digitsOnly,
+                              formatter: [FilteringTextInputFormatter.digitsOnly],
                               maxLength: title.toLowerCase() == "internet" ? 10 : null,
                               fillColor: PLColors.appWhiteColor,
                               validation: (val) =>
@@ -99,11 +99,11 @@ class PayBillsScreen extends StatelessWidget {
                             PLPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: model.amount,
-                              formatter: CurrencyTextInputFormatter(
-                                  symbol: strCurrency2),
+                              formatter: [CurrencyTextInputFormatter(
+                                  symbol: strCurrency2)],
                               fillColor: PLColors.appWhiteColor,
                               validation: (val) =>
-                                  val.validateAmount(strFieldRequiredError),
+                                  val.validateAmount(strFieldRequiredError, 0),
                               hintText: strAmount,
                               onChange: (val) =>
                                   model.listenForPayBillsChanges(),

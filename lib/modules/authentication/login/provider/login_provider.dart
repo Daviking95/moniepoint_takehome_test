@@ -115,7 +115,7 @@ class LoginProvider extends BaseViewModel {
 
     LoginRequestModel loginRequestModel = LoginRequestModel(
         emailAddress: emailAddress, securityPin:
-    // AppPreferences.activityPin.isNotEmpty ? AppPreferences.activityPin :
+    AppPreferences.activityPin.isNotEmpty ? AppPreferences.activityPin :
     (activityPin?.text ?? ""));
 
     final dartz.Either<ErrorResponseModel, GenericResponseModel>

@@ -17,6 +17,7 @@ class ProfileProvider extends BaseViewModel {
 
     if (shouldInitialize) {
       // init();
+      defaultAllToEmpty();
     }
   }
 
@@ -37,7 +38,6 @@ class ProfileProvider extends BaseViewModel {
   }
 
   TextEditingController fullname = TextEditingController();
-
   TextEditingController username = TextEditingController();
   TextEditingController address = TextEditingController();
   TextEditingController country = TextEditingController();
@@ -91,12 +91,30 @@ class ProfileProvider extends BaseViewModel {
   TextEditingController addBankName = TextEditingController();
   TextEditingController addBankAccountNumber = TextEditingController();
   TextEditingController _verifiedAccount = TextEditingController();
-  TextEditingController _cardNumber = TextEditingController();
-  TextEditingController _expiryDate = TextEditingController();
-  TextEditingController _cardHolderName = TextEditingController();
-  TextEditingController _cvvCode = TextEditingController();
+  TextEditingController cardNumber = TextEditingController();
+  TextEditingController expiryDate = TextEditingController();
+  TextEditingController cardHolderName = TextEditingController();
+  TextEditingController cvvCode = TextEditingController();
 
-  TextEditingController get cardNumber => _cardNumber;
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
+  set isLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
+  bool _showBackView = false;
+
+  bool get showBackView => _showBackView;
+
+  set showBackView(bool value) {
+    _showBackView = value;
+    // notifyListeners();
+  }
+
+  // TextEditingController get cardNumber => _cardNumber;
 
   TextEditingController get verifiedAccount => _verifiedAccount;
 
@@ -105,31 +123,31 @@ class ProfileProvider extends BaseViewModel {
     notifyListeners();
   }
 
-  set cardNumber(TextEditingController value) {
-    _cardNumber = value;
-    notifyListeners();
-  }
-
-  TextEditingController get expiryDate => _expiryDate;
-
-  set expiryDate(TextEditingController value) {
-    _expiryDate = value;
-    notifyListeners();
-  }
-
-  TextEditingController get cardHolderName => _cardHolderName;
-
-  set cardHolderName(TextEditingController value) {
-    _cardHolderName = value;
-    notifyListeners();
-  }
-
-  TextEditingController get cvvCode => _cvvCode;
-
-  set cvvCode(TextEditingController value) {
-    _cvvCode = value;
-    notifyListeners();
-  }
+  // set cardNumber(TextEditingController value) {
+  //   _cardNumber = value;
+  //   notifyListeners();
+  // }
+  //
+  // TextEditingController get expiryDate => _expiryDate;
+  //
+  // set expiryDate(TextEditingController value) {
+  //   _expiryDate = value;
+  //   notifyListeners();
+  // }
+  //
+  // TextEditingController get cardHolderName => _cardHolderName;
+  //
+  // set cardHolderName(TextEditingController value) {
+  //   _cardHolderName = value;
+  //   notifyListeners();
+  // }
+  //
+  // TextEditingController get cvvCode => _cvvCode;
+  //
+  // set cvvCode(TextEditingController value) {
+  //   _cvvCode = value;
+  //   notifyListeners();
+  // }
 
   bool isCvvFocused = false;
 
@@ -317,6 +335,7 @@ class ProfileProvider extends BaseViewModel {
   GlobalKey<FormState> addBankFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> addCardFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> creditCardFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> transationPinFormKey = GlobalKey<FormState>();
 
   void listenForChangePasswordChanges() {
     if (oldPassword.text.isNotEmpty &&
@@ -346,6 +365,18 @@ class ProfileProvider extends BaseViewModel {
     if (oldPin.text.isNotEmpty &&
         newPin.text.isNotEmpty &&
         formKeyForChangePin.currentState!.validate()) {
+      _isChangePinFormValidated = true;
+    } else {
+      _isChangePinFormValidated = false;
+    }
+
+    notifyListeners();
+  }
+
+  void listenForCreatePinChanges() {
+    if (newPin.text.isNotEmpty &&
+        confirmNewPin.text.isNotEmpty &&
+        transationPinFormKey.currentState!.validate()) {
       _isChangePinFormValidated = true;
     } else {
       _isChangePinFormValidated = false;
@@ -547,6 +578,7 @@ class ProfileProvider extends BaseViewModel {
 
   addCardDetails(BuildContext context) async {
     await changeLoaderStatus(true, "Adding Card details");
+    isLoading = true;
     notifyListeners();
 
     CardDetailsRequestModel cardDetailsRequestModel = CardDetailsRequestModel(
@@ -558,7 +590,8 @@ class ProfileProvider extends BaseViewModel {
     "cardDetailsRequestModel ${jsonEncode(cardDetailsRequestModel)}".logger();
 
     final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
-        await PLProfileRepository.instance.createCardDetailsService([cardDetailsRequestModel]);
+        await PLProfileRepository.instance
+            .createCardDetailsService([cardDetailsRequestModel]);
 
     "responseDataCreateCardDetails $responseData".logger();
 
@@ -568,11 +601,11 @@ class ProfileProvider extends BaseViewModel {
       );
 
       await changeLoaderStatus(false, "");
+      isLoading = false;
       notifyListeners();
 
       return;
     }, (successResponse) async {
-
       AppNavigator.push(SuccessWidget(
         navigateToWidgetOnDone: const CardAccountsList(),
         primaryBtnText: "Continue",
@@ -581,6 +614,7 @@ class ProfileProvider extends BaseViewModel {
       ));
 
       await changeLoaderStatus(false, "");
+      isLoading = false;
     });
   }
 
@@ -616,9 +650,10 @@ class ProfileProvider extends BaseViewModel {
         responseData =
         await PLProfileRepository.instance.getCardDetailsService();
 
-    "responseDataGetCardDetails $responseData".logger();
-
     return responseData.fold((errorResponse) async {
+
+      "responseDataGetCardDetails $responseData".logger();
+
       cardDetail = [];
 
       await changeLoaderStatus(false, "");
@@ -685,7 +720,7 @@ class ProfileProvider extends BaseViewModel {
           dateOfBirth.text.isNotEmpty ? dateOfBirth.text : '01/01/1001',
       // DateFormat(dateFormatterv3).parse(dateOfBirth.text),
       identityTypeId: idType.text.isNotEmpty
-          ? (UserData.meansOfId.indexWhere((element) =>
+          ? (AppData.meansOfId.indexWhere((element) =>
                   element.values.first.toString().toLowerCase() ==
                   idType.text.toLowerCase()) +
               1)
@@ -693,13 +728,13 @@ class ProfileProvider extends BaseViewModel {
       // idType.text,
       identificationIdNumber: idNumber.text,
       gender: gender.text.isNotEmpty
-          ? (UserData.gender.indexWhere((element) =>
+          ? (AppData.gender.indexWhere((element) =>
                   element.values.first.toString().toLowerCase() ==
                   gender.text.toLowerCase()) +
               1)
           : 1,
       maritalStatus: maritalStatus.text.isNotEmpty
-          ? (UserData.maritalStatus.indexWhere((element) =>
+          ? (AppData.maritalStatus.indexWhere((element) =>
                   element.values.first.toString().toLowerCase() ==
                   maritalStatus.text.toLowerCase()) +
               1)
@@ -709,7 +744,7 @@ class ProfileProvider extends BaseViewModel {
 
       nameOfNextOfKin: nokFullName.text,
       relationshipWithNextOfKin: nokRelationship.text.isNotEmpty
-          ? (UserData.relationship.indexWhere((element) =>
+          ? (AppData.relationship.indexWhere((element) =>
                   element.values.first.toString().toLowerCase() ==
                   nokRelationship.text.toLowerCase()) +
               1)
@@ -719,7 +754,7 @@ class ProfileProvider extends BaseViewModel {
       homeAddressOfNextOfKin: nokAddress.text,
 
       employmentType: empEmploymentType.text.isNotEmpty
-          ? (UserData.employmentType.indexWhere((element) =>
+          ? (AppData.employmentType.indexWhere((element) =>
                   element.values.first.toString().toLowerCase() ==
                   empEmploymentType.text.toLowerCase()) +
               1)
@@ -863,7 +898,39 @@ class ProfileProvider extends BaseViewModel {
     }
   }
 
-  void changeTransactionPin() async {}
+  void createTransactionPin(BuildContext context) async {
+    await changeLoaderStatus(true, "Creating transaction pin");
+    notifyListeners();
+
+    final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
+        await PLProfileRepository.instance.createTransactionPinService(newPin.text);
+
+    "responseDataCreateTransactionPin $responseData".logger();
+
+    return responseData.fold((errorResponse) async {
+      showSnackAtTheTop(
+        message: errorResponse.message,
+      );
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+
+      return;
+    }, (successResponse) async {
+      showSnackAtTheTop(message: successResponse.message, isSuccess: true);
+
+      AppNavigator.push( SuccessWidget(
+        primaryBtnText: "Proceed To Dashboard",
+        hasPrimaryBtn: true,
+        navigateToWidgetOnDone: PersistentTab(),
+        desc: "Congrats!!!. Your transaction pin has now been created",
+        message: successResponse.message,
+      ));
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+    });
+  }
 
   void changePhoto(BuildContext context) {
     modalBottomSheet(
@@ -873,12 +940,13 @@ class ProfileProvider extends BaseViewModel {
             removePhotoCallBack: () {
               imageProfileFile = File('');
             },
-            callBack: (imagePath, file, base64Image) async{
+            callBack: (imagePath, file, base64Image) async {
               changeAvatar.text = imagePath;
 
               imageProfileFile = File(file.path);
 
-              Map<String, dynamic> sizes = await ImageUtils.compressAndResizeImage(File(file.path));
+              Map<String, dynamic> sizes =
+                  await ImageUtils.compressAndResizeImage(File(file.path));
 
               Uint8List imageBytes = Uint8List.fromList(sizes['bytes']);
               String base64String = base64Encode(imageBytes);
@@ -903,13 +971,13 @@ class ProfileProvider extends BaseViewModel {
         context.height / 3.1);
   }
 
-  void updateProfilePic(String base64string) async{
+  void updateProfilePic(String base64string) async {
     await changeLoaderStatus(true, "");
     notifyListeners();
 
-    final dartz.Either<ErrorResponseModel, GenericResponseModel>
-    responseData = await PLProfileRepository.instance
-        .updateProfilePicService(base64string);
+    final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
+        await PLProfileRepository.instance
+            .updateProfilePicService(base64string);
 
     "responseDataUpdatePic $responseData".logger();
 
@@ -928,5 +996,53 @@ class ProfileProvider extends BaseViewModel {
       await changeLoaderStatus(false, "");
       notifyListeners();
     });
+  }
+
+  void resetTransactionPin(BuildContext context) async{
+    await changeLoaderStatus(true, "Resetting transaction pin");
+    notifyListeners();
+
+    final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
+    await PLProfileRepository.instance.resetTransactionPinService(newPin.text, oldPin.text);
+
+    "responseDataresetTransactionPin $responseData".logger();
+
+    return responseData.fold((errorResponse) async {
+      showSnackAtTheTop(
+        message: errorResponse.message,
+      );
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+
+      return;
+    }, (successResponse) async {
+      showSnackAtTheTop(message: successResponse.message, isSuccess: true);
+
+      AppNavigator.push( SuccessWidget(
+        primaryBtnText: "Proceed To Dashboard",
+        hasPrimaryBtn: true,
+        navigateToWidgetOnDone: PersistentTab(),
+        desc: "Congrats!!!. Your transaction pin has now been reset successfully",
+        message: successResponse.message,
+      ));
+
+      await changeLoaderStatus(false, "");
+      notifyListeners();
+    });
+  }
+
+  void fillProfileDetails() {
+    email.text = AppData.getUserProfileResponseModel?.emailAddress ?? "";
+    firstName.text = AppData.getUserProfileResponseModel?.fullName ?? "";
+    lastName.text = AppData.getUserProfileResponseModel?.fullName ?? "";
+    phoneNumber.text = AppData.getUserProfileResponseModel?.phoneNumber ?? "";
+    empCompanyName.text = AppData.getUserProfileResponseModel?.companyName ?? "";
+    // lga.text = AppData.getUserProfileResponseModel?.companyName ?? "";
+    // dateOfBirth.text = AppData.getUserProfileResponseModel?. ?? "";
+  }
+
+  defaultAllToEmpty() {
+
   }
 }

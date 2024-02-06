@@ -1,5 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:localization/localization.dart';
+import 'package:mixpanel_flutter/mixpanel_flutter.dart';
 import 'package:peerlendly/modules/loan/models/LenderOffersResponseModel.dart';
 import 'package:peerlendly/modules/loan/models/LoogedInUserLoanResponseModel.dart';
 import 'package:peerlendly/modules/loan/models/MarketplaceResponseModel.dart';

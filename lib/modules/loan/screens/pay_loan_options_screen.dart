@@ -1,7 +1,11 @@
 part of 'package:peerlendly/modules/loan/exports.dart';
 
 class PayLoanOptionsScreen extends StatelessWidget {
-  const PayLoanOptionsScreen({Key? key}) : super(key: key);
+  final double amountToPay;
+  final LoogedInUserLoanResponseModel? loanDetails;
+
+
+  const PayLoanOptionsScreen({Key? key, required this.amountToPay, required this.loanDetails}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +47,8 @@ class PayLoanOptionsScreen extends StatelessWidget {
                               context,
                               '',
                               PayLoanPopUp(
-                                  amount: 115000, loanWatcher: loanWatcher));
-                        }),
+                                  amount: amountToPay, loanWatcher: loanWatcher, loanDetails: loanDetails));
+                        }, loanWatcher),
                         payOptionItemWidget(PLAssets.payWithDebitCard,
                             "Pay With Debit Card", () {
                               showAlertDialog(
@@ -52,8 +56,8 @@ class PayLoanOptionsScreen extends StatelessWidget {
                                   '',
                                   PayLoanPopUp(
                                     isWallet: false,
-                                      amount: 115000, loanWatcher: loanWatcher));
-                            }),
+                                      amount: amountToPay, loanWatcher: loanWatcher, loanDetails: loanDetails));
+                            }, loanWatcher),
                         PLVSpace(24),
                         PLVSpace(24),
                       ],
@@ -67,7 +71,7 @@ class PayLoanOptionsScreen extends StatelessWidget {
   }
 
   Widget payOptionItemWidget(
-      String assetString, String title, Function() func) {
+      String assetString, String title, Function() func, LoanProvider loanWatcher) {
     return InkWell(
       onTap: () => func(),
       child: Container(
@@ -99,6 +103,13 @@ class PayLoanOptionsScreen extends StatelessWidget {
                 ),
               ],
             ),
+            loanWatcher.isLoading ? const SizedBox(
+                width: 15,
+                height: 15,
+                child: CircularProgressIndicator(
+                  strokeWidth: 1,
+                  color: PLColors.appPrimaryColorMain500,
+                )) :
             const Icon(
               Icons.arrow_forward_ios,
               color: PLColors.appPrimaryText,

@@ -13,6 +13,8 @@ class PLDatePickerTextField extends StatefulWidget {
   final bool isDayOfTheWeekSelected;
   final bool isRequired;
   final double? fontSize;
+  final int? noOfDays;
+  final Function()? callBack;
   final TextEditingController? startDateController;
 
   PLDatePickerTextField(
@@ -23,12 +25,14 @@ class PLDatePickerTextField extends StatefulWidget {
       this.isTodayFirstDate = false,
       this.hasNoTapFunction = false,
       this.isRequired = true,
+        this.noOfDays,
       this.noOfYears = 0,
       this.fontSize = 18,
       this.isDaySelectable = false,
       this.isEndDateSelectable = false,
       this.selectedDayOrDate = 0,
       this.startDateController,
+        this.callBack,
       this.isDayOfTheWeekSelected = true});
 
   @override
@@ -63,6 +67,8 @@ class _PLDatePickerTextFieldState extends State<PLDatePickerTextField> {
       noOfYears: widget.noOfYears,
       isTodayLastDate: widget.isTodayLastDate,
       isEndDate: widget.isTodayFirstDate,
+      callback: widget.callBack,
+        noOfDays: widget.noOfDays ?? 365000,
       // startDateController: widget.startDateController
     );
 

@@ -38,6 +38,8 @@ class PLLoginRepository extends PLLoginService {
 
       "requestData $encryptedData $requestData".log();
 
+      AppData.mixpanel!.timeEvent("LoginService");
+
       var responseData = await NetworkService.post(
           url: NetworkConstants.loginUrl, data: encryptedData);
 
@@ -49,6 +51,8 @@ class PLLoginRepository extends PLLoginService {
       // "decryptedResponse $decryptedResponse".log();
 
       AppPreferences.bearerToken = responseData;
+
+      AppData.mixpanel!.track("LoginService");
 
       return Right(
           GenericResponseModel(message: "Login Successful", success: true));

@@ -14,6 +14,8 @@ class GetUserProfileResponseModel {
   final String companyName;
   final DateTime startDate;
   final String monthlyEarnings;
+
+  final String transactionPin;
   final String proofOfEmployment;
   final String borrowerLimit;
   final String lendingLimit;
@@ -32,6 +34,7 @@ class GetUserProfileResponseModel {
     required this.companyName,
     required this.startDate,
     required this.monthlyEarnings,
+    required this.transactionPin,
     required this.proofOfEmployment,
     required this.bvnVerified,
     required this.borrowerLimit,
@@ -51,6 +54,7 @@ class GetUserProfileResponseModel {
     String? companyName,
     DateTime? startDate,
     String? monthlyEarnings,
+    String? transactionPin,
     String? proofOfEmployment,
     String? lendingLimit,
     String? borrowerLimit,
@@ -69,6 +73,7 @@ class GetUserProfileResponseModel {
         companyName: companyName ?? this.companyName,
         startDate: startDate ?? this.startDate,
         monthlyEarnings: monthlyEarnings ?? this.monthlyEarnings,
+        transactionPin: transactionPin ?? this.transactionPin,
         proofOfEmployment: proofOfEmployment ?? this.proofOfEmployment,
         bvnVerified: bvnVerified ?? this.bvnVerified,
         lendingLimit: lendingLimit ?? this.lendingLimit,
@@ -92,10 +97,11 @@ class GetUserProfileResponseModel {
     companyName: json["CompanyName"] ?? "",
     startDate: DateTime.parse(json["StartDate"]),
     monthlyEarnings: json["MonthlyEarnings"] ?? "",
+    transactionPin: json["TransactionPin"] ?? "",
     proofOfEmployment: json["ProofOfEmployment"] ?? "",
     bvnVerified: json["BvnVerified"],
     lendingLimit: json["LendingLimit"] ?? "",
-    borrowerLimit: json["BorrowerLimit"] ?? "",
+    borrowerLimit: json["BorrowingLimit"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
@@ -111,6 +117,7 @@ class GetUserProfileResponseModel {
     "CompanyName": companyName,
     "StartDate": startDate.toIso8601String(),
     "MonthlyEarnings": monthlyEarnings,
+    "TransactionPin": transactionPin,
     "ProofOfEmployment": proofOfEmployment,
     "BvnVerified": bvnVerified,
     "BorrowerLimit": borrowerLimit,

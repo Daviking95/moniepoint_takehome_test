@@ -11,6 +11,7 @@ class VerifyEmailAddress extends StatelessWidget {
       iconSet: Container(),
       buildWidget: VerifyEmailWidget(emailAddress: emailAddress,),
       topHeight: 80.h,
+      hasBackButton: true,
     );
   }
 }

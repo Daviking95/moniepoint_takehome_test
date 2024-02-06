@@ -21,7 +21,10 @@ class _LoanRequestSummaryCardState extends State<LoanRequestSummaryCard> {
     // TODO: implement initState
     super.initState();
     loanProvider = Provider.of<LoanProvider>(context, listen: false);
+    loanProvider.borrowerLoanHistory = [];
+
     loanProvider.getBorrowerLoanHistory(widget.marketplaceLoan.borrowerId);
+
   }
 
   @override
@@ -55,51 +58,60 @@ class _LoanRequestSummaryCardState extends State<LoanRequestSummaryCard> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                children: [
-                                  ProfileImageWidget(
-                                      imageFile: widget.marketplaceLoan.image,
-                                      size: 40),
-                                  PLHSpace(12),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      PLTextWidget(
-                                        title: widget.marketplaceLoan.fullName,
-                                        textStyle:
-                                            PLTypography.textTitleLargeStyle,
-                                        textSize: PLTypography.fontTitleMedium,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                      PLVSpace(4),
+                              InkWell(
+                                onTap: () {
 
-                                      if(!loanWatcher.isLoading && loanWatcher.borrowerLoanHistory.isNotEmpty)
-                                      InkWell(
-                                        onTap: () {
-                                          modalBottomSheet(
-                                              context,
-                                              LoanHistoryScreen(borrowerLoanHistory: loanWatcher.borrowerLoanHistory),
-                                              true,
-                                              context.height / 1.5);
-                                        },
-                                        child: PLTextWidget(
-                                          title: "View transaction history",
+                                  if(loanWatcher.borrowerLoanHistory.isNotEmpty) {
+                                    modalBottomSheet(
+                                      context,
+                                      LoanHistoryScreen(borrowerLoanHistory: loanWatcher.borrowerLoanHistory),
+                                      true,
+                                      context.height / 1.5);
+                                  }
+                                },
+                                child: Row(
+                                  children: [
+                                    ProfileImageWidget(
+                                        imageFile: widget.marketplaceLoan.image,
+                                        size: 40),
+                                    PLHSpace(12),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        PLTextWidget(
+                                          title: widget.marketplaceLoan.fullName.toTitleCase,
                                           textStyle:
                                               PLTypography.textTitleLargeStyle,
-                                          textColor:
-                                              PLColors.appPrimaryColorMain500,
-                                          textSize: PLTypography.fontLabelSmall,
-                                          textDecoration:
-                                              TextDecoration.underline,
+                                          textSize: PLTypography.fontTitleMedium,
+                                          fontWeight: FontWeight.w700,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        PLVSpace(4),
+
+                                        if(!loanWatcher.isLoading && loanWatcher.borrowerLoanHistory.isNotEmpty)
+                                        InkWell(
+                                          onTap: () {
+
+                                          },
+                                          child: PLTextWidget(
+                                            title: "View transaction history",
+                                            textStyle:
+                                                PLTypography.textTitleLargeStyle,
+                                            textColor:
+                                                PLColors.appPrimaryColorMain500,
+                                            textSize: PLTypography.fontLabelSmall,
+                                            textDecoration:
+                                                TextDecoration.underline,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
+                                // mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   PLTextWidget(
                                     title: "Lendly Score",
@@ -111,25 +123,9 @@ class _LoanRequestSummaryCardState extends State<LoanRequestSummaryCard> {
                                   PLVSpace(4),
                                   InkWell(
                                     onTap: () {},
-                                    child: Container(
-                                      height: 38.h,
-                                      width: 38.w,
-                                      decoration: BoxDecoration(
-                                          borderRadius: PLDecorations
-                                              .borderRadiusGeometryCircular8,
-                                          color: PLColors.appGreenColor),
-                                      child: Center(
-                                        child: PLTextWidget(
-                                          title: widget.marketplaceLoan.lendlyScore
-                                              .toString(),
-                                          textColor: PLColors.appWhiteColor,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily:
-                                              PLTypography.fontFamilyBold,
-                                          textSize:
-                                              PLTypography.fontHeadlineSmall,
-                                        ),
-                                      ),
+                                    child: LendlyScoreCard(
+                                      score: widget.marketplaceLoan.lendlyScore,
+                                      bgColor: PLColors.appGreenColor,
                                     ),
                                   )
                                 ],

@@ -32,65 +32,74 @@ class _MarketplaceLoanListState extends State<MarketplaceLoanList> {
         child: PLScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: PLPaddedWidget(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          PLVSpace(48),
-                          PLBackIcon(
-                            onTap: () => Navigator.canPop(context)
-                                ? Navigator.pop(context)
-                                : AppNavigator.pushAndRemoveUtil(
-                                    const PersistentTab()),
-                            title: "Select a request to fund",
-                            extraWidget: Row(
-                              children: [
-                                InkWell(
-                                    onTap: () {},
-                                    child: const PLImageSvg(
-                                      svgPath: PLAssets.filterIcon,
-                                      height: 15,
-                                      width: 25,
-                                    )),
-                                PLHSpace(8),
-                              ],
+              child: RefreshIndicator(
+                onRefresh: () {
+                  return loanProvider.getMarketplaceLoans();
+                },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: PLPaddedWidget(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            PLVSpace(48),
+                            PLBackIcon(
+                              onTap: () => Navigator.canPop(context)
+                                  ? Navigator.pop(context)
+                                  : AppNavigator.pushAndRemoveUtil(
+                                      const PersistentTab()),
+                              title: "Select a request to fund",
+                              extraWidget: Row(
+                                children: [
+                                  InkWell(
+                                      onTap: () {},
+                                      child: const PLImageSvg(
+                                        svgPath: PLAssets.filterIcon,
+                                        height: 15,
+                                        width: 25,
+                                      )),
+                                  PLHSpace(8),
+                                ],
+                              ),
                             ),
-                          ),
-                          PLVSpace(24),
-                          loanWatcher.isLoading && UserData.marketplaceLoans.isEmpty
-                              ? const Center(child: CircularProgressIndicator())
-                              : Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    if (UserData.marketplaceLoans.isEmpty) ...[
-                                      Center(
-                                        child: EmptyLoanScreenWithTextOnly(
-                                            text: 'No loan request yet'),
-                                      )
-                                    ] else ...[
-                                      for (var index = 0;
-                                          index <
-                                              UserData.marketplaceLoans.length;
-                                          index++) ...[
-                                        _showCardWithDate(
-                                            context,
-                                            index,
-                                            NotificationType.loanOffer,
-                                            UserData.marketplaceLoans[index]),
+                            PLVSpace(24),
+                            loanWatcher.isLoading ?
+                            const Center(child: CircularProgressIndicator()) :
+                            loanWatcher.isLoading && AppData.marketplaceLoans.isEmpty
+                                ? const Center(child: CircularProgressIndicator())
+                                : Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (AppData.marketplaceLoans.isEmpty) ...[
+                                        Center(
+                                          child: EmptyLoanScreenWithTextOnly(
+                                              text: 'No loan request yet'),
+                                        )
+                                      ] else ...[
+                                        for (var index = 0;
+                                            index <
+                                                AppData.marketplaceLoans.length;
+                                            index++) ...[
+
+                                              // if(UserData.marketplaceLoans[index].loanStatus == 2)
+                                          _showCardWithDate(
+                                              context,
+                                              index,
+                                              NotificationType.loanOffer,
+                                              AppData.marketplaceLoans[index]),
+                                        ]
                                       ]
-                                    ]
-                                  ],
-                                ),
-                        ],
-                      ),
-                    ],
+                                    ],
+                                  ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               )),

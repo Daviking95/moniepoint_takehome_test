@@ -59,8 +59,6 @@ class OnboardingProvider extends ChangeNotifier{
     Future.delayed(const Duration(seconds: 2), () async {
       "returningCustomer $returningCustomer".logger();
 
-      AppPreferences.isOnboardingCarouselSeenOnce = true;
-
       // returningCustomer != null && returningCustomer != ""
       AppPreferences.isOnboardingCarouselSeenOnce
           ?
@@ -68,7 +66,7 @@ class OnboardingProvider extends ChangeNotifier{
           ?
       Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (route) => false)
           :
-      Navigator.pushNamedAndRemoveUntil(context, AppRoutes.switchAccountLogin, (route) => false)
+      Navigator.pushNamedAndRemoveUntil(context, AppRoutes.signUp, (route) => false)
           :
       Navigator.pushNamedAndRemoveUntil(context, AppRoutes.onboarding, (route) => false); // onboarding
     });

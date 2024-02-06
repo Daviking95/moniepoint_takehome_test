@@ -31,7 +31,7 @@ class _WalletCardCarouselWidgetState extends State<WalletCardCarouselWidget> {
         CarouselSlider(
             items: [
               const WalletCardWidget().marginOnly(right: 12),
-              if(UserData.loogedInUserLoan != null) ...[
+              if(AppData.loogedInUserLoan != null) ...[
                 const LoanCardWidget(),
               ]
             ],

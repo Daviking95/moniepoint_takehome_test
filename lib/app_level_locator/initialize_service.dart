@@ -14,5 +14,12 @@ class InitializeServices {
     await Firebase.initializeApp();
 
     await dotenv.load(fileName: ".env");
+
+    initMixpanel();
   }
+}
+
+Future<void> initMixpanel() async {
+  AppData.mixpanel = await Mixpanel.init(dotenv.get('MIXPANEL_TOKEN'),
+      trackAutomaticEvents: true);
 }

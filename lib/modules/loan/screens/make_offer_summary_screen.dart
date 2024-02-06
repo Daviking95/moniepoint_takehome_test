@@ -80,7 +80,7 @@ class MakeOfferSummaryScreen extends StatelessWidget {
                                           children: [
                                             PLTextWidget(
                                               title:
-                                                  (loanDetail.fullName ?? ""),
+                                                  (loanDetail.fullName.toTitleCase ?? ""),
                                               textStyle: PLTypography
                                                   .textTitleLargeStyle,
                                               textSize:
@@ -134,26 +134,9 @@ class MakeOfferSummaryScreen extends StatelessWidget {
                                         PLVSpace(4),
                                         InkWell(
                                           onTap: () {},
-                                          child: Container(
-                                            height: 38.h,
-                                            width: 38.w,
-                                            decoration: BoxDecoration(
-                                                borderRadius: PLDecorations
-                                                    .borderRadiusGeometryCircular8,
-                                                color: PLColors.appGreenColor),
-                                            child: Center(
-                                              child: PLTextWidget(
-                                                title: (loanDetail.lendlyScore)
-                                                    .toString(),
-                                                textColor:
-                                                    PLColors.appWhiteColor,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily:
-                                                    PLTypography.fontFamilyBold,
-                                                textSize: PLTypography
-                                                    .fontHeadlineSmall,
-                                              ),
-                                            ),
+                                          child: LendlyScoreCard(
+                                            score: loanDetail.lendlyScore,
+                                            bgColor: PLColors.appGreenColor,
                                           ),
                                         )
                                       ],
@@ -222,7 +205,7 @@ class MakeOfferSummaryScreen extends StatelessWidget {
                                     _loanDetailsItem(
                                         'Amount to Pay',
                                         PLTextWidget(
-                                          title: calculatedResult.amountToPay
+                                          title: calculatedResult.amount
                                               .toString()
                                               .formatWithCommasAndDecimals(),
                                           textStyle:
@@ -331,7 +314,7 @@ class MakeOfferSummaryScreen extends StatelessWidget {
                                         onChanged: (bool? value) {
                                           loanWatcher.agreeToMakeOffer = value!;
                                         },
-                                      ),
+                                      ).paddingAll(5),
                                     ),
                                     PLHSpace(16),
                                     Expanded(
@@ -341,7 +324,7 @@ class MakeOfferSummaryScreen extends StatelessWidget {
                                         children: [
                                           PLTextWidget(
                                             title:
-                                                "You are agreeing to lend the amount above to Jide. Funds will be debited from your account",
+                                                "You are agreeing to lend the amount above to ${loanDetail.fullName ?? ""}. Funds will be debited from your account",
                                             textColor: PLColors.appPrimaryText,
                                             fontWeight: FontWeight.w600,
                                             textSize:
@@ -350,7 +333,7 @@ class MakeOfferSummaryScreen extends StatelessWidget {
                                           PLVSpace(8),
                                           PLTextWidget(
                                             title:
-                                                "I authorize PeerLendly to debit my account for the amount noted on today’s date and will not dispute PeerLendly debiting my account as the transaction corresponds to the terms in this online form and my agreement with PeerLendly. I understand that the payback date may be later than 15 Oct, 2023 if the borrower does not pay on time.",
+                                                "I authorize PeerLendly to debit my account for the amount noted on today’s date and will not dispute PeerLendly debiting my account as the transaction corresponds to the terms in this online form and my agreement with PeerLendly. I understand that the payback date may be later than ${loanDetail.endDate.formatDate()}, if the borrower does not pay on time.",
                                             textColor: PLColors.appPrimaryText,
                                             textSize:
                                                 PLTypography.fontLabelSmall,

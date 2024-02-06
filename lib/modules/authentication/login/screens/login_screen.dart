@@ -104,7 +104,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     PLVSpace(6),
                     if (AppPreferences.returnDetails.isNotEmpty) ...[
                       PLTextWidget(
-                        title: "Welcome back ${AppPreferences.returnDetails} ?",
+                        title: "Welcome back ${AppData.getUserProfileResponseModel?.fullName ?? ""} ?",
                       ),
                       PLVSpace(6),
                     ],
@@ -122,6 +122,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                         controller: activityPin,
                         onChange: (value) {
                           if (value.length == 4) {
+                            FocusManager.instance.primaryFocus?.unfocus();
+
                             if (widget.isSwitchAccount) {
                               widget.model.verifySwitchAccountForm(
                                   context, widget.email, widget.otp, activityPin.text);
@@ -157,6 +159,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         AppPreferences.userLoggedInData = "";
                         AppPreferences.bearerToken = "";
                         AppPreferences.returnDetails = "";
+                        AppPreferences.activityPin = "";
 
                         AppNavigator.push(const SwitchAccountLoginScreen());
                       },

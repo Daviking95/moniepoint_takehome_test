@@ -61,6 +61,12 @@ abstract class PLProfileService {
 
   Future<Either<ErrorResponseModel, GenericResponseModel>>
   updateProfilePicService(String base64Pic);
+
+  Future<Either<ErrorResponseModel, GenericResponseModel>>
+  createTransactionPinService(String tranPin);
+
+  Future<Either<ErrorResponseModel, GenericResponseModel>>
+  resetTransactionPinService(String tranPin, String oldPin);
 }
 
 class PLProfileRepository extends PLProfileService {
@@ -401,13 +407,13 @@ class PLProfileRepository extends PLProfileService {
 
       return Right(cardDetailsResponseModel);
     } catch (e) {
-      "GetBankDetailsError $e".logger();
+      "GetCardDetailsError $e".logger();
 
-      var decryptedResponse = await decryptString(e.toString());
+      // var decryptedResponse = await decryptString(e.toString());
 
       return Left(ErrorResponseModel(
         isSuccess: false,
-        message: decryptedResponse,
+        message: e.toString(),
       ));
     }
   }
@@ -528,9 +534,11 @@ class PLProfileRepository extends PLProfileService {
     } catch (e) {
       "CreateCardDetailsError $e".logger();
 
+      var decryptedResponse = await decryptString(e.toString());
+
       return Left(ErrorResponseModel(
         isSuccess: false,
-        message: e.toString(),
+        message: decryptedResponse,
       ));
     }
   }
@@ -562,6 +570,76 @@ class PLProfileRepository extends PLProfileService {
       return Left(ErrorResponseModel(
         isSuccess: false,
         message: e.toString(),
+      ));
+    }
+  }
+
+  @override
+  Future<Either<ErrorResponseModel, GenericResponseModel>> createTransactionPinService(String tranPin) async{
+    // TODO: implement createTransactionPinService
+    try {
+
+      final Map<String, dynamic> encryptedData = {
+        "requestBody": await cryptString(tranPin)
+      };
+
+      "requestData $encryptedData".log();
+
+      var responseData = await NetworkService.post(
+          url: NetworkConstants.createTransactionPinUrl, data: encryptedData);
+
+      "responseDatacreateTransactionPinService ${await decryptString(responseData)}"
+          .log();
+
+      var decryptedResponse = await decryptString(responseData);
+
+      return Right(
+          GenericResponseModel(message: decryptedResponse, success: true));
+    } catch (e) {
+      "createTransactionPinServiceError $e".logger();
+
+      return Left(ErrorResponseModel(
+        isSuccess: false,
+        message: e.toString(),
+      ));
+    }
+  }
+
+  @override
+  Future<Either<ErrorResponseModel, GenericResponseModel>> resetTransactionPinService(String tranPin, String oldPin) async{
+    // TODO: implement resetTransactionPinService
+    try {
+
+      final Map<String, dynamic> requestData = {
+        "currentPin": oldPin,
+        "pin": tranPin,
+        "confirmPin": tranPin,
+      };
+
+      final Map<String, dynamic> encryptedData = {
+        "requestBody": await cryptString(json.encode(requestData))
+      };
+
+      "requestDataresetTransactionPinService $encryptedData $requestData".log();
+
+      var responseData = await NetworkService.patch(
+          url: NetworkConstants.resetTransactionPinUrl, data: encryptedData);
+
+      "responseDataresetTransactionPinService ${await decryptString(responseData)}"
+          .log();
+
+      var decryptedResponse = await decryptString(responseData);
+
+      return Right(
+          GenericResponseModel(message: decryptedResponse, success: true));
+    } catch (e) {
+      "resetTransactionPinServiceError $e".logger();
+
+      var decryptedResponse = await decryptString(e.toString());
+
+      return Left(ErrorResponseModel(
+        isSuccess: false,
+        message: decryptedResponse,
       ));
     }
   }

@@ -26,8 +26,8 @@ class SupportScreen extends StatelessWidget {
           body: Tawk(
             directChatLink: dotenv.get('TAWKTO_CHAT_LINK'),
             visitor: TawkVisitor(
-              name: "${UserData.getUserProfileResponseModel?.fullName ?? ''}",
-              email: "${UserData.getUserProfileResponseModel?.emailAddress ?? ''}",
+              name: "${AppData.getUserProfileResponseModel?.fullName ?? ''}",
+              email: "${AppData.getUserProfileResponseModel?.emailAddress ?? ''}",
             ),
           ),
         ),

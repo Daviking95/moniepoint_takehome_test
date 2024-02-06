@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+import 'package:peerlendly/core/exports.dart';
 import 'package:peerlendly/modules/authentication/reset_password/exports.dart';
 import 'package:peerlendly/modules/authentication/signup/exports.dart';
 import 'package:peerlendly/modules/loan/exports.dart';

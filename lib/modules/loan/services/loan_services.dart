@@ -84,10 +84,14 @@ class PLLoanRepository extends PLLoanService {
 
       "requestData $encryptedData $requestData".log();
 
+      AppData.mixpanel!.timeEvent("LoanApplication");
+
       var responseData = await NetworkService.post(
           url: NetworkConstants.loanApplyUrl, data: encryptedData);
 
       "loanApplyService $responseData".logger();
+
+      AppData.mixpanel!.track("LoanApplication", properties: {'user': AppData.getUserProfileResponseModel?.fullName ?? ""});
 
       return Right(GenericResponseModel(
           message: "Loan application successful", success: true));
@@ -233,12 +237,16 @@ class PLLoanRepository extends PLLoanService {
 
       var decryptedResponse = await decryptString(responseData);
 
-        LoogedInUserLoanResponseModel loogedInUserLoanResponseModel =
+      LoogedInUserLoanResponseModel? loogedInUserLoanResponseModel;
+
+      if(decryptedResponse != {}){
+        loogedInUserLoanResponseModel =
         LoogedInUserLoanResponseModel.fromJson(jsonDecode(decryptedResponse));
 
-      "loogedInUserLoanResponseModel 1 ${loogedInUserLoanResponseModel}".logger();
+        "loogedInUserLoanResponseModel 1 ${loogedInUserLoanResponseModel}".logger();
+      }
 
-      return Right(loogedInUserLoanResponseModel);
+      return Right(loogedInUserLoanResponseModel!);
     } catch (e) {
       "getSingleLoanDetailsServiceError $e".logger();
 

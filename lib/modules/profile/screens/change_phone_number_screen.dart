@@ -33,7 +33,7 @@ class ChangePhoneNumberScreen extends StatelessWidget {
                             controller: profileWatcher.newPhoneNumber,
                             onChange: (val) => profileWatcher.listenForChangePhoneNumberChanges(),
                             validation: (val) => val.validatePhoneNumber(strFieldRequiredError),
-                            formatter: FilteringTextInputFormatter.digitsOnly,
+                            formatter: [FilteringTextInputFormatter.digitsOnly],
                             maxLength: 11,
                             hintText: strNewPhoneNumber),
                         PLPasswordTextField(

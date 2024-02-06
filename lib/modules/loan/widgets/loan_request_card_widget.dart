@@ -12,6 +12,8 @@ class LoanRequestCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        if (!_isUserBVNValidated(context)) return;
+
         AppNavigator.navigateRoute(
             context: context,
             routeType: 7,
@@ -28,21 +30,10 @@ class LoanRequestCardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 38.h,
-                  width: 38.w,
-                  decoration: BoxDecoration(
-                      borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-                      color: PLColors.appGreenColor),
-                  child: Center(
-                    child: PLTextWidget(
-                      title: marketplaceLoan.lendlyScore.toString(),
-                      textColor: PLColors.appWhiteColor,
-                      // fontWeight: FontWeight.bold,
-                      // fontFamily: PLTypography.fontFamilyBold,
-                      textSize: PLTypography.fontTitleLarge,
-                    ),
-                  ),
+                LendlyScoreCard(
+                  score:
+                  marketplaceLoan.lendlyScore ?? 0,
+                  bgColor: PLColors.appGreenColor,
                 ),
                 PLHSpace(8),
                 Expanded(
@@ -51,7 +42,7 @@ class LoanRequestCardWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       PLTextWidget(
-                        title: marketplaceLoan.fullName,
+                        title: marketplaceLoan.fullName.toTitleCase,
                         textColor: PLColors.appPrimaryText,
                         fontFamily: PLTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w500,
@@ -91,5 +82,19 @@ class LoanRequestCardWidget extends StatelessWidget {
         ],
       ).marginOnly(bottom: 10),
     );
+  }
+
+  bool _isUserBVNValidated(BuildContext context) {
+    if (!(AppData.getUserProfileResponseModel?.bvnVerified ?? false)) {
+      showAlertDialog(context, '', const VerifyAccountPopUp());
+      return false;
+    } else if ((AppData.getUserProfileResponseModel?.fullName ?? "").isEmpty ||
+        (AppData.getUserProfileResponseModel?.fullName ?? "")
+            .contains("N/A")) {
+      showAlertDialog(context, '', const UpdateProfilePopUp());
+      return false;
+    } else {
+      return true;
+    }
   }
 }

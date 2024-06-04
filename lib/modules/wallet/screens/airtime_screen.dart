@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class AirtimeScreen extends StatelessWidget {
   const AirtimeScreen({super.key});
@@ -13,19 +13,18 @@ class AirtimeScreen extends StatelessWidget {
 
   Widget _buildScreen(BuildContext context, WalletProvider model) {
     final walletWatcher = context.watch<WalletProvider>();
-    final walletReader = context.read<WalletProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
                 key: walletWatcher.formKeyForAirtime,
                 child: SingleChildScrollView(
-                  child: PLPaddedWidget(
+                  child: NovaPaddedWidget(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
@@ -34,36 +33,36 @@ class AirtimeScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            PLVSpace(48),
-                            PLBackIcon(onTap: () => Navigator.pop(context)),
-                            PLVSpace(16),
-                            PLTextWidget(
+                            NovaVSpace(48),
+                            NovaBackIcon(onTap: () => Navigator.pop(context)),
+                            NovaVSpace(16),
+                            NovaTextWidget(
                               title: strAirtime,
-                              textStyle: PLTypography.textTitleLargeStyle,
-                              textColor: PLColors.appPrimaryText,
+                              textStyle: NovaTypography.textTitleLargeStyle,
+                              textColor: NovaColors.appPrimaryText,
                               fontWeight: FontWeight.w700,
-                              textSize: PLTypography.fontTitleLarge,
+                              textSize: NovaTypography.fontTitleLarge,
                             ),
-                            PLVSpace(24),
+                            NovaVSpace(24),
                             PLDropDownButtonWithIcon(
                               list: const [
-                                {PLAssets.mtnIcon: "MTN"},
-                                {PLAssets.gloIcon: "GLO"},
-                                {PLAssets.airtelIcon: "Airtel"},
-                                {PLAssets.nineMobileIcon: "9Mobile"},
+                                {NovaAssets.mtnIcon: "MTN"},
+                                {NovaAssets.gloIcon: "GLO"},
+                                {NovaAssets.airtelIcon: "Airtel"},
+                                {NovaAssets.nineMobileIcon: "9Mobile"},
                               ],
                               title: "Airtime Provider",
                               value: walletWatcher.networkType,
                               callBack: (val) =>
                                   walletWatcher.listenForAirtimeChanges(),
                             ),
-                            PLVSpace(16),
-                            PLPrimaryTextField(
+                            NovaVSpace(16),
+                            NovaPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: walletWatcher.amount,
                               formatter: [CurrencyTextInputFormatter(
                                   symbol: strCurrency2)],
-                              fillColor: PLColors.appWhiteColor,
+                              fillColor: NovaColors.appWhiteColor,
                               validation: (val) =>
                                   val.validateAmount(strFieldRequiredError, 0),
                               hintText: strAmount,
@@ -103,18 +102,18 @@ class AirtimeScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            PLVSpace(16),
-                            PLPrimaryTextField(
+                            NovaVSpace(16),
+                            NovaPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: walletWatcher.mobileNo,
                               formatter: [FilteringTextInputFormatter.digitsOnly],
                               maxLength: 11,
-                              fillColor: PLColors.appWhiteColor,
+                              fillColor: NovaColors.appWhiteColor,
                               suffixIcon: InkWell(
                                 onTap: () {
                                   pickContact(walletWatcher.mobileNo);
                                 },
-                                  child: const PLImageSvg(svgPath: PLAssets.phoneContactIcon, width: 20, height: 20,)),
+                                  child: const NovaImageSvg(svgPath: NovaAssets.phoneContactIcon, width: 20, height: 20,)),
                               validation: (val) =>
                                   val.validateString(strFieldRequiredError),
                               hintText: "Phone Number",
@@ -122,15 +121,15 @@ class AirtimeScreen extends StatelessWidget {
                                   walletWatcher.listenForAirtimeChanges(),
                             ),
 
-                            PLVSpace(32),
+                            NovaVSpace(32),
 
                           ],
                         ),
                         Column(
                           children: [
-                            PLButtonRound(
+                            NovaButtonRound(
                               textTitle: strNext,
-                              borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                              borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                               loadingString: walletWatcher.loadingString,
                               isLoader: walletWatcher.isLoading,
                               isFormValidated:
@@ -145,7 +144,7 @@ class AirtimeScreen extends StatelessWidget {
                                       })),
 
                             ),
-                            PLVSpace(32),
+                            NovaVSpace(32),
 
                           ],
                         ),

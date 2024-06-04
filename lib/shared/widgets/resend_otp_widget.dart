@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class ResentOtpWidget extends StatefulWidget {
   final BuildContext context;
@@ -67,14 +67,16 @@ class _ResentOtpWidgetState extends State<ResentOtpWidget> {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      PLTextWidget(
-                        title: strNoCodeSent,
-                        textColor: widget.isWhite ?  PLColors.appWhiteColor : PLColors.appBlackColor,
+                      NovaTextWidget(
+                        title: "Didn't Receive Code?",
+                        textColor: widget.isWhite ?  NovaColors.appWhiteColor : NovaColors.appBlackColor,
                       ),
-                      PLHSpace(8),
-                      PLTextWidget(
-                        title: strResend,
-                        textColor: PLColors.appPrimaryColorMain500,
+                      NovaHSpace(8),
+                      NovaTextWidget(
+                        title: "Resend Code",
+                        textColor: NovaColors.appPrimaryColorMain500,
+                        fontFamily: NovaTypography.fontFamilyMedium,
+                        textStyle: TextStyle(decoration: TextDecoration.underline, decorationStyle: TextDecorationStyle.solid),
                       ),
                     ],
                   );
@@ -86,15 +88,15 @@ class _ResentOtpWidgetState extends State<ResentOtpWidget> {
                           text: "Resend code in ",
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            color: widget.isWhite ? PLColors.appWhiteColor : PLColors.appBlackColor,
-                            fontSize: PLTypography.fontBodyMedium,
+                            color: widget.isWhite ? NovaColors.appWhiteColor : NovaColors.appBlackColor,
+                            fontSize: NovaTypography.fontBodyMedium,
                           )),
                       TextSpan(
                         text: "${time.sec} seconds",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: PLTypography.fontBodyMedium,
-                          color: PLColors.appPrimaryColorMain500,
+                          fontSize: NovaTypography.fontBodyMedium,
+                          color: NovaColors.appPrimaryColorMain500,
                         ),
                       ),
                     ],

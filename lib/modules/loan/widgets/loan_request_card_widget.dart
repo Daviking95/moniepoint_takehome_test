@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class LoanRequestCardWidget extends StatelessWidget {
   final String dateCreated;
@@ -24,56 +24,56 @@ class LoanRequestCardWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: PLColors.appWhiteColor,
-                borderRadius: PLDecorations.borderRadiusGeometryCircular8),
+                color: NovaColors.appWhiteColor,
+                borderRadius: NovaDecorations.borderRadiusGeometryCircular8),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 LendlyScoreCard(
                   score:
-                  marketplaceLoan.lendlyScore ?? 0,
-                  bgColor: PLColors.appGreenColor,
+                  marketplaceLoan.lendlyScore,
+                  bgColor: NovaColors.appGreenColor,
                 ),
-                PLHSpace(8),
+                NovaHSpace(8),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLTextWidget(
+                      NovaTextWidget(
                         title: marketplaceLoan.fullName.toTitleCase,
-                        textColor: PLColors.appPrimaryText,
-                        fontFamily: PLTypography.fontFamilyMedium,
+                        textColor: NovaColors.appPrimaryText,
+                        fontFamily: NovaTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w500,
-                        textSize: PLTypography.fontBodySmall,
+                        textSize: NovaTypography.fontBodySmall,
                       ),
-                      PLVSpace(8),
-                      PLTextWidget(
+                      NovaVSpace(8),
+                      NovaTextWidget(
                         title: "Payback Period - ${marketplaceLoan.duration} Days",
-                        textColor: PLColors.appGrayText,
-                        textSize: PLTypography.fontLabelSmall,
+                        textColor: NovaColors.appGrayText,
+                        textSize: NovaTypography.fontLabelSmall,
                       ),
                     ],
                   ),
                 ),
-                PLHSpace(12),
+                NovaHSpace(12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    PLTextWidget(
+                    NovaTextWidget(
                       title: marketplaceLoan.loanAmount.toString().formatWithCommasAndDecimals(),
-                      textStyle: PLTypography.textTitleSmallStyle,
-                      textSize: PLTypography.fontBodyMedium,
-                      fontFamily: PLTypography.fontFamilyMedium,
+                      textStyle: NovaTypography.textTitleSmallStyle,
+                      textSize: NovaTypography.fontBodyMedium,
+                      fontFamily: NovaTypography.fontFamilyMedium,
                       fontWeight: FontWeight.w500,
-                      textColor: PLColors.appPrimaryText,
+                      textColor: NovaColors.appPrimaryText,
                       maxLines: 1,
                       isCurrency: true,
                     ),
                   ],
                 ),
-                PLHSpace(5),
+                NovaHSpace(5),
                 PLForwardIcon(onTap: () {}),
 
               ],

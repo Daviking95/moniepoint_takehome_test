@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class BankAccountsList extends StatefulWidget {
   const BankAccountsList({Key? key}) : super(key: key);
@@ -30,7 +30,6 @@ class _BankAccountsListState extends State<BankAccountsList> {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     "BankName ${myProvider.bankDetails?.bankName ?? ""}".logger();
 
@@ -38,29 +37,29 @@ class _BankAccountsListState extends State<BankAccountsList> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(48),
-                    PLBackIcon(
+                    NovaVSpace(48),
+                    NovaBackIcon(
                       onTap: () => Navigator.canPop(context)
                           ? Navigator.pop(context)
                           : AppNavigator.pushAndRemoveUtil(
                               const ProfileScreen()),
                     ),
-                    PLVSpace(8),
-                    PLTextWidget(
+                    NovaVSpace(8),
+                    NovaTextWidget(
                       title: "Bank Account",
                       isTitle: true,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontHeadlineSmall,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontHeadlineSmall,
                     ),
-                    PLVSpace(24),
+                    NovaVSpace(24),
 
                     // Todo:
                     if (profileWatcher.bankDetails == null) ...[
@@ -74,9 +73,9 @@ class _BankAccountsListState extends State<BankAccountsList> {
                                   PageTransitionAnimation.cupertino,
                             );
                           },
-                          child: const PLImagePng(
-                              imgPath: PLAssets.addBankAccount)),
-                      PLVSpace(24),
+                          child: const NovaImagePng(
+                              imgPath: NovaAssets.addBankAccount)),
+                      NovaVSpace(24),
                     ],
                     if(profileWatcher.bankDetails != null)
                     Stack(
@@ -85,21 +84,21 @@ class _BankAccountsListState extends State<BankAccountsList> {
                           decoration: BoxDecoration(
                               // boxShadow: [PLDecorations.customShadow],
                               borderRadius:
-                                  PLDecorations.borderRadiusGeometryCircular8,
-                              color: PLColors.appWhiteColor),
+                                  NovaDecorations.borderRadiusGeometryCircular8,
+                              color: NovaColors.appWhiteColor),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              PLVSpace(8),
+                              NovaVSpace(8),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.fullName ?? '',
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appGrayText,
-                                    textSize: PLTypography.fontLabelMedium,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appGrayText,
+                                    textSize: NovaTypography.fontLabelMedium,
                                   ),
 
                                   // if(!(AppData.getUserProfileResponseModel?.bvnVerified ?? false))
@@ -112,18 +111,18 @@ class _BankAccountsListState extends State<BankAccountsList> {
                                         pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                       );
                                     },
-                                    child: PLTextWidget(
+                                    child: NovaTextWidget(
                                       title: "Verify Bank Account to Get a Loan",
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryColorMain500,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryColorMain500,
+                                      textSize: NovaTypography.fontLabelSmall,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   // PLImageSvg(svgPath: PLAssets.blueCheckIcon)
                                 ],
                               ),
-                              PLVSpace(12),
+                              NovaVSpace(12),
                               Row(
                                 // crossAxisAlignment: CrossAxisAlignment.end,
                                 mainAxisAlignment:
@@ -136,39 +135,39 @@ class _BankAccountsListState extends State<BankAccountsList> {
                                               .nigeriaBanks.isNotEmpty && (myProvider.bankDetails?.bankName ?? "").isNotEmpty) ...[
                                         Container(
                                           decoration: BoxDecoration(
-                                            borderRadius: PLDecorations
+                                            borderRadius: NovaDecorations
                                                 .borderRadiusGeometryCircular16,
                                           ),
-                                          child: PLImageNetwork(
+                                          child: NovaImageNetwork(
                                             networkPath: myProvider.nigeriaBanks
                                                 .firstWhere((element) =>
-                                                    element.name.toLowerCase() ==
+                                                    element.bankName.toLowerCase() ==
                                                     (myProvider.bankDetails?.bankName ?? "").toLowerCase())
                                                 .logo,
                                             width: 32.w,
                                             height: 32.h,
                                           ),
                                         ),
-                                        PLHSpace(12),
+                                        NovaHSpace(12),
                                       ],
-                                      PLTextWidget(
+                                      NovaTextWidget(
                                         title: profileWatcher
                                                 .bankDetails?.bankName ??
                                             "",
                                         textStyle:
-                                            PLTypography.textTitleLargeStyle,
-                                        textColor: PLColors.appPrimaryText,
-                                        textSize: PLTypography.fontBodyMedium,
+                                            NovaTypography.textTitleLargeStyle,
+                                        textColor: NovaColors.appPrimaryText,
+                                        textSize: NovaTypography.fontBodyMedium,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ],
                                   ),
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title:
                                         "${profileWatcher.bankDetails?.accountNumber.substring(0, 4) ?? ""}******",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
-                                    textSize: PLTypography.fontBodyMedium,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
+                                    textSize: NovaTypography.fontBodyMedium,
                                     fontWeight: FontWeight.w600,
                                   )
                                 ],
@@ -186,7 +185,7 @@ class _BankAccountsListState extends State<BankAccountsList> {
                               },
                               child: const Icon(
                                 Icons.cancel_rounded,
-                                color: PLColors.appPrimaryColorMain500,
+                                color: NovaColors.appPrimaryColorMain500,
                                 size: 15,
                               ),
                             ))

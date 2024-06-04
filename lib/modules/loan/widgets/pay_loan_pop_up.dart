@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class PayLoanPopUp extends StatefulWidget {
   final bool isWallet;
@@ -35,47 +35,47 @@ class _PayLoanPopUpState extends State<PayLoanPopUp> {
     // final loanWatcher = context.watch<LoanProvider>();
     // final loanReader = context.read<LoanProvider>();
 
-    return PLPaddedWidget(
+    return NovaPaddedWidget(
       child: Column(
         children: [
-          PLVSpace(12),
-          const PLImageSvg(svgPath: PLAssets.warningIcon),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(12),
+          const NovaImageSvg(svgPath: NovaAssets.warningIcon),
+          NovaVSpace(24),
+          NovaTextWidget(
             title:
                 'You are about to repay your loan via ${widget.isWallet ? 'your wallet' : 'debit card'}',
-            textSize: PLTypography.fontLabelMedium,
+            textSize: NovaTypography.fontLabelMedium,
             textAlign: TextAlign.center,
-            textColor: PLColors.appGrayText,
+            textColor: NovaColors.appGrayText,
           ),
-          PLVSpace(4),
-          PLTextWidget(
+          NovaVSpace(4),
+          NovaTextWidget(
             title: widget.amount.toString().formatWithCommasAndDecimals(),
-            textStyle: PLTypography.textTitleSmallStyle,
-            textSize: PLTypography.fontBodyMedium,
+            textStyle: NovaTypography.textTitleSmallStyle,
+            textSize: NovaTypography.fontBodyMedium,
             fontWeight: FontWeight.w600,
-            textColor: PLColors.appPrimaryText,
+            textColor: NovaColors.appPrimaryText,
             maxLines: 1,
             isCurrency: true,
           ),
-          PLVSpace(24),
+          NovaVSpace(24),
           Row(
             children: [
               Expanded(
                 child: PLButtonOutline(
-                  borderColor: PLColors.appPrimaryColorMain500,
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                  borderColor: NovaColors.appPrimaryColorMain500,
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                   textTitle: "No cancel",
                   functionToRun: () {
                     Navigator.pop(context);
                   },
                 ),
               ),
-              PLHSpace(16),
+              NovaHSpace(16),
               Expanded(
-                child: PLButtonRound(
+                child: NovaButtonRound(
                     textTitle: "Yes pay",
-                    borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                    borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                     loadingString: widget.loanWatcher.loadingString,
                     isLoader: widget.loanWatcher.isLoading,
                     functionToRun: () {

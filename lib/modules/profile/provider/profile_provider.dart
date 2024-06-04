@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class ProfileProvider extends BaseViewModel {
   final BuildContext? context;
@@ -67,6 +67,8 @@ class ProfileProvider extends BaseViewModel {
   TextEditingController gender = TextEditingController();
   TextEditingController maritalStatus = TextEditingController();
   TextEditingController meansOfAddress = TextEditingController();
+  TextEditingController localGov = TextEditingController();
+  TextEditingController state = TextEditingController();
 
   TextEditingController nokFullName = TextEditingController();
   TextEditingController nokRelationship = TextEditingController();
@@ -534,6 +536,8 @@ class ProfileProvider extends BaseViewModel {
         email.text.isNotEmpty &&
         lastName.text.isNotEmpty &&
         firstName.text.isNotEmpty &&
+        localGov.text.isNotEmpty &&
+        state.text.isNotEmpty &&
         personalInfoFormKey.currentState!.validate()) {
       _isPersonalInfoUpdated = true;
     } else {

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class NextOfKinTab extends StatelessWidget {
   const NextOfKinTab({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class NextOfKinTab extends StatelessWidget {
         key: model.nextOfKinFormKey,
         child: Column(
           children: [
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
               textInputType: TextInputType.text,
               controller: model.nokFullName,
               onChange: (val) => model.listenForNOKChanges(),
@@ -26,36 +26,36 @@ class NextOfKinTab extends StatelessWidget {
                 model.listenForNOKChanges();
               },
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
               textInputType: TextInputType.emailAddress,
               controller: model.nokEmail,
               onChange: (val) => model.listenForNOKChanges(),
               hintText: strEmail,
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
                 textInputType: TextInputType.number,
                 controller: model.nokPhone,
                 onChange: (val) => model.listenForNOKChanges(),
                 formatter: [FilteringTextInputFormatter.digitsOnly],
                 maxLength: 11,
                 hintText: strPhoneNumber),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
                 textInputType: TextInputType.text,
                 controller: model.nokAddress,
                 onChange: (val) => model.listenForNOKChanges(),
                 hintText: "Next of Kin Address"),
-            PLVSpace(32),
-            PLButtonRound(
+            NovaVSpace(32),
+            NovaButtonRound(
               textTitle: strSave,
               isFormValidated: model.isNextOfKinFormValidated,
               isLoader: model.isLoading,
               loadingString: model.loadingString,
-              borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+              borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
               functionToRun: () =>
                   model.updateProfileInfo(context, 2)
                   // model.confirmProfileSavePersonalInfo(context, 2, model),
             ),
-            PLVSpace(16),
+            NovaVSpace(16),
           ],
         ),
       ),

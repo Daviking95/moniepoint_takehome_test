@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/transaction_history/exports.dart';
+part of 'package:nova/modules/transaction_history/exports.dart';
 
 class TransactionProvider extends BaseViewModel {
   final BuildContext? context;
@@ -42,25 +42,25 @@ class TransactionProvider extends BaseViewModel {
 
   Future<void> shareOrDownloadReceipt(String title, ScreenshotController screenshotController, Widget widget, [isDownload = false]) async {
     final uint8List = await screenshotController.captureFromWidget(Container(
-        color: PLColors.appWhiteColor,
+        color: NovaColors.appWhiteColor,
         child: Column(
           children: [
-            PLVSpace(52),
+            NovaVSpace(52),
             widget.paddingSymmetric(horizontal: 16),
-            PLVSpace(40),
+            NovaVSpace(40),
             Center(
               child: Column(
                 children: [
-                  PLTextWidget(
+                  NovaTextWidget(
                     title: strSupport,
-                    textSize: PLTypography.fontBodySmall,
-                    textColor: PLColors.appSecondaryText,
+                    textSize: NovaTypography.fontBodySmall,
+                    textColor: NovaColors.appSecondaryText,
                   ),
-                  PLVSpace(4),
-                  PLTextWidget(
+                  NovaVSpace(4),
+                  NovaTextWidget(
                     title: strCustomerSupportEmail,
-                    textSize: PLTypography.fontBodySmall,
-                    textColor: PLColors.appSuccessColor,
+                    textSize: NovaTypography.fontBodySmall,
+                    textColor: NovaColors.appSuccessColor,
                   ),
                 ],
               ),

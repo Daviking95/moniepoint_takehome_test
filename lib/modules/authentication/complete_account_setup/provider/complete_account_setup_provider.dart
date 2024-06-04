@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/complete_account_setup/exports.dart';
+part of 'package:nova/modules/authentication/complete_account_setup/exports.dart';
 
 class CompleteAccountSetupProvider extends BaseViewModel {
   final BuildContext? context;
@@ -25,9 +25,11 @@ class CompleteAccountSetupProvider extends BaseViewModel {
   TextEditingController _meansOfId = TextEditingController();
   TextEditingController idNumber = TextEditingController();
   TextEditingController idImageDocument = TextEditingController();
+  TextEditingController signatureImageDocument = TextEditingController();
 
   XFile _bvnImage = XFile("");
   XFile _idDocImage = XFile("");
+  XFile _signatureDocImage = XFile("");
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   GlobalKey<FormState> bvnValidationFormKey = GlobalKey<FormState>();
@@ -93,6 +95,13 @@ class CompleteAccountSetupProvider extends BaseViewModel {
     notifyListeners();
   }
 
+  XFile get signatureDocImage => _signatureDocImage;
+
+  set signatureDocImage(XFile value) {
+    _signatureDocImage = value;
+    notifyListeners();
+  }
+
   XFile get idDocImage => _idDocImage;
 
   set idDocImage(XFile value) {
@@ -126,7 +135,8 @@ class CompleteAccountSetupProvider extends BaseViewModel {
     }
   }
 
-  validateBvnForm(BuildContext context, String bvnValue, [bool isResend = false]) async {
+  validateBvnForm(BuildContext context, String bvnValue,
+      [bool isResend = false]) async {
     if (bvnValidationFormKey.currentState!.validate()) {
       await changeLoaderStatus(true, "Verifying details");
       notifyListeners();
@@ -147,10 +157,12 @@ class CompleteAccountSetupProvider extends BaseViewModel {
 
         return;
       }, (successResponse) async {
-        showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
+        showSnackAtTheTop(
+            message: successResponse.message ?? "", isSuccess: true);
 
-        if(!isResend) {
-          AppNavigator.push( VerifyPhoneNumberScreen(bvnValue, successResponse.phoneNumber));
+        if (!isResend) {
+          AppNavigator.push(
+              VerifyPhoneNumberScreen(bvnValue, successResponse.phoneNumber));
         }
 
         await changeLoaderStatus(false, "");
@@ -182,6 +194,7 @@ class CompleteAccountSetupProvider extends BaseViewModel {
     if (meansOfId.text.isNotEmpty &&
         idNumber.text.isNotEmpty &&
         idImageDocument.text.isNotEmpty &&
+        signatureImageDocument.text.isNotEmpty &&
         verifyIDFormKey.currentState!.validate()) {
       _isDocumentFormValidated = true;
     } else {
@@ -224,7 +237,7 @@ class CompleteAccountSetupProvider extends BaseViewModel {
         title: strSuccess,
         message: "You need to take a photo",
         canClick: true,
-        btnTitle: "ok-text".i18n(),
+        btnTitle: "ok-text",
       );
     } else {
       File file = File(bvnImage.path);
@@ -262,16 +275,18 @@ class CompleteAccountSetupProvider extends BaseViewModel {
 
       return;
     }, (successResponse) async {
-      // showSnackAtTheTop(message: successResponse.message, isSuccess: true);
+      if (!successResponse.success)
+        return showSnackAtTheTop(
+            message: successResponse.message, isSuccess: true);
 
       AppPreferences.userHasActivityPin = true;
       AppPreferences.isReturningCustomer = true;
       AppPreferences.returnDetails = emailAddress;
 
-      AppNavigator.push(SuccessWidget(
-        navigateToWidgetOnDone: const AppTutorialScreen(),
-        message: successResponse.message,
-      ));
+      // AppNavigator.push(SuccessWidget(
+      //   navigateToWidgetOnDone: const AppTutorialScreen(),
+      //   message: successResponse.message,
+      // ));
 
       await changeLoaderStatus(false, "");
     });

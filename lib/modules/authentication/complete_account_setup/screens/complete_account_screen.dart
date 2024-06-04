@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/complete_account_setup/exports.dart';
+part of 'package:nova/modules/authentication/complete_account_setup/exports.dart';
 
 
 class CompleteAccountScreen extends StatelessWidget {
@@ -7,8 +7,8 @@ class CompleteAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBaseWidget(
-      iconSet: PLImagePng(
-        imgPath: PLAssets.handOk,
+      iconSet: NovaImagePng(
+        imgPath: NovaAssets.handOk,
         width: 138.w,
         height: 130.h,
         boxFit: BoxFit.contain,
@@ -24,8 +24,8 @@ class CompleteAccountScreen extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
-          backgroundColor: PLColors.appWhiteColor,
+        child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Column(
@@ -35,69 +35,69 @@ class CompleteAccountScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLVSpace(32),
-                      PLTextWidget(
+                      NovaVSpace(32),
+                      NovaTextWidget(
                         title: "Verify Account",
                         isTitle: true,
-                        textStyle: PLTypography.textHeadlineMediumStyle,
-                        textSize: PLTypography.fontHeadlineSmall,
+                        textStyle: NovaTypography.textHeadlineMediumStyle,
+                        textSize: NovaTypography.fontHeadlineSmall,
                       ),
-                      PLVSpace(5),
-                      PLTextWidget(
+                      NovaVSpace(5),
+                      NovaTextWidget(
                         title:
                         "To verify your identity, we will be needing the following:",
-                        textColor: PLColors.appGrayText,
-                        textSize: PLTypography.fontLabelMedium,
+                        textColor: NovaColors.appGrayText,
+                        textSize: NovaTypography.fontLabelMedium,
                       ),
-                      PLVSpace(20),
+                      NovaVSpace(20),
                       PLCardsWithTextAndImage(
-                          bgColor: PLColors.appPrimaryColorMain500,
-                          imageWidget: PLImagePng(
-                            imgPath: PLAssets.verifyBvnIcon,
+                          bgColor: NovaColors.appPrimaryColorMain500,
+                          imageWidget: NovaImagePng(
+                            imgPath: NovaAssets.verifyBvnIcon,
                             width: 100.w,
                             height: 100.h,
                             boxFit: BoxFit.contain,
                           ),
                           textWidget: [
-                            const PLTextWidget(
+                            const NovaTextWidget(
                               title: "Verify your BVN",
-                              textColor: PLColors.appWhiteColor,
+                              textColor: NovaColors.appWhiteColor,
                               fontWeight: FontWeight.w600,
                             ),
-                            PLVSpace(8),
-                            PLTextWidget(
+                            NovaVSpace(8),
+                            NovaTextWidget(
                               title: "This is your Bank Verification Number",
-                              textColor: PLColors.appWhiteColor,
-                              textSize: PLTypography.fontBodySmall,
+                              textColor: NovaColors.appWhiteColor,
+                              textSize: NovaTypography.fontBodySmall,
                             )
                           ]),
-                      PLVSpace(8),
+                      NovaVSpace(8),
                       PLCardsWithTextAndImage(
-                          bgColor: PLColors.appPrimaryColorMain500,
-                          imageWidget: PLImagePng(
-                            imgPath: PLAssets.verifyIdIcon,
+                          bgColor: NovaColors.appPrimaryColorMain500,
+                          imageWidget: NovaImagePng(
+                            imgPath: NovaAssets.verifyIdIcon,
                             width: 100.w,
                             height: 100.h,
                             boxFit: BoxFit.contain,
                           ),
                           textWidget: [
-                            const PLTextWidget(
+                            const NovaTextWidget(
                               title: "Verify your ID",
-                              textColor: PLColors.appWhiteColor,
+                              textColor: NovaColors.appWhiteColor,
                               fontWeight: FontWeight.w600,
                             ),
-                            PLVSpace(8),
-                            PLTextWidget(
+                            NovaVSpace(8),
+                            NovaTextWidget(
                               title: "This is a Government issued ID, preferably your vNIN or your international passport. Your drivers license is also acceptable.",
-                              textColor: PLColors.appBackgroundColor,
-                              textSize: PLTypography.fontBodySmall,
+                              textColor: NovaColors.appBackgroundColor,
+                              textSize: NovaTypography.fontBodySmall,
                             )
                           ]),
                     ],
                   ),
                   Column(
                     children: [
-                      PLButtonRound(
+                      NovaButtonRound(
                         textTitle: strProceed,
                         functionToRun: () {
                           // if(!(AppData.getUserProfileResponseModel?.bvnVerified ?? false)){
@@ -106,18 +106,19 @@ class CompleteAccountScreen extends StatelessWidget {
                           // else if(!AppPreferences.isUserPhotoTaken){
                           //   AppNavigator.push(const BvnImageCapture());
                           //
-                          // }else{
+                          // }
+                          // else{
                           //   AppNavigator.push(const VerifyIdScreen());
                           // }
                         },
                       ),
                       PLButtonOutline(
-                          borderColor: PLColors.appWhiteColor,
+                          borderColor: NovaColors.appWhiteColor,
                           textTitle: "Skip",
                           functionToRun: () {
                             AppNavigator.pushAndRemoveUtil(const PersistentTab());
                           }),
-                      PLVSpace(4),
+                      NovaVSpace(4),
 
                     ],
                   )

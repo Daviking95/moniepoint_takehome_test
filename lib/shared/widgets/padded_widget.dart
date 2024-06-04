@@ -1,9 +1,9 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLPaddedWidget extends StatelessWidget {
+class NovaPaddedWidget extends StatelessWidget {
   final Widget child;
 
-  const PLPaddedWidget({super.key, required this.child});
+  const NovaPaddedWidget({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

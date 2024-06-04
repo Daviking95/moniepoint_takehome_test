@@ -1,11 +1,11 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLImageSvg extends StatelessWidget {
+class NovaImageSvg extends StatelessWidget {
   final String svgPath;
   final double? width;
   final double? height;
 
-  const PLImageSvg({super.key, required this.svgPath, this.height, this.width});
+  const NovaImageSvg({super.key, required this.svgPath, this.height, this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class PLImageSvg extends StatelessWidget {
   }
 }
 
-class PLImagePng extends StatelessWidget {
+class NovaImagePng extends StatelessWidget {
   final String imgPath;
   final double? width;
   final double? height;
@@ -32,7 +32,7 @@ class PLImagePng extends StatelessWidget {
 
   final BoxFit? boxFit;
 
-  const PLImagePng({super.key, required this.imgPath, this.height, this.width, this.color, this.boxFit});
+  const NovaImagePng({super.key, required this.imgPath, this.height, this.width, this.color, this.boxFit});
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +55,14 @@ class PLImagePng extends StatelessWidget {
   }
 }
 
-class PLImageNetwork extends StatelessWidget {
+class NovaImageNetwork extends StatelessWidget {
   final String networkPath;
   final double? width;
   final double? height;
   final String? fallBackImage;
   final String? memoryImage;
 
-  const PLImageNetwork({super.key, required this.networkPath, this.height, this.width, this.fallBackImage, this.memoryImage});
+  const NovaImageNetwork({super.key, required this.networkPath, this.height, this.width, this.fallBackImage, this.memoryImage});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class PLImageNetwork extends StatelessWidget {
                       width: width,
                     )
                   : Image.asset(
-                      fallBackImage ?? PLAssets.editProfileIcon,
+                      fallBackImage ?? NovaAssets.editProfileIcon,
                       fit: BoxFit.cover,
                       width: width,
                     );
@@ -93,7 +93,7 @@ class PLImageNetwork extends StatelessWidget {
                 width: width,
               )
             : Image.asset(
-                fallBackImage ?? PLAssets.editProfileIcon,
+                fallBackImage ?? NovaAssets.editProfileIcon,
                 fit: BoxFit.cover,
                 width: width,
               );

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class ProfileCompletionCardWidget extends StatelessWidget {
   const ProfileCompletionCardWidget({Key? key}) : super(key: key);
@@ -16,46 +16,46 @@ class ProfileCompletionCardWidget extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: PLDecorations.borderRadiusGeometryCircular16,
-            color: PLColors.appWhiteColor),
+            borderRadius: NovaDecorations.borderRadiusGeometryCircular16,
+            color: NovaColors.appWhiteColor),
         child: Row(
           children: [
             Expanded(
               flex: 2,
               child: Container(
-                  color: PLColors.appWhiteColor,
+                  color: NovaColors.appWhiteColor,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLTextWidget(
+                      NovaTextWidget(
                         title: "Profile Completion",
-                        textSize: PLTypography.fontBodyMedium,
+                        textSize: NovaTypography.fontBodyMedium,
                         fontWeight: FontWeight.w600,
                       ),
-                      PLVSpace(2),
-                      PLTextWidget(
+                      NovaVSpace(2),
+                      NovaTextWidget(
                         title:
                             "You need to complete \nyour profile to unlock all our features",
-                        textSize: PLTypography.fontLabelSmall,
+                        textSize: NovaTypography.fontLabelSmall,
                       ),
-                      PLVSpace(4),
-                      PLTextWidget(
+                      NovaVSpace(4),
+                      NovaTextWidget(
                         title: "70%",
-                        textSize: PLTypography.fontHeadlineSmall,
+                        textSize: NovaTypography.fontHeadlineSmall,
                         fontWeight: FontWeight.w600,
                       ),
-                      PLVSpace(10),
+                      NovaVSpace(10),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          PLTextWidget(
+                          NovaTextWidget(
                             title:
                             "Complete Verification",
-                            textSize: PLTypography.fontLabelSmall,
-                            textColor: PLColors.appPrimaryColorMain500,
+                            textSize: NovaTypography.fontLabelSmall,
+                            textColor: NovaColors.appPrimaryColorMain500,
                           ),
-                          PLHSpace(4),
-                          const Icon(Icons.arrow_forward, color: PLColors.appPrimaryColorMain500, size: 13,)
+                          NovaHSpace(4),
+                          const Icon(Icons.arrow_forward, color: NovaColors.appPrimaryColorMain500, size: 13,)
                         ],
                       ),
                     ],
@@ -65,8 +65,8 @@ class ProfileCompletionCardWidget extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(16),
                     bottomRight: Radius.circular(16)),
-                child: PLImagePng(
-                  imgPath: PLAssets.profileCardIcon,
+                child: NovaImagePng(
+                  imgPath: NovaAssets.profileCardIcon,
                   width: 118.w,
                   height: 132.h,
                 ))

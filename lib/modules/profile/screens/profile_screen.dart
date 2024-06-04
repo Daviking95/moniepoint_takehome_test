@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -34,34 +34,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget _buildScreen(BuildContext context, ProfileProvider model) {
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  PLVSpace(48),
-                  PLPaddedWidget(
-                      child: PLBackIcon(
+                  NovaVSpace(48),
+                  NovaPaddedWidget(
+                      child: NovaBackIcon(
                     onTap: () => AppNavigator.push(const PersistentTab()),
                   )),
-                  PLVSpace(8),
+                  NovaVSpace(8),
                   const ProfileImageWithDetails(),
-                  PLVSpace(16),
+                  NovaVSpace(16),
                   Expanded(
                     child: Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(16),
                               topRight: Radius.circular(16)),
-                          color: PLColors.appBackgroundColor),
-                      child: const PLPaddedWidget(
+                          color: NovaColors.appBackgroundColor),
+                      child: const NovaPaddedWidget(
                         child: SingleChildScrollView(
                             child: ProfileItemChildContainer()),
                       ),
@@ -100,7 +99,7 @@ class ProfileItemChildContainer extends StatelessWidget {
         ]),
         ProfileItemCard(profileItems: [
           ProfileItem(
-              icon: PLAssets.bankAccountIcon,
+              icon: NovaAssets.bankAccountIcon,
               title: "Bank Account and Cards",
               desc: strHelpSupportDesc,
               func: () {
@@ -112,10 +111,10 @@ class ProfileItemChildContainer extends StatelessWidget {
                 );
               }),
           Divider(
-            color: PLColors.appSecondaryText.withOpacity(.2),
+            color: NovaColors.appSecondaryText.withOpacity(.2),
           ),
           ProfileItem(
-              icon: PLAssets.tellFriendIcon,
+              icon: NovaAssets.tellFriendIcon,
               title: "Tell a Friend",
               desc: strTermsConditionsDesc,
               func: () {
@@ -127,10 +126,10 @@ class ProfileItemChildContainer extends StatelessWidget {
                 );
               }),
           Divider(
-            color: PLColors.appSecondaryText.withOpacity(.2),
+            color: NovaColors.appSecondaryText.withOpacity(.2),
           ),
           ProfileItem(
-              icon: PLAssets.helpIcon,
+              icon: NovaAssets.helpIcon,
               title: "Help",
               desc: strContactUsDesc,
               func: () {
@@ -142,10 +141,10 @@ class ProfileItemChildContainer extends StatelessWidget {
                 );
               }),
           Divider(
-            color: PLColors.appSecondaryText.withOpacity(.2),
+            color: NovaColors.appSecondaryText.withOpacity(.2),
           ),
           ProfileItem(
-              icon: PLAssets.settingsIcon,
+              icon: NovaAssets.settingsIcon,
               title: "Settings",
               desc: strContactUsDesc,
               func: () {
@@ -157,10 +156,10 @@ class ProfileItemChildContainer extends StatelessWidget {
                 );
               }),
           Divider(
-            color: PLColors.appSecondaryText.withOpacity(.2),
+            color: NovaColors.appSecondaryText.withOpacity(.2),
           ),
           ProfileItem(
-              icon: PLAssets.aboutUsIcon,
+              icon: NovaAssets.aboutUsIcon,
               title: "About Us",
               desc: strContactUsDesc,
               func: () {
@@ -186,7 +185,7 @@ class ProfileItemChildContainer extends StatelessWidget {
                 );
               }),
         ]),
-        PLVSpace(16)
+        NovaVSpace(16)
       ],
     );
   }
@@ -221,25 +220,25 @@ class ProfileItem extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     color: Color(0xFFFAFCFE),
-                    borderRadius: PLDecorations.borderRadiusGeometryCircular8
+                    borderRadius: NovaDecorations.borderRadiusGeometryCircular8
                   ),
                   child: icon.endsWith("png") ?
-                  PLImagePng(
+                  NovaImagePng(
                     imgPath: icon,
                     height: 20,
                     width: 20,
-                  ).paddingAll(8) : PLImageSvg(
+                  ).paddingAll(8) : NovaImageSvg(
                     svgPath: icon,
                     height: 20,
                     width: 20,
                   ).paddingAll(8),
                 ),
-                PLHSpace(16),
+                NovaHSpace(16),
               ],
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  PLTextWidget(
+                  NovaTextWidget(
                     title: title,
                     fontWeight: FontWeight.w600,
                   ),
@@ -258,7 +257,7 @@ class ProfileItem extends StatelessWidget {
           const Icon(
             Icons.arrow_forward_ios,
             size: 15,
-            color: PLColors.appPrimaryText,
+            color: NovaColors.appPrimaryText,
           )
         ],
       ).paddingSymmetric(vertical: 6).marginSymmetric(vertical: 8),
@@ -275,8 +274,8 @@ class ProfileItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: PLColors.appWhiteColor,
-        borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+        color: NovaColors.appWhiteColor,
+        borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
       ),
       child: Column(
         children: [...profileItems.map((e) => e).toList()],
@@ -301,7 +300,7 @@ class ProfileImageWithDetails extends StatelessWidget {
         ProfileImageWidget(imageFile: AppData.profilePicture,
           size: 70,
           memoryImage: profileWatcher.changeAvatar.text,),
-        PLVSpace(8),
+        NovaVSpace(8),
         InkWell(
           onTap: () {
             profileWatcher.changePhoto(context);
@@ -309,30 +308,30 @@ class ProfileImageWithDetails extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const PLImageSvg(svgPath: PLAssets.photoChange),
-              PLHSpace(8),
-              PLTextWidget(
+              const NovaImageSvg(svgPath: NovaAssets.photoChange),
+              NovaHSpace(8),
+              NovaTextWidget(
                 title: "Change photo",
-                textSize: PLTypography.fontLabelSmall,
-                textColor: PLColors.appPrimaryColorMain500,
+                textSize: NovaTypography.fontLabelSmall,
+                textColor: NovaColors.appPrimaryColorMain500,
               ),
             ],
           ),
         ),
-        PLVSpace(16),
-        PLTextWidget(
+        NovaVSpace(16),
+        NovaTextWidget(
           title: AppData.getUserProfileResponseModel?.fullName ?? "",
           fontWeight: FontWeight.w600,
-          textSize: PLTypography.fontBodyLarge,
-          fontFamily: PLTypography.fontFamilyBold,
-          textColor: PLColors.appPrimaryText,
+          textSize: NovaTypography.fontBodyLarge,
+          fontFamily: NovaTypography.fontFamilyBold,
+          textColor: NovaColors.appPrimaryText,
         ),
-        PLVSpace(8),
-        PLTextWidget(
+        NovaVSpace(8),
+        NovaTextWidget(
           title: "Lendly Score ${(AppData.lendlyScoreResponseModel?.lendlyScore ?? 0).toString()}",
-          textStyle: PLTypography.textBodySmallStyle,
-          textSize: PLTypography.fontLabelSmall,
-          textColor: PLColors.appPrimaryColorMain500,
+          textStyle: NovaTypography.textBodySmallStyle,
+          textSize: NovaTypography.fontLabelSmall,
+          textColor: NovaColors.appPrimaryColorMain500,
           maxLines: 1,
         ),
       ],

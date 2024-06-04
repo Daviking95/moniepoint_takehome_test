@@ -1,4 +1,4 @@
-package com.peerlendly.app
+package com.nova.app
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

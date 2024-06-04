@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class AppSettingScreen extends StatelessWidget {
   const AppSettingScreen({Key? key}) : super(key: key);
@@ -6,35 +6,34 @@ class AppSettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(48),
-                    PLBackIcon(
+                    NovaVSpace(48),
+                    NovaBackIcon(
                       onTap: () => Navigator.pop(context),
                     ),
-                    PLVSpace(8),
-                    PLTextWidget(
+                    NovaVSpace(8),
+                    NovaTextWidget(
                       title: "Settings",
                       isTitle: true,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontHeadlineSmall,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontHeadlineSmall,
                     ),
-                    PLVSpace(24),
+                    NovaVSpace(24),
                     ProfileItemCard(profileItems: [
                       ProfileItem(
-                          icon: PLAssets.faceId,
+                          icon: NovaAssets.faceId,
                           title: "Biometric Login",
                           suffixIcon: FlutterSwitch(
                             width: 40.0,
@@ -45,7 +44,7 @@ class AppSettingScreen extends StatelessWidget {
                             borderRadius: 30.0,
                             padding: 2.0,
                             showOnOff: true,
-                            activeColor: PLColors.appPrimaryColorMain500,
+                            activeColor: NovaColors.appPrimaryColorMain500,
                             onToggle: (val) {
                               profileWatcher.loginBiometricsToggle = !profileWatcher.loginBiometricsToggle;
                               AppPreferences.isFingerPrintAllowedAtLogin = !AppPreferences.isFingerPrintAllowedAtLogin;
@@ -73,7 +72,7 @@ class AppSettingScreen extends StatelessWidget {
                     // ]),
                     ProfileItemCard(profileItems: [
                       ProfileItem(
-                          icon: PLAssets.transactionPin,
+                          icon: NovaAssets.transactionPin,
                           title: "Transaction PIN",
                           desc: strAppSecurityDesc,
                           func: () {

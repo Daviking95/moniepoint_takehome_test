@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/storage/exports.dart';
+part of 'package:nova/core/storage/exports.dart';
 
 class AppPreferencesUtils {
   static late SharedPreferences _sharedPrefs;

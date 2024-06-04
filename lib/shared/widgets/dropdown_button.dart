@@ -1,6 +1,6 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLDropDownButton extends StatefulWidget {
+class NovaDropDownButton extends StatefulWidget {
   final List<String> spinnerList;
   final double borderRadius;
   final String hint;
@@ -11,7 +11,7 @@ class PLDropDownButton extends StatefulWidget {
   final void Function(String val)? onChangeFunction;
   final bool isLoading;
 
-  PLDropDownButton(
+  NovaDropDownButton(
       this.spinnerList,
       this.borderRadius,
       this.hint,
@@ -25,10 +25,10 @@ class PLDropDownButton extends StatefulWidget {
       });
 
   @override
-  State<PLDropDownButton> createState() => _PLDropDownButtonState();
+  State<NovaDropDownButton> createState() => _NovaDropDownButtonState();
 }
 
-class _PLDropDownButtonState extends State<PLDropDownButton> {
+class _NovaDropDownButtonState extends State<NovaDropDownButton> {
   String dropdownValueForSelectedItem = "";
 
   @override
@@ -45,10 +45,10 @@ class _PLDropDownButtonState extends State<PLDropDownButton> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PLTextWidget(
+        NovaTextWidget(
           title: widget.hint,
-          textSize: PLTypography.fontBodySmall,
-          textColor: PLColors.appPrimaryText,
+          textSize: NovaTypography.fontBodySmall,
+          textColor: NovaColors.appPrimaryText,
           fontWeight: FontWeight.w600,
         ),
         DropdownButtonFormField<String>(
@@ -61,13 +61,13 @@ class _PLDropDownButtonState extends State<PLDropDownButton> {
               height: 15,
               child: CircularProgressIndicator(
                 strokeWidth: 1,
-                color: PLColors.appPrimaryColorMain500,
+                color: NovaColors.appPrimaryColorMain500,
               ))
               : Icon(Icons.arrow_drop_down),
           iconSize: 24,
           elevation: 16,
-          style: PLTypography.textBodyMediumStyleBold
-              .copyWith(color: PLColors.appSecondaryColorMain500),
+          style: NovaTypography.textBodyMediumStyleBold
+              .copyWith(color: NovaColors.appSecondaryColorMain500),
           onChanged: (String? data) {
             setState(() {
               dropdownValueForSelectedItem = data!;
@@ -84,9 +84,9 @@ class _PLDropDownButtonState extends State<PLDropDownButton> {
           items: widget.spinnerList.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
-              child: PLTextWidget(
+              child: NovaTextWidget(
                 title: value,
-                textStyle: PLTypography.textBodySmallStyle, // textBodyMediumStyle
+                textStyle: NovaTypography.textBodySmallStyle, // textBodyMediumStyle
               ),
             );
           }).toList(),
@@ -106,6 +106,7 @@ class PLDropDownButtonWithIcon extends StatelessWidget {
   final String title;
   final bool isNetworkImage;
   final TextEditingController value;
+  final Widget? prefixIcon;
   final Function(String)? callBack;
 
   const PLDropDownButtonWithIcon(
@@ -113,16 +114,18 @@ class PLDropDownButtonWithIcon extends StatelessWidget {
         required this.list,
         required this.title,
         required this.value,
+        this.prefixIcon,
         this.isNetworkImage = false,
         this.callBack});
 
   @override
   Widget build(BuildContext context) {
-    return PLPrimaryTextField(
+    return NovaPrimaryTextField(
       textInputType: TextInputType.text,
       controller: value,
       isReadOnly: true,
-      fillColor: PLColors.appWhiteColor,
+      prefixIcon: prefixIcon,
+      fillColor: NovaColors.appWhiteColor,
       validation: (val) => val.validateString(strFieldRequiredError),
       onTapFunction: () {
         selectFromDropDown(context, list, value, title, callBack);
@@ -140,7 +143,7 @@ void selectFromDropDown(BuildContext context, List<Map<String, dynamic>> list,
     TextEditingController value, String label, Function(String)? callBack) {
   modalBottomSheet(
       context,
-      PLDropDownSearch(
+      NovaDropDownSearch(
           list: list,
           title: label,
           callBack: (val) {

@@ -1,22 +1,46 @@
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
-class PLAssets {
+class NovaAssets {
 
-  PLAssets._();
+  NovaAssets._();
 
   static const String logoPng = "assets/images/logo.png";
   static const String logoWhitePng = "assets/images/logo_white.png";
-  static const String logoWithNamePng = "assets/images/logo_with_name.png";
+  static const String logoWhiteSvg = "assets/icons_svg/logo_white.svg";
   static const String pageviewOnePng = "assets/images/pageview_1.png";
+  static const String pageviewOneBgPng = "assets/images/pageview_bg_1.png";
+  static const String pageviewTwoBgPng = "assets/images/pageview_bg_2.png";
+  static const String pageviewThreeBgPng = "assets/images/pageview_bg_3.png";
   static const String pageviewTwoPng = "assets/images/pageview_2.png";
   static const String pageviewThreePng = "assets/images/pageview_3.png";
-
   static const String pageViewBgPng = "assets/images/pageview_bg.png";
+  static const String licenceImage = "assets/images/licenced.png";
+  static const String licenceImageWhite = "assets/images/licenced_white.png";
+  static const String onboardingArrow = "assets/icons_svg/onboarding_arrow.svg";
+  static const String onboardingMenuBvn = "assets/icons_svg/onboarding_menu_bvn.svg";
+  static const String onboardingMenuPhoto = "assets/icons_svg/onboarding_menu_photo.svg";
+  static const String buttonImg = "assets/icons_svg/button_img.svg";
+  static const String dateIcon = "assets/icons_svg/date_icon.svg";
+  static const String accountTypeIcon = "assets/icons_svg/account_type_icon.svg";
+  static const String emailIcon = "assets/icons_svg/email_icon.svg";
+  static const String accountOpenSuccess = "assets/images/account_open_success.png";
+
+
+
+
+
+
+
+
+
+
+
+
+
   static const String emptyLoan = "assets/images/empty_loan.png";
   static const String phoneWalletInHand = "assets/images/phone_wallet_in_hand.png";
   static const String handOk = "assets/images/hand_ok.png";
   static const String verifyBvnBank = "assets/images/verify_bvn_bank.png";
-  static const String peopleSmiling = "assets/images/people_smiling.png";
   static const String tutRequestLoan = "assets/images/tut_request_loan.png";
   static const String tutLendLoan = "assets/images/tut_lend_loan.png";
   static const String step1Icon = "assets/images/step1_icon.png";
@@ -56,6 +80,7 @@ class PLAssets {
   static const String notiWalletWithdraw = "assets/icons_svg/noti_wallet_withdrawal.svg";
   static const String takeSelfie = "assets/images/take_selfie.png";
   static const String captureDocument = "assets/images/capture_document.png";
+  static const String signatureDocument = "assets/images/signature_document.png";
   static const String loanDefaultProfile = "assets/images/loan_default_pic.png";
   static const String infoIcon = "assets/icons_svg/info_icon.svg";
 
@@ -115,6 +140,8 @@ class PLAssets {
   static const String gloIcon = "assets/images/glo_icon.png";
   static const String airtelIcon = "assets/images/airtel_icon.png";
   static const String nineMobileIcon = "assets/images/nine_mobile_icon.png";
+
+  static const String promoSample = "assets/images/promo_sample.png";
 
   // todo: Below Not In Use ======================================
 

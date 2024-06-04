@@ -1,6 +1,6 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLCustomDialogBox extends StatelessWidget {
+class NovaCustomDialogBox extends StatelessWidget {
   final String title, descriptions, mainBtnText, cancleButtonText;
   final void Function(BuildContext context)? functionToRun, cancelFunction;
   final bool hasBtn;
@@ -10,7 +10,7 @@ class PLCustomDialogBox extends StatelessWidget {
   final Widget? customWidget;
   final IconData icon;
 
-  const PLCustomDialogBox(
+  const NovaCustomDialogBox(
       {Key? key,
       required this.title,
       required this.descriptions,
@@ -30,7 +30,7 @@ class PLCustomDialogBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+        borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
       ),
       elevation: 0,
       backgroundColor: Colors.transparent,
@@ -45,9 +45,9 @@ class PLCustomDialogBox extends StatelessWidget {
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
                   color: cardBgColor,
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular8),
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8),
               child: customWidget != null
-                  ? PLPaddedWidget(
+                  ? NovaPaddedWidget(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -61,7 +61,7 @@ class PLCustomDialogBox extends StatelessWidget {
                         children: [
                           Expanded(
                             child: PLButtonOutline(
-                                borderColor: PLColors.appWhiteColor,
+                                borderColor: NovaColors.appWhiteColor,
                                 textTitle: cancleButtonText,
                                 functionToRun: () {
                                   hasCancelFunc
@@ -71,7 +71,7 @@ class PLCustomDialogBox extends StatelessWidget {
                           ),
                           hasBtn && functionToRun != null
                               ? Expanded(
-                            child: PLButtonRound(
+                            child: NovaButtonRound(
                                 textTitle: mainBtnText,
                                 functionToRun: () {
                                   Navigator.of(context).pop();
@@ -83,7 +83,7 @@ class PLCustomDialogBox extends StatelessWidget {
                       )
                     ],
                   ))
-                  : PLPaddedWidget(
+                  : NovaPaddedWidget(
                     child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +96,7 @@ class PLCustomDialogBox extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        PLTextWidget(
+                        NovaTextWidget(
                           title: title,
                           textAlign: TextAlign.center,
                           textStyle: context.textTheme.titleSmall!,
@@ -104,7 +104,7 @@ class PLCustomDialogBox extends StatelessWidget {
                         const SizedBox(
                           height: 8,
                         ),
-                        PLTextWidget(
+                        NovaTextWidget(
                           title: descriptions,
                           textAlign: TextAlign.center,
                           textStyle: context.textTheme.labelMedium!,
@@ -117,7 +117,7 @@ class PLCustomDialogBox extends StatelessWidget {
                             if (cancleButtonText.isNotEmpty)
                               Expanded(
                                 child: PLButtonOutline(
-                                  borderColor: PLColors.appWhiteColor,
+                                  borderColor: NovaColors.appWhiteColor,
                                   textTitle: cancleButtonText,
                                   functionToRun: () {
                                     hasCancelFunc
@@ -134,7 +134,7 @@ class PLCustomDialogBox extends StatelessWidget {
                             functionToRun != null
                                 ? Expanded(
                               child: PLButtonOutline(
-                                  borderColor: PLColors.appWhiteColor,
+                                  borderColor: NovaColors.appWhiteColor,
                                   textTitle: mainBtnText,
                                   functionToRun: () {
                                     Navigator.of(context).pop();

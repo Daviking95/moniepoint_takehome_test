@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class DataScreen extends StatelessWidget {
   const DataScreen({Key? key}) : super(key: key);
@@ -13,19 +13,18 @@ class DataScreen extends StatelessWidget {
 
   Widget _buildScreen(BuildContext context, WalletProvider model) {
     final walletWatcher = context.watch<WalletProvider>();
-    final walletReader = context.read<WalletProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
                 key: walletWatcher.formKeyForData,
                 child: SingleChildScrollView(
-                  child: PLPaddedWidget(
+                  child: NovaPaddedWidget(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
@@ -34,19 +33,19 @@ class DataScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            PLVSpace(48),
-                            PLBackIcon(onTap: () => Navigator.pop(context), title: strData),
-                            PLVSpace(8),
-                            PLTextWidget(
+                            NovaVSpace(48),
+                            NovaBackIcon(onTap: () => Navigator.pop(context), title: strData),
+                            NovaVSpace(8),
+                            NovaTextWidget(
                               title: strSelectNetwork,
                               fontWeight: FontWeight.w600,
                             ),
                             PLDropDownButtonWithIcon(
                               list: const [
-                                {PLAssets.mtnIcon: "MTN"},
-                                {PLAssets.gloIcon: "GLO"},
-                                {PLAssets.airtelIcon: "Airtel"},
-                                {PLAssets.nineMobileIcon: "9Mobile"},
+                                {NovaAssets.mtnIcon: "MTN"},
+                                {NovaAssets.gloIcon: "GLO"},
+                                {NovaAssets.airtelIcon: "Airtel"},
+                                {NovaAssets.nineMobileIcon: "9Mobile"},
                               ],
                               title: strSelectNetwork,
                               value: walletWatcher.networkType,
@@ -63,27 +62,27 @@ class DataScreen extends StatelessWidget {
                               value: walletWatcher.networkPackageType,
                               callBack: (val) => walletWatcher.listenForDataChanges(),
                             ),
-                            PLPrimaryTextField(
+                            NovaPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: walletWatcher.mobileNo,
                               formatter: [FilteringTextInputFormatter.digitsOnly],
                               maxLength: 10,
-                              fillColor: PLColors.appWhiteColor,
+                              fillColor: NovaColors.appWhiteColor,
                               validation: (val) => val.validateString(strFieldRequiredError),
                               hintText: strMobileNumber,
                               onChange: (val) => walletWatcher.listenForDataChanges(),
                             ),
-                            PLPrimaryTextField(
+                            NovaPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: walletWatcher.amount,
                               formatter: [CurrencyTextInputFormatter(symbol: strCurrency2)],
-                              fillColor: PLColors.appWhiteColor,
+                              fillColor: NovaColors.appWhiteColor,
                               validation: (val) => val.validateAmount(strFieldRequiredError, 0),
                               hintText: strAmount,
                               onChange: (val) => walletWatcher.listenForDataChanges(),
                             ),
-                            PLVSpace(32),
-                            PLButtonRound(
+                            NovaVSpace(32),
+                            NovaButtonRound(
                               textTitle: strProceed,
                               isFormValidated: walletWatcher.isFormValidatedForData,
                               functionToRun: () => walletWatcher.validateDataForm(context),

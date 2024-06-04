@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/complete_account_setup/exports.dart';
+part of 'package:nova/modules/authentication/complete_account_setup/exports.dart';
 
 class AddBvnScreen extends StatelessWidget {
   const AddBvnScreen({Key? key}) : super(key: key);
@@ -6,8 +6,8 @@ class AddBvnScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBaseWidget(
-      iconSet: PLImagePng(
-        imgPath: PLAssets.verifyBvnBank,
+      iconSet: NovaImagePng(
+        imgPath: NovaAssets.verifyBvnBank,
         width: 138.w,
         height: 130.h,
         boxFit: BoxFit.contain,
@@ -26,8 +26,8 @@ class AddBvnScreen extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
-          backgroundColor: PLColors.appWhiteColor,
+        child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
@@ -37,49 +37,49 @@ class AddBvnScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLVSpace(32),
-                      PLTextWidget(
+                      NovaVSpace(32),
+                      NovaTextWidget(
                         title: "Verify Account",
                         isTitle: true,
-                        textStyle: PLTypography.textHeadlineMediumStyle,
-                        textSize: PLTypography.fontHeadlineSmall,
+                        textStyle: NovaTypography.textHeadlineMediumStyle,
+                        textSize: NovaTypography.fontHeadlineSmall,
                       ),
-                      PLVSpace(5),
-                      PLTextWidget(
+                      NovaVSpace(5),
+                      NovaTextWidget(
                         title:
                         "Kindly provide your BVN",
-                        textColor: PLColors.appGrayText,
-                        textSize: PLTypography.fontLabelMedium,
+                        textColor: NovaColors.appGrayText,
+                        textSize: NovaTypography.fontLabelMedium,
                       ),
-                      PLVSpace(32),
-                      PLPrimaryTextField(
+                      NovaVSpace(32),
+                      NovaPrimaryTextField(
                         textInputType: TextInputType.number,
                         controller: completeAccountWatcher.bvn,
                         maxLength: 11,
-                        suffixIcon: const PLTooltip(
+                        suffixIcon: const NovaTooltip(
                           message: "Your BVN only gives us access to your Full name, Phone number, and Date of birth.",
-                            child: Icon(Icons.info_outline, color: PLColors.appPrimaryColorMain500,)),
+                            child: Icon(Icons.info_outline, color: NovaColors.appPrimaryColorMain500,)),
                         formatter: [FilteringTextInputFormatter.digitsOnly],
                         validation: (val) => val.validateNumber(strFieldRequiredError),
                         hintText: strBVN,
                       ),
-                      PLTextWidget(
+                      NovaTextWidget(
                         title:
                         "Forgot BVN? Dial *565*0# from your registered phone number.",
-                        textColor: PLColors.appGrayText,
-                        textSize: PLTypography.fontLabelSmall,
+                        textColor: NovaColors.appGrayText,
+                        textSize: NovaTypography.fontLabelSmall,
                       ),
-                      PLVSpace(32),
-                      PLButtonRound(
+                      NovaVSpace(32),
+                      NovaButtonRound(
                         textTitle: strProceed,
                         loadingString: completeAccountWatcher.loadingString,
                         isLoader: completeAccountWatcher.isLoading,
                         isFormValidated: completeAccountWatcher.isBvnFormValidated,
                         functionToRun: () => completeAccountWatcher.validateBvnForm(context, completeAccountWatcher.bvn.text),
                       ),
-                      PLVSpace(40),
-                      const TermsAndConditionTextWidget(),
-                      PLVSpace(32),
+                      NovaVSpace(40),
+                      // const TermsAndConditionTextWidget(),
+                      NovaVSpace(32),
                     ],
                   ),
                 ),

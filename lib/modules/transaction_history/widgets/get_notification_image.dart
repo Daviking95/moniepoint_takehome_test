@@ -1,27 +1,27 @@
 
 
-part of 'package:peerlendly/modules/transaction_history/exports.dart';
+part of 'package:nova/modules/transaction_history/exports.dart';
 
 getNotificationImage(NotificationType notificationType){
   String assetString = "";
   switch(notificationType) {
     case NotificationType.loanAccepted:
-      assetString = PLAssets.notiLoanAccepted;
+      assetString = NovaAssets.notiLoanAccepted;
       break;
     case NotificationType.loanCharges:
-      assetString = PLAssets.notiLoanCharges;
+      assetString = NovaAssets.notiLoanCharges;
       break;
     case NotificationType.loanOffer:
-      assetString = PLAssets.notiLoanAccepted;
+      assetString = NovaAssets.notiLoanAccepted;
       break;
     case NotificationType.loanReceived:
-      assetString = PLAssets.notiLoanAccepted;
+      assetString = NovaAssets.notiLoanAccepted;
       break;
     case NotificationType.walletFunded:
-      assetString = PLAssets.notiWalletFunded;
+      assetString = NovaAssets.notiWalletFunded;
       break;
     case NotificationType.walletWithdrawal:
-      assetString = PLAssets.notiWalletWithdraw;
+      assetString = NovaAssets.notiWalletWithdraw;
       break;
     default:
   }

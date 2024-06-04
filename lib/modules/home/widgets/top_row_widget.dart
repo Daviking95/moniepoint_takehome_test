@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 class TopRowWidget extends StatelessWidget {
   final Function() dashboardRefreshCallback;
@@ -22,12 +22,12 @@ class TopRowWidget extends StatelessWidget {
             child: Row(
               children: [
                 ProfileImageWidget(imageFile: AppData.profilePicture, size: 40),
-                PLHSpace(12),
-                PLTextWidget(
+                NovaHSpace(12),
+                NovaTextWidget(
                   title: (AppData.getUserProfileResponseModel?.bvnVerified ?? false) ? (AppData.getUserProfileResponseModel?.fullName.toTitleCase ?? "") : "Verify Account",
-                  textStyle: PLTypography.textTitleLargeStyle,
-                  textColor: PLColors.appPrimaryColorMain500,
-                  textSize: PLTypography.fontTitleMedium,
+                  textStyle: NovaTypography.textTitleLargeStyle,
+                  textColor: NovaColors.appPrimaryColorMain500,
+                  textSize: NovaTypography.fontTitleMedium,
                   fontWeight: FontWeight.w700,
                 ),
               ],
@@ -44,7 +44,7 @@ class TopRowWidget extends StatelessWidget {
                       context.height / 1.3);
                   // showAlertDialog(context, "", const NotificationScreen());
                 },
-                child: PLImageSvg(svgPath: PLAssets.notificationBell, width: 24.w, height: 24.h,),
+                child: NovaImageSvg(svgPath: NovaAssets.notificationBell, width: 24.w, height: 24.h,),
               ),
               // PLHSpace(8),
               // InkWell(

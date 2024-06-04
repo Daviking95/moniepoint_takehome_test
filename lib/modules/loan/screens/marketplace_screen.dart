@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class MarketplaceScreen extends StatefulWidget {
   const MarketplaceScreen({Key? key}) : super(key: key);
@@ -8,46 +8,42 @@ class MarketplaceScreen extends StatefulWidget {
 }
 
 class _MarketplaceScreenState extends State<MarketplaceScreen> {
-  late LoanProvider loanProvider;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    loanProvider = Provider.of<LoanProvider>(context, listen: false);
-    loanProvider.getActivePendingLoanOffers(1);
-    loanProvider.getActivePendingLoanOffers(2);
-  }
-
   @override
   Widget build(BuildContext context) {
+    return BaseView<LoanProvider>(
+      vmBuilder: (context) =>
+          LoanProvider(context: context, shouldInitialize: true, shouldGetActivePendingLoans: true),
+      builder: _buildScreen,
+    );
+  }
+
+  Widget _buildScreen(BuildContext context, LoanProvider model) {
     final loanWatcher = context.watch<LoanProvider>();
-    final loanReader = context.read<LoanProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           // floatingActionButton: const FabForDashboard(),
           // floatingActionButtonLocation: ExpandableFab.location,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(48),
+                    NovaVSpace(48),
                     // const TopRowWidget(),
-                    PLBackIcon(
+                    NovaBackIcon(
                       onTap: () => Navigator.pop(context),
                       // onTap: () => AppNavigator.push(const PersistentTab()),
                     ),
-                    PLVSpace(24),
+                    NovaVSpace(24),
                     MarketplaceWalletCardWidget(
                         selectedIndex: loanWatcher.selectedIndex),
-                    PLVSpace(24),
+                    NovaVSpace(24),
                     Expanded(
                       child: CustomTabRounded(
                         tabTitleStringList: const ['Active', 'Pending'],

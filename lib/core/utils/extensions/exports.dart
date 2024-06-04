@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:peerlendly/core/exports.dart';
-import 'package:peerlendly/flavors.dart';
+import 'package:nova/core/exports.dart';
+import 'package:nova/flavors.dart';
 import 'package:flutter/material.dart';
-import 'package:peerlendly/modules/wallet/exports.dart';
+import 'package:nova/modules/wallet/exports.dart';
 import 'dart:developer' as devtools show log;
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';

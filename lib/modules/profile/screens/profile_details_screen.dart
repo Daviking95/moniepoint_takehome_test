@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 
 class ProfileDetailsScreen extends StatefulWidget {
@@ -28,14 +28,12 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: RefreshIndicator(
@@ -46,30 +44,30 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                 },
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
-                  child: PLPaddedWidget(
+                  child: NovaPaddedWidget(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        PLVSpace(48),
-                        PLBackIcon(onTap: () => Navigator.pop(context),),
+                        NovaVSpace(48),
+                        NovaBackIcon(onTap: () => Navigator.pop(context),),
 
-                        PLVSpace(24),
+                        NovaVSpace(24),
                         Container(
                           decoration: BoxDecoration(
-                              borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-                              color: PLColors.appWhiteColor),
+                              borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+                              color: NovaColors.appWhiteColor),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   ProfileImageWidget(imageFile: AppData.profilePicture, size: 40),
-                                  PLHSpace(12),
-                                  PLTextWidget(
+                                  NovaHSpace(12),
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.fullName.toTitleCase ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryColorMain500,
-                                    textSize: PLTypography.fontTitleMedium,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryColorMain500,
+                                    textSize: NovaTypography.fontTitleMedium,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ],
@@ -77,20 +75,20 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: "Lendly Score",
-                                    textStyle: PLTypography.textBodySmallStyle,
-                                    textSize: PLTypography.fontLabelSmall,
-                                    textColor: PLColors.appGrayText,
+                                    textStyle: NovaTypography.textBodySmallStyle,
+                                    textSize: NovaTypography.fontLabelSmall,
+                                    textColor: NovaColors.appGrayText,
                                     maxLines: 1,
                                   ),
-                                  PLVSpace(4),
+                                  NovaVSpace(4),
                                   InkWell(
                                     onTap: () {},
                                     child: LendlyScoreCard(
                                       score:
                                       AppData.lendlyScoreResponseModel?.lendlyScore ?? 0,
-                                      bgColor: PLColors.appGreenColor,
+                                      bgColor: NovaColors.appGreenColor,
                                     ),
                                   )
                                 ],
@@ -98,7 +96,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                             ],
                           ).paddingSymmetric(horizontal: 16, vertical: 8),
                         ),
-                        PLVSpace(16),
+                        NovaVSpace(16),
                         InkWell(
                           onTap: (){
                             PersistentNavBarNavigator.pushNewScreen(
@@ -111,156 +109,156 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              PLTextWidget(
+                              NovaTextWidget(
                                 title: "Edit Profile",
-                                textStyle: PLTypography.textBodySmallStyle,
-                                textSize: PLTypography.fontLabelMedium,
-                                textColor: PLColors.appPrimaryColorMain500,
+                                textStyle: NovaTypography.textBodySmallStyle,
+                                textSize: NovaTypography.fontLabelMedium,
+                                textColor: NovaColors.appPrimaryColorMain500,
                                 maxLines: 1,
                               ),
-                              PLHSpace(8),
-                              const Icon(Icons.edit, size: 12, color: PLColors.appPrimaryColorMain500,)
+                              NovaHSpace(8),
+                              const Icon(Icons.edit, size: 12, color: NovaColors.appPrimaryColorMain500,)
                             ],
                           ),
                         ),
-                        PLVSpace(16),
+                        NovaVSpace(16),
                         Container(
                           decoration: BoxDecoration(
                               borderRadius:
-                              PLDecorations.borderRadiusGeometryCircular8,
-                              color: PLColors.appWhiteColor),
+                              NovaDecorations.borderRadiusGeometryCircular8,
+                              color: NovaColors.appWhiteColor),
                           child: Column(
                             children: [
 
                               _loanDetailsItem(
                                   'Name',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.fullName ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
 
                               _loanDetailsItem(
                                   'Email',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.emailAddress ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
 
                               _loanDetailsItem(
                                   'Phone Number',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.phoneNumber ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
 
                               _loanDetailsItem(
                                   'Address',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.address ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
 
                               _loanDetailsItem(
                                   'LGA',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.lga ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
 
                               _loanDetailsItem(
-                                  'Peer Lendly Referral Code',
-                                  PLTextWidget(
+                                  'Nova Referral Code',
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.referralCode ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
 
                               _loanDetailsItem(
                                   'State',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.state ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
                               Divider(
-                                color: PLColors.appGrayText.withOpacity(.6),
+                                color: NovaColors.appGrayText.withOpacity(.6),
                               ),
 
 
                               _loanDetailsItem(
                                   'Employment Status',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.employmentType.elementAt(int.parse(AppData.getUserProfileResponseModel?.employmentStatus ?? "")).values.first,
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
 
                               _loanDetailsItem(
                                   'Company Name',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.companyName ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
 
                               _loanDetailsItem(
                                   'Joined On',
-                                  PLTextWidget(
-                                    title: AppData.getUserProfileResponseModel?.startDate?.formatDate() ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                  NovaTextWidget(
+                                    title: AppData.getUserProfileResponseModel?.startDate.formatDate() ?? "",
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
                               _loanDetailsItem(
                                   'Monthly Earnings',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: double.parse(AppData.getUserProfileResponseModel?.monthlyEarnings ?? "0.0")
                                         .toString()
                                         .formatWithCommasAndDecimals(),
-                                    textStyle: PLTypography.textTitleSmallStyle,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textStyle: NovaTypography.textTitleSmallStyle,
+                                    textSize: NovaTypography.fontLabelSmall,
                                     fontWeight: FontWeight.w600,
-                                    textColor: PLColors.appPrimaryText,
+                                    textColor: NovaColors.appPrimaryText,
                                     maxLines: 1,
                                     isCurrency: true,
                                   )),
                               _loanDetailsItem(
                                   'Proof of Employment',
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel?.proofOfEmployment ?? "",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   )),
                             ],
                           ).paddingSymmetric(horizontal: 16, vertical: 16),
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                         // ProfileItemCard(profileItems: [
                         //   ProfileItem(icon: "", title: "Close Account", desc: strAppSecurityDesc, func: () {
                         //
@@ -280,11 +278,11 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        PLTextWidget(
+        NovaTextWidget(
           title: title,
-          textStyle: PLTypography.textTitleLargeStyle,
-          textColor: PLColors.appGrayText,
-          textSize: PLTypography.fontLabelSmall,
+          textStyle: NovaTypography.textTitleLargeStyle,
+          textColor: NovaColors.appGrayText,
+          textSize: NovaTypography.fontLabelSmall,
         ),
         child
       ],

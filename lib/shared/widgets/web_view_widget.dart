@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class WebViewWidget extends StatefulWidget {
   final String linkToShow;
@@ -43,7 +43,7 @@ class WebViewWidgetState extends State<WebViewWidget> {
     //todo : InAppWebView
     pullToRefreshController = PullToRefreshController(
       options: PullToRefreshOptions(
-        color: PLColors.appFocusColor,
+        color: NovaColors.appFocusColor,
       ),
       onRefresh: () async {
         if (Platform.isAndroid) {
@@ -64,15 +64,15 @@ class WebViewWidgetState extends State<WebViewWidget> {
       onWillPop: () async => Future.value(true),
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
-        child: PLScaffold(
+        child: NovaScaffold(
           appBarWidget: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: PLColors.appWhiteColor,
+            backgroundColor: NovaColors.appWhiteColor,
             elevation: 0,
             title: Column(
               children: [
-                PLVSpace(12),
-                PLBackIcon(
+                NovaVSpace(12),
+                NovaBackIcon(
                     onTap: () => Navigator.canPop(context) ? Navigator.pop(context) : AppNavigator.pushAndRemoveUtil(const DashboardScreen()),
                     title: widget.title),
               ],

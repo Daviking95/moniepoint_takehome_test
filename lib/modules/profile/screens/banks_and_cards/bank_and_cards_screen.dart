@@ -1,40 +1,38 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class BankAndCardsScreen extends StatelessWidget {
   const BankAndCardsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(48),
-                    PLBackIcon(
+                    NovaVSpace(48),
+                    NovaBackIcon(
                       onTap: () => Navigator.pop(context),
                     ),
-                    PLVSpace(8),
-                    PLTextWidget(
+                    NovaVSpace(8),
+                    NovaTextWidget(
                       title: "Accounts",
                       isTitle: true,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontHeadlineSmall,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontHeadlineSmall,
                     ),
-                    PLVSpace(16),
+                    NovaVSpace(16),
                     ProfileItemCard(profileItems: [
                       ProfileItem(
-                          icon: PLAssets.bankAccountIcon,
+                          icon: NovaAssets.bankAccountIcon,
                           title: "Manage Bank Account",
                           desc: strHelpSupportDesc,
                           func: () {
@@ -48,7 +46,7 @@ class BankAndCardsScreen extends StatelessWidget {
                     ]),
                     ProfileItemCard(profileItems: [
                       ProfileItem(
-                          icon: PLAssets.cardAccountIcon,
+                          icon: NovaAssets.cardAccountIcon,
                           title: "Manage Cards",
                           desc: strHelpSupportDesc,
                           func: () {

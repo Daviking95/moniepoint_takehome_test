@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/utils/extensions/exports.dart';
+part of 'package:nova/core/utils/extensions/exports.dart';
 
 extension TextfieldValidator on String? {
   String? validateEmail(String errorString) {
@@ -66,6 +66,7 @@ extension TextfieldValidator on String? {
     // RegExp regExp = RegExp(r'^[0-9]{length}$');
 
     if (this == null || this == "") return errorString;
+    if (this != null && this!.length != length) return "Field must have $length digits";
     return null;
     // if (regExp.hasMatch(this!)) {
     //   return null;

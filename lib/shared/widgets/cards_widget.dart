@@ -1,9 +1,9 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLCardsWidget extends StatelessWidget {
+class NovaCardsWidget extends StatelessWidget {
   final Widget child;
 
-  const PLCardsWidget({super.key, required this.child,});
+  const NovaCardsWidget({super.key, required this.child,});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class PLCardsWidget extends StatelessWidget {
       width: context.width,
       decoration: BoxDecoration(
           color: context.theme.scaffoldBackgroundColor,
-          borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+          borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
           boxShadow: const [
             BoxShadow(
               color: Color.fromRGBO(34, 34, 34, 0.1),
@@ -39,7 +39,7 @@ class PLCardsWithTextAndImage extends StatelessWidget {
       width: context.width,
       decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: PLDecorations.borderRadiusGeometryCircular8),
+          borderRadius: NovaDecorations.borderRadiusGeometryCircular8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

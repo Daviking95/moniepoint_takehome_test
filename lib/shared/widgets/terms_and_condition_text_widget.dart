@@ -1,49 +1,84 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
-
+part of "package:nova/shared/widgets/exports.dart";
 
 class TermsAndConditionTextWidget extends StatelessWidget {
-  const TermsAndConditionTextWidget({Key? key}) : super(key: key);
+  final Function(bool val) isChecked;
+  final bool showCheckbox;
+
+  const TermsAndConditionTextWidget(
+      {Key? key, required this.isChecked, this.showCheckbox = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
+    final onboardingWatcher = context.watch<OnboardingProvider>();
+
+    return InkWell(
+      onTap: () {
+        onboardingWatcher.isTermsChecked = !onboardingWatcher.isTermsChecked;
+      },
+      child: Row(
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextSpan(
-              text: "By continuing, you agree to our ",
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: PLTypography.fontLabelSmall,
-                  fontFamily:
-                  PLTypography.fontFamilyLight
-              )),
-          TextSpan(
-            text: "Terms and Condition ",
-            style: TextStyle(
-              fontSize: PLTypography.fontLabelSmall,
-              color: PLColors.appPrimaryColorMain500,
+          if (showCheckbox) ...[
+            SizedBox(
+              height: 25.h,
+              width: 25.w,
+              child: Checkbox(
+                value: onboardingWatcher.isTermsChecked,
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                activeColor: NovaColors.appPrimaryColorMain500,
+                checkColor: Color(0xffE0E0E0),
+                shape: RoundedRectangleBorder(
+                    borderRadius:
+                        NovaDecorations.borderRadiusGeometryCircular4),
+                onChanged: (bool? value) {
+                  onboardingWatcher.isTermsChecked =
+                      !onboardingWatcher.isTermsChecked;
+                },
+              ),
             ),
-          ),
-          TextSpan(
-              text: "and ",
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: PLTypography.fontLabelSmall,
-                  fontFamily:
-                  PLTypography.fontFamilyLight
-              )),
-          TextSpan(
-            text: "Privacy Policy",
-            style: TextStyle(
-              fontSize: PLTypography.fontLabelSmall,
-              color: PLColors.appPrimaryColorMain500,
+            NovaHSpace(8),
+          ],
+          Expanded(
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                      text: "By continuing, you agree to our ",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: NovaTypography.fontLabelLarge,
+                          fontFamily: NovaTypography.fontFamilyLight)),
+                  TextSpan(
+                    text: "Terms of Service ",
+                    style: TextStyle(
+                        fontSize: NovaTypography.fontLabelLarge,
+                        color: NovaColors.appPrimaryColorMain500,
+                        decoration: TextDecoration.underline),
+                  ),
+                  TextSpan(
+                      text: "and ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: NovaTypography.fontLabelLarge,
+                        fontFamily: NovaTypography.fontFamilyLight,
+                      )),
+                  TextSpan(
+                    text: "Privacy Policy",
+                    style: TextStyle(
+                        fontSize: NovaTypography.fontLabelLarge,
+                        color: NovaColors.appPrimaryColorMain500,
+                        decoration: TextDecoration.underline),
+                  ),
+                ],
+              ),
+              textAlign: showCheckbox ? TextAlign.start : TextAlign.center,
+              softWrap: true,
+              maxLines: 2,
             ),
           ),
         ],
       ),
-      textAlign: TextAlign.center,
-      softWrap: true,
-      maxLines: 2,
     );
   }
 }

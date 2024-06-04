@@ -1,10 +1,11 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 class DashboardProvider extends BaseViewModel {
   final BuildContext? context;
   final bool shouldInitialize;
+  final bool shouldLoadDashboardData;
 
-  DashboardProvider({this.context, this.shouldInitialize = false});
+  DashboardProvider({this.context, this.shouldInitialize = false, this.shouldLoadDashboardData = false});
 
   @override
   FutureOr<void> initState() {
@@ -15,6 +16,24 @@ class DashboardProvider extends BaseViewModel {
     //
     //   getUserProfile();
     // }
+
+    if(shouldLoadDashboardData){
+      WalletProvider walletProvider = Provider.of<WalletProvider>(context!, listen: false);
+      ProfileProvider profileProvider = Provider.of<ProfileProvider>(context!, listen: false);
+      LoanProvider loanProvider = Provider.of<LoanProvider>(context!, listen: false);
+
+      loadData();
+      walletProvider.getShowBalance();
+      profileProvider.getNigeriaBanks();
+      profileProvider.getBankDetails();
+      loanProvider.getUserLoanDetails();
+    }
+  }
+
+  loadData(){
+      getUserProfile();
+      getLendlyScoreProfile();
+      getProfilePic();
   }
 
   @override
@@ -40,12 +59,40 @@ class DashboardProvider extends BaseViewModel {
       AppData.mixpanel!.identify(AppData.getUserProfileResponseModel?.fullName ?? "");
 
       AppPreferences.isUserBvnVerified = (AppData.getUserProfileResponseModel?.bvnVerified ?? false);
-      "responseDataGetUserProfile $responseData".logger();
+      "responseDataGetUserProfile $responseData ${AppData.getUserProfileResponseModel?.bvnVerified}".logger();
 
       await changeLoaderStatus(false, "");
       notifyListeners();
     });
 
+  }
+
+
+  createWallet(BuildContext context, String accountName, String email) async {
+      await changeLoaderStatus(true, "Creating wallet");
+      notifyListeners();
+
+      final dartz.Either<ErrorResponseModel, CreateWalletResponseModel>
+      responseData = await PLSignupRepository.instance
+          .createWalletService(accountName, email);
+
+      "responseDatacreateWallet $responseData".logger();
+
+      return responseData.fold((errorResponse) async {
+        showSnackAtTheTop(
+          message: errorResponse.message,
+        );
+
+        await changeLoaderStatus(false, "");
+        notifyListeners();
+
+        return;
+      }, (successResponse) async {
+        showSnackAtTheTop(
+            message: successResponse.responseMessage, isSuccess: true);
+
+        await changeLoaderStatus(false, "");
+      });
   }
 
   void getLendlyScoreProfile() async {

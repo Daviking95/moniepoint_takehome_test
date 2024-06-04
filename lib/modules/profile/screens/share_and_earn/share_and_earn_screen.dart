@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 
 class ShareAndEarnScreen extends StatelessWidget {
@@ -6,136 +6,134 @@ class ShareAndEarnScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
-    String referralCode = "https://peerlendly.com/${AppData.getUserProfileResponseModel?.referralCode ?? ''}";
+    String referralCode = "https://nova.com/${AppData.getUserProfileResponseModel?.referralCode ?? ''}";
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(48),
-                    PLBackIcon(
+                    NovaVSpace(48),
+                    NovaBackIcon(
                       onTap: () => Navigator.pop(context),
                     ),
-                    PLVSpace(8),
+                    NovaVSpace(8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const PLImageSvg(svgPath: PLAssets.shareIcon),
-                        PLVSpace(8),
-                        PLTextWidget(
+                        const NovaImageSvg(svgPath: NovaAssets.shareIcon),
+                        NovaVSpace(8),
+                        NovaTextWidget(
                           title: "Share and Earn",
                           isTitle: true,
-                          textStyle: PLTypography.textHeadlineMediumStyle,
-                          textSize: PLTypography.fontHeadlineSmall,
+                          textStyle: NovaTypography.textHeadlineMediumStyle,
+                          textSize: NovaTypography.fontHeadlineSmall,
                         ),
-                        PLVSpace(4),
-                        PLTextWidget(
+                        NovaVSpace(4),
+                        NovaTextWidget(
                           title: "Invite your friends and earn gifts",
-                          textStyle: PLTypography.textHeadlineMediumStyle,
-                          textSize: PLTypography.fontLabelSmall,
+                          textStyle: NovaTypography.textHeadlineMediumStyle,
+                          textSize: NovaTypography.fontLabelSmall,
                         ),
                       ],
                     ),
-                    PLVSpace(24),
+                    NovaVSpace(24),
 
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: PLTextWidget(
+                      child: NovaTextWidget(
                         title: "Referral Link",
-                        textColor: PLColors.appPrimaryText,
-                        textStyle: PLTypography.textHeadlineMediumStyle,
-                        textSize: PLTypography.fontLabelMedium,
+                        textColor: NovaColors.appPrimaryText,
+                        textStyle: NovaTypography.textHeadlineMediumStyle,
+                        textSize: NovaTypography.fontLabelMedium,
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    PLVSpace(8),
+                    NovaVSpace(8),
                     Row(
                       children: [
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
-                              color: PLColors.appWhiteColor,
-                              borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                              color: NovaColors.appWhiteColor,
+                              borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                               border: Border.all(color: Color(0xffe4e4e4))
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: PLTextWidget(
+                                  child: NovaTextWidget(
                                     title: referralCode,
-                                    textColor: PLColors.appPrimaryColorMain500,
-                                    textSize: PLTypography.fontLabelMedium,
+                                    textColor: NovaColors.appPrimaryColorMain500,
+                                    textSize: NovaTypography.fontLabelMedium,
                                   ),
                                 ),
-                                PLImageSvg(svgPath: PLAssets.copyBlue)
+                                NovaImageSvg(svgPath: NovaAssets.copyBlue)
                               ],
                             ).paddingSymmetric(horizontal: 20, vertical: 16),
                           ),
                         ),
-                        PLHSpace(8),
+                        NovaHSpace(8),
                         InkWell(
                           onTap: () {
-                            Share.share(referralCode, subject: 'My Peerlendly referral link');
+                            Share.share(referralCode, subject: 'My nova referral link');
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                                borderRadius: PLDecorations
+                                borderRadius: NovaDecorations
                                     .borderRadiusGeometryCircular8,
-                                color: PLColors.appPrimaryColorMain500),
-                            child: PLTextWidget(
+                                color: NovaColors.appPrimaryColorMain500),
+                            child: NovaTextWidget(
                               title: "Share",
-                              textColor: PLColors.appWhiteColor,
-                              textSize: PLTypography.fontLabelSmall,
+                              textColor: NovaColors.appWhiteColor,
+                              textSize: NovaTypography.fontLabelSmall,
                             ).paddingSymmetric(horizontal: 20, vertical: 16),
                           ),
                         )
                       ],
                     ),
-                    PLVSpace(24),
+                    NovaVSpace(24),
                     Container(
                       width: context.width,
                       decoration: BoxDecoration(
-                          borderRadius: PLDecorations
+                          borderRadius: NovaDecorations
                               .borderRadiusGeometryCircular16,
-                          color: PLColors.appWhiteColor),
+                          color: NovaColors.appWhiteColor),
                       child: Column(
                         children: [
-                          PLVSpace(16),
+                          NovaVSpace(16),
 
-                          PLTextWidget(
+                          NovaTextWidget(
                             title: "How to Earn",
-                            textColor: PLColors.appPrimaryText,
-                            textSize: PLTypography.fontBodyLarge,
+                            textColor: NovaColors.appPrimaryText,
+                            textSize: NovaTypography.fontBodyLarge,
                             fontWeight: FontWeight.w700,
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             // crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _refWidget("Share your referral link", PLAssets.refShare),
-                              _refWidget("", PLAssets.refArrow),
-                              _refWidget("Friends sign in with your referral link", PLAssets.refSign),
-                              _refWidget("", PLAssets.refArrow),
-                              _refWidget("Friends complete their first transaction", PLAssets.refComplete),
+                              _refWidget("Share your referral link", NovaAssets.refShare),
+                              _refWidget("", NovaAssets.refArrow),
+                              _refWidget("Friends sign in with your referral link", NovaAssets.refSign),
+                              _refWidget("", NovaAssets.refArrow),
+                              _refWidget("Friends complete their first transaction", NovaAssets.refComplete),
                             ],
                           ),
                         ],
                       ).paddingSymmetric(horizontal: 12, vertical: 8),
                     ),
-                    PLVSpace(24),
+                    NovaVSpace(24),
                     Expanded(
                       child: CustomTabRounded(
                         tabTitleStringList: ['Pending', 'Complete'],
@@ -155,13 +153,13 @@ class ShareAndEarnScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          PLImageSvg(svgPath: assetString),
-          PLVSpace(16),
-          PLTextWidget(
+          NovaImageSvg(svgPath: assetString),
+          NovaVSpace(16),
+          NovaTextWidget(
             title: title,
-            textColor: PLColors.appGrayText,
-            textStyle: PLTypography.textHeadlineMediumStyle,
-            textSize: PLTypography.fontLabelSmall,
+            textColor: NovaColors.appGrayText,
+            textStyle: NovaTypography.textHeadlineMediumStyle,
+            textSize: NovaTypography.fontLabelSmall,
             textAlign: TextAlign.center,
           ),
         ],

@@ -1,9 +1,9 @@
-part of 'package:peerlendly/app_level_locator/exports.dart';
+part of 'package:nova/app_level_locator/exports.dart';
 
-class PLDependencies extends StatelessWidget {
+class NovaDependencies extends StatelessWidget {
   final Widget child;
 
-  const PLDependencies({super.key, required this.child});
+  const NovaDependencies({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

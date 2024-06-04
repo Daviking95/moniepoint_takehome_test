@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class ReferralList extends StatelessWidget {
   const ReferralList({Key? key}) : super(key: key);
@@ -30,8 +30,8 @@ class ReferralCard extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: PLColors.appWhiteColor,
-                borderRadius: PLDecorations.borderRadiusGeometryCircular8),
+                color: NovaColors.appWhiteColor,
+                borderRadius: NovaDecorations.borderRadiusGeometryCircular8),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,21 +42,21 @@ class ReferralCard extends StatelessWidget {
                   child: Text(
                     "JA",
                     style: context.textTheme.bodyMedium!
-                        .copyWith(color: PLColors.appPrimaryColorMain500),
+                        .copyWith(color: NovaColors.appPrimaryColorMain500),
                   ),
                 ),
-                PLHSpace(8),
+                NovaHSpace(8),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLTextWidget(
+                      NovaTextWidget(
                         title: "Interest Rate",
-                        textColor: PLColors.appPrimaryText,
-                        fontFamily: PLTypography.fontFamilyMedium,
+                        textColor: NovaColors.appPrimaryText,
+                        fontFamily: NovaTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w500,
-                        textSize: PLTypography.fontBodySmall,
+                        textSize: NovaTypography.fontBodySmall,
                       ),
                     ],
                   ),

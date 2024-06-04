@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class PLDatePickerTextField extends StatefulWidget {
   final String text;
@@ -45,7 +45,7 @@ class _PLDatePickerTextFieldState extends State<PLDatePickerTextField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PLPrimaryTextField(
+        NovaPrimaryTextField(
                 controller: widget.datePickerController,
                 textInputType: TextInputType.number,
                 onTapFunction: widget.hasNoTapFunction ? () {} : openDatePicker,

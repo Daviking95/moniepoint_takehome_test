@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 class LendlyScoreSnippet extends StatelessWidget {
   const LendlyScoreSnippet({Key? key}) : super(key: key);
@@ -21,11 +21,11 @@ class LendlyScoreSnippet extends StatelessWidget {
               ),
             ),
           ),
-          PLVSpace(24),
+          NovaVSpace(24),
           Container(
             decoration: BoxDecoration(
-                borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-                color: PLColors.appWhiteColor),
+                borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+                color: NovaColors.appWhiteColor),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -33,14 +33,14 @@ class LendlyScoreSnippet extends StatelessWidget {
                   children: [
                     ProfileImageWidget(
                         imageFile: AppData.profilePicture, size: 40),
-                    PLHSpace(12),
-                    PLTextWidget(
+                    NovaHSpace(12),
+                    NovaTextWidget(
                       title: (AppData.getUserProfileResponseModel?.fullName
                               .toTitleCase ??
                           ""),
-                      textStyle: PLTypography.textTitleLargeStyle,
-                      textColor: PLColors.appPrimaryColorMain500,
-                      textSize: PLTypography.fontTitleMedium,
+                      textStyle: NovaTypography.textTitleLargeStyle,
+                      textColor: NovaColors.appPrimaryColorMain500,
+                      textSize: NovaTypography.fontTitleMedium,
                       fontWeight: FontWeight.w700,
                     ),
                   ],
@@ -48,20 +48,20 @@ class LendlyScoreSnippet extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    PLTextWidget(
+                    NovaTextWidget(
                       title: "Lendly Score",
-                      textStyle: PLTypography.textBodySmallStyle,
-                      textSize: PLTypography.fontLabelSmall,
-                      textColor: PLColors.appWhiteColor,
+                      textStyle: NovaTypography.textBodySmallStyle,
+                      textSize: NovaTypography.fontLabelSmall,
+                      textColor: NovaColors.appWhiteColor,
                       maxLines: 1,
                     ),
-                    PLVSpace(4),
+                    NovaVSpace(4),
                     InkWell(
                       onTap: () {},
                       child: LendlyScoreCard(
                         score:
                             AppData.lendlyScoreResponseModel?.lendlyScore ?? 0,
-                        bgColor: PLColors.appGreenColor,
+                        bgColor: NovaColors.appGreenColor,
                       ),
                     )
                   ],
@@ -69,96 +69,96 @@ class LendlyScoreSnippet extends StatelessWidget {
               ],
             ).paddingSymmetric(horizontal: 16, vertical: 8),
           ),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(24),
+          NovaTextWidget(
             title: 750000.toString().formatWithCommasAndDecimals(),
-            textStyle: PLTypography.textTitleSmallStyle,
-            textSize: PLTypography.fontTitleLarge,
-            fontFamily: PLTypography.fontFamilyMedium,
+            textStyle: NovaTypography.textTitleSmallStyle,
+            textSize: NovaTypography.fontTitleLarge,
+            fontFamily: NovaTypography.fontFamilyMedium,
             fontWeight: FontWeight.w700,
-            textColor: PLColors.appPrimaryText,
+            textColor: NovaColors.appPrimaryText,
             maxLines: 1,
             isCurrency: true,
           ),
-          PLVSpace(4),
-          PLTextWidget(
+          NovaVSpace(4),
+          NovaTextWidget(
             title: "Borrowing Limit",
-            textStyle: PLTypography.textTitleLargeStyle,
-            textColor: PLColors.appPrimaryText,
+            textStyle: NovaTypography.textTitleLargeStyle,
+            textColor: NovaColors.appPrimaryText,
             fontWeight: FontWeight.w700,
-            textSize: PLTypography.fontLabelSmall,
+            textSize: NovaTypography.fontLabelSmall,
           ),
-          PLVSpace(24),
+          NovaVSpace(24),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PLTextWidget(
+              NovaTextWidget(
                 title: "Lendly Score",
-                textStyle: PLTypography.textTitleLargeStyle,
-                textColor: PLColors.appPrimaryText,
+                textStyle: NovaTypography.textTitleLargeStyle,
+                textColor: NovaColors.appPrimaryText,
                 fontWeight: FontWeight.w600,
-                textSize: PLTypography.fontLabelMedium,
+                textSize: NovaTypography.fontLabelMedium,
               ),
-              PLVSpace(8),
-              PLTextWidget(
+              NovaVSpace(8),
+              NovaTextWidget(
                 title:
                     "Your Lendly Score is our proprietary metric that represents the probability of your ability to repay a loan. ",
-                textStyle: PLTypography.textTitleLargeStyle,
-                textColor: PLColors.appGrayText,
-                textSize: PLTypography.fontLabelMedium,
+                textStyle: NovaTypography.textTitleLargeStyle,
+                textColor: NovaColors.appGrayText,
+                textSize: NovaTypography.fontLabelMedium,
               ),
-              PLVSpace(16),
-              PLTextWidget(
+              NovaVSpace(16),
+              NovaTextWidget(
                 title: "How to improve your Lendly Score:",
-                textStyle: PLTypography.textTitleLargeStyle,
-                textColor: PLColors.appGrayText,
+                textStyle: NovaTypography.textTitleLargeStyle,
+                textColor: NovaColors.appGrayText,
                 fontWeight: FontWeight.w700,
-                textSize: PLTypography.fontLabelMedium,
+                textSize: NovaTypography.fontLabelMedium,
               ),
-              PLVSpace(6),
-              PLTextWidget(
+              NovaVSpace(6),
+              NovaTextWidget(
                 title: "* Complete your profile information.",
-                textStyle: PLTypography.textTitleLargeStyle,
-                textColor: PLColors.appGrayText,
-                textSize: PLTypography.fontLabelMedium,
+                textStyle: NovaTypography.textTitleLargeStyle,
+                textColor: NovaColors.appGrayText,
+                textSize: NovaTypography.fontLabelMedium,
               ),
-              PLTextWidget(
+              NovaTextWidget(
                 title: "* Keep repaying your loans on time.",
-                textStyle: PLTypography.textTitleLargeStyle,
-                textColor: PLColors.appGrayText,
-                textSize: PLTypography.fontLabelMedium,
+                textStyle: NovaTypography.textTitleLargeStyle,
+                textColor: NovaColors.appGrayText,
+                textSize: NovaTypography.fontLabelMedium,
               ),
-              PLVSpace(16),
-              PLTextWidget(
+              NovaVSpace(16),
+              NovaTextWidget(
                 title: "How the Lendly Score Helps Borrowers and Lenders",
-                textStyle: PLTypography.textTitleLargeStyle,
-                textColor: PLColors.appGrayText,
+                textStyle: NovaTypography.textTitleLargeStyle,
+                textColor: NovaColors.appGrayText,
                 fontWeight: FontWeight.w700,
-                textSize: PLTypography.fontLabelMedium,
+                textSize: NovaTypography.fontLabelMedium,
               ),
-              PLVSpace(4),
-              PLTextWidget(
+              NovaVSpace(4),
+              NovaTextWidget(
                 title:
                     "Lendly Score benefits everyone, so every transaction is a win-win. A Lender needs to assess the risk involved before fulfilling your request. The Lendly Score helps do just that, faster and easier. ",
-                textStyle: PLTypography.textTitleLargeStyle,
-                textColor: PLColors.appGrayText,
-                textSize: PLTypography.fontLabelMedium,
+                textStyle: NovaTypography.textTitleLargeStyle,
+                textColor: NovaColors.appGrayText,
+                textSize: NovaTypography.fontLabelMedium,
               ),
-              PLVSpace(6),
-              PLTextWidget(
+              NovaVSpace(6),
+              NovaTextWidget(
                 title: "* For Borrowers, you get access to cheap loans.",
-                textStyle: PLTypography.textTitleLargeStyle,
-                textColor: PLColors.appGrayText,
-                textSize: PLTypography.fontLabelMedium,
+                textStyle: NovaTypography.textTitleLargeStyle,
+                textColor: NovaColors.appGrayText,
+                textSize: NovaTypography.fontLabelMedium,
               ),
-              PLTextWidget(
+              NovaTextWidget(
                 title:
                     "* For Lenders, it helps to assess the Borrower’s repayment capability.",
-                textStyle: PLTypography.textTitleLargeStyle,
-                textColor: PLColors.appGrayText,
-                textSize: PLTypography.fontLabelMedium,
+                textStyle: NovaTypography.textTitleLargeStyle,
+                textColor: NovaColors.appGrayText,
+                textSize: NovaTypography.fontLabelMedium,
               ),
-              PLVSpace(16),
+              NovaVSpace(16),
             ],
           )
         ],

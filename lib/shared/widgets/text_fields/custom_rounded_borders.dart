@@ -1,7 +1,6 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class CustomRoundedBorders extends StatelessWidget {
-
   final Widget child;
   const CustomRoundedBorders({Key? key, required this.child}) : super(key: key);
 

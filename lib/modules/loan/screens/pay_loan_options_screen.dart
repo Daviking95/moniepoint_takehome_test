@@ -1,55 +1,53 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class PayLoanOptionsScreen extends StatelessWidget {
   final double amountToPay;
   final LoogedInUserLoanResponseModel? loanDetails;
-
 
   const PayLoanOptionsScreen({Key? key, required this.amountToPay, required this.loanDetails}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final loanWatcher = context.watch<LoanProvider>();
-    final loanReader = context.read<LoanProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
-                child: PLOverlayLoader(
+                child: NovaOverlayLoader(
                   loadingString: loanWatcher.loadingString,
                   startLoader: loanWatcher.isLoading,
-                  child: PLPaddedWidget(
+                  child: NovaPaddedWidget(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLVSpace(48),
-                        PLBackIcon(
+                        NovaVSpace(48),
+                        NovaBackIcon(
                           onTap: () => Navigator.pop(context),
                         ),
-                        PLVSpace(16),
-                        PLTextWidget(
+                        NovaVSpace(16),
+                        NovaTextWidget(
                           title: "Pay Loan",
-                          textStyle: PLTypography.textTitleLargeStyle,
-                          textColor: PLColors.appPrimaryText,
+                          textStyle: NovaTypography.textTitleLargeStyle,
+                          textColor: NovaColors.appPrimaryText,
                           fontWeight: FontWeight.w700,
-                          textSize: PLTypography.fontTitleLarge,
+                          textSize: NovaTypography.fontTitleLarge,
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                         payOptionItemWidget(
-                            PLAssets.payWithWallet, "Pay With Wallet", () {
+                            NovaAssets.payWithWallet, "Pay With Wallet", () {
                           showAlertDialog(
                               context,
                               '',
                               PayLoanPopUp(
                                   amount: amountToPay, loanWatcher: loanWatcher, loanDetails: loanDetails));
                         }, loanWatcher),
-                        payOptionItemWidget(PLAssets.payWithDebitCard,
+                        payOptionItemWidget(NovaAssets.payWithDebitCard,
                             "Pay With Debit Card", () {
                               showAlertDialog(
                                   context,
@@ -58,8 +56,8 @@ class PayLoanOptionsScreen extends StatelessWidget {
                                     isWallet: false,
                                       amount: amountToPay, loanWatcher: loanWatcher, loanDetails: loanDetails));
                             }, loanWatcher),
-                        PLVSpace(24),
-                        PLVSpace(24),
+                        NovaVSpace(24),
+                        NovaVSpace(24),
                       ],
                     ),
                   ),
@@ -76,8 +74,8 @@ class PayLoanOptionsScreen extends StatelessWidget {
       onTap: () => func(),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-            color: PLColors.appWhiteColor),
+            borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+            color: NovaColors.appWhiteColor),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -85,20 +83,20 @@ class PayLoanOptionsScreen extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                      borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                       color: const Color(0xffFAFCFE)),
-                  child: PLImageSvg(
+                  child: NovaImageSvg(
                     svgPath: assetString,
                     width: 24.w,
                     height: 24.h,
                   ).paddingAll(5),
                 ),
-                PLHSpace(12),
-                PLTextWidget(
+                NovaHSpace(12),
+                NovaTextWidget(
                   title: title,
-                  textStyle: PLTypography.textTitleLargeStyle,
-                  textColor: PLColors.appPrimaryText,
-                  textSize: PLTypography.fontBodyMedium,
+                  textStyle: NovaTypography.textTitleLargeStyle,
+                  textColor: NovaColors.appPrimaryText,
+                  textSize: NovaTypography.fontBodyMedium,
                   fontWeight: FontWeight.w700,
                 ),
               ],
@@ -108,11 +106,11 @@ class PayLoanOptionsScreen extends StatelessWidget {
                 height: 15,
                 child: CircularProgressIndicator(
                   strokeWidth: 1,
-                  color: PLColors.appPrimaryColorMain500,
+                  color: NovaColors.appPrimaryColorMain500,
                 )) :
             const Icon(
               Icons.arrow_forward_ios,
-              color: PLColors.appPrimaryText,
+              color: NovaColors.appPrimaryText,
               size: 18,
             )
           ],

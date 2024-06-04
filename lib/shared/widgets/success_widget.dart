@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class SuccessWidget extends StatefulWidget {
   final Widget? navigateToWidgetOnDone;
@@ -51,40 +51,40 @@ class _SuccessWidgetState extends State<SuccessWidget> {
   }
 
   mainWidget(BuildContext context) {
-    return PLScaffold(
-      backgroundColor: PLColors.appWhiteColor,
+    return NovaScaffold(
+      backgroundColor: NovaColors.appWhiteColor,
       body: Column(
         mainAxisAlignment: widget.hasPrimaryBtn
             ? MainAxisAlignment.spaceBetween
             : MainAxisAlignment.center,
         children: [
-          PLVSpace(12),
+          NovaVSpace(12),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              PLImagePng(
-                imgPath: PLAssets.successIcon,
+              NovaImagePng(
+                imgPath: NovaAssets.successIcon,
                 width: 118.w,
                 height: 118.h,
               ),
-              PLVSpace(24),
+              NovaVSpace(24),
 
               Center(
-                child: PLTextWidget(
+                child: NovaTextWidget(
                   title: widget.message,
-                  textStyle: PLTypography.textBodySmallStyle,
-                  textSize: PLTypography.fontHeadlineMedium,
+                  textStyle: NovaTypography.textBodySmallStyle,
+                  textSize: NovaTypography.fontHeadlineMedium,
                   textAlign: TextAlign.center,
                   // maxLines: 1,
                 ),
               ),
-              PLVSpace(8),
+              NovaVSpace(8),
               Center(
-                child: PLTextWidget(
+                child: NovaTextWidget(
                   title: widget.desc,
-                  textStyle: PLTypography.textBodySmallStyle,
-                  textSize: PLTypography.fontBodySmall,
-                  textColor: PLColors.appSecondaryText,
+                  textStyle: NovaTypography.textBodySmallStyle,
+                  textSize: NovaTypography.fontBodySmall,
+                  textColor: NovaColors.appSecondaryText,
                   maxLines: 1,
                 ),
               ),
@@ -111,9 +111,9 @@ class _SuccessWidgetState extends State<SuccessWidget> {
           if (widget.hasPrimaryBtn)
             Column(
               children: [
-                PLButtonRound(
+                NovaButtonRound(
                   textTitle: widget.primaryBtnText,
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                   functionToRun: widget.primaryBtnFunc ??
                       () {
                         if (widget.navigateToRouteNameOnDone != null &&
@@ -135,7 +135,7 @@ class _SuccessWidgetState extends State<SuccessWidget> {
                         }
                       },
                 ),
-                PLVSpace(32),
+                NovaVSpace(32),
               ],
             ),
         ],

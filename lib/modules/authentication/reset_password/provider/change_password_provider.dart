@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/reset_password/exports.dart';
+part of 'package:nova/modules/authentication/reset_password/exports.dart';
 
 class ChangePasswordProvider  extends BaseViewModel {
   final BuildContext? context;

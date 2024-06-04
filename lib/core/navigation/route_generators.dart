@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/navigation/exports.dart';
+part of 'package:nova/core/navigation/exports.dart';
 
 class RouteGenerator {
   static const String initialRoute = AppRoutes.splash;
@@ -31,8 +31,6 @@ class RouteGenerator {
         return buildRoute(const DashboardScreen(), settings: settings);
       case AppRoutes.persistentTab:
         return buildRoute(const PersistentTab(), settings: settings);
-      case AppRoutes.tutorial:
-        return buildRoute(const AppTutorialScreen(), settings: settings);
       default:
         return buildRoute(const SplashScreen(), settings: settings);
     }

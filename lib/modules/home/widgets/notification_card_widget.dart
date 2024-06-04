@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 class NotificationCardWidget extends StatelessWidget {
   const NotificationCardWidget({Key? key}) : super(key: key);
@@ -8,8 +8,8 @@ class NotificationCardWidget extends StatelessWidget {
     return InkWell(
       child: Container(
         decoration: BoxDecoration(
-          color: PLColors.appWhiteColor,
-          borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+          color: NovaColors.appWhiteColor,
+          borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
         ),
         child: Stack(
           children: [
@@ -23,43 +23,43 @@ class NotificationCardWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        PLTextWidget(
+                        NovaTextWidget(
                           title: "Title of Notification",
-                          textStyle: PLTypography.textTitleSmallStyle,
-                          textSize: PLTypography.fontTitleSmall,
+                          textStyle: NovaTypography.textTitleSmallStyle,
+                          textSize: NovaTypography.fontTitleSmall,
                           fontWeight: FontWeight.w600,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),
-                        PLTextWidget(
+                        NovaTextWidget(
                           title: "Notification description",
-                          textStyle: PLTypography.textLabelSmallStyle,
-                          textSize: PLTypography.fontLabelSmall,
-                          textColor: PLColors.appSecondaryText,
+                          textStyle: NovaTypography.textLabelSmallStyle,
+                          textSize: NovaTypography.fontLabelSmall,
+                          textColor: NovaColors.appSecondaryText,
                           maxLines: 4,
                         ),
                       ],
                     )
                   ],
                 ).paddingOnly(left: 8, top: 12),
-                PLVSpace(16),
+                NovaVSpace(16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLTextWidget(
+                        NovaTextWidget(
                           title: "Date",
-                          textStyle: PLTypography.textLabelSmallStyle,
-                          textSize: PLTypography.fontLabelSmall,
-                          textColor: PLColors.appSecondaryText,
+                          textStyle: NovaTypography.textLabelSmallStyle,
+                          textSize: NovaTypography.fontLabelSmall,
+                          textColor: NovaColors.appSecondaryText,
                         ),
-                        PLVSpace(2),
-                        PLTextWidget(
+                        NovaVSpace(2),
+                        NovaTextWidget(
                           title: DateTime.now().toString().formatDateString(),
-                          textStyle: PLTypography.textLabelSmallStyle,
-                          textSize: PLTypography.fontLabelSmall,
+                          textStyle: NovaTypography.textLabelSmallStyle,
+                          textSize: NovaTypography.fontLabelSmall,
                           fontWeight: FontWeight.w600,
                         )
                       ],
@@ -67,17 +67,17 @@ class NotificationCardWidget extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLTextWidget(
+                        NovaTextWidget(
                           title: "Time",
-                          textStyle: PLTypography.textLabelSmallStyle,
-                          textSize: PLTypography.fontLabelSmall,
-                          textColor: PLColors.appSecondaryText,
+                          textStyle: NovaTypography.textLabelSmallStyle,
+                          textSize: NovaTypography.fontLabelSmall,
+                          textColor: NovaColors.appSecondaryText,
                         ),
-                        PLVSpace(2),
-                        PLTextWidget(
+                        NovaVSpace(2),
+                        NovaTextWidget(
                           title: DateTime.now().formattedTime2(),
-                          textStyle: PLTypography.textLabelSmallStyle,
-                          textSize: PLTypography.fontLabelSmall,
+                          textStyle: NovaTypography.textLabelSmallStyle,
+                          textSize: NovaTypography.fontLabelSmall,
                           fontWeight: FontWeight.w600,
                         )
                       ],
@@ -91,12 +91,12 @@ class NotificationCardWidget extends StatelessWidget {
                 right: 0,
                 child: Container(
                   decoration: const BoxDecoration(color: Colors.green, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8), topLeft: Radius.circular(8))),
-                  child: PLTextWidget(
+                  child: NovaTextWidget(
                     title: "New",
-                    textStyle: PLTypography.textLabelSmallStyle,
-                    textSize: PLTypography.fontLabelMedium,
+                    textStyle: NovaTypography.textLabelSmallStyle,
+                    textSize: NovaTypography.fontLabelMedium,
                     fontWeight: FontWeight.w600,
-                    textColor: PLColors.appWhiteColor,
+                    textColor: NovaColors.appWhiteColor,
                   ).paddingSymmetric(horizontal: 8, vertical: 8),
                 ))
           ],

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/utils/extensions/exports.dart';
+part of 'package:nova/core/utils/extensions/exports.dart';
 
 extension PasswordValidator on String {
   bool isPasswordCompliant([int minLength = 8]) {

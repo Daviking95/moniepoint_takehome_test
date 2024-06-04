@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/navigation/exports.dart';
+part of 'package:nova/core/navigation/exports.dart';
 
 class AppNavigator {
   static navigateRoute(

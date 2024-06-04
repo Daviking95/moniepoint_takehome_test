@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/login/exports.dart';
+part of 'package:nova/modules/authentication/login/exports.dart';
 
 class SwitchAccountVerifyOtpScreen extends StatelessWidget {
   final String email;
@@ -16,14 +16,14 @@ class SwitchAccountVerifyOtpScreen extends StatelessWidget {
   Widget _buildScreen(BuildContext context, LoginProvider model) {
 
     return AppBaseWidget(
-      iconSet: PLImagePng(
-        imgPath: PLAssets.phoneWalletInHand,
+      iconSet: NovaImagePng(
+        imgPath: NovaAssets.phoneWalletInHand,
         width: 150.w,
         height: 180.h,
         boxFit: BoxFit.contain,
       ),
       hasBackButton: true,
-      buildWidget: PLOverlayLoader(
+      buildWidget: NovaOverlayLoader(
           startLoader: model.isLoading,
           loadingString: model.loadingString,
           child: VerifySwitchAccountWidget(model, email)),
@@ -45,8 +45,8 @@ class VerifySwitchAccountWidget extends StatelessWidget {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: WillPopScope(
           onWillPop: () => Future.value(true),
-          child: PLScaffold(
-            backgroundColor: PLColors.appWhiteColor,
+          child: NovaScaffold(
+            backgroundColor: NovaColors.appWhiteColor,
             body: AnnotatedRegion<SystemUiOverlayStyle>(
                 value: SystemUiOverlayStyle.light,
                 child: SingleChildScrollView(
@@ -54,28 +54,28 @@ class VerifySwitchAccountWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLVSpace(16),
-                      PLBackIcon(
+                      NovaVSpace(16),
+                      NovaBackIcon(
                         onTap: () => Navigator.pushNamed(
                             context, AppRoutes.onboarding),
                         isCancel: true,
                         isBtmNavWithNoTitle: true,
                       ),
-                      PLVSpace(40),
-                      PLTextWidget(
+                      NovaVSpace(40),
+                      NovaTextWidget(
                         title: "OTP Code",
                         isTitle: true,
-                        textStyle: PLTypography.textHeadlineMediumStyle,
-                        textSize: PLTypography.fontHeadlineSmall,
+                        textStyle: NovaTypography.textHeadlineMediumStyle,
+                        textSize: NovaTypography.fontHeadlineSmall,
                       ),
-                      PLVSpace(10),
-                      PLTextWidget(
+                      NovaVSpace(10),
+                      NovaTextWidget(
                         title: "Kindly enter the 4-digit code sent to your email ",
-                        textColor: PLColors.appGrayText,
-                        textSize: PLTypography.fontLabelMedium,
+                        textColor: NovaColors.appGrayText,
+                        textSize: NovaTypography.fontLabelMedium,
 
                       ),
-                      PLVSpace(48),
+                      NovaVSpace(48),
                       SizedBox(
                         width: context.width,
                         child: PinTextField(
@@ -94,7 +94,7 @@ class VerifySwitchAccountWidget extends StatelessWidget {
                               val.validateString(strFieldRequiredError),
                         ),
                       ),
-                      PLVSpace(32),
+                      NovaVSpace(32),
                     ],
                   ),
                 )),

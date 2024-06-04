@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:open_mail_app/open_mail_app.dart';
-import 'package:peerlendly/core/exports.dart';
+import 'package:nova/core/exports.dart';
 import 'package:intl/intl.dart';
 import 'package:pointycastle/export.dart';
 import 'package:vibration/vibration.dart';

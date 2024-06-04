@@ -1,34 +1,32 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class AppSecurityScreen extends StatelessWidget {
   const AppSecurityScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
-                child: PLPaddedWidget(
+                child: NovaPaddedWidget(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLVSpace(48),
-                      PLBackIcon(
+                      NovaVSpace(48),
+                      NovaBackIcon(
                           onTap: () => Navigator.canPop(context) ? Navigator.pop(context) : AppNavigator.pushAndRemoveUtil(const ProfileScreen()),
                           title: strAppSecurity),
-                      PLVSpace(16),
+                      NovaVSpace(16),
                       ProfileItemCard(profileItems: [
                         ProfileItem(
-                            icon: PLAssets.logoPng,
+                            icon: NovaAssets.logoPng,
                             title: strChangeManagerID,
                             desc: strAppSecurityDesc,
                             func: () {
@@ -38,7 +36,7 @@ class AppSecurityScreen extends StatelessWidget {
                       ]),
                       ProfileItemCard(profileItems: [
                         ProfileItem(
-                            icon: PLAssets.appChangePasswordIcon,
+                            icon: NovaAssets.appChangePasswordIcon,
                             title: strChangePassword,
                             desc: strAppSecurityDesc,
                             func: () {
@@ -48,7 +46,7 @@ class AppSecurityScreen extends StatelessWidget {
                       ]),
                       ProfileItemCard(profileItems: [
                         ProfileItem(
-                            icon: PLAssets.appChangePinIcon,
+                            icon: NovaAssets.appChangePinIcon,
                             title: strChangePin,
                             desc: strAppSecurityDesc,
                             func: () {
@@ -58,7 +56,7 @@ class AppSecurityScreen extends StatelessWidget {
                       ]),
                       ProfileItemCard(profileItems: [
                         ProfileItem(
-                            icon: PLAssets.appChangePhoneNumberIcon,
+                            icon: NovaAssets.appChangePhoneNumberIcon,
                             title: strChangePhoneNumber,
                             desc: strAppSecurityDesc,
                             func: () {

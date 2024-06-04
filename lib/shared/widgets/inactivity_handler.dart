@@ -1,10 +1,9 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
-
+part of "package:nova/shared/widgets/exports.dart";
 
 class InactivityHandler extends StatefulWidget {
   final Widget child;
 
-  InactivityHandler({required this.child});
+  const InactivityHandler({super.key, required this.child});
 
   @override
   State<InactivityHandler> createState() => _InactivityHandlerState();

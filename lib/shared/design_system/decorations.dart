@@ -1,7 +1,7 @@
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
-class PLDecorations {
-  PLDecorations._();
+class NovaDecorations {
+  NovaDecorations._();
 
   static BorderRadius borderRadiusGeometryCircular100 =
       BorderRadius.circular(100);

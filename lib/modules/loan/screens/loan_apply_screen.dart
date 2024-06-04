@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class LoanApplyScreen extends StatelessWidget {
   const LoanApplyScreen({Key? key}) : super(key: key);
@@ -15,17 +15,16 @@ class LoanApplyScreen extends StatelessWidget {
   Widget _buildScreen(BuildContext context, LoanProvider model) {
     final loanWatcher = context.watch<LoanProvider>();
     final profileWatcher = context.watch<ProfileProvider>();
-    final loanReader = context.read<LoanProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
-                child: PLPaddedWidget(
+                child: NovaPaddedWidget(
                   child: Form(
                     key: loanWatcher.formKeyForLoanApply,
                     child: Column(
@@ -35,52 +34,52 @@ class LoanApplyScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            PLVSpace(48),
-                            PLBackIcon(
+                            NovaVSpace(48),
+                            NovaBackIcon(
                               onTap: () => Navigator.pop(context),
                             ),
-                            PLVSpace(16),
-                            PLTextWidget(
+                            NovaVSpace(16),
+                            NovaTextWidget(
                               title: "Apply for loan",
-                              textStyle: PLTypography.textTitleLargeStyle,
-                              textColor: PLColors.appPrimaryText,
+                              textStyle: NovaTypography.textTitleLargeStyle,
+                              textColor: NovaColors.appPrimaryText,
                               fontWeight: FontWeight.w700,
-                              textSize: PLTypography.fontTitleLarge,
+                              textSize: NovaTypography.fontTitleLarge,
                             ),
-                            PLVSpace(24),
+                            NovaVSpace(24),
                             Container(
                               decoration: BoxDecoration(
-                                  borderRadius: PLDecorations
+                                  borderRadius: NovaDecorations
                                       .borderRadiusGeometryCircular8,
-                                  color: PLColors.appPrimaryColorMain500
+                                  color: NovaColors.appPrimaryColorMain500
                                       .withOpacity(.05)),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const PLImageSvg(svgPath: PLAssets.infoIcon),
-                                  PLHSpace(8),
+                                  const NovaImageSvg(svgPath: NovaAssets.infoIcon),
+                                  NovaHSpace(8),
                                   Expanded(
-                                    child: PLTextWidget(
+                                    child: NovaTextWidget(
                                       title:
                                           'Transfers can only be made to bank account number registered to your account',
                                       textStyle:
-                                          PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appGrayText,
-                                      textSize: PLTypography.fontLabelSmall,
+                                          NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appGrayText,
+                                      textSize: NovaTypography.fontLabelSmall,
                                     ),
                                   ),
                                 ],
                               ).paddingSymmetric(horizontal: 16, vertical: 16),
                             ),
-                            PLVSpace(24),
-                            PLPrimaryTextField(
+                            NovaVSpace(24),
+                            NovaPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: loanWatcher.amount,
                               formatter: [
                                 CurrencyTextInputFormatter(symbol: strCurrency2)
                               ],
-                              fillColor: PLColors.appWhiteColor,
+                              fillColor: NovaColors.appWhiteColor,
                               validation: (val) => Validators.validateAmount(
                                   val,
                                   strFieldRequiredError,
@@ -92,13 +91,13 @@ class LoanApplyScreen extends StatelessWidget {
                               onChange: (val) =>
                                   loanWatcher.listenForLoanApplyChanges(),
                             ),
-                            PLTextWidget(
+                            NovaTextWidget(
                               title:
                                   "Minimum amount - ${5000.toString().formatWithCommasAndDecimals().formatToNairaCurrency()} | Maximum amount - ${AppData.getUserProfileResponseModel?.borrowerLimit.toString().formatWithCommasAndDecimals().formatToNairaCurrency() ?? 0}",
-                              textColor: PLColors.appGrayText,
-                              textSize: PLTypography.fontLabelSmall,
+                              textColor: NovaColors.appGrayText,
+                              textSize: NovaTypography.fontLabelSmall,
                             ),
-                            PLVSpace(16),
+                            NovaVSpace(16),
                             PLDropDownButtonWithIcon(
                               list: AppData.loanPurpose,
                               title: "What do you want to use it for?",
@@ -117,7 +116,7 @@ class LoanApplyScreen extends StatelessWidget {
                             //     // loanWatcher.listenForLoanApplyChanges();
                             //   },
                             // ),
-                            PLVSpace(16),
+                            NovaVSpace(16),
                             // PLPrimaryTextField(
                             //   textInputType: TextInputType.number,
                             //   controller: loanWatcher.tenor,
@@ -142,31 +141,31 @@ class LoanApplyScreen extends StatelessWidget {
                                   loanWatcher.listenForLoanApplyChanges();
                                 },
                                 isRequired: true),
-                            PLTextWidget(
+                            NovaTextWidget(
                               title:
                                   "Loan duration: ${DateTime.now().formatDatev4()} - ${loanWatcher.repaymentDate.text.isNotEmpty ? DateFormat(dateFormatterv3).parse(loanWatcher.selectedDate).formatDatev4() : ""}",
-                              textColor: PLColors.appGrayText,
-                              textSize: PLTypography.fontLabelSmall,
+                              textColor: NovaColors.appGrayText,
+                              textSize: NovaTypography.fontLabelSmall,
                             ),
-                            PLVSpace(16),
+                            NovaVSpace(16),
                             Container(
                               decoration: BoxDecoration(
-                                  boxShadow: [PLDecorations.customShadow],
-                                  borderRadius: PLDecorations
+                                  boxShadow: [NovaDecorations.customShadow],
+                                  borderRadius: NovaDecorations
                                       .borderRadiusGeometryCircular8,
-                                  color: PLColors.appWhiteColor),
+                                  color: NovaColors.appWhiteColor),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title: AppData.getUserProfileResponseModel
                                             ?.fullName ??
                                         '',
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appGrayText,
-                                    textSize: PLTypography.fontLabelMedium,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appGrayText,
+                                    textSize: NovaTypography.fontLabelMedium,
                                   ),
-                                  PLVSpace(12),
+                                  NovaVSpace(12),
                                   Row(
                                     // crossAxisAlignment: CrossAxisAlignment.end,
                                     mainAxisAlignment:
@@ -183,14 +182,14 @@ class LoanApplyScreen extends StatelessWidget {
                                                   .isNotEmpty) ...[
                                             Container(
                                               decoration: BoxDecoration(
-                                                borderRadius: PLDecorations
+                                                borderRadius: NovaDecorations
                                                     .borderRadiusGeometryCircular16,
                                               ),
-                                              child: PLImageNetwork(
+                                              child: NovaImageNetwork(
                                                 networkPath: profileWatcher
                                                     .nigeriaBanks
                                                     .firstWhere((element) =>
-                                                        element.name
+                                                        element.bankName
                                                             .toLowerCase() ==
                                                         (profileWatcher
                                                                     .bankDetails
@@ -202,28 +201,28 @@ class LoanApplyScreen extends StatelessWidget {
                                                 height: 32.h,
                                               ),
                                             ),
-                                            PLHSpace(12),
+                                            NovaHSpace(12),
                                           ],
-                                          PLTextWidget(
+                                          NovaTextWidget(
                                             title: profileWatcher
                                                     .bankDetails?.bankName ??
                                                 "",
-                                            textStyle: PLTypography
+                                            textStyle: NovaTypography
                                                 .textTitleLargeStyle,
-                                            textColor: PLColors.appPrimaryText,
+                                            textColor: NovaColors.appPrimaryText,
                                             textSize:
-                                                PLTypography.fontBodyMedium,
+                                                NovaTypography.fontBodyMedium,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ],
                                       ),
-                                      PLTextWidget(
+                                      NovaTextWidget(
                                         title:
                                             "${profileWatcher.bankDetails?.accountNumber.substring(0, 4) ?? ""}******",
                                         textStyle:
-                                            PLTypography.textTitleLargeStyle,
-                                        textColor: PLColors.appPrimaryText,
-                                        textSize: PLTypography.fontBodyMedium,
+                                            NovaTypography.textTitleLargeStyle,
+                                        textColor: NovaColors.appPrimaryText,
+                                        textSize: NovaTypography.fontBodyMedium,
                                         fontWeight: FontWeight.w600,
                                       )
                                     ],
@@ -231,15 +230,15 @@ class LoanApplyScreen extends StatelessWidget {
                                 ],
                               ).paddingSymmetric(horizontal: 16, vertical: 12),
                             ),
-                            PLVSpace(24),
+                            NovaVSpace(24),
                           ],
                         ),
                         Column(
                           children: [
-                            PLButtonRound(
+                            NovaButtonRound(
                               textTitle: strProceed,
                               borderRadius:
-                                  PLDecorations.borderRadiusGeometryCircular8,
+                                  NovaDecorations.borderRadiusGeometryCircular8,
                               isFormValidated: loanWatcher.isLoanFormValidated,
                               loadingString: loanWatcher.loadingString,
                               isLoader: loanWatcher.isLoading,
@@ -247,7 +246,7 @@ class LoanApplyScreen extends StatelessWidget {
                                 loanWatcher.processLoanSummary(context);
                               },
                             ),
-                            PLVSpace(24),
+                            NovaVSpace(24),
                           ],
                         ),
                       ],

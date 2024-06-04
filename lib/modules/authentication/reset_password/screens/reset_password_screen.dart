@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/reset_password/exports.dart';
+part of 'package:nova/modules/authentication/reset_password/exports.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class ResetPasswordScreen extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Container(
@@ -25,10 +25,10 @@ class ResetPasswordScreen extends StatelessWidget {
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
-                          PLAssets.loginBgPng,
+                          NovaAssets.loginBgPng,
                         ),
                         fit: BoxFit.cover)),
-                child: PLPaddedWidget(
+                child: NovaPaddedWidget(
                   child: Form(
                     key: model.formKey,
                     child: Align(
@@ -37,19 +37,19 @@ class ResetPasswordScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PLVSpace(86),
-                          PLTextWidget(
+                          NovaVSpace(86),
+                          NovaTextWidget(
                             title: strResetPassword,
                             isTitle: true,
-                            textColor: PLColors.appWhiteColor,
-                            textStyle: PLTypography.textHeadlineSmallStyle,
+                            textColor: NovaColors.appWhiteColor,
+                            textStyle: NovaTypography.textHeadlineSmallStyle,
                           ),
                           const SizedBox(height: 10.0),
-                          PLTextWidget(
+                          NovaTextWidget(
                             title: strResetPasswordDesc,
-                            textColor: PLColors.appWhiteColor,
+                            textColor: NovaColors.appWhiteColor,
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                           SizedBox(
                             width: context.width,
                             child: PinTextField(
@@ -62,23 +62,23 @@ class ResetPasswordScreen extends StatelessWidget {
                               validation: (val) => val.validateString(strFieldRequiredError),
                             ),
                           ),
-                          PLVSpace(32),
-                          PLButtonRound(
+                          NovaVSpace(32),
+                          NovaButtonRound(
                             textTitle: strContinue,
                             isFormValidated: model.isFormValidated,
                             isLoader: model.isLoading,
                             loadingString: model.loadingString,
                             functionToRun: () => model.validateForm(context),
                           ),
-                          PLVSpace(14),
+                          NovaVSpace(14),
                           ResentOtpWidget(context, (){}, (){}, true),
-                          PLVSpace(16),
+                          NovaVSpace(16),
                           GestureDetector(
                             onTap: () => Navigator.pushNamed(context, AppRoutes.login),
                             child: Center(
-                              child: PLTextWidget(
+                              child: NovaTextWidget(
                                 title: strBackToLogin,
-                                textColor: PLColors.appSecondaryColorMain500,
+                                textColor: NovaColors.appSecondaryColorMain500,
                               ),
                             ).paddingAll(10),
                           ),

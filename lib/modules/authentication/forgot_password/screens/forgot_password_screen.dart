@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/forgot_password/exports.dart';
+part of 'package:nova/modules/authentication/forgot_password/exports.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -13,8 +13,8 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   Widget _buildScreen(BuildContext context, ForgotPasswordProvider model) {
     return AppBaseWidget(
-      iconSet: PLImagePng(
-        imgPath: PLAssets.phoneWalletInHand,
+      iconSet: NovaImagePng(
+        imgPath: NovaAssets.phoneWalletInHand,
         width: 150.w,
         height: 150.h,
         boxFit: BoxFit.contain,
@@ -38,8 +38,8 @@ class ForgotPasswordWidget extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
-          backgroundColor: PLColors.appWhiteColor,
+        child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle.light,
             child: SingleChildScrollView(
@@ -48,29 +48,29 @@ class ForgotPasswordWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(40),
-                    PLTextWidget(
+                    NovaVSpace(40),
+                    NovaTextWidget(
                       title: "Recover PIN",
                       isTitle: true,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontHeadlineMedium,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontHeadlineMedium,
                     ),
-                    PLVSpace(10),
-                    PLTextWidget(
+                    NovaVSpace(10),
+                    NovaTextWidget(
                       title: "Enter your email and we’ll send you a link to reset your PIN.",
-                      textColor: PLColors.appGrayText,
-                      textSize: PLTypography.fontLabelMedium,
+                      textColor: NovaColors.appGrayText,
+                      textSize: NovaTypography.fontLabelMedium,
                     ),
-                    PLVSpace(32),
-                    PLPrimaryTextField(
+                    NovaVSpace(32),
+                    NovaPrimaryTextField(
                       textInputType: TextInputType.emailAddress,
                       controller: model.email,
                       onChange: (val) => model.listenForChanges(),
                       validation: (val) => val.validateEmail(strEmailError),
                       hintText: strEmail,
                     ),
-                    PLVSpace(40),
-                    PLButtonRound(
+                    NovaVSpace(40),
+                    NovaButtonRound(
                       textTitle: "Reset",
                       isLoader: model.isLoading,
                       loadingString: model.loadingString,

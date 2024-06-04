@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 
 class BannerCarouselWidget extends StatefulWidget {
@@ -9,41 +9,17 @@ class BannerCarouselWidget extends StatefulWidget {
 }
 
 class _BannerCarouselWidgetState extends State<BannerCarouselWidget> {
-  final CarouselController _controller = CarouselController();
   int _currentIndex = 0;
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // DashboardController controller = Provider.of<DashboardController>(context, listen: false);
-    // Future.delayed(Duration.zero, () {
-    //   controller.getWalletDetailsListCached = controller.getWalletDetailsList;
-    // });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final dashboardWatcher = Provider.of<DashboardProvider>(context);
 
     return Column(
       children: [
         CarouselSlider(
             items: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular16,
-                  color: PLColors.appGreenColor,
-                ),
-                height: 100.h,
-              ).marginOnly(right: 12),
-              Container(
-                height: 100.h,
-                decoration: BoxDecoration(
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular16,
-                  color: PLColors.appPrimaryText,
-                ),
-              ),
+              promoCard(NovaAssets.promoSample, ""),
+              promoCard(NovaAssets.promoSample, ""),
             ],
             options: CarouselOptions(
               height: 105.h,
@@ -57,13 +33,50 @@ class _BannerCarouselWidgetState extends State<BannerCarouselWidget> {
                 });
               },
             )),
-        PLVSpace(8),
+        NovaVSpace(8),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: buildPageIndicator(context, 2, _currentIndex,
-              PLColors.appPrimaryColorMain500, 30, false),
+              NovaColors.appPrimaryColorMain500, 30, false),
         ),
       ],
     );
   }
+
+  Widget promoCard(image, text) {
+    return Container(
+      margin: const EdgeInsets.only(right: 15),
+      decoration: BoxDecoration(
+        // color: Colors.orange,
+        borderRadius: BorderRadius.circular(20),
+        image: DecorationImage(fit: BoxFit.cover, image: AssetImage(image)),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: LinearGradient(
+              // todo: Use this to add subtle inner shadow below your image
+                begin: Alignment.bottomRight,
+                stops: const [
+                  0.1,
+                  0.9
+                ],
+                colors: [
+                  Colors.black.withOpacity(.5),
+                  Colors.black.withOpacity(.1),
+                ])),
+        child: Align(
+          alignment: Alignment.bottomLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(
+              text,
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
 }

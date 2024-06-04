@@ -8,9 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:peerlendly/core/exports.dart';
-import 'package:peerlendly/modules/home/exports.dart';
-import 'package:peerlendly/modules/wallet/widgets/select_phone_contact.dart';
+import 'package:nova/core/exports.dart';
+import 'package:nova/modules/home/exports.dart';
+import 'package:nova/modules/wallet/widgets/select_phone_contact.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +22,6 @@ import '../authentication/complete_account_setup/exports.dart';
 import '../base_module/exports.dart';
 import '../loan/exports.dart';
 import '../profile/exports.dart';
-import '../transaction_history/exports.dart';
 
 part 'provider/wallet_provider.dart';
 part 'screens/airtime_screen.dart';

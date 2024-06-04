@@ -1,58 +1,56 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(48),
-                    PLBackIcon(
+                    NovaVSpace(48),
+                    NovaBackIcon(
                       onTap: () => Navigator.pop(context),
                     ),
-                    PLVSpace(8),
-                    PLTextWidget(
+                    NovaVSpace(8),
+                    NovaTextWidget(
                       title: "About Us",
                       isTitle: true,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontHeadlineSmall,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontHeadlineSmall,
                     ),
-                    PLVSpace(24),
+                    NovaVSpace(24),
                 RichText(
                   text: TextSpan(
                     children: <TextSpan>[
                       const TextSpan(
-                        text: """Peer Lendly was created with the goal to transform the way we borrow and lend.  In today's financial landscape, the barriers to lending and accessing capital are pronounced, driven by high operation and underwriting costs that do a disservice to both borrowers and lenders alike. Peer Lendly challenges this status quo.   At Peer Lendly, we harness the power of cutting-edge technology to strip away unnecessary expenses and processes. Our mission is simple: offer borrowers clear, quick access to capital, while enabling lenders to operate without the burdens of traditional overheads, from staffing to borrower verification, thereby transferring the benefits of reduced costs to the borrowers in the form of lower interest rates and increased available capital.   Join us in this journey. With Peer Lendly, lending and borrowing is not just more efficient, but also more equitable.
+                        text: """Nova was created with the goal to transform the way we borrow and lend.  In today's financial landscape, the barriers to lending and accessing capital are pronounced, driven by high operation and underwriting costs that do a disservice to both borrowers and lenders alike. Nova challenges this status quo.   At Nova, we harness the power of cutting-edge technology to strip away unnecessary expenses and processes. Our mission is simple: offer borrowers clear, quick access to capital, while enabling lenders to operate without the burdens of traditional overheads, from staffing to borrower verification, thereby transferring the benefits of reduced costs to the borrowers in the form of lower interest rates and increased available capital.   Join us in this journey. With Nova, lending and borrowing is not just more efficient, but also more equitable.
 
 Visit: """,
-                        style: TextStyle(color: PLColors.appGrayText),
+                        style: TextStyle(color: NovaColors.appGrayText),
                       ),
                       TextSpan(
-                        text: 'www.peerlendly.com',
+                        text: 'www.nova.com',
                         style: const TextStyle(
                           color: Colors.blue,
                           decoration: TextDecoration.underline,
                         ),
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () => launchUrlString('https://www.peerlendly.com'),
+                          ..onTap = () => launchUrlString('https://www.nova.com'),
                       ),
                       const TextSpan(
                         text: ' to learn more.',
-                        style: TextStyle(color: PLColors.appGrayText),
+                        style: TextStyle(color: NovaColors.appGrayText),
                       )
                     ],
                   ),
@@ -60,19 +58,19 @@ Visit: """,
 
 //                 PLTextWidget(
 //                       title:
-//                           """Peer Lendly was created with the goal to transform the way we borrow and lend.  In today's financial landscape, the barriers to lending and accessing capital are pronounced, driven by high operation and underwriting costs that do a disservice to both borrowers and lenders alike. Peer Lendly challenges this status quo.   At Peer Lendly, we harness the power of cutting-edge technology to strip away unnecessary expenses and processes. Our mission is simple: offer borrowers clear, quick access to capital, while enabling lenders to operate without the burdens of traditional overheads, from staffing to borrower verification, thereby transferring the benefits of reduced costs to the borrowers in the form of lower interest rates and increased available capital.   Join us in this journey. With Peer Lendly, lending and borrowing is not just more efficient, but also more equitable.
+//                           """Nova was created with the goal to transform the way we borrow and lend.  In today's financial landscape, the barriers to lending and accessing capital are pronounced, driven by high operation and underwriting costs that do a disservice to both borrowers and lenders alike. Nova challenges this status quo.   At Nova, we harness the power of cutting-edge technology to strip away unnecessary expenses and processes. Our mission is simple: offer borrowers clear, quick access to capital, while enabling lenders to operate without the burdens of traditional overheads, from staffing to borrower verification, thereby transferring the benefits of reduced costs to the borrowers in the form of lower interest rates and increased available capital.   Join us in this journey. With Nova, lending and borrowing is not just more efficient, but also more equitable.
 //
-// Visit: www.peerlendly.com to learn more.""",
+// Visit: www.nova.com to learn more.""",
 //                       textColor: PLColors.appGrayText,
 //                       textStyle: PLTypography.textHeadlineMediumStyle,
 //                       textSize: PLTypography.fontLabelLarge,
 //                     ),
-                    PLVSpace(24),
-                    PLTextWidget(
+                    NovaVSpace(24),
+                    NovaTextWidget(
                       title: """Legal""",
-                      textColor: PLColors.appPrimaryColorMain500,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontLabelLarge,
+                      textColor: NovaColors.appPrimaryColorMain500,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontLabelLarge,
                       fontWeight: FontWeight.w700,
                     ),
                   ],

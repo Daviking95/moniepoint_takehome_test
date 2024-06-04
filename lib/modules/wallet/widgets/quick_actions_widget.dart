@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class QuickActionsWidget extends StatelessWidget {
   const QuickActionsWidget({Key? key}) : super(key: key);
@@ -8,7 +8,7 @@ class QuickActionsWidget extends StatelessWidget {
     return Row(
       children: [
         _singleServiceIcon(
-            context, PLAssets.fundWalletIcon, "Wallet", PLColors.appBlackColor,
+            context, NovaAssets.fundWalletIcon, "Wallet", NovaColors.appBlackColor,
                 () {
               if (!_isUserBVNValidated(context)) return;
 
@@ -16,7 +16,7 @@ class QuickActionsWidget extends StatelessWidget {
                   context, const WalletAccountDetailsWidget(), true,
                   context.height / 2.2);
             }),
-        _singleServiceIcon(context, PLAssets.getALoanIcon, "Get A Loan",
+        _singleServiceIcon(context, NovaAssets.getALoanIcon, "Get A Loan",
             const Color(0xff5D07CD), () {
               if (!_isUserBVNValidated(context)) return;
 
@@ -29,8 +29,8 @@ class QuickActionsWidget extends StatelessWidget {
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
             }),
-        _singleServiceIcon(context, PLAssets.marketplaceIcon, "Marketplace",
-            PLColors.appSecondaryText, () {
+        _singleServiceIcon(context, NovaAssets.marketplaceIcon, "Marketplace",
+            NovaColors.appSecondaryText, () {
               if (!_isUserBVNValidated(context)) return;
 
               PersistentNavBarNavigator.pushNewScreen(
@@ -40,8 +40,8 @@ class QuickActionsWidget extends StatelessWidget {
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
             }),
-        _singleServiceIcon(context, PLAssets.airtimeBillsIcon,
-            "Airtime and Bills", PLColors.appSecondaryColorMain500, () {
+        _singleServiceIcon(context, NovaAssets.airtimeBillsIcon,
+            "Airtime and Bills", NovaColors.appSecondaryColorMain500, () {
               if (!_isUserBVNValidated(context)) return;
 
               PersistentNavBarNavigator.pushNewScreen(
@@ -71,18 +71,18 @@ class QuickActionsWidget extends StatelessWidget {
             children: [
               Container(
                   decoration: BoxDecoration(
-                    color: PLColors.appWhiteColor,
-                    borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                    color: NovaColors.appWhiteColor,
+                    borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                   ),
-                  child: PLImageSvg(
+                  child: NovaImageSvg(
                     svgPath: imgString,
                     height: 28,
                     width: 28,
                   ).paddingAll(8)),
-              PLVSpace(12),
-              PLTextWidget(
+              NovaVSpace(12),
+              NovaTextWidget(
                 title: title,
-                textSize: PLTypography.fontLabelSmall,
+                textSize: NovaTypography.fontLabelSmall,
                 fontWeight: FontWeight.w600,
               ),
             ],

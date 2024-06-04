@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 class DashboardCTAWidget extends StatelessWidget {
   final String title;
@@ -10,58 +10,58 @@ class DashboardCTAWidget extends StatelessWidget {
 
   DashboardCTAWidget(this.title, this.description, this.ctaButtonTitle,
       this.assetString, this.actionToTake,
-      {super.key, this.ctaColor = PLColors.appPrimaryColorMain500});
+      {super.key, this.ctaColor = NovaColors.appPrimaryColorMain500});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: PLDecorations.borderRadiusGeometryCircular16,
-          color: PLColors.appWhiteColor),
+          borderRadius: NovaDecorations.borderRadiusGeometryCircular16,
+          color: NovaColors.appWhiteColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CircleAvatar(
             backgroundColor: const Color(0xffEEF4FC),
             child: assetString.endsWith(".svg")
-                ? PLImageSvg(svgPath: assetString)
-                : PLImagePng(
+                ? NovaImageSvg(svgPath: assetString)
+                : NovaImagePng(
                     imgPath: assetString,
                     width: 24.w,
                     height: 24.h,
                   ),
           ),
-          PLHSpace(16),
+          NovaHSpace(16),
           Expanded(
             flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PLTextWidget(
+                NovaTextWidget(
                   title: title,
-                  textSize: PLTypography.fontBodyMedium,
+                  textSize: NovaTypography.fontBodyMedium,
                   fontWeight: FontWeight.w600,
                 ),
-                PLVSpace(4),
-                PLTextWidget(
+                NovaVSpace(4),
+                NovaTextWidget(
                   title: description,
-                  textColor: PLColors.appGrayText,
-                  textSize: PLTypography.fontLabelSmall,
+                  textColor: NovaColors.appGrayText,
+                  textSize: NovaTypography.fontLabelSmall,
                 ),
               ],
             ),
           ),
-          PLHSpace(8),
+          NovaHSpace(8),
           InkWell(
             onTap: () => actionToTake(),
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular20,
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular20,
                   color: ctaColor),
-              child: PLTextWidget(
+              child: NovaTextWidget(
                 title: ctaButtonTitle,
-                textColor: PLColors.appWhiteColor,
-                textSize: PLTypography.fontLabelSmall,
+                textColor: NovaColors.appWhiteColor,
+                textSize: NovaTypography.fontLabelSmall,
               ).paddingSymmetric(horizontal: 12, vertical: 8),
             ),
           ),

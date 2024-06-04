@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class PendingActiveLoanItem extends StatelessWidget {
   final LoanStatus loanStatus;
@@ -23,54 +23,54 @@ class PendingActiveLoanItem extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: PLColors.appWhiteColor,
-                borderRadius: PLDecorations.borderRadiusGeometryCircular8),
+                color: NovaColors.appWhiteColor,
+                borderRadius: NovaDecorations.borderRadiusGeometryCircular8),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CircleAvatar(
-                  backgroundColor: PLColors.appPrimaryColorMain500,
+                  backgroundColor: NovaColors.appPrimaryColorMain500,
                   radius: 20,
                   child: Text(
                     loanDetail.borrowerName.length < 2 ? loanDetail.borrowerName : loanDetail.borrowerName.substring(0,2).toUpperCase(),
                     style: context.textTheme.bodyMedium!
-                        .copyWith(color: PLColors.appWhiteColor),
+                        .copyWith(color: NovaColors.appWhiteColor),
                   ),
                 ),
-                PLHSpace(8),
+                NovaHSpace(8),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLTextWidget(
+                      NovaTextWidget(
                         title: loanDetail.loanAmount.toString().formatWithCommasAndDecimals(),
                         isCurrency: true,
-                        textColor: PLColors.appPrimaryText,
-                        fontFamily: PLTypography.fontFamilyMedium,
+                        textColor: NovaColors.appPrimaryText,
+                        fontFamily: NovaTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w500,
-                        textSize: PLTypography.fontBodySmall,
+                        textSize: NovaTypography.fontBodySmall,
                       ),
-                      PLVSpace(8),
-                      PLTextWidget(
+                      NovaVSpace(8),
+                      NovaTextWidget(
                         title: DateTime.now().formatDate(),
-                        textColor: PLColors.appGrayText,
-                        textSize: PLTypography.fontLabelSmall,
+                        textColor: NovaColors.appGrayText,
+                        textSize: NovaTypography.fontLabelSmall,
                       ),
                     ],
                   ),
                 ),
-                PLHSpace(12),
+                NovaHSpace(12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    PLTextWidget(
+                    NovaTextWidget(
                       title: getLoanStatus(loanDetail.loanStatus.toInt()),
                       textColor: loanDetail.loanStatus.toInt() == 5
-                          ? PLColors.appErrorColor
-                          : PLColors.appGreenColor,
-                      textSize: PLTypography.fontLabelSmall,
+                          ? NovaColors.appErrorColor
+                          : NovaColors.appGreenColor,
+                      textSize: NovaTypography.fontLabelSmall,
                     ),
                   ],
                 ),

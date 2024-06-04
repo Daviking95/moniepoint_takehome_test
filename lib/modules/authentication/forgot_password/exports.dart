@@ -5,9 +5,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:peerlendly/core/exports.dart';
-import 'package:peerlendly/modules/authentication/login/exports.dart';
-import 'package:peerlendly/shared/models/generic_response_model.dart';
+import 'package:nova/core/exports.dart';
+import 'package:nova/modules/authentication/login/exports.dart';
+import 'package:nova/shared/models/generic_response_model.dart';
 
 import '../../../shared/models/error_response_model.dart';
 import '../../../shared/widgets/exports.dart';

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/utils/helper_functions/exports.dart';
+part of 'package:nova/core/utils/helper_functions/exports.dart';
 
 customDatePicker(BuildContext? context, TextEditingController controller,
     {bool isEndDate = false,
@@ -91,8 +91,8 @@ String showCupertinoDatePicker(
                       : dateTime.add(Duration(days: noOfDays)),
                 ),
               ),
-              PLPaddedWidget(
-                child: PLButtonRound(
+              NovaPaddedWidget(
+                child: NovaButtonRound(
                   textTitle: "Confirm",
                   functionToRun: () {
                     if(callback != null) callback();

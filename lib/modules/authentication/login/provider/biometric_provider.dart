@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/login/exports.dart';
+part of 'package:nova/modules/authentication/login/exports.dart';
 
 class BiometricProvider extends ChangeNotifier{
   static final LocalAuthentication localAuthentication = LocalAuthentication();
@@ -46,7 +46,7 @@ class BiometricProvider extends ChangeNotifier{
     try {
       authenticated = await localAuthentication.authenticate(
         // sensitiveTransaction: true,
-          localizedReason: "biometrics-auth-desc-text".i18n(),
+          localizedReason: "biometrics-auth-desc-text",
           options: const AuthenticationOptions(
               biometricOnly: true, useErrorDialogs: true, stickyAuth: true));
 
@@ -63,33 +63,33 @@ class BiometricProvider extends ChangeNotifier{
       if ((await AppPreferencesUtils.readFromPref(PrefsConstants.userEmail) && !await AppPreferencesUtils.readFromPref(PrefsConstants.isFingerPrintAllowedAtLogin))) {
         return showErrorWidgetDialog(
             context: context,
-            title: "biometrics-setup-text".i18n(),
-            message: "biometrics-setup-desc-text".i18n(),
+            title: "biometrics-setup-text",
+            message: "biometrics-setup-desc-text",
             canClick: true,
             dialogHeight: 170,
             hasBtn: true,
-            btnTitle: "ok-text".i18n(),
+            btnTitle: "ok-text",
             functionToRun: () {});
       }
       if (!await startBiometricLogin()) {
         return showErrorWidgetDialog(
             context: context,
-            title: "biometrics-first-time-text".i18n(),
-            message: "biometrics-first-time-desc-text".i18n(),
+            title: "biometrics-first-time-text",
+            message: "biometrics-first-time-desc-text",
             canClick: true,
             dialogHeight: 170,
             hasBtn: true,
-            btnTitle: "ok-text".i18n(),
+            btnTitle: "ok-text",
             functionToRun: () {});
       } else if (!await getBiometricsSupport()) {
         return showErrorWidgetDialog(
             context: context,
-            title: "biometrics-not-supported-text".i18n(),
-            message: "biometrics-not-supported-desc-text".i18n(),
+            title: "biometrics-not-supported-text",
+            message: "biometrics-not-supported-desc-text",
             canClick: true,
             dialogHeight: 170,
             hasBtn: true,
-            btnTitle: "ok-text".i18n(),
+            btnTitle: "ok-text",
             functionToRun: () {});
       } else if (await authenticateMe()) {
         if (callBack != null) {
@@ -98,12 +98,12 @@ class BiometricProvider extends ChangeNotifier{
       } else {
         return showErrorWidgetDialog(
             context: context,
-            title: "unknown-error-text".i18n(),
-            message: "biometrics-unknown-error-desc-text".i18n(),
+            title: "unknown-error-text",
+            message: "biometrics-unknown-error-desc-text",
             canClick: true,
             dialogHeight: 170,
             hasBtn: true,
-            btnTitle: "ok-text".i18n(),
+            btnTitle: "ok-text",
             functionToRun: () {});
       }
     } catch (e) {
@@ -111,12 +111,12 @@ class BiometricProvider extends ChangeNotifier{
 
       return showErrorWidgetDialog(
           context: context,
-          title: "unknown-error-text".i18n(),
-          message: "biometrics-unknown-error-desc-text".i18n(),
+          title: "unknown-error-text",
+          message: "biometrics-unknown-error-desc-text",
           canClick: true,
           dialogHeight: 170,
           hasBtn: true,
-          btnTitle: "ok-text".i18n(),
+          btnTitle: "ok-text",
           functionToRun: () {});
     }
   }

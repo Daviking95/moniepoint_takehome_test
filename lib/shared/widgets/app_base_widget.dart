@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class AppBaseWidget extends StatelessWidget {
   final Widget iconSet;
@@ -15,12 +15,12 @@ class AppBaseWidget extends StatelessWidget {
       required this.topHeight,
       this.hasNoColumn = false,
       this.hasBackButton = false,
-      this.bgColor = PLColors.appPrimaryColorMain500})
+      this.bgColor = NovaColors.appPrimaryColorMain500})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PLScaffold(
+    return NovaScaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: Container(
@@ -34,13 +34,13 @@ class AppBaseWidget extends StatelessWidget {
                   child: hasNoColumn ? iconSet : Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      PLVSpace(48),
+                      NovaVSpace(48),
                       Row(
                         mainAxisAlignment: hasBackButton ? MainAxisAlignment.start : MainAxisAlignment.center,
                         crossAxisAlignment: hasBackButton ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                         children: [
                           if(hasBackButton)
-                          PLBackIcon(onTap: () => Navigator.pop(context)).paddingOnly(left: 10),
+                          NovaBackIcon(onTap: () => Navigator.pop(context)).paddingOnly(left: 10),
                           iconSet,
                           if(hasBackButton)
                           Container(width: 60,),
@@ -57,8 +57,8 @@ class AppBaseWidget extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(28),
                             topRight: Radius.circular(28)),
-                        color: PLColors.appWhiteColor),
-                    child: PLPaddedWidget(
+                        color: NovaColors.appWhiteColor),
+                    child: NovaPaddedWidget(
                       child: buildWidget,
                     ),
                   ),
@@ -82,12 +82,12 @@ class AppBaseStackedWidget extends StatelessWidget {
       required this.iconSet,
       required this.buildWidget,
       required this.topHeight,
-      this.bgColor = PLColors.appPrimaryColorMain500})
+      this.bgColor = NovaColors.appPrimaryColorMain500})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PLScaffold(
+    return NovaScaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: Container(
@@ -100,7 +100,7 @@ class AppBaseStackedWidget extends StatelessWidget {
                         Color(0x7F2F7CE5), BlendMode.multiply))),
             child: Column(
               children: [
-                PLVSpace(topHeight),
+                NovaVSpace(topHeight),
                 Expanded(
                   child: Container(
                     // height: bottomHeight,
@@ -108,8 +108,8 @@ class AppBaseStackedWidget extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(28),
                             topRight: Radius.circular(28)),
-                        color: PLColors.appWhiteColor),
-                    child: PLPaddedWidget(
+                        color: NovaColors.appWhiteColor),
+                    child: NovaPaddedWidget(
                       child: buildWidget,
                     ),
                   ),

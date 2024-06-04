@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class PersonalInfoTab extends StatefulWidget {
   const PersonalInfoTab({Key? key}) : super(key: key);
@@ -8,7 +8,6 @@ class PersonalInfoTab extends StatefulWidget {
 }
 
 class _PersonalInfoTabState extends State<PersonalInfoTab> {
-
   late ProfileProvider profileProvider;
 
   @override
@@ -20,7 +19,6 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
 
       profileProvider.fillProfileDetails();
     });
-
   }
 
   @override
@@ -32,41 +30,41 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
         key: model.personalInfoFormKey,
         child: Column(
           children: [
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
               textInputType: TextInputType.text,
               controller: model.firstName,
               // isReadOnly: true,
               hintText: strFirstName,
               onChange: (val) => model.listenForPersonalInfoChanges(),
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
               textInputType: TextInputType.text,
               controller: model.lastName,
               // isReadOnly: true,
               hintText: strLastName,
               onChange: (val) => model.listenForPersonalInfoChanges(),
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
               textInputType: TextInputType.emailAddress,
               controller: model.email,
               isReadOnly: true,
               hintText: strEmail,
               onChange: (val) => model.listenForPersonalInfoChanges(),
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
                 textInputType: TextInputType.number,
                 controller: model.phoneNumber,
                 formatter: [FilteringTextInputFormatter.digitsOnly],
                 maxLength: 11,
                 onChange: (val) => model.listenForPersonalInfoChanges(),
                 hintText: strPhoneNumber),
-            PlDatePickerTextField(
+            NovaDatePickerTextField(
                 datePickerController: model.dateOfBirth,
                 noOfYears: 16,
                 isTodayLastDate: true,
-                hasNoTapFunction: (AppData.getUserProfileResponseModel?.bvnVerified ?? false),
+                hasNoTapFunction:
+                    (AppData.getUserProfileResponseModel?.bvnVerified ?? false),
                 onChange: (val) {
-
                   model.listenForPersonalInfoChanges();
                 },
                 text: strDateOfBirth),
@@ -78,7 +76,7 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
                 model.listenForPersonalInfoChanges();
               },
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
                 textInputType: TextInputType.text,
                 controller: model.idNumber,
                 // isReadOnly: true,
@@ -108,26 +106,51 @@ class _PersonalInfoTabState extends State<PersonalInfoTab> {
                 model.listenForPersonalInfoChanges();
               },
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
                 textInputType: TextInputType.text,
                 controller: model.address,
                 onChange: (val) => model.listenForPersonalInfoChanges(),
+                suffixIcon: InkWell(
+                  onTap: () {
+                    ShowAddressReasonPop();
+                  },
+                  child: Icon(
+                    Icons.info_outline,
+                    color: NovaColors.appPrimaryColorMain500,
+                  ),
+                ),
                 hintText: "Full Home Address"),
-            PLVSpace(32),
-            PLButtonRound(
-              textTitle: strSave,
-              // isFormValidated: model.isPersonalInfoUpdated,
-              isLoader: model.isLoading,
-              loadingString: model.loadingString,
-              borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-              functionToRun: () =>
-                  model.updateProfileInfo(context, 1)
-                  // model.confirmProfileSavePersonalInfo(context, 1, model),
+            PLDropDownButtonWithIcon(
+              list: AppData.localGovernment,
+              title: "Local Government",
+              value: model.localGov,
+              callBack: (val) {
+                model.listenForPersonalInfoChanges();
+              },
             ),
-            PLVSpace(16),
+            PLDropDownButtonWithIcon(
+              list: AppData.state,
+              title: "State",
+              value: model.state,
+              callBack: (val) {
+                model.listenForPersonalInfoChanges();
+              },
+            ),
+            NovaVSpace(32),
+            NovaButtonRound(
+                textTitle: strSave,
+                // isFormValidated: model.isPersonalInfoUpdated,
+                isLoader: model.isLoading,
+                loadingString: model.loadingString,
+                borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+                functionToRun: () => model.updateProfileInfo(context, 1)
+                // model.confirmProfileSavePersonalInfo(context, 1, model),
+                ),
+            NovaVSpace(16),
           ],
         ),
       ),
     );
   }
+
 }

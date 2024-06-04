@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class TransferPinActivationWidget extends StatelessWidget {
   final BuildContext? prevContext;
@@ -13,23 +13,23 @@ class TransferPinActivationWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PLVSpace(8),
-          PLBackIcon(onTap: () => Navigator.pop(context), isBtmNavWithNoTitle: true),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(8),
+          NovaBackIcon(onTap: () => Navigator.pop(context), isBtmNavWithNoTitle: true),
+          NovaVSpace(24),
+          NovaTextWidget(
             title: "Transaction Pin",
             isTitle: true,
-            textSize: PLTypography.fontHeadlineSmall,
-            textStyle: PLTypography.textHeadlineSmallStyle,
-            textColor: PLColors.appPrimaryText,
+            textSize: NovaTypography.fontHeadlineSmall,
+            textStyle: NovaTypography.textHeadlineSmallStyle,
+            textColor: NovaColors.appPrimaryText,
           ),
-          PLVSpace(10),
-          PLTextWidget(
+          NovaVSpace(10),
+          NovaTextWidget(
             title: "Kindly enter your 4-digit code ",
-            textSize: PLTypography.fontLabelMedium,
-            textColor: PLColors.appGrayText,
+            textSize: NovaTypography.fontLabelMedium,
+            textColor: NovaColors.appGrayText,
           ),
-          PLVSpace(24),
+          NovaVSpace(24),
           SizedBox(
             width: context.width,
             child: PinTextField(
@@ -45,7 +45,7 @@ class TransferPinActivationWidget extends StatelessWidget {
               validation: (val) => val.validateString(strFieldRequiredError),
             ),
           ),
-          PLVSpace(8),
+          NovaVSpace(8),
         ],
       ),
     );

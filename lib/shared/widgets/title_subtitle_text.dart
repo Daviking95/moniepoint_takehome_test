@@ -1,11 +1,11 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLTitleSubtitleText extends StatelessWidget {
+class NovaTitleSubtitleText extends StatelessWidget {
   final String title;
   final String subTitle;
   final double? titleSize;
 
-  const PLTitleSubtitleText({super.key, required this.title, required
+  const NovaTitleSubtitleText({super.key, required this.title, required
   this.subTitle, this.titleSize});
 
   @override
@@ -14,13 +14,13 @@ class PLTitleSubtitleText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PLTextWidget(
+        NovaTextWidget(
           title: title,
           isTitle: true,
           textSize: titleSize,
         ),
         const SizedBox(height: 4.0),
-        PLTextWidget(
+        NovaTextWidget(
           title: subTitle,
         ),
       ],

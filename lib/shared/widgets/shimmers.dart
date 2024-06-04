@@ -1,7 +1,7 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLShimmer extends StatelessWidget {
-  const PLShimmer({super.key});
+class NovaShimmer extends StatelessWidget {
+  const NovaShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class PLShimmer extends StatelessWidget {
         children: [
           for (int i = 0; i < 4; i++)
             Shimmer.fromColors(
-                baseColor: PLColors.appPrimaryColor50,
-                highlightColor: PLColors.appPrimaryColor50.withOpacity(.7),
-                child: Container(color: PLColors.appPrimaryColor50, height: 80.h, child: Container(height: 50,))),
+                baseColor: NovaColors.appPrimaryColor50,
+                highlightColor: NovaColors.appPrimaryColor50.withOpacity(.7),
+                child: Container(color: NovaColors.appPrimaryColor50, height: 80.h, child: Container(height: 50,))),
         ]).marginSymmetric(horizontal: 15);
   }
 }

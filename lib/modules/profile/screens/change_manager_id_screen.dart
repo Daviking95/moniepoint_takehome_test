@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class ChangeManagerIdScreen extends StatelessWidget {
   const ChangeManagerIdScreen({Key? key}) : super(key: key);
@@ -6,13 +6,12 @@ class ChangeManagerIdScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
             body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
@@ -23,18 +22,18 @@ class ChangeManagerIdScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // PLVSpace(48),
-                        PLBackIcon(
+                        NovaBackIcon(
                           onTap: () => Navigator.pop(context),
                           title: strChangeManagerID,
                         ),
-                        PLVSpace(16),
-                        PLPrimaryTextField(
+                        NovaVSpace(16),
+                        NovaPrimaryTextField(
                             textInputType: TextInputType.text,
                             controller: profileWatcher.managerId,
                             onChange: (val) => profileWatcher.listenForManagerIDChanges(),
                             validation: (val) => val.validateString(strFieldRequiredError),
                             hintText: strManagerID),
-                        PLPasswordTextField(
+                        NovaPasswordTextField(
                           controller: profileWatcher.password,
                           textInputTitle: strPassword,
                           hintText: strPassword,
@@ -42,8 +41,8 @@ class ChangeManagerIdScreen extends StatelessWidget {
                           onChange: (val) => profileWatcher.listenForManagerIDChanges(),
                           textInputAction: TextInputAction.done,
                         ),
-                        PLVSpace(32),
-                        PLButtonRound(
+                        NovaVSpace(32),
+                        NovaButtonRound(
                           textTitle: strSubmit,
                           isFormValidated:
                           profileWatcher.isChangeManagerIDFormValidated,

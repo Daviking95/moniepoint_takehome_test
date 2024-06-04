@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/transaction_history/exports.dart';
+part of 'package:nova/modules/transaction_history/exports.dart';
 
 class ReportTransactionPopup extends StatelessWidget {
   const ReportTransactionPopup({Key? key}) : super(key: key);
@@ -6,36 +6,36 @@ class ReportTransactionPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PLPaddedWidget(
+    return NovaPaddedWidget(
       child: Column(
         children: [
-          PLVSpace(24),
-          PLImageSvg(svgPath: PLAssets.infoIconRed, width: 40.w, height: 40.h,),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(24),
+          NovaImageSvg(svgPath: NovaAssets.infoIconRed, width: 40.w, height: 40.h,),
+          NovaVSpace(24),
+          NovaTextWidget(
             title: 'Do you wish to report this transaction?',
-            textSize: PLTypography.fontLabelMedium,
+            textSize: NovaTypography.fontLabelMedium,
             textAlign: TextAlign.center,
-            textColor: PLColors.appGrayText,
+            textColor: NovaColors.appGrayText,
           ),
-          PLVSpace(24),
+          NovaVSpace(24),
           Row(
             children: [
               Expanded(
                 child: PLButtonOutline(
-                  borderColor: PLColors.appPrimaryColorMain500,
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                  borderColor: NovaColors.appPrimaryColorMain500,
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                   textTitle: "No cancel",
                   functionToRun: () {
                     Navigator.pop(context);
                   },
                 ),
               ),
-              PLHSpace(16),
+              NovaHSpace(16),
               Expanded(
-                child: PLButtonRound(
+                child: NovaButtonRound(
                     textTitle: "Report",
-                    borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                    borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                     functionToRun: () {
                       Navigator.pop(context);
 

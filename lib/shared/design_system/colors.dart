@@ -1,10 +1,10 @@
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
-class PLColors {
+class NovaColors {
 
-  PLColors._();
+  NovaColors._();
 
-  static const Color appPrimaryColorMain500 = Color(0XFF2F7CE5);
+  static const Color appPrimaryColorMain500 = Color(0XFF00A0DD);
   static const Color appPrimaryColor50 = Color(0xFFE5E9FF);
   static const Color appPrimaryColor100 = Color(0xFFB8C3FF);
   static const Color appPrimaryColor200 = Color(0XFF95A5FF);
@@ -13,7 +13,7 @@ class PLColors {
   static const Color appPrimaryColor600 = Color(0XFF0E229A);
   static const Color appPrimaryColor700 = Color(0XFF0B1D86);
   static const Color appPrimaryColor800 = Color(0XFF06156A);
-  static const Color appPrimaryColor900 = Color(0XFF030C42);
+  static const Color appPrimaryColor900 = Color(0XFF0A3764);
 
   static const Color appPrimaryText = Color(0xFF1B1464);
   static const Color appGrayText = Color(0xFF83848B);
@@ -42,7 +42,7 @@ class PLColors {
   static const Color appGradient2Color = Color(0XFF715CFF);
 
   static const Color appIndicatorColor = Color(0xff6A5C8A);
-  static const Color appSliderColor = Color(0xffD9D9D9);
+  static const Color appSliderColor = Color(0xff0A3764);
   static const Color appPlusButtonColor = Color(0xffDCD6FF);
   static const Color appPlusButtonInnerColor = Color(0xff0D0F11);
   static const Color appFocusColor = Color(0xffC1C1C3);

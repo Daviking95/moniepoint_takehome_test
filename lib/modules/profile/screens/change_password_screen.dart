@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({Key? key}) : super(key: key);
@@ -6,13 +6,12 @@ class ChangePasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
             body: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: Form(
@@ -23,12 +22,12 @@ class ChangePasswordScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // PLVSpace(48),
-                    PLBackIcon(
+                    NovaBackIcon(
                       onTap: () => Navigator.pop(context),
                       title: strChangePassword,
                     ),
-                    PLVSpace(16),
-                    PLPasswordTextField(
+                    NovaVSpace(16),
+                    NovaPasswordTextField(
                       controller: profileWatcher.oldPassword,
                       textInputTitle: strOldPassword,
                       hintText: strOldPassword,
@@ -37,7 +36,7 @@ class ChangePasswordScreen extends StatelessWidget {
                           profileWatcher.listenForChangePasswordChanges(),
                       textInputAction: TextInputAction.next,
                     ),
-                    PLPasswordTextField(
+                    NovaPasswordTextField(
                       controller: profileWatcher.newPassword,
                       textInputTitle: strNewPassword,
                       hintText: strNewPassword,
@@ -46,8 +45,8 @@ class ChangePasswordScreen extends StatelessWidget {
                           profileWatcher.listenForChangePasswordChanges(),
                       textInputAction: TextInputAction.done,
                     ),
-                    PLVSpace(32),
-                    PLButtonRound(
+                    NovaVSpace(32),
+                    NovaButtonRound(
                       textTitle: strSubmit,
                       isFormValidated:
                           profileWatcher.isChangePasswordFormValidated,

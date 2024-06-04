@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:peerlendly/core/exports.dart';
+import 'package:nova/core/exports.dart';
 
 import '../../../core/navigation/exports.dart';
 import '../../../core/utils/constants/exports.dart';

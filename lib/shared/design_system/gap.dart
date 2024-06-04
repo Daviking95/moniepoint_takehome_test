@@ -1,12 +1,12 @@
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
-PLVSpace(double height) {
+NovaVSpace(double height) {
   return SizedBox(
     height: height.h,
   );
 }
 
-PLHSpace(double width) {
+NovaHSpace(double width) {
   return SizedBox(
     width: width.w,
   );

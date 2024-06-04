@@ -1,27 +1,19 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
-class MarketplaceLoanList extends StatefulWidget {
+class MarketplaceLoanList extends StatelessWidget {
   const MarketplaceLoanList({Key? key}) : super(key: key);
 
   @override
-  State<MarketplaceLoanList> createState() => _MarketplaceLoanListState();
-}
-
-class _MarketplaceLoanListState extends State<MarketplaceLoanList> {
-  late LoanProvider loanProvider;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    loanProvider = Provider.of<LoanProvider>(context, listen: false);
-    loanProvider.getMarketplaceLoans();
+  Widget build(BuildContext context) {
+    return BaseView<LoanProvider>(
+      vmBuilder: (context) =>
+          LoanProvider(context: context, shouldInitialize: true, shouldGetMarketplaceLoans: true),
+      builder: _buildScreen,
+    );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildScreen(BuildContext context, LoanProvider model) {
     final loanWatcher = context.watch<LoanProvider>();
-    final loanReader = context.read<LoanProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -29,16 +21,16 @@ class _MarketplaceLoanListState extends State<MarketplaceLoanList> {
         onWillPop: () => Navigator.canPop(context)
             ? Future.value(true)
             : Future.value(false),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: RefreshIndicator(
                 onRefresh: () {
-                  return loanProvider.getMarketplaceLoans();
+                  return loanWatcher.getMarketplaceLoans();
                 },
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  child: PLPaddedWidget(
+                  child: NovaPaddedWidget(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
@@ -47,8 +39,8 @@ class _MarketplaceLoanListState extends State<MarketplaceLoanList> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            PLVSpace(48),
-                            PLBackIcon(
+                            NovaVSpace(48),
+                            NovaBackIcon(
                               onTap: () => Navigator.canPop(context)
                                   ? Navigator.pop(context)
                                   : AppNavigator.pushAndRemoveUtil(
@@ -58,16 +50,16 @@ class _MarketplaceLoanListState extends State<MarketplaceLoanList> {
                                 children: [
                                   InkWell(
                                       onTap: () {},
-                                      child: const PLImageSvg(
-                                        svgPath: PLAssets.filterIcon,
+                                      child: const NovaImageSvg(
+                                        svgPath: NovaAssets.filterIcon,
                                         height: 15,
                                         width: 25,
                                       )),
-                                  PLHSpace(8),
+                                  NovaHSpace(8),
                                 ],
                               ),
                             ),
-                            PLVSpace(24),
+                            NovaVSpace(24),
                             loanWatcher.isLoading ?
                             const Center(child: CircularProgressIndicator()) :
                             loanWatcher.isLoading && AppData.marketplaceLoans.isEmpty
@@ -122,11 +114,11 @@ class _MarketplaceLoanListState extends State<MarketplaceLoanList> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(bottom: 5),
-            child: PLTextWidget(
+            child: NovaTextWidget(
               title: marketplaceLoan.endDate.formatDate(),
-              textSize: PLTypography.fontLabelSmall,
+              textSize: NovaTypography.fontLabelSmall,
               fontWeight: FontWeight.w600,
-              textColor: PLColors.appGrayText,
+              textColor: NovaColors.appGrayText,
             ),
             // Text(),
           ),

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/utils/helper_functions/exports.dart';
+part of 'package:nova/core/utils/helper_functions/exports.dart';
 
 openMailApps(BuildContext context) async {
   // Android: Will open mail app or show native picker.

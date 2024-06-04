@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/complete_account_setup/exports.dart';
+part of 'package:nova/modules/authentication/complete_account_setup/exports.dart';
 
 
 class VerifyIdScreen extends StatelessWidget {
@@ -15,36 +15,36 @@ class VerifyIdScreen extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
-          backgroundColor: PLColors.appWhiteColor,
+        child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
                 key: completeAccountWatcher.verifyIDFormKey,
                 child: SingleChildScrollView(
-                  child: PLPaddedWidget(
+                  child: NovaPaddedWidget(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLVSpace(32),
-                        PLBackIcon(
+                        NovaVSpace(32),
+                        NovaBackIcon(
                           onTap: () => Navigator.pop(context),
                         ),
-                        PLVSpace(16),
-                        PLTextWidget(
+                        NovaVSpace(16),
+                        NovaTextWidget(
                           title: "Setup Profile",
                           isTitle: true,
-                          textStyle: PLTypography.textHeadlineMediumStyle,
-                          textSize: PLTypography.fontHeadlineSmall,
+                          textStyle: NovaTypography.textHeadlineMediumStyle,
+                          textSize: NovaTypography.fontHeadlineSmall,
                         ),
-                        PLVSpace(5),
-                        PLTextWidget(
+                        NovaVSpace(5),
+                        NovaTextWidget(
                           title: "Create your profile",
-                          textColor: PLColors.appPrimaryText,
-                          textSize: PLTypography.fontLabelMedium,
+                          textColor: NovaColors.appPrimaryText,
+                          textSize: NovaTypography.fontLabelMedium,
                         ),
-                        PLVSpace(32),
+                        NovaVSpace(32),
                         PLDropDownButtonWithIcon(
                           list: AppData.meansOfId,
                           title: "Select means of ID verification",
@@ -55,14 +55,14 @@ class VerifyIdScreen extends StatelessWidget {
                           },
 
                         ),
-                        PLVSpace(16),
-                        PLPrimaryTextField(
+                        NovaVSpace(16),
+                        NovaPrimaryTextField(
                             textInputType: TextInputType.name,
                             controller: completeAccountWatcher.idNumber,
                             onChange: (val) => completeAccountWatcher.checkIfDocumentFormIsFilled(),
                             validation: (val) => val.validateString(strFieldRequiredError),
                             hintText: "ID Number"),
-                        PLVSpace(16),
+                        NovaVSpace(16),
                         GestureDetector(
                             onTap: (){
                               modalBottomSheet(
@@ -83,7 +83,7 @@ class VerifyIdScreen extends StatelessWidget {
                               children: [
                                 Center(
                                   child: ClipRRect(
-                                    borderRadius: PLDecorations
+                                    borderRadius: NovaDecorations
                                         .borderRadiusGeometryCircular20,
                                     child: Image(
                                       image: FileImage(File(
@@ -98,14 +98,56 @@ class VerifyIdScreen extends StatelessWidget {
                               ],
                             )
                                 : Center(
-                                child: PLImagePng(
-                                  imgPath: PLAssets.captureDocument,
+                                child: NovaImagePng(
+                                  imgPath: NovaAssets.captureDocument,
                                   height: 120.h,
                                   width: context.width,
                                   boxFit: BoxFit.cover,
                                 ))),
-                        PLVSpace(32),
-                        PLButtonRound(
+                        NovaVSpace(8),
+                        GestureDetector(
+                            onTap: (){
+                              modalBottomSheet(
+                                  context,
+                                  ImageCameraPickerWidget(
+                                      controller: completeAccountWatcher.signatureImageDocument,
+                                      callBack: (imagePath, file, base64Image) {
+                                        completeAccountWatcher.signatureImageDocument.text = imagePath;
+                                        completeAccountWatcher.signatureDocImage = file;
+                                        completeAccountWatcher.checkIfDocumentFormIsFilled();
+
+                                      }, removePhotoCallBack: () {  },),
+                                  true,
+                                  context.height / 3.1);
+                            },
+                            child: completeAccountWatcher.signatureDocImage.path.isNotEmpty
+                                ? Column(
+                              children: [
+                                Center(
+                                  child: ClipRRect(
+                                    borderRadius: NovaDecorations
+                                        .borderRadiusGeometryCircular20,
+                                    child: Image(
+                                      image: FileImage(File(
+                                          completeAccountWatcher
+                                              .signatureDocImage.path)),
+                                      width: 200,
+                                      height: 200,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                                : Center(
+                                child: NovaImagePng(
+                                  imgPath: NovaAssets.signatureDocument,
+                                  height: 120.h,
+                                  width: context.width,
+                                  boxFit: BoxFit.cover,
+                                ))),
+                        NovaVSpace(32),
+                        NovaButtonRound(
                           textTitle: strProceed,
                           loadingString: completeAccountWatcher.loadingString,
                           isLoader: completeAccountWatcher.isLoading,

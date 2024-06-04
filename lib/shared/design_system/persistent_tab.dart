@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
 // https://morioh.com/a/9a8807ac398e/a-persistent-static-bottom-navigation-bar-for-flutter
 
@@ -11,10 +11,7 @@ class PersistentTab extends StatefulWidget {
 }
 
 class _PersistentTabState extends State<PersistentTab> {
-  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
-
   int _currentIndex = 0;
-
   @override
   void initState() {
     super.initState();
@@ -75,23 +72,23 @@ class _PersistentTabState extends State<PersistentTab> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const PLImageSvg(svgPath: PLAssets.btmHome),
-        inactiveIcon: const PLImageSvg(svgPath: PLAssets.btmHomeInactive),
+        icon: const NovaImageSvg(svgPath: NovaAssets.btmHome),
+        inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmHomeInactive),
         iconSize: 30,
         title: ("Home"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const PLImageSvg(svgPath: PLAssets.btmTransactions),
-        inactiveIcon: const PLImageSvg(svgPath: PLAssets.btmTransactionsInactive),
+        icon: const NovaImageSvg(svgPath: NovaAssets.btmTransactions),
+        inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmTransactionsInactive),
         title: ("History"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const PLImageSvg(svgPath: PLAssets.btmProfile),
-        inactiveIcon: const PLImageSvg(svgPath: PLAssets.btmProfileInactive),
+        icon: const NovaImageSvg(svgPath: NovaAssets.btmProfile),
+        inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmProfileInactive),
         title: ("Profile"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,

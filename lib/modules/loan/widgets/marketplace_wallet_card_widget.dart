@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class MarketplaceWalletCardWidget extends StatelessWidget {
   final int selectedIndex;
@@ -12,12 +12,12 @@ class MarketplaceWalletCardWidget extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: PLColors.appPrimaryColorMain500,
+        color: NovaColors.appPrimaryColorMain500,
         image: const DecorationImage(
-            image: AssetImage(PLAssets.walletCardBg),
+            image: AssetImage(NovaAssets.walletCardBg),
             alignment: Alignment.topLeft,
             fit: BoxFit.contain),
-        borderRadius: PLDecorations.borderRadiusGeometryCircular20,
+        borderRadius: NovaDecorations.borderRadiusGeometryCircular20,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,50 +30,50 @@ class MarketplaceWalletCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  PLTextWidget(
+                  NovaTextWidget(
                     title: selectedIndex == 0
                         ? "Current Balance"
                         : "Investment Balance",
-                    textStyle: PLTypography.textBodySmallStyle,
-                    textSize: PLTypography.fontBodySmall,
-                    textColor: PLColors.appWhiteColor,
+                    textStyle: NovaTypography.textBodySmallStyle,
+                    textSize: NovaTypography.fontBodySmall,
+                    textColor: NovaColors.appWhiteColor,
                     maxLines: 1,
                   ),
-                  PLVSpace(8),
+                  NovaVSpace(8),
                   Row(
                     children: [
-                      PLTextWidget(
+                      NovaTextWidget(
                         title: 4000000
                             .toString()
                             .formatWithCommasAndDecimals()
                             .hideOrShowBalance(context),
-                        textStyle: PLTypography.textTitleSmallStyle,
-                        textSize: PLTypography.fontTitleLarge,
-                        fontFamily: PLTypography.fontFamilyMedium,
+                        textStyle: NovaTypography.textTitleSmallStyle,
+                        textSize: NovaTypography.fontTitleLarge,
+                        fontFamily: NovaTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w700,
-                        textColor: PLColors.appWhiteColor,
+                        textColor: NovaColors.appWhiteColor,
                         maxLines: 1,
                         isCurrency: true,
                       ),
-                      PLHSpace(10),
+                      NovaHSpace(10),
                       GestureDetector(
                           onTap: () async {
                             walletWatcher.toggleShowBalance();
                           },
                           child:
-                              const PLImageSvg(svgPath: PLAssets.showBalance)),
+                              const NovaImageSvg(svgPath: NovaAssets.showBalance)),
                     ],
                   ),
                 ],
               ),
-              PLImagePng(
-                imgPath: PLAssets.marketplaceCardIcon,
+              NovaImagePng(
+                imgPath: NovaAssets.marketplaceCardIcon,
                 width: 80.w,
                 height: 50.h,
               )
             ],
           ),
-          PLVSpace(16),
+          NovaVSpace(16),
           InkWell(
             onTap: () {
               AppNavigator.push(const MarketplaceLoanList());
@@ -81,16 +81,16 @@ class MarketplaceWalletCardWidget extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PLTextWidget(
+                NovaTextWidget(
                   title: "Go to marketplace",
-                  textStyle: PLTypography.textTitleSmallStyle,
-                  textSize: PLTypography.fontBodySmall,
+                  textStyle: NovaTypography.textTitleSmallStyle,
+                  textSize: NovaTypography.fontBodySmall,
                   fontWeight: FontWeight.w600,
-                  textColor: PLColors.appWhiteColor,
+                  textColor: NovaColors.appWhiteColor,
                   maxLines: 1,
                 ),
-                PLHSpace(10),
-                const PLImageSvg(svgPath: PLAssets.arrorRight)
+                NovaHSpace(10),
+                const NovaImageSvg(svgPath: NovaAssets.arrorRight)
               ],
             ),
           )

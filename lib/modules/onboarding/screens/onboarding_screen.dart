@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/onboarding/exports.dart';
+part of 'package:nova/modules/onboarding/exports.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -23,18 +23,12 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     onboardingReader = AppNavigator.appContext!.read<OnboardingProvider>();
 
     AppPreferences.isOnboardingCarouselSeenOnce = true;
-
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   onboardingWatcher.setAnimationController(this);
-    //   onboardingWatcher.animateSlider();
-    // });
   }
 
   @override
   void dispose() {
     // onboardingReader.animationController.dispose();
     onboardingReader.pageController.dispose();
-    // onboardingReader.timer.cancel();
     super.dispose();
   }
 
@@ -44,57 +38,58 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: Scaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: Container(
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                          PLAssets.pageViewBgPng,
-                        ),
-                        fit: BoxFit.cover)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: context.height / 1.75,
-                      child: PageView.builder(
-                        controller: onboardingWatcher.pageController,
-                        itemCount: OnBoardingModel().onboardingList.length,
-                        onPageChanged: (int index) {
-                          setState(() {
-                            onboardingWatcher.currentPageIndex = index;
-                          });
-                        },
-                        itemBuilder: (BuildContext context, int index) {
-                          final double pageOffset =
-                              (index - onboardingWatcher.currentPageIndex)
-                                  .abs()
-                                  .toDouble();
-                          final double scale = 1 - (pageOffset * 0.2);
-                          return Transform.scale(
-                            scale: scale,
-                            child: onboardingWatcher
-                                .icons[onboardingReader.currentPageIndex],
-                          );
-                        },
-                      ),
-                    ),
-                    Column(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  NovaVSpace(40),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLButtonRound(
-                          textTitle: strCreateAnAccount,
-                          functionToRun: () =>
-                              Navigator.pushNamed(context, AppRoutes.signUp),
+                        NovaImagePng(
+                          imgPath: NovaAssets.logoPng,
+                          width: 98.w,
+                          height: 31.h,
                         ),
-                        PLVSpace(14),
-                        const AlreadyHaveAccountWidget(),
+                        NovaVSpace(2)
+,                        NovaImagePng(
+                          imgPath: NovaAssets.licenceImage,
+                          width: 120.w,
+                          height: 15.h,
+                        ),
                       ],
-                    ).paddingSymmetric(horizontal: 20, vertical: 16),
-                  ],
-                ),
+                    ),
+                  ).paddingAll(16),
+                  Expanded(
+                    // height: context.height,
+                    child: PageView.builder(
+                      controller: onboardingWatcher.pageController,
+                      itemCount: OnBoardingModel().onboardingList.length,
+                      onPageChanged: (int index) {
+                        setState(() {
+                          onboardingWatcher.currentPageIndex = index;
+                        });
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        final double pageOffset =
+                            (index - onboardingWatcher.currentPageIndex)
+                                .abs()
+                                .toDouble();
+                        final double scale = 1 - (pageOffset * 0.2);
+                        return Transform.scale(
+                          scale: scale,
+                          child: onboardingWatcher
+                              .icons[onboardingReader.currentPageIndex],
+                        );
+                      },
+                    ),
+                  ),
+                ],
               )),
         ),
       ),

@@ -1,7 +1,4 @@
-import 'package:meta/meta.dart';
 import 'dart:convert';
-
-import '../../../core/enums/profile_enum.dart';
 
 class UpdateProfileRequestModel {
   final String profileSection;

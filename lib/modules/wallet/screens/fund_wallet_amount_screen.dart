@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class FundWalletAmountScreen extends StatelessWidget {
   const FundWalletAmountScreen({Key? key}) : super(key: key);
@@ -14,16 +14,15 @@ class FundWalletAmountScreen extends StatelessWidget {
 
   Widget _buildScreen(BuildContext context, WalletProvider model) {
     final walletWatcher = context.watch<WalletProvider>();
-    final walletReader = context.read<WalletProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -31,43 +30,43 @@ class FundWalletAmountScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLVSpace(48),
-                        PLBackIcon(
+                        NovaVSpace(48),
+                        NovaBackIcon(
                           onTap: () => Navigator.pop(context),
                         ),
-                        PLVSpace(16),
-                        PLTextWidget(
+                        NovaVSpace(16),
+                        NovaTextWidget(
                           title: "Fund Wallet",
-                          textStyle: PLTypography.textTitleLargeStyle,
-                          textColor: PLColors.appPrimaryText,
+                          textStyle: NovaTypography.textTitleLargeStyle,
+                          textColor: NovaColors.appPrimaryText,
                           fontWeight: FontWeight.w700,
-                          textSize: PLTypography.fontTitleLarge,
+                          textSize: NovaTypography.fontTitleLarge,
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                         Center(
-                          child: PLTextWidget(
+                          child: NovaTextWidget(
                             title: "ENTER AMOUNT",
-                            textColor: PLColors.appGrayText,
+                            textColor: NovaColors.appGrayText,
                             fontWeight: FontWeight.w600,
-                            textSize: PLTypography.fontBodyMedium,
+                            textSize: NovaTypography.fontBodyMedium,
                           ),
                         ),
-                        PLVSpace(10),
+                        NovaVSpace(10),
                         Row(
                           children: [
                             InkWell(
                               onTap: (){
                                 walletWatcher.changeAmount(true);
                               },
-                              child: PLImageSvg(
-                                svgPath: PLAssets.minusIcon,
+                              child: NovaImageSvg(
+                                svgPath: NovaAssets.minusIcon,
                                 width: 36.w,
                                 height: 36.h,
                               ),
                             ),
-                            PLHSpace(8),
+                            NovaHSpace(8),
                             Expanded(
-                              child: PLPrimaryTextField(
+                              child: NovaPrimaryTextField(
                                 textInputType: TextInputType.number,
                                 controller: walletWatcher.amount,
                                 textAlign: TextAlign.center,
@@ -82,20 +81,20 @@ class FundWalletAmountScreen extends StatelessWidget {
                                 // onChange: (val) => walletWatcher.listenForTransferChanges(),
                               ),
                             ),
-                            PLHSpace(16),
+                            NovaHSpace(16),
                             InkWell(
                               onTap: () {
                                 walletWatcher.changeAmount(false);
                               },
-                              child: PLImageSvg(
-                                svgPath: PLAssets.plusIcon,
+                              child: NovaImageSvg(
+                                svgPath: NovaAssets.plusIcon,
                                 width: 36.w,
                                 height: 36.h,
                               ),
                             ),
                           ],
                         ),
-                        PLVSpace(16),
+                        NovaVSpace(16),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -129,15 +128,15 @@ class FundWalletAmountScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                       ],
                     ),
                     Column(
                       children: [
-                        PLButtonRound(
+                        NovaButtonRound(
                           textTitle: strProceed,
                           borderRadius:
-                              PLDecorations.borderRadiusGeometryCircular8,
+                              NovaDecorations.borderRadiusGeometryCircular8,
                           loadingString: walletWatcher.loadingString,
                           isLoader: walletWatcher.isLoading,
                           functionToRun: () {
@@ -148,7 +147,7 @@ class FundWalletAmountScreen extends StatelessWidget {
                                     amount: double.parse(walletWatcher.amount.text.removeCommaAndCurrency())));
                           },
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                       ],
                     ),
                   ],

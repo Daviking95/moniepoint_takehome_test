@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/utils/extensions/exports.dart';
+part of 'package:nova/core/utils/extensions/exports.dart';
 
 const String dateFormatter = 'dd MMMM yyyy';
 const String dateFormatterv2 = 'yyyy-MM-dd';

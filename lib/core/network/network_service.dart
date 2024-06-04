@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/network/exports.dart';
+part of 'package:nova/core/network/exports.dart';
 
 class NetworkService {
   static String baseUrl = F.baseUrl;

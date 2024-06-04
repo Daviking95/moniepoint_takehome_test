@@ -1,6 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
-
-
+part of "package:nova/shared/widgets/exports.dart";
 class AlreadyHaveAccountWidget extends StatelessWidget {
   const AlreadyHaveAccountWidget({Key? key}) : super(key: key);
 
@@ -20,22 +18,22 @@ class AlreadyHaveAccountWidget extends StatelessWidget {
                     text: strAlreadyHaveAccount,
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
-                        fontSize: PLTypography.fontBodyMedium,
+                        fontSize: NovaTypography.fontBodyMedium,
                         fontFamily:
-                        PLTypography.fontFamilyLight)),
+                        NovaTypography.fontFamilyLight)),
                 TextSpan(
                   text: " $strLogin",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: PLTypography.fontBodyMedium,
-                      color: PLColors.appPrimaryColorMain500,
-                      fontFamily: PLTypography.fontFamilyLight),
+                      fontSize: NovaTypography.fontBodyMedium,
+                      color: NovaColors.appPrimaryColorMain500,
+                      fontFamily: NovaTypography.fontFamilyLight),
                 ),
               ],
             ),
             textAlign: TextAlign.center,
           ),
-          PLVSpace(64),
+          NovaVSpace(64),
         ],
       ),
     );
@@ -62,22 +60,22 @@ class DontHaveAccountWidget extends StatelessWidget {
                     text: strDontHaveAccount,
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
-                        fontSize: PLTypography.fontBodyMedium,
+                        fontSize: NovaTypography.fontBodyMedium,
                         fontFamily:
-                        PLTypography.fontFamilyLight)),
+                        NovaTypography.fontFamilyLight)),
                 TextSpan(
                   text: " $strSignUp",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: PLTypography.fontBodyMedium,
-                      color: PLColors.appPrimaryColorMain500,
-                      fontFamily: PLTypography.fontFamilyLight),
+                      fontSize: NovaTypography.fontBodyMedium,
+                      color: NovaColors.appPrimaryColorMain500,
+                      fontFamily: NovaTypography.fontFamilyLight),
                 ),
               ],
             ),
             textAlign: TextAlign.center,
           ),
-          PLVSpace(64),
+          NovaVSpace(64),
         ],
       ),
     );

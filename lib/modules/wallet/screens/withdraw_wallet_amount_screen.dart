@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class WithdrawWalletAmountScreen extends StatelessWidget {
   const WithdrawWalletAmountScreen({Key? key}) : super(key: key);
@@ -14,7 +14,6 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
 
   Widget _buildScreen(BuildContext context, WalletProvider model) {
     final walletWatcher = context.watch<WalletProvider>();
-    final walletReader = context.read<WalletProvider>();
     final profileWatcher = context.watch<ProfileProvider>();
 
 
@@ -22,10 +21,10 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -33,44 +32,44 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLVSpace(48),
-                        PLBackIcon(
+                        NovaVSpace(48),
+                        NovaBackIcon(
                           onTap: () => Navigator.pop(context),
                         ),
-                        PLVSpace(16),
-                        PLTextWidget(
+                        NovaVSpace(16),
+                        NovaTextWidget(
                           title: "Withdraw Funds",
-                          textStyle: PLTypography.textTitleLargeStyle,
-                          textColor: PLColors.appPrimaryText,
+                          textStyle: NovaTypography.textTitleLargeStyle,
+                          textColor: NovaColors.appPrimaryText,
                           fontWeight: FontWeight.w700,
-                          textSize: PLTypography.fontTitleLarge,
+                          textSize: NovaTypography.fontTitleLarge,
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                         Center(
-                          child: PLTextWidget(
+                          child: NovaTextWidget(
                             title:
                                 "Current Funds: ${500000.toString().formatWithCommasAndDecimals()}",
-                            textColor: PLColors.appGrayText,
+                            textColor: NovaColors.appGrayText,
                             fontWeight: FontWeight.w600,
-                            textSize: PLTypography.fontBodyMedium,
+                            textSize: NovaTypography.fontBodyMedium,
                           ),
                         ),
-                        PLVSpace(10),
+                        NovaVSpace(10),
                         Row(
                           children: [
                             InkWell(
                               onTap: () {
                                 walletWatcher.changeAmount(true);
                               },
-                              child: PLImageSvg(
-                                svgPath: PLAssets.minusIcon,
+                              child: NovaImageSvg(
+                                svgPath: NovaAssets.minusIcon,
                                 width: 36.w,
                                 height: 36.h,
                               ),
                             ),
-                            PLHSpace(8),
+                            NovaHSpace(8),
                             Expanded(
-                              child: PLPrimaryTextField(
+                              child: NovaPrimaryTextField(
                                 textInputType: TextInputType.number,
                                 controller: walletWatcher.amount,
                                 textAlign: TextAlign.center,
@@ -85,20 +84,20 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
                                 // onChange: (val) => walletWatcher.listenForTransferChanges(),
                               ),
                             ),
-                            PLHSpace(16),
+                            NovaHSpace(16),
                             InkWell(
                               onTap: () {
                                 walletWatcher.changeAmount(false);
                               },
-                              child: PLImageSvg(
-                                svgPath: PLAssets.plusIcon,
+                              child: NovaImageSvg(
+                                svgPath: NovaAssets.plusIcon,
                                 width: 36.w,
                                 height: 36.h,
                               ),
                             ),
                           ],
                         ),
-                        PLVSpace(16),
+                        NovaVSpace(16),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -132,23 +131,23 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                         Container(
                           decoration: BoxDecoration(
-                              boxShadow: [PLDecorations.customShadow],
+                              boxShadow: [NovaDecorations.customShadow],
                               borderRadius:
-                                  PLDecorations.borderRadiusGeometryCircular8,
-                              color: PLColors.appWhiteColor),
+                                  NovaDecorations.borderRadiusGeometryCircular8,
+                              color: NovaColors.appWhiteColor),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              PLTextWidget(
+                              NovaTextWidget(
                                 title: AppData.getUserProfileResponseModel?.fullName ?? '',
-                                textStyle: PLTypography.textTitleLargeStyle,
-                                textColor: PLColors.appGrayText,
-                                textSize: PLTypography.fontLabelMedium,
+                                textStyle: NovaTypography.textTitleLargeStyle,
+                                textColor: NovaColors.appGrayText,
+                                textSize: NovaTypography.fontLabelMedium,
                               ),
-                              PLVSpace(12),
+                              NovaVSpace(12),
                               Row(
                                 // crossAxisAlignment: CrossAxisAlignment.end,
                                 mainAxisAlignment:
@@ -161,39 +160,39 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
                                               .nigeriaBanks.isNotEmpty && (profileWatcher.bankDetails?.bankName ?? "").isNotEmpty) ...[
                                         Container(
                                           decoration: BoxDecoration(
-                                            borderRadius: PLDecorations
+                                            borderRadius: NovaDecorations
                                                 .borderRadiusGeometryCircular16,
                                           ),
-                                          child: PLImageNetwork(
+                                          child: NovaImageNetwork(
                                             networkPath: profileWatcher.nigeriaBanks
                                                 .firstWhere((element) =>
-                                            element.name.toLowerCase() ==
+                                            element.bankName.toLowerCase() ==
                                                 (profileWatcher.bankDetails?.bankName ?? "").toLowerCase())
                                                 .logo,
                                             width: 32.w,
                                             height: 32.h,
                                           ),
                                         ),
-                                        PLHSpace(12),
+                                        NovaHSpace(12),
                                       ],
-                                      PLTextWidget(
+                                      NovaTextWidget(
                                         title: profileWatcher
                                             .bankDetails?.bankName ??
                                             "",
                                         textStyle:
-                                        PLTypography.textTitleLargeStyle,
-                                        textColor: PLColors.appPrimaryText,
-                                        textSize: PLTypography.fontBodyMedium,
+                                        NovaTypography.textTitleLargeStyle,
+                                        textColor: NovaColors.appPrimaryText,
+                                        textSize: NovaTypography.fontBodyMedium,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ],
                                   ),
-                                  PLTextWidget(
+                                  NovaTextWidget(
                                     title:
                                     "${profileWatcher.bankDetails?.accountNumber.substring(0, 4) ?? ""}******",
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appPrimaryText,
-                                    textSize: PLTypography.fontBodyMedium,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appPrimaryText,
+                                    textSize: NovaTypography.fontBodyMedium,
                                     fontWeight: FontWeight.w600,
                                   )
                                 ],
@@ -201,23 +200,23 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
                             ],
                           ).paddingSymmetric(horizontal: 16, vertical: 16),
                         ),
-                        PLVSpace(24),
-                        PLTextWidget(
+                        NovaVSpace(24),
+                        NovaTextWidget(
                           title:
                               "Kindly note that the entered amount would be credited to your registered bank account.",
-                          textStyle: PLTypography.textTitleLargeStyle,
-                          textColor: PLColors.appGrayText,
-                          textSize: PLTypography.fontLabelSmall,
+                          textStyle: NovaTypography.textTitleLargeStyle,
+                          textColor: NovaColors.appGrayText,
+                          textSize: NovaTypography.fontLabelSmall,
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                       ],
                     ),
                     Column(
                       children: [
-                        PLButtonRound(
+                        NovaButtonRound(
                           textTitle: strProceed,
                           borderRadius:
-                              PLDecorations.borderRadiusGeometryCircular8,
+                              NovaDecorations.borderRadiusGeometryCircular8,
                           loadingString: walletWatcher.loadingString,
                           isLoader: walletWatcher.isLoading,
                           functionToRun: () {
@@ -233,7 +232,7 @@ class WithdrawWalletAmountScreen extends StatelessWidget {
                                 context.height / 1.5);
                           },
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                       ],
                     ),
                   ],

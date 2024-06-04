@@ -1,10 +1,10 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLTooltip extends StatelessWidget {
+class NovaTooltip extends StatelessWidget {
   final String message;
   final Widget child;
 
-  const PLTooltip({required this.message,required  this.child, super.key});
+  const NovaTooltip({required this.message,required  this.child, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +17,13 @@ class PLTooltip extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             constraints:
             BoxConstraints(maxWidth: context.width / 1.1),
-            child: Text(message, maxLines: 3, style: PLTypography.textLabelSmallStyle,),
+            child: Text(message, maxLines: 3, style: NovaTypography.textLabelSmallStyle,),
           )),
       triggerMode: TooltipTriggerMode.tap,
       height: 24.h,
       decoration: BoxDecoration(
           color: context.theme.scaffoldBackgroundColor,
-          borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+          borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
           boxShadow: const [
             BoxShadow(
               color: Color.fromRGBO(34, 34, 34, 0.1),

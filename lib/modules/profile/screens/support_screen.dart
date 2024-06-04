@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({Key? key}) : super(key: key);
@@ -9,15 +9,15 @@ class SupportScreen extends StatelessWidget {
       onWillPop: () async => Future.value(true),
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,
-        child: PLScaffold(
+        child: NovaScaffold(
           appBarWidget: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: PLColors.appWhiteColor,
+            backgroundColor: NovaColors.appWhiteColor,
             elevation: 0,
             title: Column(
               children: [
-                PLVSpace(12),
-                PLBackIcon(
+                NovaVSpace(12),
+                NovaBackIcon(
                     onTap: () => Navigator.canPop(context) ? Navigator.pop(context) : AppNavigator.pushAndRemoveUtil(const ProfileScreen()),
                     title: strHelpSupport),
               ],

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/onboarding/exports.dart';
+part of 'package:nova/modules/onboarding/exports.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -22,21 +22,29 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return PLScaffold(
-      backgroundColor: context.theme.scaffoldBackgroundColor,
+    return NovaScaffold(
+      backgroundColor: context.theme.primaryColor,
       body: Container(
         decoration:  const BoxDecoration(
-            color: PLColors.appWhiteColor),
+            color: NovaColors.appPrimaryColorMain500),
         child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              PLImagePng(
-                imgPath: PLAssets.logoWithNamePng,
-                width: 186.w,
-                height: 182.h,
-              ),
-            ],
+          child: TweenAnimationBuilder(
+            tween: Tween<double>(begin: 0.5, end: 1),
+            curve: Curves.easeInOut,
+            duration: const Duration(milliseconds: 1000),
+            builder: (context, double value, child) {
+              return Transform.scale(
+                scale: value,
+                child: Transform.translate(
+                  offset: Offset(0, -100 * (1 - value)),
+                  child: NovaImagePng(
+                    imgPath: NovaAssets.logoWhitePng,
+                    width: 150.w,
+                    height: 150.h,
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),

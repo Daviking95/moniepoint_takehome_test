@@ -1,6 +1,4 @@
 // Third-Party Packages
-export 'package:flutter_localizations/flutter_localizations.dart';
-export 'package:localization/localization.dart';
 export 'package:path_provider/path_provider.dart';
 
 export '../shared/design_system/exports.dart';

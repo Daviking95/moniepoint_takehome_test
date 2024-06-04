@@ -7,7 +7,7 @@ class DesignSystem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PLScaffold(
+    return NovaScaffold(
       body: Column(
         children: const [],
       ),

@@ -1,4 +1,4 @@
-part of "package:peerlendly/core/enums/exports.dart";
+part of "package:nova/core/enums/exports.dart";
 
 enum NotificationType{
   loanAccepted,

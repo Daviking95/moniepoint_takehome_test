@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:peerlendly/core/exports.dart';
+import 'package:nova/core/exports.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 

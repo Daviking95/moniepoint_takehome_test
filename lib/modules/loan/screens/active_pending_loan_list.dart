@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class ActivePendingLoanList extends StatelessWidget {
   final List<ActivePendingLoansResponseModelLoanDetail> loanDetails;

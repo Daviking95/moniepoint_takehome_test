@@ -1,4 +1,4 @@
-part of 'package:peerlendly/shared/widgets/exports.dart';
+part of 'package:nova/shared/widgets/exports.dart';
 
 abstract class AbstractFlowWidgetBottomSheets {
   Future<void> openPrimaryBottomSheet({
@@ -69,7 +69,7 @@ class PLBottomSheets implements AbstractFlowWidgetBottomSheets {
                       width: 36.w,
                       height: 6.h,
                       decoration: BoxDecoration(
-                          color: PLColors.neutralColor300,
+                          color: NovaColors.neutralColor300,
                           borderRadius: BorderRadius.circular(16.sp)),
                     ),
                   ).marginSymmetric(vertical: 16.h)
@@ -119,7 +119,7 @@ class FlowWidgetDialogBox implements AbstractFlowWidgetBottomSheets {
                 },
                 child: Dialog(
                   shape: RoundedRectangleBorder(
-                    borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                    borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                   ),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
@@ -130,8 +130,8 @@ class FlowWidgetDialogBox implements AbstractFlowWidgetBottomSheets {
                         child: Container(
                                 decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
-                                    color: PLColors.appWhiteColor,
-                                    borderRadius: PLDecorations
+                                    color: NovaColors.appWhiteColor,
+                                    borderRadius: NovaDecorations
                                         .borderRadiusGeometryCircular8),
                                 child: bottomSheetWidget)
                             .marginOnly(top: 15),

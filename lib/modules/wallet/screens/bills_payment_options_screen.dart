@@ -1,60 +1,58 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class BillsPaymentOptionsScreen extends StatelessWidget {
   const BillsPaymentOptionsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final walletWatcher = context.watch<WalletProvider>();
-    final walletReader = context.read<WalletProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
-                child: PLPaddedWidget(
+                child: NovaPaddedWidget(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLVSpace(48),
-                      PLBackIcon(
+                      NovaVSpace(48),
+                      NovaBackIcon(
                         onTap: () => Navigator.pop(context),
                       ),
-                      PLVSpace(16),
-                      PLTextWidget(
+                      NovaVSpace(16),
+                      NovaTextWidget(
                         title: "Airtime and Bills",
-                        textStyle: PLTypography.textTitleLargeStyle,
-                        textColor: PLColors.appPrimaryText,
+                        textStyle: NovaTypography.textTitleLargeStyle,
+                        textColor: NovaColors.appPrimaryText,
                         fontWeight: FontWeight.w700,
-                        textSize: PLTypography.fontTitleLarge,
+                        textSize: NovaTypography.fontTitleLarge,
                       ),
-                      PLVSpace(24),
-                      billsPaymentOptionItemWidget(PLAssets.buyAirtimeIcon,
+                      NovaVSpace(24),
+                      billsPaymentOptionItemWidget(NovaAssets.buyAirtimeIcon,
                           "Buy Airtime", () {
                             AppNavigator.push(const AirtimeScreen());
                           }),
-                      billsPaymentOptionItemWidget(PLAssets.buyInternetIcon,
+                      billsPaymentOptionItemWidget(NovaAssets.buyInternetIcon,
                           "Internet", () {
                             AppNavigator.push(const PayBillsScreen(title: "Internet"));
                           }),
-                      billsPaymentOptionItemWidget(PLAssets.buyBettingIcon,
+                      billsPaymentOptionItemWidget(NovaAssets.buyBettingIcon,
                           "Betting", () {
                             AppNavigator.push(const PayBillsScreen(title: "Betting"));
                           }),
-                      billsPaymentOptionItemWidget(PLAssets.buyTvIcon,
+                      billsPaymentOptionItemWidget(NovaAssets.buyTvIcon,
                           "TV", () {
                             AppNavigator.push(const PayBillsScreen(title: "TV"));
                           }),
-                      billsPaymentOptionItemWidget(PLAssets.buyElectricityIcon,
+                      billsPaymentOptionItemWidget(NovaAssets.buyElectricityIcon,
                           "Electricity", () {
                             AppNavigator.push(const PayBillsScreen(title: "Electricity"));
                           }),
-                      PLVSpace(24),
+                      NovaVSpace(24),
                     ],
                   ),
                 ),
@@ -71,8 +69,8 @@ class BillsPaymentOptionsScreen extends StatelessWidget {
       onTap: () => func(),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-            color: PLColors.appWhiteColor),
+            borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+            color: NovaColors.appWhiteColor),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -80,27 +78,27 @@ class BillsPaymentOptionsScreen extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                      borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                       color: const Color(0xffFAFCFE)),
-                  child: PLImageSvg(
+                  child: NovaImageSvg(
                     svgPath: assetString,
                     width: 24.w,
                     height: 24.h,
                   ).paddingAll(5),
                 ),
-                PLHSpace(12),
-                PLTextWidget(
+                NovaHSpace(12),
+                NovaTextWidget(
                   title: title,
-                  textStyle: PLTypography.textTitleLargeStyle,
-                  textColor: PLColors.appPrimaryText,
-                  textSize: PLTypography.fontBodyMedium,
+                  textStyle: NovaTypography.textTitleLargeStyle,
+                  textColor: NovaColors.appPrimaryText,
+                  textSize: NovaTypography.fontBodyMedium,
                   fontWeight: FontWeight.w700,
                 ),
               ],
             ),
             const Icon(
               Icons.arrow_forward_ios,
-              color: PLColors.appPrimaryText,
+              color: NovaColors.appPrimaryText,
               size: 18,
             )
           ],

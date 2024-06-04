@@ -2,8 +2,8 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:peerlendly/core/exports.dart';
-import 'package:peerlendly/modules/authentication/login/models/LoginRequestModel.dart';
+import 'package:nova/core/exports.dart';
+import 'package:nova/modules/authentication/login/models/LoginRequestModel.dart';
 
 import '../../../../core/utils/helper_functions/exports.dart';
 import '../../../../shared/models/error_response_model.dart';
@@ -95,7 +95,7 @@ class PLLoginRepository extends PLLoginService {
       return Right(
           GenericResponseModel(message: "Login Successful", success: true));
     } catch (e) {
-      "OnboardCustomerError $e".logger();
+      "SwitchAccountError $e".logger();
 
       return Left(ErrorResponseModel(
         isSuccess: false,

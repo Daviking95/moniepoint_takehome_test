@@ -1,108 +1,121 @@
-part of 'package:peerlendly/modules/authentication/complete_account_setup/exports.dart';
+part of 'package:nova/modules/authentication/signup/exports.dart';
 
 class VerifyEmailAddress extends StatelessWidget {
-
   final String emailAddress;
-  const VerifyEmailAddress({Key? key, this.emailAddress = ""}) : super(key: key);
+
+  const VerifyEmailAddress({Key? key, this.emailAddress = ""})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AppBaseWidget(
-      iconSet: Container(),
-      buildWidget: VerifyEmailWidget(emailAddress: emailAddress,),
-      topHeight: 80.h,
-      hasBackButton: true,
-    );
-  }
-}
-
-class VerifyEmailWidget extends StatefulWidget {
-  final String emailAddress;
-  const VerifyEmailWidget({Key? key, required this.emailAddress}) : super(key: key);
-
-  @override
-  State<VerifyEmailWidget> createState() => _VerifyEmailWidgetState();
-}
-
-class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
-  TextEditingController otp = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return BaseView<CompleteAccountSetupProvider>(
-      vmBuilder: (context) => CompleteAccountSetupProvider(context: context),
+    return BaseView<SignupProvider>(
+      vmBuilder: (context) => SignupProvider(context: context),
       builder: _buildScreen,
     );
   }
 
-  Widget _buildScreen(BuildContext context, CompleteAccountSetupProvider model) {
-    final completeAccountWatcher =
-        context.watch<CompleteAccountSetupProvider>();
+  Widget _buildScreen(BuildContext context, SignupProvider model) {
+    final signUpWatcher = context.watch<SignupProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
-          backgroundColor: PLColors.appWhiteColor,
+        child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle.light,
-              child: PLOverlayLoader(
-                startLoader: model.isLoading,
-                loadingString: model.loadingString,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            value: SystemUiOverlayStyle.light,
+            child: NovaPaddedWidget(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
                     children: [
-                      PLVSpace(40),
-                      PLBackIcon(
-                          onTap: () =>
-                              Navigator.pushNamed(context, AppRoutes.signUp),
-                          isCancel: true),
-                      PLVSpace(40),
-                      PLTextWidget(
-                        title: "Email Verification",
-                        textStyle: PLTypography.textHeadlineSmallStyle,
-                        textSize: PLTypography.fontTitleLarge,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: PLTypography.fontFamilyMedium,
+                      NovaVSpace(60),
+                      NovaBackIcon(
+                        onTap: () => Navigator.pop(context),
                       ),
-                      PLVSpace(10),
-                      const PLTextWidget(
-                        title: "Please enter the 4-digit code send to you at",
-                        textColor: PLColors.appGrayText,
+                      NovaVSpace(4),
+                      NovaImagePng(
+                        imgPath: NovaAssets.logoPng,
+                        width: 98.w,
+                        height: 31.h,
                       ),
-                      PLVSpace(4),
-                      PLTextWidget(
-                        title: widget.emailAddress,
-                        textColor: PLColors.appPrimaryText,
-                        fontWeight: FontWeight.w700,
+                      NovaVSpace(32),
+                      const NovaTitleHeader(
+                        title: "Verify Account",
                       ),
-                      PLVSpace(64),
-                      SizedBox(
-                        width: context.width,
-                        child:
-                        PinTextField(
-                          obscureText: false,
-                          fieldCount: 4,
-                          controller: otp,
-                          onChange: (value) {
-                            if (value.length == 4) {
-                              completeAccountWatcher.validateEmailVerifyForm(context, value, widget.emailAddress);
-                            }
-                          },
-                          validation: (val) =>
-                              val.validateString(strFieldRequiredError),
+                      NovaVSpace(16),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: "Code has been sent to ",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: NovaTypography.fontLabelLarge,
+                                    fontFamily:
+                                        NovaTypography.fontFamilyLight)),
+                            TextSpan(
+                              text: "johndoe@gmail.com.",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: NovaTypography.fontLabelLarge,
+                                  color: NovaColors.appPrimaryColorMain500),
+                            ),
+                          ],
                         ),
+                        textAlign: TextAlign.center,
+                        softWrap: true,
+                        maxLines: 2,
                       ),
-                      PLVSpace(32),
-                      ResentOtpWidget(context, () {}, () {}),
-                      PLVSpace(16),
+                      NovaVSpace(2),
+                      NovaTextWidget(
+                        title: "Enter the code to verify your account.",
+                        textColor: NovaColors.appBlackColor,
+                        textSize: NovaTypography.fontLabelLarge,
+                      ),
+                      NovaVSpace(32),
+                      NovaPrimaryTextField(
+                          textInputType: TextInputType.number,
+                          controller: signUpWatcher.emailOtpCode,
+                          textInputAction: TextInputAction.done,
+                          validation: (val) =>
+                              val.validateLength(strFieldRequiredError, 6),
+                          onChange: (val) =>
+                              model.listenForEmailVerifyChanges(),
+                          formatter: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            new LengthLimitingTextInputFormatter(6)
+                          ],
+                          innerHintText: "6 Digit Code",
+                          hintText: "Enter code"),
+                      // NovaVSpace(12),
+                      ResentOtpWidget(context, () {
+                        // widget.completeAccountWatcher
+                        //     .validateBvnForm(context, widget.bvn, true);
+                      }, () {}),
                     ],
                   ),
-                ),
-              )),
+                  Column(
+                    children: [
+                      NovaVSpace(40),
+                      NovaButtonRound(
+                          textTitle: "Verify Account",
+                          loadingString: model.loadingString,
+                          isLoader: model.isLoading,
+                          hasBgImg: true,
+                          isFormValidated: model.isEmailVerifyFormValidated,
+                          functionToRun: () {
+                            signUpWatcher.verifyEmailAddress(context);
+                          }),
+                      NovaVSpace(32)
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

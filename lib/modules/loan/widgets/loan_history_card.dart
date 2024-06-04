@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class LoanHistoryCard extends StatelessWidget {
   final MarketplaceResponseModelLoanDetail loanDetail;
@@ -12,62 +12,62 @@ class LoanHistoryCard extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: PLColors.appBackgroundColor,
-                borderRadius: PLDecorations.borderRadiusGeometryCircular8),
+                color: NovaColors.appBackgroundColor,
+                borderRadius: NovaDecorations.borderRadiusGeometryCircular8),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CircleAvatar(
-                  backgroundColor: PLColors.appPrimaryColorMain500,
+                  backgroundColor: NovaColors.appPrimaryColorMain500,
                   radius: 20,
                   child: Text(
                     loanDetail.fullName.substring(0,2),
                     style: context.textTheme.bodyMedium!
-                        .copyWith(color: PLColors.appWhiteColor),
+                        .copyWith(color: NovaColors.appWhiteColor),
                   ),
                 ),
-                PLHSpace(8),
+                NovaHSpace(8),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLTextWidget(
+                      NovaTextWidget(
                         title: "${loanDetail.duration} Days",
-                        textColor: PLColors.appPrimaryText,
-                        fontFamily: PLTypography.fontFamilyMedium,
+                        textColor: NovaColors.appPrimaryText,
+                        fontFamily: NovaTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w500,
-                        textSize: PLTypography.fontBodySmall,
+                        textSize: NovaTypography.fontBodySmall,
                       ),
-                      PLVSpace(8),
-                      PLTextWidget(
+                      NovaVSpace(8),
+                      NovaTextWidget(
                         title: loanDetail.endDate.formatDate(),
-                        textColor: PLColors.appGrayText,
-                        textSize: PLTypography.fontLabelSmall,
+                        textColor: NovaColors.appGrayText,
+                        textSize: NovaTypography.fontLabelSmall,
                       ),
                     ],
                   ),
                 ),
-                PLHSpace(12),
+                NovaHSpace(12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    PLTextWidget(
+                    NovaTextWidget(
                       title: loanDetail.loanAmount.toString().formatWithCommasAndDecimals(),
-                      textStyle: PLTypography.textTitleSmallStyle,
-                      textSize: PLTypography.fontBodyMedium,
-                      fontFamily: PLTypography.fontFamilyMedium,
+                      textStyle: NovaTypography.textTitleSmallStyle,
+                      textSize: NovaTypography.fontBodyMedium,
+                      fontFamily: NovaTypography.fontFamilyMedium,
                       fontWeight: FontWeight.w500,
-                      textColor: PLColors.appPrimaryText,
+                      textColor: NovaColors.appPrimaryText,
                       maxLines: 1,
                       isCurrency: true,
                     ),
-                    PLVSpace(8),
-                    PLTextWidget(
+                    NovaVSpace(8),
+                    NovaTextWidget(
                       title: getLoanStatus(loanDetail.loanStatus),
-                      textColor: PLColors.appPrimaryColorMain500,
-                      textSize: PLTypography.fontLabelSmall,
+                      textColor: NovaColors.appPrimaryColorMain500,
+                      textSize: NovaTypography.fontLabelSmall,
                     ),
                   ],
                 ),

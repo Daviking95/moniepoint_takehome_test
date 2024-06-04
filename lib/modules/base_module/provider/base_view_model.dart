@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/base_module/exports.dart';
+part of 'package:nova/modules/base_module/exports.dart';
 
 class BaseViewModel extends ChangeNotifier {
   bool _isLoading = false;

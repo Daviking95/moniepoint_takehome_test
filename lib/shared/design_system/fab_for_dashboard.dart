@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
 class FabForDashboard extends StatelessWidget {
   const FabForDashboard({Key? key}) : super(key: key);
@@ -11,14 +11,14 @@ class FabForDashboard extends StatelessWidget {
       type: ExpandableFabType.up,
       child: const Icon(
         Icons.add,
-        color: PLColors.appWhiteColor,
+        color: NovaColors.appWhiteColor,
         size: 25,
       ),
-      backgroundColor: PLColors.appSecondaryColorMain500,
+      backgroundColor: NovaColors.appSecondaryColorMain500,
       closeButtonStyle: const ExpandableFabCloseButtonStyle(
           child: Icon(
             Icons.cancel_outlined,
-            color: PLColors.appWhiteColor,
+            color: NovaColors.appWhiteColor,
             size: 25,
           )),
       children: [
@@ -26,14 +26,14 @@ class FabForDashboard extends StatelessWidget {
           onTap: () {},
           child: Container(
             decoration: BoxDecoration(
-              color: PLColors.appPrimaryColorMain500,
-              borderRadius: PLDecorations.borderRadiusGeometryCircular4
+              color: NovaColors.appPrimaryColorMain500,
+              borderRadius: NovaDecorations.borderRadiusGeometryCircular4
             ),
-            child: PLTextWidget(
+            child: NovaTextWidget(
               title: strJoinNewGame,
-              textStyle: PLTypography.textLabelLargeStyle,
-              textSize: PLTypography.fontLabelLarge,
-              textColor: PLColors.appWhiteColor,
+              textStyle: NovaTypography.textLabelLargeStyle,
+              textSize: NovaTypography.fontLabelLarge,
+              textColor: NovaColors.appWhiteColor,
               fontWeight: FontWeight.w600,
             ).paddingSymmetric(horizontal: 16, vertical: 12),
           ),

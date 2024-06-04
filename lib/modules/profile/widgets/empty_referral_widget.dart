@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class EmptyReferralWidget extends StatelessWidget {
   const EmptyReferralWidget({Key? key}) : super(key: key);
@@ -10,25 +10,25 @@ class EmptyReferralWidget extends StatelessWidget {
         width: 170.w,
         child: Column(
           children: [
-            const PLImageSvg(svgPath: PLAssets.noReferral),
-            PLVSpace(16),
-            PLTextWidget(
+            const NovaImageSvg(svgPath: NovaAssets.noReferral),
+            NovaVSpace(16),
+            NovaTextWidget(
               title: "You have no \npending referrals",
-              textColor: PLColors.appPrimaryText,
-              textStyle: PLTypography.textHeadlineMediumStyle,
-              textSize: PLTypography.fontDesc20,
-              fontFamily: PLTypography.fontFamilyBold,
+              textColor: NovaColors.appPrimaryText,
+              textStyle: NovaTypography.textHeadlineMediumStyle,
+              textSize: NovaTypography.fontDesc20,
+              fontFamily: NovaTypography.fontFamilyBold,
               textAlign: TextAlign.center,
             ),
-            PLVSpace(4),
-            PLTextWidget(
+            NovaVSpace(4),
+            NovaTextWidget(
               title: "Invite your friends and earn gifts",
-              textColor: PLColors.appPrimaryText,
-              textStyle: PLTypography.textHeadlineMediumStyle,
-              textSize: PLTypography.fontLabelMedium,
+              textColor: NovaColors.appPrimaryText,
+              textStyle: NovaTypography.textHeadlineMediumStyle,
+              textSize: NovaTypography.fontLabelMedium,
               textAlign: TextAlign.center,
             ),
-            PLVSpace(16),
+            NovaVSpace(16),
 
           ],
         ),

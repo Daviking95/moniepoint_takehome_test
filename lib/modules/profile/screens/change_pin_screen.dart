@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 class ChangePinScreen extends StatelessWidget {
   const ChangePinScreen({Key? key}) : super(key: key);
 
@@ -6,13 +6,12 @@ class ChangePinScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
             body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
@@ -23,12 +22,12 @@ class ChangePinScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // PLVSpace(48),
-                        PLBackIcon(
+                        NovaBackIcon(
                           onTap: () => Navigator.pop(context),
                           title: strChangePin,
                         ),
-                        PLVSpace(16),
-                        PLPrimaryTextField(
+                        NovaVSpace(16),
+                        NovaPrimaryTextField(
                             textInputType: TextInputType.number,
                             formatter: [FilteringTextInputFormatter.digitsOnly],
                             controller: profileWatcher.oldPin,
@@ -36,7 +35,7 @@ class ChangePinScreen extends StatelessWidget {
                             onChange: (val) => profileWatcher.listenForChangePinChanges(),
                             validation: (val) => val.validateLength(strFieldRequiredError, 4),
                             hintText: strOldPin),
-                        PLPrimaryTextField(
+                        NovaPrimaryTextField(
                             textInputType: TextInputType.number,
                             formatter: [FilteringTextInputFormatter.digitsOnly],
                             controller: profileWatcher.newPin,
@@ -44,8 +43,8 @@ class ChangePinScreen extends StatelessWidget {
                             onChange: (val) => profileWatcher.listenForChangePinChanges(),
                             validation: (val) => val.validateLength(strFieldRequiredError, 4),
                             hintText: strNewPin),
-                        PLVSpace(32),
-                        PLButtonRound(
+                        NovaVSpace(32),
+                        NovaButtonRound(
                           textTitle: strSubmit,
                           isFormValidated:
                           profileWatcher.isChangePinFormValidated,

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/app_level_locator/exports.dart';
+part of 'package:nova/app_level_locator/exports.dart';
 
 class InitializeServices {
   static setupFunctions() async {
@@ -15,11 +15,5 @@ class InitializeServices {
 
     await dotenv.load(fileName: ".env");
 
-    initMixpanel();
   }
-}
-
-Future<void> initMixpanel() async {
-  AppData.mixpanel = await Mixpanel.init(dotenv.get('MIXPANEL_TOKEN'),
-      trackAutomaticEvents: true);
 }

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
@@ -14,27 +14,26 @@ class EditProfileScreen extends StatelessWidget {
 
   Widget _buildScreen(BuildContext context, ProfileProvider model) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
                 key: profileWatcher.formKey,
-                child: PLPaddedWidget(
+                child: NovaPaddedWidget(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLVSpace(48),
-                      PLBackIcon(
+                      NovaVSpace(48),
+                      NovaBackIcon(
                         onTap: () => Navigator.pop(context),
                       ),
-                      PLVSpace(16),
+                      NovaVSpace(16),
                       const Expanded(
                         child: CustomTabRounded(
                           tabTitleStringList: [

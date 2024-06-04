@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/login/exports.dart';
+part of 'package:nova/modules/authentication/login/exports.dart';
 
 class SwitchAccountLoginScreen extends StatelessWidget {
   const SwitchAccountLoginScreen({Key? key}) : super(key: key);
@@ -16,8 +16,8 @@ class SwitchAccountLoginScreen extends StatelessWidget {
     final loginWatcher = context.watch<LoginProvider>();
 
     return AppBaseWidget(
-      iconSet: PLImagePng(
-        imgPath: PLAssets.phoneWalletInHand,
+      iconSet: NovaImagePng(
+        imgPath: NovaAssets.phoneWalletInHand,
         width: 150.w,
         height: 180.h,
         boxFit: BoxFit.contain,
@@ -26,8 +26,8 @@ class SwitchAccountLoginScreen extends StatelessWidget {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: WillPopScope(
           onWillPop: () => Future.value(true),
-          child: PLScaffold(
-            backgroundColor: PLColors.appWhiteColor,
+          child: NovaScaffold(
+            backgroundColor: NovaColors.appWhiteColor,
             body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
@@ -35,35 +35,35 @@ class SwitchAccountLoginScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(40),
-                    PLTextWidget(
+                    NovaVSpace(40),
+                    NovaTextWidget(
                       title: "Welcome Back!",
                       isTitle: true,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontHeadlineMedium,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontHeadlineMedium,
                     ),
-                    PLVSpace(4),
-                    const PLTextWidget(
+                    NovaVSpace(4),
+                    const NovaTextWidget(
                       title: "Long time no see! Let’s login to get started",
-                      textColor: PLColors.appGrayText,
+                      textColor: NovaColors.appGrayText,
                     ),
-                    PLVSpace(32),
-                    PLPrimaryTextField(
+                    NovaVSpace(32),
+                    NovaPrimaryTextField(
                       textInputType: TextInputType.emailAddress,
                       controller: loginWatcher.switchAccountEmail,
                       onChange: (val) => loginWatcher.listenForEmailChanges(),
                       validation: (val) => val.validateEmail(strEmailError),
                       hintText: strEmail,
                     ),
-                    PLVSpace(40),
-                    PLButtonRound(
+                    NovaVSpace(40),
+                    NovaButtonRound(
                       textTitle: strLogin,
                       loadingString: model.loadingString,
                       isLoader: model.isLoading,
                       isFormValidated: loginWatcher.isEmailFormValidated,
                       functionToRun: () => loginWatcher.validateSwitchAccountForm(context),
                     ),
-                    PLVSpace(24),
+                    NovaVSpace(24),
                     const Center(child: DontHaveAccountWidget())
                   ],
                 ),

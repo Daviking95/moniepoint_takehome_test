@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/complete_account_setup/exports.dart';
+part of 'package:nova/modules/authentication/complete_account_setup/exports.dart';
 
 class BvnImageCapture extends StatelessWidget {
   final String otp;
@@ -11,7 +11,7 @@ class BvnImageCapture extends StatelessWidget {
 
     return AppBaseWidget(
       iconSet: Container(),
-      buildWidget: PLOverlayLoader(
+      buildWidget: NovaOverlayLoader(
         startLoader: completeAccountWatcher.isLoading,
         loadingString: completeAccountWatcher.loadingString,
         child: BvnImageWidget(completeAccountWatcher: completeAccountWatcher, otp : otp),
@@ -37,8 +37,8 @@ class BvnImageWidget extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
-          backgroundColor: PLColors.appWhiteColor,
+        child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
@@ -46,20 +46,20 @@ class BvnImageWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(48),
-                    PLTextWidget(
+                    NovaVSpace(48),
+                    NovaTextWidget(
                       title: "Setup Profile",
                       isTitle: true,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontHeadlineSmall,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontHeadlineSmall,
                     ),
-                    PLVSpace(5),
-                    PLTextWidget(
+                    NovaVSpace(5),
+                    NovaTextWidget(
                       title: "Take a headshot",
-                      textColor: PLColors.appGrayText,
-                      textSize: PLTypography.fontLabelMedium,
+                      textColor: NovaColors.appGrayText,
+                      textSize: NovaTypography.fontLabelMedium,
                     ),
-                    PLVSpace(64),
+                    NovaVSpace(64),
 
                     GestureDetector(
                         onTap: _capture,
@@ -68,7 +68,7 @@ class BvnImageWidget extends StatelessWidget {
                                 children: [
                                   Center(
                                     child: ClipRRect(
-                                      borderRadius: PLDecorations
+                                      borderRadius: NovaDecorations
                                           .borderRadiusGeometryCircular20,
                                       child: Image(
                                         image: FileImage(File(
@@ -80,28 +80,28 @@ class BvnImageWidget extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  PLVSpace(32),
-                                  PLTextWidget(
+                                  NovaVSpace(32),
+                                  NovaTextWidget(
                                     title: "Great! You’re all set.",
-                                    textColor: PLColors.appGrayText,
-                                    textSize: PLTypography.fontBodyMedium,
+                                    textColor: NovaColors.appGrayText,
+                                    textSize: NovaTypography.fontBodyMedium,
                                   ),
                                 ],
                               )
                             : Center(
-                                child: PLImagePng(
-                                imgPath: PLAssets.takeSelfie,
+                                child: NovaImagePng(
+                                imgPath: NovaAssets.takeSelfie,
                                 height: 156.h,
                                 width: 156.w,
                               ))),
-                    PLVSpace(40),
+                    NovaVSpace(40),
                     if (completeAccountWatcher.bvnImage.path.isNotEmpty)
                       PLButtonOutline(
-                          borderColor: PLColors.appPrimaryColorMain500,
+                          borderColor: NovaColors.appPrimaryColorMain500,
                           textTitle: "Retake Photo",
                           functionToRun: _capture),
 
-                    PLButtonRound(
+                    NovaButtonRound(
                       textTitle: strProceed,
                       functionToRun: () => completeAccountWatcher
                               .bvnImage.path.isEmpty

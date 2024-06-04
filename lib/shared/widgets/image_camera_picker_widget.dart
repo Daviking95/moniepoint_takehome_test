@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class ImageCameraPickerWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -12,7 +12,7 @@ class ImageCameraPickerWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PLVSpace(16),
+        NovaVSpace(16),
         InkWell(
           onTap: () => _openMedia(context, controller),
           child: Row(
@@ -20,21 +20,21 @@ class ImageCameraPickerWidget extends StatelessWidget {
               const Icon(
                 Icons.camera,
                 size: 30,
-                color: PLColors.appGrayText,
+                color: NovaColors.appGrayText,
               ),
-              PLHSpace(10),
-              PLTextWidget(
+              NovaHSpace(10),
+              NovaTextWidget(
                 title: strOpenCamera,
-                textSize: PLTypography.fontBodyMedium,
+                textSize: NovaTypography.fontBodyMedium,
               ),
             ],
           ),
         ),
-        PLVSpace(16),
+        NovaVSpace(16),
         Divider(
-          color: PLColors.appSecondaryText.withOpacity(.2),
+          color: NovaColors.appSecondaryText.withOpacity(.2),
         ),
-        PLVSpace(16),
+        NovaVSpace(16),
         InkWell(
           onTap: () => _openMedia(context, controller, true),
           child: Row(
@@ -42,22 +42,22 @@ class ImageCameraPickerWidget extends StatelessWidget {
               const Icon(
                 Icons.photo,
                 size: 30,
-                color: PLColors.appGrayText,
+                color: NovaColors.appGrayText,
               ),
-              PLHSpace(10),
-              PLTextWidget(
+              NovaHSpace(10),
+              NovaTextWidget(
                 title: strOpenGallery,
-                textSize: PLTypography.fontBodyMedium,
+                textSize: NovaTypography.fontBodyMedium,
               ),
             ],
           ),
         ),
         if (controller.text.isNotEmpty) ...[
-          PLVSpace(16),
+          NovaVSpace(16),
           Divider(
-            color: PLColors.appSecondaryText.withOpacity(.2),
+            color: NovaColors.appSecondaryText.withOpacity(.2),
           ),
-          PLVSpace(16),
+          NovaVSpace(16),
           InkWell(
             onTap: () {
               controller.text = "";
@@ -69,18 +69,18 @@ class ImageCameraPickerWidget extends StatelessWidget {
                 const Icon(
                   Icons.delete,
                   size: 30,
-                  color: PLColors.appErrorColor,
+                  color: NovaColors.appErrorColor,
                 ),
-                PLHSpace(10),
-                PLTextWidget(
+                NovaHSpace(10),
+                NovaTextWidget(
                   title: "Remove Photo",
-                  textSize: PLTypography.fontBodyMedium,
+                  textSize: NovaTypography.fontBodyMedium,
                 ),
               ],
             ),
           ),
         ],
-        PLVSpace(16),
+        NovaVSpace(16),
       ],
     );
   }

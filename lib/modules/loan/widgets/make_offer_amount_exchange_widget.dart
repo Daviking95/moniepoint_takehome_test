@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class MakeOfferAmountExchangeWidget extends StatelessWidget {
   final double amountToPay;
@@ -17,57 +17,56 @@ class MakeOfferAmountExchangeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loanWatcher = context.watch<LoanProvider>();
-    final loanReader = context.read<LoanProvider>();
 
     return Column(
       children: [
-        PLVSpace(16),
-        PLTextWidget(
+        NovaVSpace(16),
+        NovaTextWidget(
           title: isBorrower ? "Expected Amount to Receive" : "Amount to Pay",
-          textColor: PLColors.appGrayText,
-          textSize: PLTypography.fontLabelSmall,
+          textColor: NovaColors.appGrayText,
+          textSize: NovaTypography.fontLabelSmall,
         ),
-        PLVSpace(8),
-        PLTextWidget(
+        NovaVSpace(8),
+        NovaTextWidget(
           title: isBorrower ? amountToReceive.toString().formatWithCommasAndDecimals() : amountToPay.toString().formatWithCommasAndDecimals(),
-          textStyle: PLTypography.textTitleSmallStyle,
-          textSize: PLTypography.fontTitleLarge,
-          fontFamily: PLTypography.fontFamilyMedium,
+          textStyle: NovaTypography.textTitleSmallStyle,
+          textSize: NovaTypography.fontTitleLarge,
+          fontFamily: NovaTypography.fontFamilyMedium,
           fontWeight: FontWeight.w700,
-          textColor: PLColors.appPrimaryText,
+          textColor: NovaColors.appPrimaryText,
           maxLines: 1,
           isCurrency: true,
         ),
-        PLVSpace(16),
+        NovaVSpace(16),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const PLImageSvg(svgPath: PLAssets.vectorDown),
-            PLHSpace(24),
-            const PLImageSvg(svgPath: PLAssets.vectorDown),
+            const NovaImageSvg(svgPath: NovaAssets.vectorDown),
+            NovaHSpace(24),
+            const NovaImageSvg(svgPath: NovaAssets.vectorDown),
           ],
         ),
-        PLVSpace(16),
-        PLTextWidget(
+        NovaVSpace(16),
+        NovaTextWidget(
           title: isBorrower ? "Amount to Pay" : "Expected Amount to Receive",
-          textColor: PLColors.appGrayText,
-          textSize: PLTypography.fontLabelSmall,
+          textColor: NovaColors.appGrayText,
+          textSize: NovaTypography.fontLabelSmall,
         ),
-        PLVSpace(8),
-        PLTextWidget(
+        NovaVSpace(8),
+        NovaTextWidget(
           title: isBorrower ? amountToPay.toString().formatWithCommasAndDecimals() : amountToReceive.toString().formatWithCommasAndDecimals(),
-          textStyle: PLTypography.textTitleSmallStyle,
-          textSize: PLTypography.fontTitleLarge,
-          fontFamily: PLTypography.fontFamilyMedium,
+          textStyle: NovaTypography.textTitleSmallStyle,
+          textSize: NovaTypography.fontTitleLarge,
+          fontFamily: NovaTypography.fontFamilyMedium,
           fontWeight: FontWeight.w700,
-          textColor: PLColors.appPrimaryText,
+          textColor: NovaColors.appPrimaryText,
           maxLines: 1,
           isCurrency: true,
         ),
-        PLVSpace(32),
-        PLButtonRound(
+        NovaVSpace(32),
+        NovaButtonRound(
           textTitle: strNext,
-          borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+          borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
           functionToRun: () {
             Navigator.pop(context);
 

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/transaction_history/exports.dart';
+part of 'package:nova/modules/transaction_history/exports.dart';
 
 class TransactionsCardWidget extends StatelessWidget {
   final NotificationType notificationType;
@@ -33,64 +33,64 @@ class TransactionsCardWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: PLColors.appWhiteColor,
-                borderRadius: PLDecorations.borderRadiusGeometryCircular8),
+                color: NovaColors.appWhiteColor,
+                borderRadius: NovaDecorations.borderRadiusGeometryCircular8),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                PLImageSvg(svgPath: getNotificationImage(notificationType)),
-                PLHSpace(8),
+                NovaImageSvg(svgPath: getNotificationImage(notificationType)),
+                NovaHSpace(8),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLTextWidget(
+                      NovaTextWidget(
                         title: "Your Loan Offer Accepted",
                         textColor:
                             notificationType == NotificationType.loanCharges ||
                                     notificationType ==
                                         NotificationType.walletWithdrawal
-                                ? PLColors.appErrorColor
-                                : PLColors.appPrimaryText,
-                        fontFamily: PLTypography.fontFamilyMedium,
+                                ? NovaColors.appErrorColor
+                                : NovaColors.appPrimaryText,
+                        fontFamily: NovaTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w500,
-                        textSize: PLTypography.fontBodySmall,
+                        textSize: NovaTypography.fontBodySmall,
                       ),
-                      PLVSpace(8),
-                      PLTextWidget(
+                      NovaVSpace(8),
+                      NovaTextWidget(
                         title: dateCreated,
-                        textColor: PLColors.appGrayText,
-                        textSize: PLTypography.fontLabelSmall,
+                        textColor: NovaColors.appGrayText,
+                        textSize: NovaTypography.fontLabelSmall,
                       ),
                     ],
                   ),
                 ),
-                PLHSpace(12),
+                NovaHSpace(12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    PLTextWidget(
+                    NovaTextWidget(
                       title: 4000000.toString().formatWithCommasAndDecimals(),
-                      textStyle: PLTypography.textTitleSmallStyle,
-                      textSize: PLTypography.fontBodyMedium,
-                      fontFamily: PLTypography.fontFamilyMedium,
+                      textStyle: NovaTypography.textTitleSmallStyle,
+                      textSize: NovaTypography.fontBodyMedium,
+                      fontFamily: NovaTypography.fontFamilyMedium,
                       fontWeight: FontWeight.w500,
                       textColor:
                           notificationType == NotificationType.loanCharges ||
                                   notificationType ==
                                       NotificationType.walletWithdrawal
-                              ? PLColors.appErrorColor
-                              : PLColors.appPrimaryText,
+                              ? NovaColors.appErrorColor
+                              : NovaColors.appPrimaryText,
                       maxLines: 1,
                       isCurrency: true,
                     ),
-                    PLVSpace(8),
-                    PLTextWidget(
+                    NovaVSpace(8),
+                    NovaTextWidget(
                       title: "Received",
-                      textColor: PLColors.appPrimaryColorMain500,
-                      textSize: PLTypography.fontLabelSmall,
+                      textColor: NovaColors.appPrimaryColorMain500,
+                      textSize: NovaTypography.fontLabelSmall,
                     ),
                   ],
                 ),

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 
 class LoginPinChangeScreen extends StatelessWidget {
@@ -7,16 +7,15 @@ class LoginPinChangeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -24,46 +23,46 @@ class LoginPinChangeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLVSpace(48),
-                        PLBackIcon(
+                        NovaVSpace(48),
+                        NovaBackIcon(
                           onTap: () => Navigator.pop(context),
                         ),
-                        PLVSpace(8),
-                        PLTextWidget(
+                        NovaVSpace(8),
+                        NovaTextWidget(
                           title: "Login PIN",
                           isTitle: true,
-                          textStyle: PLTypography.textHeadlineMediumStyle,
-                          textSize: PLTypography.fontHeadlineSmall,
+                          textStyle: NovaTypography.textHeadlineMediumStyle,
+                          textSize: NovaTypography.fontHeadlineSmall,
                         ),
-                        PLVSpace(4),
-                        PLTextWidget(
+                        NovaVSpace(4),
+                        NovaTextWidget(
                           title: "Your 4-digit login PIN secures your transactions. \nDo not share your PIN with anyone",
-                          textStyle: PLTypography.textHeadlineMediumStyle,
-                          textSize: PLTypography.fontLabelSmall,
+                          textStyle: NovaTypography.textHeadlineMediumStyle,
+                          textSize: NovaTypography.fontLabelSmall,
                         ),
-                        PLVSpace(24),
-                        PLPrimaryTextField(
+                        NovaVSpace(24),
+                        NovaPrimaryTextField(
                           textInputType: TextInputType.number,
                           controller: profileWatcher.oldPin,
-                          fillColor: PLColors.appWhiteColor,
+                          fillColor: NovaColors.appWhiteColor,
                           maxLength: 4,
                           validation: (val) => val.validateLength(strFieldRequiredError, 4),
                           hintText: "Current PIN",
                           // onChange: (val) => model.listenForLoanApplyChanges(),
                         ),
-                        PLPrimaryTextField(
+                        NovaPrimaryTextField(
                           textInputType: TextInputType.number,
                           controller: profileWatcher.newPin,
-                          fillColor: PLColors.appWhiteColor,
+                          fillColor: NovaColors.appWhiteColor,
                           maxLength: 4,
                           validation: (val) => val.validateLength(strFieldRequiredError, 4),
                           hintText: "New PIN",
                           // onChange: (val) => model.listenForLoanApplyChanges(),
                         ),
-                        PLPrimaryTextField(
+                        NovaPrimaryTextField(
                           textInputType: TextInputType.number,
                           controller: profileWatcher.confirmNewPin,
-                          fillColor: PLColors.appWhiteColor,
+                          fillColor: NovaColors.appWhiteColor,
                           maxLength: 4,
                           validation: (val) => val.validateLength(strFieldRequiredError, 4),
                           hintText: "Confirm New PIN",
@@ -73,17 +72,17 @@ class LoginPinChangeScreen extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        PLButtonRound(
+                        NovaButtonRound(
                           textTitle: strProceed,
                           borderRadius:
-                          PLDecorations.borderRadiusGeometryCircular8,
+                          NovaDecorations.borderRadiusGeometryCircular8,
                           loadingString: profileWatcher.loadingString,
                           isLoader: profileWatcher.isLoading,
                           functionToRun: () {
                             // profileWatcher.createTransactionPin();
                           },
                         ),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                       ],
                     ),
                   ],

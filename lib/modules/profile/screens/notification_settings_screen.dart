@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class NotificationSettingsScreen extends StatelessWidget {
   const NotificationSettingsScreen({Key? key}) : super(key: key);
@@ -6,30 +6,29 @@ class NotificationSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
-                child: PLPaddedWidget(
+                child: NovaPaddedWidget(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLVSpace(48),
-                      PLBackIcon(
+                      NovaVSpace(48),
+                      NovaBackIcon(
                           onTap: () => Navigator.canPop(context) ? Navigator.pop(context) : AppNavigator.pushAndRemoveUtil(const ProfileScreen()),
                           title: strNotifications),
-                      PLVSpace(32),
+                      NovaVSpace(32),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          PLTextWidget(
+                          NovaTextWidget(
                             title: strPushNotification,
                             fontWeight: FontWeight.w600,
                           ),
@@ -42,18 +41,18 @@ class NotificationSettingsScreen extends StatelessWidget {
                             borderRadius: 30.0,
                             padding: 2.0,
                             showOnOff: true,
-                            activeColor: PLColors.appPrimaryColorMain500,
+                            activeColor: NovaColors.appPrimaryColorMain500,
                             onToggle: (val) {
                               profileWatcher.pushNotificationToggle = !profileWatcher.pushNotificationToggle;
                             },
                           )
                         ],
                       ),
-                      PLVSpace(24),
+                      NovaVSpace(24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          PLTextWidget(
+                          NovaTextWidget(
                             title: strInAppNotification,
                             fontWeight: FontWeight.w600,
                           ),
@@ -66,7 +65,7 @@ class NotificationSettingsScreen extends StatelessWidget {
                             borderRadius: 30.0,
                             padding: 2.0,
                             showOnOff: true,
-                            activeColor: PLColors.appPrimaryColorMain500,
+                            activeColor: NovaColors.appPrimaryColorMain500,
                             onToggle: (val) {
                               profileWatcher.pushInAppNotificationToggle = !profileWatcher.pushInAppNotificationToggle;
                             },

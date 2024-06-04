@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class WalletCardWidget extends StatelessWidget {
   const WalletCardWidget({Key? key}) : super(key: key);
@@ -9,12 +9,12 @@ class WalletCardWidget extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: PLColors.appPrimaryColorMain500,
+        color: NovaColors.appPrimaryColorMain500,
         image: const DecorationImage(
-            image: AssetImage(PLAssets.walletCardBg),
+            image: AssetImage(NovaAssets.walletCardBg),
             alignment: Alignment.topLeft,
             fit: BoxFit.contain),
-        borderRadius: PLDecorations.borderRadiusGeometryCircular20,
+        borderRadius: NovaDecorations.borderRadiusGeometryCircular20,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,35 +27,35 @@ class WalletCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  PLTextWidget(
+                  NovaTextWidget(
                     title: strAccountBalance,
-                    textStyle: PLTypography.textBodySmallStyle,
-                    textSize: PLTypography.fontBodySmall,
-                    textColor: PLColors.appWhiteColor,
+                    textStyle: NovaTypography.textBodySmallStyle,
+                    textSize: NovaTypography.fontBodySmall,
+                    textColor: NovaColors.appWhiteColor,
                     maxLines: 1,
                   ),
-                  PLVSpace(8),
+                  NovaVSpace(8),
                   Row(
                     children: [
-                      PLTextWidget(
+                      NovaTextWidget(
                         title: 4000000
                             .toString()
                             .formatWithCommasAndDecimals()
                             .hideOrShowBalance(context),
-                        textStyle: PLTypography.textTitleSmallStyle,
-                        textSize: PLTypography.fontTitleLarge,
-                        fontFamily: PLTypography.fontFamilyMedium,
+                        textStyle: NovaTypography.textTitleSmallStyle,
+                        textSize: NovaTypography.fontTitleLarge,
+                        fontFamily: NovaTypography.fontFamilyMedium,
                         fontWeight: FontWeight.w700,
-                        textColor: PLColors.appWhiteColor,
+                        textColor: NovaColors.appWhiteColor,
                         maxLines: 1,
                         isCurrency: true,
                       ),
-                      PLHSpace(10),
+                      NovaHSpace(10),
                       GestureDetector(
                           onTap: () async {
                             walletWatcher.toggleShowBalance();
                           },
-                          child: const PLImageSvg(svgPath: PLAssets.showBalance)),
+                          child: const NovaImageSvg(svgPath: NovaAssets.showBalance)),
                     ],
                   ),
                 ],
@@ -69,14 +69,14 @@ class WalletCardWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    PLTextWidget(
+                    NovaTextWidget(
                       title: "Lendly Score",
-                      textStyle: PLTypography.textBodySmallStyle,
-                      textSize: PLTypography.fontLabelSmall,
-                      textColor: PLColors.appWhiteColor,
+                      textStyle: NovaTypography.textBodySmallStyle,
+                      textSize: NovaTypography.fontLabelSmall,
+                      textColor: NovaColors.appWhiteColor,
                       maxLines: 1,
                     ),
-                    PLVSpace(4),
+                    NovaVSpace(4),
                     LendlyScoreCard(
                       score:
                       AppData.lendlyScoreResponseModel?.lendlyScore ?? 0,
@@ -86,39 +86,39 @@ class WalletCardWidget extends StatelessWidget {
               )
             ],
           ),
-          PLVSpace(16),
+          NovaVSpace(16),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PLTextWidget(
+              NovaTextWidget(
                 title: AppPreferences.isUserBvnVerified ? "08011882288" : "xxxxxxxxxx",
-                textStyle: PLTypography.textTitleSmallStyle,
-                textSize: PLTypography.fontBodySmall,
-                textColor: PLColors.appWhiteColor,
+                textStyle: NovaTypography.textTitleSmallStyle,
+                textSize: NovaTypography.fontBodySmall,
+                textColor: NovaColors.appWhiteColor,
                 maxLines: 1,
               ),
-              PLHSpace(4),
-              PLTextWidget(
+              NovaHSpace(4),
+              NovaTextWidget(
                 title: "-",
-                textStyle: PLTypography.textBodySmallStyle,
-                textSize: PLTypography.fontBodySmall,
-                textColor: PLColors.appWhiteColor,
+                textStyle: NovaTypography.textBodySmallStyle,
+                textSize: NovaTypography.fontBodySmall,
+                textColor: NovaColors.appWhiteColor,
                 maxLines: 1,
               ),
-              PLHSpace(4),
-              PLTextWidget(
+              NovaHSpace(4),
+              NovaTextWidget(
                 title: "Stanbic IBTC",
-                textStyle: PLTypography.textBodySmallStyle,
-                textSize: PLTypography.fontBodySmall,
-                textColor: PLColors.appWhiteColor,
+                textStyle: NovaTypography.textBodySmallStyle,
+                textSize: NovaTypography.fontBodySmall,
+                textColor: NovaColors.appWhiteColor,
                 maxLines: 1,
               ),
-              PLHSpace(10),
+              NovaHSpace(10),
               GestureDetector(
                   onTap: () {
                     copyAccountNumber("07011992288");
                   },
-                  child: const PLImageSvg(svgPath: PLAssets.copyWhite))
+                  child: const NovaImageSvg(svgPath: NovaAssets.copyWhite))
             ],
           )
         ],

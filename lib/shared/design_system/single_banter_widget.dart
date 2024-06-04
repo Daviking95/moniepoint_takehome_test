@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
 class SingleBanterWidget extends StatelessWidget {
   final String iconSet;
@@ -13,20 +13,20 @@ class SingleBanterWidget extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            borderRadius: PLDecorations.borderRadiusGeometryCircular100,
+            borderRadius: NovaDecorations.borderRadiusGeometryCircular100,
             border: Border.all(
-              color: PLColors.appPrimaryColorMain500,
+              color: NovaColors.appPrimaryColorMain500,
               width: 1.0,
             )
           ),
-          child: PLImageSvg(svgPath: iconSet,height: 30, width: 30,).paddingAll(10),
+          child: NovaImageSvg(svgPath: iconSet,height: 30, width: 30,).paddingAll(10),
         ),
-        PLVSpace(4),
-        PLTextWidget(
+        NovaVSpace(4),
+        NovaTextWidget(
           title: title.length < 15 ? title : "${title.substring(0, 15)}...",
-          textStyle: PLTypography.textLabelSmallStyle,
-          textColor: PLColors.appPrimaryColorMain500,
-          textSize: PLTypography.fontLabelSmall,
+          textStyle: NovaTypography.textLabelSmallStyle,
+          textColor: NovaColors.appPrimaryColorMain500,
+          textSize: NovaTypography.fontLabelSmall,
           fontWeight: FontWeight.w700,
           overflow: TextOverflow.ellipsis,
         ),

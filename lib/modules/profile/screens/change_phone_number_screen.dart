@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class ChangePhoneNumberScreen extends StatelessWidget {
   const ChangePhoneNumberScreen({Key? key}) : super(key: key);
@@ -6,13 +6,12 @@ class ChangePhoneNumberScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
             body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
@@ -23,12 +22,12 @@ class ChangePhoneNumberScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // PLVSpace(48),
-                        PLBackIcon(
+                        NovaBackIcon(
                           onTap: () => Navigator.pop(context),
                           title: strChangePhoneNumber,
                         ),
-                        PLVSpace(16),
-                        PLPrimaryTextField(
+                        NovaVSpace(16),
+                        NovaPrimaryTextField(
                             textInputType: TextInputType.number,
                             controller: profileWatcher.newPhoneNumber,
                             onChange: (val) => profileWatcher.listenForChangePhoneNumberChanges(),
@@ -36,7 +35,7 @@ class ChangePhoneNumberScreen extends StatelessWidget {
                             formatter: [FilteringTextInputFormatter.digitsOnly],
                             maxLength: 11,
                             hintText: strNewPhoneNumber),
-                        PLPasswordTextField(
+                        NovaPasswordTextField(
                           controller: profileWatcher.password,
                           textInputTitle: strPassword,
                           hintText: strPassword,
@@ -44,8 +43,8 @@ class ChangePhoneNumberScreen extends StatelessWidget {
                           onChange: (val) => profileWatcher.listenForChangePhoneNumberChanges(),
                           textInputAction: TextInputAction.done,
                         ),
-                        PLVSpace(32),
-                        PLButtonRound(
+                        NovaVSpace(32),
+                        NovaButtonRound(
                           textTitle: strSubmit,
                           isFormValidated:
                           profileWatcher.isChangePhoneNumberFormValidated,

@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 buttonLoaderIcon(String loadingString) {
   return  Row(
@@ -9,33 +9,33 @@ buttonLoaderIcon(String loadingString) {
         width: 20,
         child: const Center(
           child: CircularProgressIndicator(
-            backgroundColor: PLColors.appWhiteColor,
+            backgroundColor: NovaColors.appWhiteColor,
             strokeWidth: 2,
           ),
         ),
       ),
-      PLHSpace(16),
+      NovaHSpace(16),
       if (loadingString.isNotEmpty)
-        PLTextWidget(
+        NovaTextWidget(
           title: loadingString.toString().capitalize(),
-          textSize: PLTypography.fontBodySmall,
+          textSize: NovaTypography.fontBodySmall,
           fontWeight: FontWeight.w600,
-          textColor: PLColors.appWhiteColor,
+          textColor: NovaColors.appWhiteColor,
         ),
     ],
   );
 }
 
 buttonSuffixIcon(String? textTitle, TextStyle? textStyle, double? fontSize,
-    Widget? suffixIcon, BuildContext context) {
+    Widget? suffixIcon, BuildContext context, bool isAllCaps) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Text(
-        textTitle!.toTitleCase,
+        isAllCaps ? textTitle!.toUpperCase() : textTitle!.toTitleCase,
         textAlign: TextAlign.center,
         style: textStyle ??
-            context.textTheme.bodySmall?.copyWith(fontSize: fontSize),
+            context.textTheme.bodySmall?.copyWith(fontSize: fontSize!.toInt().sp, ),
       ),
       Container(margin: const EdgeInsets.only(left: 10), child: suffixIcon)
     ],
@@ -44,19 +44,11 @@ buttonSuffixIcon(String? textTitle, TextStyle? textStyle, double? fontSize,
 
 Widget buttonNoSuffixIcon(String? textTitle, TextStyle? textStyle, double?
 fontSize,
-    BuildContext context, double inSpacerWidth) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      SizedBox(
-        width: inSpacerWidth,
-      ),
-      Text(
-        textTitle!.toTitleCase,
-        textAlign: TextAlign.center,
-        style: textStyle ?? context.textTheme.bodyLarge?.copyWith(fontSize:
-        fontSize),
-      ),
-    ],
+    BuildContext context, double inSpacerWidth, bool isAllCaps) {
+  return Text(
+    isAllCaps ? textTitle!.toUpperCase() : textTitle!.toTitleCase,
+    textAlign: TextAlign.center,
+    style: textStyle ?? context.textTheme.bodyLarge?.copyWith(fontSize:
+    fontSize!.toInt().sp),
   );
 }

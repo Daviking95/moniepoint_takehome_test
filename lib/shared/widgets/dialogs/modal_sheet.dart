@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 modalBottomSheet(BuildContext context, Widget widget,
     [bool isScrollControlled = true,
@@ -22,7 +22,7 @@ modalBottomSheet(BuildContext context, Widget widget,
                   child: LoadingOverlay(
                     isLoading: isLoader,
                     progressIndicator: Lottie.asset(
-                      PLAssets.logoPng,
+                      NovaAssets.logoPng,
                       height: 100,
                       width: 100,
                     ),
@@ -31,7 +31,7 @@ modalBottomSheet(BuildContext context, Widget widget,
                     child: Container(
                       padding: const EdgeInsets.all(15.0),
                       decoration: const BoxDecoration(
-                          color: PLColors.appWhiteColor,
+                          color: NovaColors.appWhiteColor,
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30.0),
                               topRight: Radius.circular(30.0))),

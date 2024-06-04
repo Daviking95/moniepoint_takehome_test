@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/complete_account_setup/exports.dart';
+part of 'package:nova/modules/authentication/complete_account_setup/exports.dart';
 
 class VerifyPhoneNumberScreen extends StatefulWidget {
   final String bvnValue;
@@ -20,7 +20,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
 
     return AppBaseWidget(
       iconSet: Container(),
-      buildWidget: PLOverlayLoader(
+      buildWidget: NovaOverlayLoader(
         startLoader: completeAccountWatcher.isLoading,
         loadingString: completeAccountWatcher.loadingString,
         child: VerifyPhoneWidget(
@@ -58,8 +58,8 @@ class _VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
-          backgroundColor: PLColors.appWhiteColor,
+        child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
@@ -69,32 +69,32 @@ class _VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLVSpace(32),
-                      PLBackIcon(
+                      NovaVSpace(32),
+                      NovaBackIcon(
                         onTap: () => Navigator.pop(context),
                         isCancel: true,
                       ),
-                      PLVSpace(40),
-                      PLTextWidget(
+                      NovaVSpace(40),
+                      NovaTextWidget(
                         title: "Phone Verification",
                         isTitle: true,
-                        textStyle: PLTypography.textHeadlineMediumStyle,
-                        textSize: PLTypography.fontHeadlineSmall,
+                        textStyle: NovaTypography.textHeadlineMediumStyle,
+                        textSize: NovaTypography.fontHeadlineSmall,
                       ),
-                      PLVSpace(5),
-                      PLTextWidget(
+                      NovaVSpace(5),
+                      NovaTextWidget(
                         title: "Please enter the 4-digit code send to you at",
-                        textColor: PLColors.appPrimaryText,
-                        textSize: PLTypography.fontLabelMedium,
+                        textColor: NovaColors.appPrimaryText,
+                        textSize: NovaTypography.fontLabelMedium,
                       ),
-                      PLVSpace(4),
-                      PLTextWidget(
+                      NovaVSpace(4),
+                      NovaTextWidget(
                         title: widget.phoneNumber,
-                        textColor: PLColors.appPrimaryText,
+                        textColor: NovaColors.appPrimaryText,
                         fontWeight: FontWeight.w700,
-                        textSize: PLTypography.fontLabelMedium,
+                        textSize: NovaTypography.fontLabelMedium,
                       ),
-                      PLVSpace(62),
+                      NovaVSpace(62),
                       SizedBox(
                         width: context.width,
                         child: PinTextField(
@@ -115,12 +115,12 @@ class _VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
                               val.validateString(strFieldRequiredError),
                         ),
                       ),
-                      PLVSpace(32),
+                      NovaVSpace(32),
                       ResentOtpWidget(context, () {
                         widget.completeAccountWatcher
                             .validateBvnForm(context, widget.bvn, true);
                       }, () {}),
-                      PLVSpace(16),
+                      NovaVSpace(16),
                     ],
                   ),
                 ),

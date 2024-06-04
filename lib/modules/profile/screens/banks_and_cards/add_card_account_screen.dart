@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class AddCardAccountScreen extends StatefulWidget {
   const AddCardAccountScreen({Key? key}) : super(key: key);
@@ -54,16 +54,15 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: EasyDebounceBuilder(
                     delay: const Duration(milliseconds: 1000),
                     builder: (context, debounce) {
@@ -72,45 +71,45 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PLVSpace(48),
-                          PLBackIcon(
+                          NovaVSpace(48),
+                          NovaBackIcon(
                             onTap: () => Navigator.pop(context),
                           ),
-                          PLVSpace(8),
-                          PLTextWidget(
+                          NovaVSpace(8),
+                          NovaTextWidget(
                             title: "Add Card",
                             isTitle: true,
-                            textStyle: PLTypography.textHeadlineMediumStyle,
-                            textSize: PLTypography.fontHeadlineSmall,
+                            textStyle: NovaTypography.textHeadlineMediumStyle,
+                            textSize: NovaTypography.fontHeadlineSmall,
                           ),
-                          PLVSpace(8),
-                          PLTextWidget(
+                          NovaVSpace(8),
+                          NovaTextWidget(
                             title: "Kindly enter your card details",
-                            textColor: PLColors.appGrayText,
-                            textStyle: PLTypography.textHeadlineMediumStyle,
-                            textSize: PLTypography.fontLabelSmall,
+                            textColor: NovaColors.appGrayText,
+                            textStyle: NovaTypography.textHeadlineMediumStyle,
+                            textSize: NovaTypography.fontLabelSmall,
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                           Container(
                             decoration: BoxDecoration(
                                 // boxShadow: [PLDecorations.customShadow],
                                 borderRadius:
-                                    PLDecorations.borderRadiusGeometryCircular8,
-                                color: PLColors.appWhiteColor),
+                                    NovaDecorations.borderRadiusGeometryCircular8,
+                                color: NovaColors.appWhiteColor),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                PLVSpace(16),
-                                PLImagePng(imgPath: PLAssets.chipCard),
-                                PLVSpace(40),
-                                PLTextWidget(
+                                NovaVSpace(16),
+                                NovaImagePng(imgPath: NovaAssets.chipCard),
+                                NovaVSpace(40),
+                                NovaTextWidget(
                                   title: cardNumber,
-                                  textStyle: PLTypography.textTitleLargeStyle,
-                                  textColor: PLColors.appPrimaryText,
-                                  textSize: PLTypography.fontBodyMedium,
+                                  textStyle: NovaTypography.textTitleLargeStyle,
+                                  textColor: NovaColors.appPrimaryText,
+                                  textSize: NovaTypography.fontBodyMedium,
                                   fontWeight: FontWeight.w700,
                                 ),
-                                PLVSpace(12),
+                                NovaVSpace(12),
                                 Row(
                                   // crossAxisAlignment: CrossAxisAlignment.end,
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,20 +117,20 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        PLTextWidget(
+                                        NovaTextWidget(
                                           title: "Card Holder",
                                           textStyle:
-                                              PLTypography.textTitleLargeStyle,
-                                          textColor: PLColors.appGrayText,
-                                          textSize: PLTypography.fontLabelSmall,
+                                              NovaTypography.textTitleLargeStyle,
+                                          textColor: NovaColors.appGrayText,
+                                          textSize: NovaTypography.fontLabelSmall,
                                           fontWeight: FontWeight.w400,
                                         ),
-                                        PLTextWidget(
+                                        NovaTextWidget(
                                           title: cardHolderName,
                                           textStyle:
-                                              PLTypography.textTitleLargeStyle,
-                                          textColor: PLColors.appGrayText,
-                                          textSize: PLTypography.fontBodyMedium,
+                                              NovaTypography.textTitleLargeStyle,
+                                          textColor: NovaColors.appGrayText,
+                                          textSize: NovaTypography.fontBodyMedium,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ],
@@ -139,20 +138,20 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
-                                        PLTextWidget(
+                                        NovaTextWidget(
                                           title: "Exp Date",
                                           textStyle:
-                                              PLTypography.textTitleLargeStyle,
-                                          textColor: PLColors.appGrayText,
-                                          textSize: PLTypography.fontLabelSmall,
+                                              NovaTypography.textTitleLargeStyle,
+                                          textColor: NovaColors.appGrayText,
+                                          textSize: NovaTypography.fontLabelSmall,
                                           fontWeight: FontWeight.w400,
                                         ),
-                                        PLTextWidget(
+                                        NovaTextWidget(
                                           title: expiryDate,
                                           textStyle:
-                                              PLTypography.textTitleLargeStyle,
-                                          textColor: PLColors.appGrayText,
-                                          textSize: PLTypography.fontBodyMedium,
+                                              NovaTypography.textTitleLargeStyle,
+                                          textColor: NovaColors.appGrayText,
+                                          textSize: NovaTypography.fontBodyMedium,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ],
@@ -162,15 +161,15 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
                               ],
                             ).paddingSymmetric(horizontal: 16, vertical: 12),
                           ),
-                          PLVSpace(40),
+                          NovaVSpace(40),
                           Form(
                             key: profileWatcher.addCardFormKey,
                             child: Column(
                               children: [
-                                PLPrimaryTextField(
+                                NovaPrimaryTextField(
                                   textInputType: TextInputType.number,
                                   controller: profileWatcher.cardNumber,
-                                  fillColor: PLColors.appWhiteColor,
+                                  fillColor: NovaColors.appWhiteColor,
                                   onChange: (val){
                                     profileWatcher.listenForAddCardChanges();
 
@@ -187,10 +186,10 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
                                   ],
                                   // suffixIcon: CardUtils.getCardIcon(cardType),
                                 ),
-                                PLPrimaryTextField(
+                                NovaPrimaryTextField(
                                   textInputType: TextInputType.text,
                                   controller: profileWatcher.cardHolderName,
-                                  fillColor: PLColors.appWhiteColor,
+                                  fillColor: NovaColors.appWhiteColor,
                                   onChange: (val){
                                     profileWatcher.listenForAddCardChanges();
 
@@ -203,10 +202,10 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
                                 Row(
                                   children: [
                                     Expanded(
-                                      child: PLPrimaryTextField(
+                                      child: NovaPrimaryTextField(
                                         textInputType: TextInputType.number,
                                         controller: profileWatcher.cvvCode,
-                                        fillColor: PLColors.appWhiteColor,
+                                        fillColor: NovaColors.appWhiteColor,
                                         onChange: (val){
                                           profileWatcher.listenForAddCardChanges();
 
@@ -224,10 +223,10 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
                                     ),
                                     const SizedBox(width: 16),
                                     Expanded(
-                                      child: PLPrimaryTextField(
+                                      child: NovaPrimaryTextField(
                                         textInputType: TextInputType.number,
                                         controller: profileWatcher.expiryDate,
-                                        fillColor: PLColors.appWhiteColor,
+                                        fillColor: NovaColors.appWhiteColor,
                                         onChange: (val){
                                           profileWatcher.listenForAddCardChanges();
 
@@ -246,13 +245,13 @@ class _AddCardAccountScreenState extends State<AddCardAccountScreen> {
                                     ),
                                   ],
                                 ),
-                                PLVSpace(32),
-                                PLButtonRound(
+                                NovaVSpace(32),
+                                NovaButtonRound(
                                   textTitle: "Add Card",
                                   isFormValidated: profileWatcher.isAddCardFormValidated,
                                   isLoader: profileWatcher.isLoading,
                                   loadingString: profileWatcher.loadingString,
-                                  borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                                   functionToRun: () => profileWatcher.addCardDetails(context),
                                 ),
                               ],

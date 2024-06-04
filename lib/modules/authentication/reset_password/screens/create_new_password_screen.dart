@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/reset_password/exports.dart';
+part of 'package:nova/modules/authentication/reset_password/exports.dart';
 
 class CreateNewPasswordScreen extends StatelessWidget {
   const CreateNewPasswordScreen({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Container(
@@ -24,10 +24,10 @@ class CreateNewPasswordScreen extends StatelessWidget {
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
-                          PLAssets.loginBgPng,
+                          NovaAssets.loginBgPng,
                         ),
                         fit: BoxFit.cover)),
-                child: PLPaddedWidget(
+                child: NovaPaddedWidget(
                   child: Form(
                     key: model.formKey,
                     child: Align(
@@ -36,20 +36,20 @@ class CreateNewPasswordScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PLVSpace(86),
-                          PLTextWidget(
+                          NovaVSpace(86),
+                          NovaTextWidget(
                             title: strCreateNewPassword,
                             isTitle: true,
-                            textColor: PLColors.appWhiteColor,
-                            textStyle: PLTypography.textHeadlineSmallStyle,
+                            textColor: NovaColors.appWhiteColor,
+                            textStyle: NovaTypography.textHeadlineSmallStyle,
                           ),
                           const SizedBox(height: 10.0),
-                          PLTextWidget(
+                          NovaTextWidget(
                             title: strCreateNewPasswordDesc,
-                            textColor: PLColors.appWhiteColor,
+                            textColor: NovaColors.appWhiteColor,
                           ),
-                          PLVSpace(24),
-                          PLPasswordTextField(
+                          NovaVSpace(24),
+                          NovaPasswordTextField(
                             controller: model.password,
                             textInputTitle: strPassword,
                             hintText: strPassword,
@@ -57,7 +57,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
                             validation: (value) => value!.passwordError(),
                             textInputAction: TextInputAction.done,
                           ),
-                          PLPasswordTextField(
+                          NovaPasswordTextField(
                             controller: model.confirmPassword,
                             textInputTitle: strConfirmPassword,
                             hintText: strConfirmPassword,
@@ -65,8 +65,8 @@ class CreateNewPasswordScreen extends StatelessWidget {
                             validation: (value) => value!.comparePassword(model.password.text),
                             textInputAction: TextInputAction.done,
                           ),
-                          PLVSpace(32),
-                          PLButtonRound(
+                          NovaVSpace(32),
+                          NovaButtonRound(
                             textTitle: strCreate,
                             isLoader: model.isLoading,
                             loadingString: model.loadingString,

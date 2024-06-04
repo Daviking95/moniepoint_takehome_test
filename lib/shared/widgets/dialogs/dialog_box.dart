@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 showErrorWidgetDialog(
     {BuildContext? context,
@@ -20,14 +20,14 @@ showErrorWidgetDialog(
           message,
           softWrap: true,
           maxLines: 3,
-          style: PLTypography.textBodyMediumStyle.copyWith(color: PLColors.appWhiteColor),
+          style: NovaTypography.textBodyMediumStyle.copyWith(color: NovaColors.appWhiteColor),
           overflow: TextOverflow.ellipsis,
         )
       ],
     ),
     duration: const Duration(seconds: 3),
     slideDismissDirection: DismissDirection.horizontal,
-    background: isSuccess ? Colors.green : PLColors.appErrorColor,
+    background: isSuccess ? Colors.green : NovaColors.appErrorColor,
   );
 }
 

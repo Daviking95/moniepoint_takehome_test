@@ -1,6 +1,6 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLTextWidget extends StatelessWidget {
+class NovaTextWidget extends StatelessWidget {
   final String? title;
   final bool? isCenter;
   final bool? isTitle;
@@ -16,7 +16,7 @@ class PLTextWidget extends StatelessWidget {
   final TextStyle? textStyle;
   final int? maxLines;
 
-  const PLTextWidget(
+  const NovaTextWidget(
       {Key? key,
       required this.title,
       this.isCenter = false,
@@ -42,7 +42,7 @@ class PLTextWidget extends StatelessWidget {
     Color? _txtColor;
     String? _fontFamily;
 
-    _fontFamily = fontFamily ?? (isTitle! ? PLTypography.fontFamilyBold : PLTypography.fontFamilyLight);
+    _fontFamily = fontFamily ?? (isTitle! ? NovaTypography.fontFamilyBold : NovaTypography.fontFamilyLight);
 
     _fontWeight = isTitle! ? FontWeight.bold : fontWeight!;
 

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class EmploymentTab extends StatelessWidget {
   const EmploymentTab({Key? key}) : super(key: key);
@@ -20,11 +20,11 @@ class EmploymentTab extends StatelessWidget {
                 model.listenForEmploymentTabChanges();
               },
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
               textInputType: TextInputType.number,
               controller: model.empMonthlyIncome,
               formatter: [CurrencyTextInputFormatter(symbol: strCurrency2)],
-              fillColor: PLColors.appWhiteColor,
+              fillColor: NovaColors.appWhiteColor,
               onChange: (val) => model.listenForEmploymentTabChanges(),
 
               validation: (val) => val.validateAmount(strFieldRequiredError, 0),
@@ -39,28 +39,28 @@ class EmploymentTab extends StatelessWidget {
                 model.listenForEmploymentTabChanges();
               },
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
               textInputType: TextInputType.text,
               controller: model.empJobTitle,
               onChange: (val) => model.listenForEmploymentTabChanges(),
 
               hintText: "Job Title",
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
               textInputType: TextInputType.text,
               controller: model.empCompanyName,
               onChange: (val) => model.listenForEmploymentTabChanges(),
 
               hintText: "Company Name",
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
               textInputType: TextInputType.emailAddress,
               controller: model.empOfficeEmail,
               onChange: (val) => model.listenForEmploymentTabChanges(),
 
               hintText: "Your Office Email",
             ),
-            PLPrimaryTextField(
+            NovaPrimaryTextField(
                 textInputType: TextInputType.text,
                 controller: model.empOfficeAddress,
                 onChange: (val) => model.listenForEmploymentTabChanges(),
@@ -81,18 +81,18 @@ class EmploymentTab extends StatelessWidget {
                 model.listenForEmploymentTabChanges();
               },
             ),
-            PLVSpace(32),
-            PLButtonRound(
+            NovaVSpace(32),
+            NovaButtonRound(
               textTitle: strSave,
               isFormValidated: model.isEmploymentFormValidated,
               isLoader: model.isLoading,
               loadingString: model.loadingString,
-              borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+              borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
               functionToRun: () =>
                   model.updateProfileInfo(context, 3)
                   // model.confirmProfileSavePersonalInfo(context, 3, model),
             ),
-            PLVSpace(16),
+            NovaVSpace(16),
           ],
         ),
       ),

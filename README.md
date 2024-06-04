@@ -1,4 +1,4 @@
-# peerlendly
+# nova
 
 Lend and Borrow Peering
 

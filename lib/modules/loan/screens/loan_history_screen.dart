@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class LoanHistoryScreen extends StatelessWidget {
   final List<MarketplaceResponseModelLoanDetail> borrowerLoanHistory;
@@ -8,30 +8,30 @@ class LoanHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PLVSpace(16),
+        NovaVSpace(16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            PLTextWidget(
+            NovaTextWidget(
               title: "Loan Repaid (${borrowerLoanHistory.length})",
-              textColor: PLColors.appPrimaryText,
-              fontFamily: PLTypography.fontFamilyMedium,
+              textColor: NovaColors.appPrimaryText,
+              fontFamily: NovaTypography.fontFamilyMedium,
               fontWeight: FontWeight.w600,
-              textSize: PLTypography.fontBodyMedium,
+              textSize: NovaTypography.fontBodyMedium,
             ),
             InkWell(
               onTap: () {
                 Navigator.pop(context);
               },
-              child: PLImageSvg(
-                svgPath: PLAssets.closeIcon,
+              child: NovaImageSvg(
+                svgPath: NovaAssets.closeIcon,
                 width: 12.w,
                 height: 12.h,
               ),
             )
           ],
         ),
-        PLVSpace(32),
+        NovaVSpace(32),
         Expanded(
             child: ListView(
           children: [

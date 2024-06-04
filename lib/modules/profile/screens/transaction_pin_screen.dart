@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 
 class TransactionPinScreen extends StatelessWidget {
@@ -7,16 +7,15 @@ class TransactionPinScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Form(
                   key: profileWatcher.transationPinFormKey,
                   child: Column(
@@ -26,47 +25,47 @@ class TransactionPinScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PLVSpace(48),
-                          PLBackIcon(
+                          NovaVSpace(48),
+                          NovaBackIcon(
                             onTap: () => Navigator.pop(context),
                           ),
-                          PLVSpace(8),
-                          PLTextWidget(
+                          NovaVSpace(8),
+                          NovaTextWidget(
                             title: "Transaction PIN",
                             isTitle: true,
-                            textStyle: PLTypography.textHeadlineMediumStyle,
-                            textSize: PLTypography.fontHeadlineSmall,
+                            textStyle: NovaTypography.textHeadlineMediumStyle,
+                            textSize: NovaTypography.fontHeadlineSmall,
                           ),
-                          PLVSpace(4),
-                          PLTextWidget(
+                          NovaVSpace(4),
+                          NovaTextWidget(
                             title: "Your 4-digit transaction PIN secures your transactions. \nDo not share your PIN with anyone",
-                            textStyle: PLTypography.textHeadlineMediumStyle,
-                            textSize: PLTypography.fontLabelSmall,
+                            textStyle: NovaTypography.textHeadlineMediumStyle,
+                            textSize: NovaTypography.fontLabelSmall,
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                           if((AppData.getUserProfileResponseModel?.transactionPin ?? "").isNotEmpty && (AppData.getUserProfileResponseModel?.transactionPin ?? "") != "N/A")
-                          PLPrimaryTextField(
+                          NovaPrimaryTextField(
                             textInputType: TextInputType.number,
                             controller: profileWatcher.oldPin,
-                            fillColor: PLColors.appWhiteColor,
+                            fillColor: NovaColors.appWhiteColor,
                             maxLength: 4,
                             validation: (val) => val.validateLength(strFieldRequiredError, 4),
                             hintText: "Current PIN",
                             // onChange: (val) => model.listenForCreatePinChanges(),
                           ),
-                          PLPrimaryTextField(
+                          NovaPrimaryTextField(
                             textInputType: TextInputType.number,
                             controller: profileWatcher.newPin,
-                            fillColor: PLColors.appWhiteColor,
+                            fillColor: NovaColors.appWhiteColor,
                             maxLength: 4,
                             validation: (val) => val.validateLength(strFieldRequiredError, 4),
                             hintText: "New PIN",
                             onChange: (val) => profileWatcher.listenForCreatePinChanges(),
                           ),
-                          PLPrimaryTextField(
+                          NovaPrimaryTextField(
                             textInputType: TextInputType.number,
                             controller: profileWatcher.confirmNewPin,
-                            fillColor: PLColors.appWhiteColor,
+                            fillColor: NovaColors.appWhiteColor,
                             maxLength: 4,
                             validation: (val) => val.validateLength(strFieldRequiredError, 4),
                             hintText: "Confirm New PIN",
@@ -76,10 +75,10 @@ class TransactionPinScreen extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          PLButtonRound(
+                          NovaButtonRound(
                             textTitle: (AppData.getUserProfileResponseModel?.transactionPin ?? "").isNotEmpty  && (AppData.getUserProfileResponseModel?.transactionPin ?? "") != "N/A" ? strResetPassword : strProceed,
                             borderRadius:
-                            PLDecorations.borderRadiusGeometryCircular8,
+                            NovaDecorations.borderRadiusGeometryCircular8,
                             isFormValidated: profileWatcher.isChangePinFormValidated,
                             loadingString: profileWatcher.loadingString,
                             isLoader: profileWatcher.isLoading,
@@ -90,7 +89,7 @@ class TransactionPinScreen extends StatelessWidget {
                               profileWatcher.createTransactionPin(context);
                             },
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                         ],
                       ),
                     ],

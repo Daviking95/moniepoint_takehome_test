@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/utils/constants/exports.dart';
+part of 'package:nova/core/utils/constants/exports.dart';
 
 class AppData {
   static LoanStatus loanStatus = LoanStatus.noLoan;

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:peerlendly/core/exports.dart';
+import 'package:nova/core/exports.dart';
 
 import '../../../core/utils/helper_functions/exports.dart';
 import '../../../shared/models/error_response_model.dart';
@@ -500,10 +500,10 @@ class PLLoanRepository extends PLLoanService {
 
       "requestData $encryptedData $transactionPin".log();
 
-      var responseData = await NetworkService.post(
-          url: NetworkConstants.verifyPinUrl, data: encryptedData);
-
-      "verifyPinService $responseData".logger();
+      // var responseData = await NetworkService.post(
+      //     url: NetworkConstants.verifyPinUrl, data: encryptedData);
+      //
+      // "verifyPinService $responseData".logger();
 
       return Right(GenericResponseModel(
           message: "Pin verification successful", success: true));

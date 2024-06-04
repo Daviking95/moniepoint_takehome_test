@@ -1,6 +1,6 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLButtonRound extends StatelessWidget {
+class NovaButtonRound extends StatelessWidget {
   final String? textTitle;
   final String? routeToGo;
   final Color? bgColor;
@@ -21,9 +21,11 @@ class PLButtonRound extends StatelessWidget {
   final Widget? suffixIcon;
   final double? fontSize;
   final double inSpacerWidth;
+  final bool isAllCaps;
   final bool isFormValidated;
+  final bool hasBgImg;
 
-  const PLButtonRound(
+  const NovaButtonRound(
       {Key? key,
       this.textTitle = "",
       this.routeToGo,
@@ -43,42 +45,68 @@ class PLButtonRound extends StatelessWidget {
       this.isLoader = false,
       this.loadingString = "",
       this.hasSuffixIcon = false,
+      this.isAllCaps = false,
+      this.hasBgImg = false,
       this.suffixIcon,
-      this.fontSize = 16,
+      this.fontSize = 18,
       this.inSpacerWidth = 0})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     TextStyle? _textStyle =
-        textStyle ?? context.textTheme.bodyMedium?.copyWith(color: textColor ?? (isFormValidated ? PLColors.appWhiteColor : PLColors.appWhiteColor.withOpacity(.4)));
+        textStyle ?? NovaTypography.textBodyMediumStyleBold.copyWith(color: textColor ?? (isFormValidated ? NovaColors.appWhiteColor : NovaColors.appWhiteColor.withOpacity(.4)));
 
-    return SizedBox(
-      height: height ?? context.theme.buttonTheme.height,
-      child: Material(
-        elevation: 1.0,
-        borderRadius: borderRadius ?? PLDecorations.borderRadiusGeometryCircular50,
-        color: isLoader ? PLColors.neutralColor500 : bgColor ?? (isFormValidated ? context.theme.primaryColor : PLColors.appGrayText),
-        child: MaterialButton(
-          minWidth: width == 0 ? context.width : width,
-          onPressed: () {
-            isLoader || !isFormValidated || functionToRun == null
-                ? null
-                : {
+    return InkWell(
+      onTap: (){
+        isLoader || !isFormValidated || functionToRun == null
+            ? null
+            : {
+          FocusScope.of(context).unfocus(),
+          functionToRun!(),
+        };
+      },
+      child: SizedBox(
+        height: height ?? context.theme.buttonTheme.height,
+        child: Stack(
+          children: [
+            Material(
+              elevation: 1.0,
+              borderRadius: borderRadius ?? NovaDecorations.borderRadiusGeometryCircular4,
+              color: isLoader ? NovaColors.neutralColor500 : bgColor ?? (isFormValidated ? context.theme.primaryColor : NovaColors.appGrayText),
+              child: MaterialButton(
+                minWidth: width == 0 ? context.width : width,
+                onPressed: () {
+                  isLoader || !isFormValidated || functionToRun == null
+                      ? null
+                      : {
                     FocusScope.of(context).unfocus(),
                     functionToRun!(),
                   };
-          },
-          child: isLoader
-              ? buttonLoaderIcon(loadingString ?? "")
-              : isIcon!
-                  ? icon
-                  : hasSuffixIcon!
-                      ? buttonSuffixIcon(textTitle, _textStyle, fontSize, suffixIcon, context)
-                      : buttonNoSuffixIcon(textTitle, _textStyle, fontSize, context, inSpacerWidth),
+                },
+                child: isLoader
+                    ? buttonLoaderIcon(loadingString ?? "")
+                    : isIcon!
+                    ? icon
+                    : hasSuffixIcon!
+                    ? buttonSuffixIcon(textTitle, _textStyle, fontSize, suffixIcon, context, isAllCaps)
+                    : buttonNoSuffixIcon(textTitle, _textStyle, fontSize, context, inSpacerWidth, isAllCaps),
+              ),
+            ),
+            if(hasBgImg)
+            Positioned(
+              right: -30,
+                top: -65,
+                child: SvgPicture.asset(NovaAssets.buttonImg, fit: BoxFit.fitWidth,
+                  height: 200.h,
+                  width: context.width,
+                ))
+            // NovaImageSvg(svgPath: NovaAssets.buttonImg),
+
+          ],
         ),
-      ),
-    ).paddingSymmetric(vertical: 10);
+      ).paddingSymmetric(vertical: 6),
+    );
   }
 }
 
@@ -94,6 +122,7 @@ class PLButtonOutline extends StatelessWidget {
   final double? fontSize;
   final Widget? buttonWidget;
   final bool hasBorder;
+  final bool isAllCaps;
 
   const PLButtonOutline(
       {super.key,
@@ -105,6 +134,7 @@ class PLButtonOutline extends StatelessWidget {
       this.routeToGo,
       this.arguments = true,
       this.hasBorder = true,
+      this.isAllCaps = false,
       this.functionToRun,
       this.textStyle,
       this.fontSize = 16});
@@ -113,7 +143,7 @@ class PLButtonOutline extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    TextStyle? _textStyle = textStyle ?? context.textTheme.bodyLarge?.copyWith(color: PLColors.appPrimaryColorMain500);
+    TextStyle? _textStyle = textStyle ?? context.textTheme.bodyLarge?.copyWith(color: NovaColors.appPrimaryColorMain500);
 
     return SizedBox(
       width: width == 0 ? context.width : width,
@@ -129,12 +159,12 @@ class PLButtonOutline extends StatelessWidget {
                 : null,
             padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
             shape: RoundedRectangleBorder(
-              borderRadius: borderRadius ?? PLDecorations.borderRadiusGeometryCircular50,
+              borderRadius: borderRadius ?? NovaDecorations.borderRadiusGeometryCircular4,
             )),
         onPressed: () => onPressed(context),
-        child: buttonWidget ?? buttonNoSuffixIcon(textTitle, _textStyle, fontSize, context, 0),
+        child: buttonWidget ?? buttonNoSuffixIcon(textTitle, _textStyle, fontSize, context, 0, isAllCaps),
       ),
-    ).paddingSymmetric(vertical: 10);
+    ).paddingSymmetric(vertical: 6);
   }
 
   onPressed(BuildContext context) {

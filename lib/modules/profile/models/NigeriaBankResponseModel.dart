@@ -1,33 +1,24 @@
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class NigeriaBankResponseModel {
-  final String name;
-  final String slug;
-  final String code;
-  final String ussd;
+  final String bankCode;
+  final String bankName;
   final String logo;
 
   NigeriaBankResponseModel({
-    required this.name,
-    required this.slug,
-    required this.code,
-    required this.ussd,
+    required this.bankCode,
+    required this.bankName,
     required this.logo,
   });
 
   NigeriaBankResponseModel copyWith({
-    String? name,
-    String? slug,
-    String? code,
-    String? ussd,
+    String? bankCode,
+    String? bankName,
     String? logo,
   }) =>
       NigeriaBankResponseModel(
-        name: name ?? this.name,
-        slug: slug ?? this.slug,
-        code: code ?? this.code,
-        ussd: ussd ?? this.ussd,
+        bankCode: bankCode ?? this.bankCode,
+        bankName: bankName ?? this.bankName,
         logo: logo ?? this.logo,
       );
 
@@ -36,18 +27,14 @@ class NigeriaBankResponseModel {
   String toRawJson() => json.encode(toJson());
 
   factory NigeriaBankResponseModel.fromJson(Map<String, dynamic> json) => NigeriaBankResponseModel(
-    name: json["name"],
-    slug: json["slug"],
-    code: json["code"],
-    ussd: json["ussd"],
-    logo: json["logo"],
+    bankCode: json["BankCode"],
+    bankName: json["BankName"],
+    logo: json["logo"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "slug": slug,
-    "code": code,
-    "ussd": ussd,
+    "BankCode": bankCode,
+    "BankName": bankName,
     "logo": logo,
   };
 }

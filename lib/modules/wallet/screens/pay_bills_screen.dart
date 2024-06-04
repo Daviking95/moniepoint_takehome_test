@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class PayBillsScreen extends StatelessWidget {
   final String title;
@@ -16,7 +16,6 @@ class PayBillsScreen extends StatelessWidget {
 
   Widget _buildScreen(BuildContext context, WalletProvider model) {
     final walletWatcher = context.watch<WalletProvider>();
-    final walletReader = context.read<WalletProvider>();
 
     "walletWatcher ${model.customerName}";
 
@@ -24,13 +23,13 @@ class PayBillsScreen extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: Form(
                 key: model.formKeyForBillsPayment,
                 child: SingleChildScrollView(
-                  child: PLPaddedWidget(
+                  child: NovaPaddedWidget(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
@@ -39,17 +38,17 @@ class PayBillsScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            PLVSpace(48),
-                            PLBackIcon(onTap: () => Navigator.pop(context)),
-                            PLVSpace(16),
-                            PLTextWidget(
+                            NovaVSpace(48),
+                            NovaBackIcon(onTap: () => Navigator.pop(context)),
+                            NovaVSpace(16),
+                            NovaTextWidget(
                               title: title,
-                              textStyle: PLTypography.textTitleLargeStyle,
-                              textColor: PLColors.appPrimaryText,
+                              textStyle: NovaTypography.textTitleLargeStyle,
+                              textColor: NovaColors.appPrimaryText,
                               fontWeight: FontWeight.w700,
-                              textSize: PLTypography.fontTitleLarge,
+                              textSize: NovaTypography.fontTitleLarge,
                             ),
-                            PLVSpace(24),
+                            NovaVSpace(24),
                             PLDropDownButtonWithIcon(
                               list: const [
                                 {"": "IKEDC"},
@@ -62,7 +61,7 @@ class PayBillsScreen extends StatelessWidget {
                             ),
                             if (title.toLowerCase() == "internet" ||
                                 title.toLowerCase() == "tv") ...[
-                              PLVSpace(16),
+                              NovaVSpace(16),
                               PLDropDownButtonWithIcon(
                                 list: const [
                                   {"": "PrePaid"},
@@ -74,13 +73,13 @@ class PayBillsScreen extends StatelessWidget {
                                     model.listenForPayBillsChanges(),
                               ),
                             ],
-                            PLVSpace(16),
-                            PLPrimaryTextField(
+                            NovaVSpace(16),
+                            NovaPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: model.accountNo,
                               formatter: [FilteringTextInputFormatter.digitsOnly],
                               maxLength: title.toLowerCase() == "internet" ? 10 : null,
-                              fillColor: PLColors.appWhiteColor,
+                              fillColor: NovaColors.appWhiteColor,
                               validation: (val) =>
                                   val.validateString(strFieldRequiredError),
                               hintText: getAccountIDTitle(title.toLowerCase()),
@@ -89,19 +88,19 @@ class PayBillsScreen extends StatelessWidget {
                             ),
                             Align(
                               alignment: Alignment.centerRight,
-                              child: PLTextWidget(
+                              child: NovaTextWidget(
                                 isPrimary: true,
                                 fontWeight: FontWeight.w600,
                                 title: model.customerName.text,
                               ),
                             ),
-                            PLVSpace(8),
-                            PLPrimaryTextField(
+                            NovaVSpace(8),
+                            NovaPrimaryTextField(
                               textInputType: TextInputType.number,
                               controller: model.amount,
                               formatter: [CurrencyTextInputFormatter(
                                   symbol: strCurrency2)],
-                              fillColor: PLColors.appWhiteColor,
+                              fillColor: NovaColors.appWhiteColor,
                               validation: (val) =>
                                   val.validateAmount(strFieldRequiredError, 0),
                               hintText: strAmount,
@@ -142,10 +141,10 @@ class PayBillsScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            PLVSpace(32),
-                            PLButtonRound(
+                            NovaVSpace(32),
+                            NovaButtonRound(
                               textTitle: strNext,
-                              borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                              borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                               loadingString: walletWatcher.loadingString,
                               isLoader: walletWatcher.isLoading,
                               isFormValidated: model.isFormValidatedForPayBills,
@@ -159,7 +158,7 @@ class PayBillsScreen extends StatelessWidget {
                                     }));
                               },
                             ),
-                            PLVSpace(32),
+                            NovaVSpace(32),
                           ],
                         ),
                       ],

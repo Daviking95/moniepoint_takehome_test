@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/forgot_password/exports.dart';
+part of 'package:nova/modules/authentication/forgot_password/exports.dart';
 
 class ForgotPasswordProvider extends BaseViewModel {
   final BuildContext? context;

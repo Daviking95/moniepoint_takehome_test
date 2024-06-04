@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 
 class RemoveBankCardPopup extends StatelessWidget {
@@ -10,41 +10,41 @@ class RemoveBankCardPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
 
-    return PLPaddedWidget(
+    return NovaPaddedWidget(
       child: Column(
         children: [
-          PLVSpace(12),
-          PLImageSvg(
-            svgPath: PLAssets.infoIconRed,
+          NovaVSpace(12),
+          NovaImageSvg(
+            svgPath: NovaAssets.infoIconRed,
             width: 50.w,
             height: 50.h,
           ),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(24),
+          NovaTextWidget(
             title: 'Do you wish to delete this "${isCard ? 'card' : 'bank'}"?',
-            textSize: PLTypography.fontLabelMedium,
+            textSize: NovaTypography.fontLabelMedium,
             textAlign: TextAlign.center,
-            textColor: PLColors.appGrayText,
+            textColor: NovaColors.appGrayText,
           ),
-          PLVSpace(24),
+          NovaVSpace(24),
           Row(
             children: [
               Expanded(
                 child: PLButtonOutline(
-                  borderColor: PLColors.appPrimaryColorMain500,
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                  borderColor: NovaColors.appPrimaryColorMain500,
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                   textTitle: "No, cancel",
                   functionToRun: () {
                     Navigator.pop(context);
                   },
                 ),
               ),
-              PLHSpace(16),
+              NovaHSpace(16),
               Expanded(
-                child: PLButtonRound(
+                child: NovaButtonRound(
                     textTitle: "Delete",
-                    borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-                    bgColor: PLColors.appErrorColor,
+                    borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+                    bgColor: NovaColors.appErrorColor,
                     functionToRun: () {
                       profileWatcher.removeBankDetails(id, isCard);
                       Navigator.pop(context);

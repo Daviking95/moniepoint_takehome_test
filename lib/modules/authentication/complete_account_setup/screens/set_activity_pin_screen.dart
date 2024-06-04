@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/complete_account_setup/exports.dart';
+part of 'package:nova/modules/authentication/complete_account_setup/exports.dart';
 
 class SetActivityPinScreen extends StatefulWidget {
   final bool isPinReEnter;
@@ -24,14 +24,14 @@ class _SetActivityPinScreenState extends State<SetActivityPinScreen> {
         context.watch<CompleteAccountSetupProvider>();
 
     return AppBaseWidget(
-      iconSet: PLImagePng(
-        imgPath: PLAssets.phoneWalletInHand,
+      iconSet: NovaImagePng(
+        imgPath: NovaAssets.phoneWalletInHand,
         width: 138.w,
         height: 130.h,
         boxFit: BoxFit.contain,
       ),
       hasBackButton: true,
-      buildWidget: PLOverlayLoader(
+      buildWidget: NovaOverlayLoader(
         startLoader: completeAccountWatcher.isLoading,
         loadingString: completeAccountWatcher.loadingString,
         child: ActivityPinSetupWidget(
@@ -90,8 +90,8 @@ class _ActivityPinSetupWidgetState extends State<ActivityPinSetupWidget> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
-          backgroundColor: PLColors.appWhiteColor,
+        child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
@@ -99,28 +99,28 @@ class _ActivityPinSetupWidgetState extends State<ActivityPinSetupWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(16),
-                    PLBackIcon(
+                    NovaVSpace(16),
+                    NovaBackIcon(
                       onTap: () => Navigator.pushNamed(
                           context, AppRoutes.verifyEmailAddress),
                       isCancel: true,
                       isBtmNavWithNoTitle: true,
                     ),
-                    PLVSpace(40),
-                    PLTextWidget(
+                    NovaVSpace(40),
+                    NovaTextWidget(
                       title:
                           widget.isPinReEnter ? "Re-enter New Pin" : "Enter New Pin",
                       isTitle: true,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontHeadlineSmall,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontHeadlineSmall,
                     ),
-                    PLVSpace(10),
-                    PLTextWidget(
+                    NovaVSpace(10),
+                    NovaTextWidget(
                       title: "Kindly enter your 4-digit code ",
-                      textColor: PLColors.appGrayText,
-                      textSize: PLTypography.fontLabelMedium,
+                      textColor: NovaColors.appGrayText,
+                      textSize: NovaTypography.fontLabelMedium,
                     ),
-                    PLVSpace(60),
+                    NovaVSpace(60),
                     SizedBox(
                       width: context.width,
                       child: PinTextField(
@@ -146,7 +146,7 @@ class _ActivityPinSetupWidgetState extends State<ActivityPinSetupWidget> {
                             val.validateString(strFieldRequiredError),
                       ),
                     ),
-                    PLVSpace(14),
+                    NovaVSpace(14),
                   ],
                 ),
               )),

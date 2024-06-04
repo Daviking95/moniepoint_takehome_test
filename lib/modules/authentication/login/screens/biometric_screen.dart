@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/login/exports.dart';
+part of 'package:nova/modules/authentication/login/exports.dart';
 
 class BiometricScreen extends StatelessWidget {
 

@@ -1,7 +1,7 @@
 
  import 'package:flutter/cupertino.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
-import 'package:peerlendly/core/utils/extensions/exports.dart';
+import 'package:nova/core/utils/extensions/exports.dart';
 
 pickContact(TextEditingController controller) async{
   if (!await FlutterContactPicker.hasPermission()) {
@@ -11,19 +11,18 @@ pickContact(TextEditingController controller) async{
 
   "_phoneNumberController.text 1 ${contact.phoneNumber!.number!}".logger();
 
-  if (controller != null) {
-    controller.text = contact
-        .phoneNumber!.number!
-        .replaceAll("+234", "")
-        .replaceAll(" ", "")
-        .replaceAll("-", "")
-        .replaceAll("(", "")
-        .replaceAll(")", "");
+  controller.text = contact
+      .phoneNumber!.number!
+      .replaceAll("+234", "")
+      .replaceAll(" ", "")
+      .replaceAll("-", "")
+      .replaceAll("(", "")
+      .replaceAll(")", "");
 
-    controller.text =
-        controller.text.substring(
-            controller.text.length - 11);
+  controller.text =
+      controller.text.substring(
+          controller.text.length - 11);
 
-    "_phoneNumberController.text ${controller.text}".logger();
-  };
+  "_phoneNumberController.text ${controller.text}".logger();
+;
 }

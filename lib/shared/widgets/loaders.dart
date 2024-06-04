@@ -1,30 +1,30 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLProgressIndicator extends StatefulWidget {
+class NovaProgressIndicator extends StatefulWidget {
   final bool showLoader;
 
-  const PLProgressIndicator({super.key, this.showLoader = false});
+  const NovaProgressIndicator({super.key, this.showLoader = false});
 
   @override
-  _PLProgressIndicatorState createState() => _PLProgressIndicatorState();
+  _NovaProgressIndicatorState createState() => _NovaProgressIndicatorState();
 }
 
-class _PLProgressIndicatorState extends State<PLProgressIndicator> {
+class _NovaProgressIndicatorState extends State<NovaProgressIndicator> {
   @override
   Widget build(BuildContext context) {
     return widget.showLoader
         ? Column(
             children: [
-              PLVSpace(32),
+              NovaVSpace(32),
               LinearProgressIndicator(
                 backgroundColor: context.theme.primaryColor,
-                valueColor: const AlwaysStoppedAnimation(PLColors
+                valueColor: const AlwaysStoppedAnimation(NovaColors
                     .appSecondaryColorMain500),
                 minHeight: 5,
               ),
-              PLVSpace(10)
+              NovaVSpace(10)
             ],
           )
-        : Container(child: PLVSpace(42),);
+        : Container(child: NovaVSpace(42),);
   }
 }

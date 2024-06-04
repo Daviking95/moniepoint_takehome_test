@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class CancelLoanOfferPopup extends StatelessWidget {
   final ActivePendingLoansResponseModelLoanDetail loanDetail;
@@ -12,51 +12,51 @@ class CancelLoanOfferPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     final loanWatcher = context.watch<LoanProvider>();
 
-    return PLPaddedWidget(
+    return NovaPaddedWidget(
       child: Column(
         children: [
-          PLVSpace(12),
-          PLImageSvg(
-            svgPath: PLAssets.infoIconRed,
+          NovaVSpace(12),
+          NovaImageSvg(
+            svgPath: NovaAssets.infoIconRed,
             width: 50.w,
             height: 50.h,
           ),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(24),
+          NovaTextWidget(
             title: 'You are about to cancel your loan offer',
-            textSize: PLTypography.fontLabelMedium,
+            textSize: NovaTypography.fontLabelMedium,
             textAlign: TextAlign.center,
-            textColor: PLColors.appGrayText,
+            textColor: NovaColors.appGrayText,
           ),
-          PLVSpace(4),
-          PLTextWidget(
+          NovaVSpace(4),
+          NovaTextWidget(
             title: loanDetail.loanAmount.toString().formatWithCommasAndDecimals(),
-            textStyle: PLTypography.textTitleSmallStyle,
-            textSize: PLTypography.fontBodyMedium,
+            textStyle: NovaTypography.textTitleSmallStyle,
+            textSize: NovaTypography.fontBodyMedium,
             fontWeight: FontWeight.w600,
-            textColor: PLColors.appPrimaryText,
+            textColor: NovaColors.appPrimaryText,
             maxLines: 1,
             isCurrency: true,
           ),
-          PLVSpace(24),
+          NovaVSpace(24),
           Row(
             children: [
               Expanded(
                 child: PLButtonOutline(
-                  borderColor: PLColors.appPrimaryColorMain500,
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                  borderColor: NovaColors.appPrimaryColorMain500,
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                   textTitle: "No",
                   functionToRun: () {
                     Navigator.pop(context);
                   },
                 ),
               ),
-              PLHSpace(16),
+              NovaHSpace(16),
               Expanded(
-                child: PLButtonRound(
+                child: NovaButtonRound(
                     textTitle: "Yes cancel",
-                    borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-                    bgColor: PLColors.appErrorColor,
+                    borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+                    bgColor: NovaColors.appErrorColor,
                     functionToRun: () {
                       Navigator.pop(context);
                       loanWatcher.canceloanOffer(loanDetail);

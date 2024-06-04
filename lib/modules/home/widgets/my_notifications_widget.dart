@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 class MyNotificationsWidget extends StatelessWidget {
   const MyNotificationsWidget({Key? key}) : super(key: key);

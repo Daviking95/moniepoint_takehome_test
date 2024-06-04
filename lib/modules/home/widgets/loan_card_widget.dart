@@ -1,19 +1,18 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 class LoanCardWidget extends StatelessWidget {
   const LoanCardWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final walletWatcher = context.watch<WalletProvider>();
 
     return Container(
       decoration: BoxDecoration(
-        color: PLColors.appPrimaryColorMain500,
+        color: NovaColors.appPrimaryColorMain500,
         image: const DecorationImage(
-            image: AssetImage(PLAssets.walletCardBg),
+            image: AssetImage(NovaAssets.walletCardBg),
             alignment: Alignment.topLeft,
             fit: BoxFit.contain),
-        borderRadius: PLDecorations.borderRadiusGeometryCircular20,
+        borderRadius: NovaDecorations.borderRadiusGeometryCircular20,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,11 +25,11 @@ class LoanCardWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  PLTextWidget(
+                  NovaTextWidget(
                     title: "Loan Amount",
-                    textStyle: PLTypography.textBodySmallStyle,
-                    textSize: PLTypography.fontBodySmall,
-                    textColor: PLColors.appWhiteColor,
+                    textStyle: NovaTypography.textBodySmallStyle,
+                    textSize: NovaTypography.fontBodySmall,
+                    textColor: NovaColors.appWhiteColor,
                     maxLines: 1,
                   ),
 
@@ -41,29 +40,29 @@ class LoanCardWidget extends StatelessWidget {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: PLDecorations.borderRadiusGeometryCircular20,
-                          color: PLColors.appWhiteColor),
-                      child: PLTextWidget(
+                          borderRadius: NovaDecorations.borderRadiusGeometryCircular20,
+                          color: NovaColors.appWhiteColor),
+                      child: NovaTextWidget(
                         title: "Pay Now",
-                        textColor: PLColors.appPrimaryColorMain500,
-                        textSize: PLTypography.fontLabelSmall,
+                        textColor: NovaColors.appPrimaryColorMain500,
+                        textSize: NovaTypography.fontLabelSmall,
                       ).paddingSymmetric(horizontal: 12, vertical: 6),
                     ),
                   )
                 ],
               ),
-              PLVSpace(4),
+              NovaVSpace(4),
               Row(
                 children: [
-                  PLTextWidget(
+                  NovaTextWidget(
                     title: (AppData.loogedInUserLoan?.amount ?? 0)
                         .toString()
                         .formatWithCommasAndDecimals(),
-                    textStyle: PLTypography.textTitleSmallStyle,
-                    textSize: PLTypography.fontHeadlineSmall,
-                    fontFamily: PLTypography.fontFamilyMedium,
+                    textStyle: NovaTypography.textTitleSmallStyle,
+                    textSize: NovaTypography.fontHeadlineSmall,
+                    fontFamily: NovaTypography.fontFamilyMedium,
                     fontWeight: FontWeight.w700,
-                    textColor: PLColors.appWhiteColor,
+                    textColor: NovaColors.appWhiteColor,
                     maxLines: 1,
                     isCurrency: true,
                   ),
@@ -84,19 +83,19 @@ class LoanCardWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  PLTextWidget(
+                  NovaTextWidget(
                     title: "Loan Duration",
-                    textStyle: PLTypography.textTitleSmallStyle,
-                    textSize: PLTypography.fontLabelSmall,
-                    textColor: PLColors.appWhiteColor,
+                    textStyle: NovaTypography.textTitleSmallStyle,
+                    textSize: NovaTypography.fontLabelSmall,
+                    textColor: NovaColors.appWhiteColor,
                     maxLines: 1,
                   ),
-                  PLVSpace(2),
-                  PLTextWidget(
+                  NovaVSpace(2),
+                  NovaTextWidget(
                     title: "${(AppData.loogedInUserLoan?.duration ?? 0)} Days",
-                    textStyle: PLTypography.textTitleSmallStyle,
-                    textSize: PLTypography.fontBodySmall,
-                    textColor: PLColors.appWhiteColor,
+                    textStyle: NovaTypography.textTitleSmallStyle,
+                    textSize: NovaTypography.fontBodySmall,
+                    textColor: NovaColors.appWhiteColor,
                     maxLines: 1,
                   ),
                 ],
@@ -104,19 +103,19 @@ class LoanCardWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  PLTextWidget(
+                  NovaTextWidget(
                     title: "Payment Date",
-                    textStyle: PLTypography.textTitleSmallStyle,
-                    textSize: PLTypography.fontLabelSmall,
-                    textColor: PLColors.appWhiteColor,
+                    textStyle: NovaTypography.textTitleSmallStyle,
+                    textSize: NovaTypography.fontLabelSmall,
+                    textColor: NovaColors.appWhiteColor,
                     maxLines: 1,
                   ),
-                  PLVSpace(2),
-                  PLTextWidget(
+                  NovaVSpace(2),
+                  NovaTextWidget(
                     title: AppData.loogedInUserLoan?.repaymentDate.formatDate(),
-                    textStyle: PLTypography.textTitleSmallStyle,
-                    textSize: PLTypography.fontBodySmall,
-                    textColor: PLColors.appWhiteColor,
+                    textStyle: NovaTypography.textTitleSmallStyle,
+                    textSize: NovaTypography.fontBodySmall,
+                    textColor: NovaColors.appWhiteColor,
                     maxLines: 1,
                   ),
                 ],
@@ -127,19 +126,19 @@ class LoanCardWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLTextWidget(
+                    NovaTextWidget(
                       title: "Interest Rate",
-                      textStyle: PLTypography.textTitleSmallStyle,
-                      textSize: PLTypography.fontLabelSmall,
-                      textColor: PLColors.appWhiteColor,
+                      textStyle: NovaTypography.textTitleSmallStyle,
+                      textSize: NovaTypography.fontLabelSmall,
+                      textColor: NovaColors.appWhiteColor,
                       maxLines: 1,
                     ),
-                    PLVSpace(2),
-                    PLTextWidget(
+                    NovaVSpace(2),
+                    NovaTextWidget(
                       title: "${(AppData.loogedInUserLoan?.interestRate ?? 0)}%",
-                      textStyle: PLTypography.textTitleSmallStyle,
-                      textSize: PLTypography.fontBodySmall,
-                      textColor: PLColors.appWhiteColor,
+                      textStyle: NovaTypography.textTitleSmallStyle,
+                      textSize: NovaTypography.fontBodySmall,
+                      textColor: NovaColors.appWhiteColor,
                       maxLines: 1,
                     ),
                   ],

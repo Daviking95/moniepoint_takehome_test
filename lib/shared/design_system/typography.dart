@@ -1,12 +1,12 @@
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
-class PLTypography {
-  static const String fontFamilyRegular = "interRegular";
-  static const String fontFamilyBlack = "interBlack";
-  static String fontFamilyLight = "interLight";
-  static String fontFamilyMedium = "interMedium";
-  static String fontFamilyBold = "interBold";
-  static String fontFamilyExtraBold = "interExtraBold";
+class NovaTypography {
+  static const String fontFamilyRegular = "poppinsRegular";
+  static const String fontFamilyBlack = "poppinsBlack";
+  static String fontFamilyLight = "poppinsLight";
+  static String fontFamilyMedium = "poppinsMedium";
+  static String fontFamilyBold = "poppinsBold";
+  static String fontFamilyExtraBold = "poppinsExtraBold";
 
   static double fontTitle = 32.0.sp;
   static double fontDesc16 = 16.0.sp;
@@ -42,7 +42,7 @@ class PLTypography {
           fontSize: fontBodySmall,
           fontWeight: FontWeight.normal,
           overflow: TextOverflow.ellipsis,
-          color: PLColors.appPrimaryText,
+          color: NovaColors.appPrimaryText,
           fontFamily: fontFamilyRegular,
           height: 1.21));
 
@@ -53,7 +53,7 @@ class PLTypography {
           fontWeight: FontWeight.normal,
           overflow: TextOverflow.ellipsis,
           fontFamily: fontFamilyMedium,
-          color: PLColors.appPrimaryText,
+          color: NovaColors.appPrimaryText,
           height: 1.21));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -63,7 +63,7 @@ class PLTypography {
           fontWeight: FontWeight.bold,
           overflow: TextOverflow.ellipsis,
           fontFamily: fontFamilyBold,
-          color: PLColors.appPrimaryText,
+          color: NovaColors.appPrimaryText,
           height: 1.21));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -73,7 +73,7 @@ class PLTypography {
           fontWeight: FontWeight.bold,
           fontFamily: fontFamilyBold,
           overflow: TextOverflow.ellipsis,
-          color: PLColors.appPrimaryText,
+          color: NovaColors.appPrimaryText,
           height: 1.21));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -81,7 +81,7 @@ class PLTypography {
       fontSize: fontLabelSmall,
       fontWeight: FontWeight.normal,
       fontFamily: fontFamilyRegular,
-      color: PLColors.appSecondaryText,
+      color: NovaColors.appSecondaryText,
       overflow: TextOverflow.ellipsis,
       height: 1.21));
 
@@ -91,7 +91,7 @@ class PLTypography {
       fontWeight: FontWeight.normal,
       overflow: TextOverflow.ellipsis,
       fontFamily: fontFamilyMedium,
-      color: PLColors.appSecondaryText,
+      color: NovaColors.appSecondaryText,
       height: 1.21));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -100,7 +100,7 @@ class PLTypography {
       fontWeight: FontWeight.bold,
       overflow: TextOverflow.ellipsis,
       fontFamily: fontFamilyBold,
-      color: PLColors.appSecondaryText,
+      color: NovaColors.appSecondaryText,
       height: 1.21));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -109,7 +109,7 @@ class PLTypography {
       fontWeight: FontWeight.normal,
       fontFamily: fontFamilyRegular,
       overflow: TextOverflow.ellipsis,
-      color: PLColors.appPrimaryText,
+      color: NovaColors.appPrimaryText,
       height: 1.2));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -118,7 +118,7 @@ class PLTypography {
       fontWeight: FontWeight.normal,
       fontFamily: fontFamilyMedium,
       overflow: TextOverflow.ellipsis,
-      color: PLColors.appPrimaryText,
+      color: NovaColors.appPrimaryText,
       height: 1.2));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -127,7 +127,7 @@ class PLTypography {
       fontWeight: FontWeight.normal,
       fontFamily: fontFamilyBold,
       overflow: TextOverflow.ellipsis,
-      color: PLColors.appPrimaryText,
+      color: NovaColors.appPrimaryText,
       height: 1.2));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -136,7 +136,7 @@ class PLTypography {
       fontWeight: FontWeight.bold,
       fontFamily: fontFamilyBold,
       overflow: TextOverflow.ellipsis,
-      color: PLColors.appPrimaryText,
+      color: NovaColors.appPrimaryText,
       height: 1.2));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -145,7 +145,7 @@ class PLTypography {
       fontWeight: FontWeight.normal,
       fontFamily: fontFamilyMedium,
       overflow: TextOverflow.ellipsis,
-      color: PLColors.appPrimaryText,
+      color: NovaColors.appPrimaryText,
       height: 1.2));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -154,7 +154,7 @@ class PLTypography {
       fontWeight: FontWeight.bold,
       fontFamily: fontFamilyBold,
       overflow: TextOverflow.ellipsis,
-      color: PLColors.appPrimaryText,
+      color: NovaColors.appPrimaryText,
       height: 1.2));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -163,7 +163,7 @@ class PLTypography {
       fontWeight: FontWeight.normal,
       fontFamily: fontFamilyRegular,
       overflow: TextOverflow.ellipsis,
-      color: PLColors.appPrimaryText,
+      color: NovaColors.appPrimaryText,
       height: 1.2));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -172,7 +172,7 @@ class PLTypography {
       fontWeight: FontWeight.normal,
       fontFamily: fontFamilyMedium,
       overflow: TextOverflow.ellipsis,
-      color: PLColors.appPrimaryText,
+      color: NovaColors.appPrimaryText,
       height: 1.2));
 
   // Use copyWith to change FontWeight to ExtraBold, Bold, SemiBold
@@ -181,6 +181,6 @@ class PLTypography {
       fontWeight: FontWeight.normal,
       fontFamily: fontFamilyBold,
       overflow: TextOverflow.ellipsis,
-      color: PLColors.appPrimaryText,
+      color: NovaColors.appPrimaryText,
       height: 1.2));
 }

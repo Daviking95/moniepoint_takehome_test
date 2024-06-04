@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class UploadTab extends StatelessWidget {
   const UploadTab({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class UploadTab extends StatelessWidget {
                         child: UploadWidget(
                             title: 'Government Issued ID',
                             hasBeenUploaded: true))),
-            PLVSpace(24),
+            NovaVSpace(24),
 
             GestureDetector(
                 onTap: () {
@@ -38,7 +38,7 @@ class UploadTab extends StatelessWidget {
                     child: UploadWidget(
                         title: 'Proof of Address',
                         hasBeenUploaded: false))),
-            PLVSpace(24),
+            NovaVSpace(24),
             GestureDetector(
                 onTap: () {
                   uploadFunction(model.uploadProofOfEmp, context, model);
@@ -51,7 +51,7 @@ class UploadTab extends StatelessWidget {
                     child: UploadWidget(
                         title: 'Proof of Employment',
                         hasBeenUploaded: false))),
-            PLVSpace(24),
+            NovaVSpace(24),
             GestureDetector(
                 onTap: () {
                   uploadFunction(model.uploadAdditionalDoc, context, model);
@@ -64,40 +64,40 @@ class UploadTab extends StatelessWidget {
                     child: UploadWidget(
                         title: 'Additional Documents',
                         hasBeenUploaded: false))),
-            PLVSpace(24),
+            NovaVSpace(24),
             Container(
               decoration: BoxDecoration(
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-                  color: PLColors.appPrimaryColorMain500.withOpacity(.05)),
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+                  color: NovaColors.appPrimaryColorMain500.withOpacity(.05)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const PLImageSvg(svgPath: PLAssets.infoIcon),
-                  PLHSpace(8),
+                  const NovaImageSvg(svgPath: NovaAssets.infoIcon),
+                  NovaHSpace(8),
                   Expanded(
-                    child: PLTextWidget(
+                    child: NovaTextWidget(
                       title:
                           'Kindly note: Max file size 5MB and supported document types are pdf, jpg and png.',
-                      textStyle: PLTypography.textTitleLargeStyle,
-                      textColor: PLColors.appGrayText,
-                      textSize: PLTypography.fontLabelSmall,
+                      textStyle: NovaTypography.textTitleLargeStyle,
+                      textColor: NovaColors.appGrayText,
+                      textSize: NovaTypography.fontLabelSmall,
                     ),
                   ),
                 ],
               ).paddingSymmetric(horizontal: 16, vertical: 16),
             ),
-            PLVSpace(32),
-            PLButtonRound(
+            NovaVSpace(32),
+            NovaButtonRound(
               textTitle: strSave,
               isFormValidated: model.isDocumentFormValidated,
               isLoader: model.isLoading,
               loadingString: model.loadingString,
-              borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+              borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
               functionToRun: () =>
                   model.updateProfileInfo(context, 4)
                   // model.confirmProfileSavePersonalInfo(context, 4, model),
             ),
-            PLVSpace(16),
+            NovaVSpace(16),
           ],
         ),
       ),
@@ -130,36 +130,36 @@ class UploadWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-          color: PLColors.appWhiteColor),
+          borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+          color: NovaColors.appWhiteColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const PLImageSvg(svgPath: PLAssets.uploadIcon),
-          PLHSpace(16),
+          const NovaImageSvg(svgPath: NovaAssets.uploadIcon),
+          NovaHSpace(16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PLTextWidget(
+                NovaTextWidget(
                   title: title,
-                  textStyle: PLTypography.textTitleLargeStyle,
-                  textColor: PLColors.appPrimaryText,
+                  textStyle: NovaTypography.textTitleLargeStyle,
+                  textColor: NovaColors.appPrimaryText,
                   fontWeight: FontWeight.w600,
-                  textSize: PLTypography.fontLabelMedium,
+                  textSize: NovaTypography.fontLabelMedium,
                 ),
-                PLVSpace(4),
-                PLTextWidget(
+                NovaVSpace(4),
+                NovaTextWidget(
                   title: 'Click here to upload file',
-                  textStyle: PLTypography.textTitleLargeStyle,
-                  textColor: PLColors.appGrayText,
-                  textSize: PLTypography.fontLabelSmall,
+                  textStyle: NovaTypography.textTitleLargeStyle,
+                  textColor: NovaColors.appGrayText,
+                  textSize: NovaTypography.fontLabelSmall,
                 ),
               ],
             ),
           ),
           if(hasBeenUploaded)
-          const PLImageSvg(svgPath: PLAssets.blueCheckIcon),
+          const NovaImageSvg(svgPath: NovaAssets.blueCheckIcon),
         ],
       ).paddingSymmetric(horizontal: 16, vertical: 16),
     );
@@ -177,7 +177,7 @@ class UploadedDocWidget extends StatelessWidget {
       children: [
         Center(
           child: ClipRRect(
-            borderRadius: PLDecorations.borderRadiusGeometryCircular20,
+            borderRadius: NovaDecorations.borderRadiusGeometryCircular20,
             child: Image(
               image: FileImage(File(controller.text)),
               width: context.width,

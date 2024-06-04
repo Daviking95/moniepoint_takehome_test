@@ -1,68 +1,66 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class FundWalletScreen extends StatelessWidget {
   const FundWalletScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final walletWatcher = context.watch<WalletProvider>();
-    final walletReader = context.read<WalletProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
-                child: PLPaddedWidget(
+                child: NovaPaddedWidget(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PLVSpace(48),
-                      PLBackIcon(
+                      NovaVSpace(48),
+                      NovaBackIcon(
                         onTap: () => Navigator.pop(context),
                       ),
-                      PLVSpace(16),
-                      PLTextWidget(
+                      NovaVSpace(16),
+                      NovaTextWidget(
                         title: "Fund Wallet",
-                        textStyle: PLTypography.textTitleLargeStyle,
-                        textColor: PLColors.appPrimaryText,
+                        textStyle: NovaTypography.textTitleLargeStyle,
+                        textColor: NovaColors.appPrimaryText,
                         fontWeight: FontWeight.w700,
-                        textSize: PLTypography.fontTitleLarge,
+                        textSize: NovaTypography.fontTitleLarge,
                       ),
-                      PLVSpace(10),
-                      PLTextWidget(
-                        title: "Fund your wallet via bank transfer (Directly to your Peer Lendly Account) or via your Debit Card.",
-                        textColor: PLColors.appGrayText,
-                        textSize: PLTypography.fontLabelMedium,
+                      NovaVSpace(10),
+                      NovaTextWidget(
+                        title: "Fund your wallet via bank transfer (Directly to your Nova Account) or via your Debit Card.",
+                        textColor: NovaColors.appGrayText,
+                        textSize: NovaTypography.fontLabelMedium,
                       ),
-                      PLVSpace(48),
-                      PLTextWidget(
+                      NovaVSpace(48),
+                      NovaTextWidget(
                         title: "Via Bank Transfer",
-                        textStyle: PLTypography.textTitleLargeStyle,
-                        textColor: PLColors.appPrimaryText,
+                        textStyle: NovaTypography.textTitleLargeStyle,
+                        textColor: NovaColors.appPrimaryText,
                         fontWeight: FontWeight.w700,
-                        textSize: PLTypography.fontLabelMedium,
+                        textSize: NovaTypography.fontLabelMedium,
                       ),
-                      PLVSpace(8),
+                      NovaVSpace(8),
                       _accountDetails(),
-                      PLVSpace(48),
-                      PLTextWidget(
+                      NovaVSpace(48),
+                      NovaTextWidget(
                         title: "Via Debit Card",
-                        textStyle: PLTypography.textTitleLargeStyle,
-                        textColor: PLColors.appPrimaryText,
+                        textStyle: NovaTypography.textTitleLargeStyle,
+                        textColor: NovaColors.appPrimaryText,
                         fontWeight: FontWeight.w700,
-                        textSize: PLTypography.fontLabelMedium,
+                        textSize: NovaTypography.fontLabelMedium,
                       ),
-                      PLVSpace(8),
-                      fundOptionItemWidget(PLAssets.payWithDebitCard,
+                      NovaVSpace(8),
+                      fundOptionItemWidget(NovaAssets.payWithDebitCard,
                           "Debit Card", () {
                             AppNavigator.push(FundWalletAmountScreen());
                           }),
-                      PLVSpace(24),
+                      NovaVSpace(24),
                     ],
                   ),
                 ),
@@ -75,8 +73,8 @@ class FundWalletScreen extends StatelessWidget {
   _accountDetails() {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-          color: PLColors.appWhiteColor
+          borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+          color: NovaColors.appWhiteColor
       ),
       child: Column(
         children: [
@@ -86,19 +84,19 @@ class FundWalletScreen extends StatelessWidget {
               _accountItem("Bank Name:", "Stingyx Bank"),
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-                  color: PLColors.appGrayText.withOpacity(.1)
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+                  color: NovaColors.appGrayText.withOpacity(.1)
                 ),
-                child: PLTextWidget(
+                child: NovaTextWidget(
                   title: "Recommended",
-                  textColor: PLColors.appPrimaryText,
+                  textColor: NovaColors.appPrimaryText,
                   fontWeight: FontWeight.w300,
-                  textSize: PLTypography.fontLabelSmall,
+                  textSize: NovaTypography.fontLabelSmall,
                 ).paddingAll(8),
               )
             ],
           ),
-          PLVSpace(8),
+          NovaVSpace(8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -107,7 +105,7 @@ class FundWalletScreen extends StatelessWidget {
                   onTap: () {
                     copyAccountNumber("07011992288");
                   },
-                  child: const PLImageSvg(svgPath: PLAssets.copyBlue))
+                  child: const NovaImageSvg(svgPath: NovaAssets.copyBlue))
             ],
           )
         ],
@@ -118,18 +116,18 @@ class FundWalletScreen extends StatelessWidget {
   _accountItem(String title, String value) {
     return Row(
       children: [
-        PLTextWidget(
+        NovaTextWidget(
           title: title,
-          textColor: PLColors.appGrayText,
+          textColor: NovaColors.appGrayText,
           fontWeight: FontWeight.w300,
-          textSize: PLTypography.fontLabelMedium,
+          textSize: NovaTypography.fontLabelMedium,
         ),
-        PLHSpace(8),
-        PLTextWidget(
+        NovaHSpace(8),
+        NovaTextWidget(
           title: value,
-          textColor: PLColors.appPrimaryText,
+          textColor: NovaColors.appPrimaryText,
           fontWeight: FontWeight.w700,
-          textSize: PLTypography.fontLabelLarge,
+          textSize: NovaTypography.fontLabelLarge,
         )
       ],
     ).paddingSymmetric(vertical: 8);
@@ -142,8 +140,8 @@ class FundWalletScreen extends StatelessWidget {
       onTap: () => func(),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: PLDecorations.borderRadiusGeometryCircular8,
-            color: PLColors.appWhiteColor),
+            borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
+            color: NovaColors.appWhiteColor),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -151,27 +149,27 @@ class FundWalletScreen extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                      borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                       color: const Color(0xffFAFCFE)),
-                  child: PLImageSvg(
+                  child: NovaImageSvg(
                     svgPath: assetString,
                     width: 24.w,
                     height: 24.h,
                   ).paddingAll(5),
                 ),
-                PLHSpace(12),
-                PLTextWidget(
+                NovaHSpace(12),
+                NovaTextWidget(
                   title: title,
-                  textStyle: PLTypography.textTitleLargeStyle,
-                  textColor: PLColors.appPrimaryText,
-                  textSize: PLTypography.fontBodyMedium,
+                  textStyle: NovaTypography.textTitleLargeStyle,
+                  textColor: NovaColors.appPrimaryText,
+                  textSize: NovaTypography.fontBodyMedium,
                   fontWeight: FontWeight.w700,
                 ),
               ],
             ),
             const Icon(
               Icons.arrow_forward_ios,
-              color: PLColors.appPrimaryText,
+              color: NovaColors.appPrimaryText,
               size: 18,
             )
           ],

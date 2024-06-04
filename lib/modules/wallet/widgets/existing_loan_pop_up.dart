@@ -1,24 +1,24 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class ExistingLoanPopUp extends StatelessWidget {
   const ExistingLoanPopUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PLPaddedWidget(
+    return NovaPaddedWidget(
       child: Column(
         children: [
-          PLVSpace(12),
-          const PLImageSvg(svgPath: PLAssets.warningIcon),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(12),
+          const NovaImageSvg(svgPath: NovaAssets.warningIcon),
+          NovaVSpace(24),
+          NovaTextWidget(
             title: 'Oops! \n You currently have an existing loan',
-            textSize: PLTypography.fontLabelMedium,
+            textSize: NovaTypography.fontLabelMedium,
             textAlign: TextAlign.center,
-            textColor: PLColors.appGrayText,
+            textColor: NovaColors.appGrayText,
           ),
-          PLVSpace(24),
-          PLButtonRound(
+          NovaVSpace(24),
+          NovaButtonRound(
               textTitle: "Okay",
               functionToRun: () {
                 Navigator.pop(context);

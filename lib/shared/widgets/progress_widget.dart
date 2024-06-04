@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class ProgressWidget extends StatelessWidget {
   final String loadingString;
@@ -17,18 +17,18 @@ class ProgressWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SpinKitCircle(
-                color: PLColors.appPrimaryColorMain500,
+                color: NovaColors.appPrimaryColorMain500,
                 size: 50.0,
               ),
               const SizedBox(
                 height: 20,
               ),
-              PLTextWidget(
+              NovaTextWidget(
                 title: loadingString,
-                textSize: PLTypography.fontLabelMedium,
+                textSize: NovaTypography.fontLabelMedium,
                 isCenter: true,
                 textAlign: TextAlign.center,
-                textColor: PLColors.appPrimaryText,
+                textColor: NovaColors.appPrimaryText,
               ),
             ],
           ).paddingSymmetric(horizontal: 15, vertical: 5),

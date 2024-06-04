@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 class DashboardScreen extends StatefulWidget {
 
@@ -86,8 +86,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   // @override
   @override
   Widget build(BuildContext context) {
-    final dashboardWatcher = context.watch<DashboardProvider>();
-    final dashboardReader = context.read<DashboardProvider>();
 
     "userID ${AppData.loogedInUserLoan?.loanStatus}".logger();
 
@@ -95,7 +93,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           // floatingActionButton: const FabForDashboard(),
           // floatingActionButtonLocation: ExpandableFab.location,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -106,29 +104,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
-                  child: PLPaddedWidget(
+                  child: NovaPaddedWidget(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLVSpace(48),
+                        NovaVSpace(48),
                         TopRowWidget(
                             dashboardRefreshCallback: () => loadData()
                         ),
-                        PLVSpace(16),
+                        NovaVSpace(16),
                         AppPreferences.isUserBvnVerified &&
                                 AppData.loogedInUserLoan != null
                             ? const WalletCardCarouselWidget()
                             : const WalletCardWidget(),
-                        PLVSpace(16),
+                        NovaVSpace(16),
                         const QuickActionsWidget(),
-                        PLVSpace(16),
+                        NovaVSpace(16),
                         AppPreferences.isUserBvnVerified
-                            // &&
-                            //     AppPreferences.isUserDocumentVerified
+                            &&
+                                AppPreferences.isUserDocumentVerified
                             ? const BannerCarouselWidget()
                             : const ProfileCompletionCardWidget(),
-                        PLVSpace(16),
+                        NovaVSpace(16),
 
                         // if((UserData.getUserProfileResponseModel?.bvnVerified ?? false))
                         DashboardCTAWidget(
@@ -141,7 +139,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   AppData.loogedInUserLoan?.loanStatus == 6
                               ? "Apply Now"
                               : "View Loan",
-                          PLAssets.getALoanIcon,
+                          NovaAssets.getALoanIcon,
                           () {
                             if (!_isUserBVNValidated(context)) return;
 
@@ -167,15 +165,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             // AppNavigator.push(UserData.loanStatus == LoanStatus.delayed ? const RepayLoanScreen(loanStatus: LoanStatus.delayed,) : const LoanApplyScreen());
                           },
                           ctaColor: AppData.loogedInUserLoan?.loanStatus == 5
-                              ? PLColors.appErrorColor
-                              : PLColors.appPrimaryColorMain500,
+                              ? NovaColors.appErrorColor
+                              : NovaColors.appPrimaryColorMain500,
                         ),
-                        PLVSpace(16),
+                        NovaVSpace(16),
                         DashboardCTAWidget(
                             "Lendly Marketplace",
                             "Explore the Marketplace and earn returns",
                             "View Requests",
-                            PLAssets.marketplaceIcon, () {
+                            NovaAssets.marketplaceIcon, () {
 
                           PersistentNavBarNavigator.pushNewScreen(
                             context,
@@ -185,7 +183,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 PageTransitionAnimation.cupertino,
                           );
                         }),
-                        PLVSpace(24),
+                        NovaVSpace(24),
                       ],
                     ),
                   ),

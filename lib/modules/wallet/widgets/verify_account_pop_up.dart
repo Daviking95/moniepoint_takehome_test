@@ -1,24 +1,24 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 class VerifyAccountPopUp extends StatelessWidget {
   const VerifyAccountPopUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PLPaddedWidget(
+    return NovaPaddedWidget(
       child: Column(
         children: [
-          PLVSpace(12),
-          const PLImageSvg(svgPath: PLAssets.warningIcon),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(12),
+          const NovaImageSvg(svgPath: NovaAssets.warningIcon),
+          NovaVSpace(24),
+          NovaTextWidget(
             title: 'Oops! \nVerify your account now',
-            textSize: PLTypography.fontLabelMedium,
+            textSize: NovaTypography.fontLabelMedium,
             textAlign: TextAlign.center,
-            textColor: PLColors.appGrayText,
+            textColor: NovaColors.appGrayText,
           ),
-          PLVSpace(24),
-          PLButtonRound(
+          NovaVSpace(24),
+          NovaButtonRound(
               textTitle: "Verify Account",
               functionToRun: () {
                 PersistentNavBarNavigator.pushNewScreen(

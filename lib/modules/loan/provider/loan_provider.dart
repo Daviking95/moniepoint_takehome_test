@@ -1,10 +1,22 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class LoanProvider extends BaseViewModel {
   final BuildContext? context;
   final bool shouldInitialize;
+  final bool shouldGetMarketplaceLoans;
+  final bool shouldGetLoanOffers;
+  final bool shouldGetBorrowerHistory;
+  final bool shouldGetActivePendingLoans;
+  final int borrowerId;
 
-  LoanProvider({this.context, this.shouldInitialize = false});
+  LoanProvider(
+      {this.context,
+      this.shouldInitialize = false,
+      this.shouldGetMarketplaceLoans = false,
+      this.shouldGetLoanOffers = false,
+      this.shouldGetBorrowerHistory = false,
+      this.shouldGetActivePendingLoans = false,
+      this.borrowerId = 0});
 
   @override
   FutureOr<void> initState() {
@@ -13,6 +25,24 @@ class LoanProvider extends BaseViewModel {
     if (shouldInitialize) {
       init();
     }
+
+    if (shouldGetMarketplaceLoans) {
+      getMarketplaceLoans();
+    }
+
+    if (shouldGetLoanOffers) {
+      getLoanOffersFromLenders();
+    }
+
+    if (shouldGetBorrowerHistory) {
+      borrowerLoanHistory = [];
+      getBorrowerLoanHistory(borrowerId);
+    }
+
+    if (shouldGetActivePendingLoans) {
+      getActivePendingLoanOffers(1);
+      getActivePendingLoanOffers(2);
+    }
   }
 
   init() {
@@ -20,11 +50,16 @@ class LoanProvider extends BaseViewModel {
 
     amount = TextEditingController();
     interestRate = TextEditingController();
+    tenor = TextEditingController();
+    loanPurpose = TextEditingController();
+    repaymentDate = TextEditingController();
 
     _isFormValidated = false;
 
     amount.text = "0";
     interestRate.text = "0";
+
+    agreeToMakeOffer = false;
   }
 
   @override
@@ -35,7 +70,6 @@ class LoanProvider extends BaseViewModel {
   final GlobalKey<FormState> formKeyForLoanApply = GlobalKey<FormState>();
 
   String _selectedDate = "";
-
 
   String get selectedDate => _selectedDate;
 
@@ -59,7 +93,6 @@ class LoanProvider extends BaseViewModel {
   List<int> loanPeriod = [30, 60, 120];
 
   int _selectedIndex = 0;
-
 
   int get selectedIndex => _selectedIndex;
 
@@ -149,7 +182,9 @@ class LoanProvider extends BaseViewModel {
   }
 
   listenForLoanApplyChanges() {
-    if (tenor.text.isNotEmpty && amount.text.isNotEmpty && loanPurpose.text.isNotEmpty) {
+    if (tenor.text.isNotEmpty &&
+        amount.text.isNotEmpty &&
+        loanPurpose.text.isNotEmpty) {
       _isLoanFormValidated = true;
     } else {
       _isLoanFormValidated = false;
@@ -241,7 +276,8 @@ class LoanProvider extends BaseViewModel {
     });
   }
 
-  void processLoanRepaymentViaWallet(BuildContext context, double amount, int loanID) async {
+  void processLoanRepaymentViaWallet(
+      BuildContext context, double amount, int loanID) async {
     await changeLoaderStatus(true, "Repaying Loan");
     notifyListeners();
 
@@ -263,7 +299,8 @@ class LoanProvider extends BaseViewModel {
     // return;
 
     final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
-    await PLLoanRepository.instance.repayLoanWitWalletService(loanID, amount.toInt());
+        await PLLoanRepository.instance
+            .repayLoanWitWalletService(loanID, amount.toInt());
 
     return responseData.fold((errorResponse) async {
       showSnackAtTheTop(
@@ -343,7 +380,6 @@ class LoanProvider extends BaseViewModel {
         responseData = await PLLoanRepository.instance.loanMarketplaceService();
 
     return responseData.fold((errorResponse) async {
-
       AppData.marketplaceLoans = [];
 
       await changeLoaderStatus(false, "");
@@ -353,7 +389,9 @@ class LoanProvider extends BaseViewModel {
     }, (successResponse) async {
       // showSnackAtTheTop(message: successResponse.message ?? "", isSuccess: true);
 
-      AppData.marketplaceLoans = successResponse.loanDetails.where((element) => element.loanStatus == 2).toList();
+      AppData.marketplaceLoans = successResponse.loanDetails
+          .where((element) => element.loanStatus == 2)
+          .toList();
 
       "responseDataGetMarketplaceLoans $responseData".logger();
 
@@ -365,7 +403,7 @@ class LoanProvider extends BaseViewModel {
   void changeInterest(bool shouldReduceAmount) {
     int amountInDouble = int.parse(interestRate.text);
 
-    if(!shouldReduceAmount && amountInDouble > 15){
+    if (!shouldReduceAmount && amountInDouble > 15) {
       return;
     }
 
@@ -405,7 +443,6 @@ class LoanProvider extends BaseViewModel {
         await PLLoanRepository.instance.getLoanOffersFromLendersService();
 
     return responseData.fold((errorResponse) async {
-
       AppData.loanOffersFromLenders = [];
       await changeLoaderStatus(false, "");
       notifyListeners();
@@ -432,7 +469,6 @@ class LoanProvider extends BaseViewModel {
             .getActivePendingLoanOffersService(loanStatus);
 
     return responseData.fold((errorResponse) async {
-
       if (loanStatus == 1) {
         activeLoanDetails = [];
       } else {
@@ -458,13 +494,11 @@ class LoanProvider extends BaseViewModel {
   }
 
   void getUserLoanDetails() async {
-
     final dartz.Either<ErrorResponseModel, LoogedInUserLoanResponseModel>
         responseData =
         await PLLoanRepository.instance.getLoggedInUserLoanDetailsService();
 
     return responseData.fold((errorResponse) async {
-
       AppData.loogedInUserLoan = null;
 
       await changeLoaderStatus(false, "");
@@ -603,13 +637,14 @@ class LoanProvider extends BaseViewModel {
     });
   }
 
-  void canceloanOffer(ActivePendingLoansResponseModelLoanDetail loanDetail) async{
+  void canceloanOffer(
+      ActivePendingLoansResponseModelLoanDetail loanDetail) async {
     await changeLoaderStatus(true, "Cancelling your offer");
     notifyListeners();
 
     final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
-    await PLLoanRepository.instance
-        .cancelLoanOfferService(loanDetail.offerId.toString());
+        await PLLoanRepository.instance
+            .cancelLoanOfferService(loanDetail.offerId.toString());
 
     return responseData.fold((errorResponse) async {
       await changeLoaderStatus(false, "");
@@ -633,13 +668,13 @@ class LoanProvider extends BaseViewModel {
     });
   }
 
-  void canceloanApplication(LoogedInUserLoanResponseModel loanDetail) async{
+  void canceloanApplication(LoogedInUserLoanResponseModel loanDetail) async {
     await changeLoaderStatus(true, "Cancelling your request");
     notifyListeners();
 
     final dartz.Either<ErrorResponseModel, GenericResponseModel> responseData =
-    await PLLoanRepository.instance
-        .cancelLoanRequestService(loanDetail.loanId.toString());
+        await PLLoanRepository.instance
+            .cancelLoanRequestService(loanDetail.loanId.toString());
 
     return responseData.fold((errorResponse) async {
       await changeLoaderStatus(false, "");

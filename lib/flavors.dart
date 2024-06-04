@@ -11,11 +11,11 @@ class F {
   static String get title {
     switch (appFlavor) {
       case Flavor.pilot:
-        return 'Peer Lendly Poc';
+        return 'Nova Poc';
       case Flavor.prod:
-        return 'Peer Lendly';
+        return 'Nova';
       default:
-        return 'Peer Lendly';
+        return 'Nova';
     }
   }
 

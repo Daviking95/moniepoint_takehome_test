@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class MakeOfferScreen extends StatelessWidget {
   final MarketplaceResponseModelLoanDetail marketplaceLoan;
@@ -18,16 +18,15 @@ class MakeOfferScreen extends StatelessWidget {
 
   Widget _buildScreen(BuildContext context, LoanProvider model) {
     final loanWatcher = context.watch<LoanProvider>();
-    final loanReader = context.read<LoanProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Form(
                   key: loanWatcher.formKeyToMakeOffer,
                   child: Column(
@@ -37,65 +36,65 @@ class MakeOfferScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PLVSpace(48),
-                          PLBackIcon(
+                          NovaVSpace(48),
+                          NovaBackIcon(
                             onTap: () => Navigator.pop(context),
                           ),
-                          PLVSpace(8),
+                          NovaVSpace(8),
                           Container(
                             decoration: BoxDecoration(
                                 borderRadius:
-                                PLDecorations.borderRadiusGeometryCircular8,
-                                color: PLColors.appPrimaryColorMain500
+                                NovaDecorations.borderRadiusGeometryCircular8,
+                                color: NovaColors.appPrimaryColorMain500
                                     .withOpacity(.05)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const PLImageSvg(svgPath: PLAssets.infoIcon),
-                                PLHSpace(8),
+                                const NovaImageSvg(svgPath: NovaAssets.infoIcon),
+                                NovaHSpace(8),
                                 Expanded(
-                                  child: PLTextWidget(
+                                  child: NovaTextWidget(
                                     title: 'Note: Interest rates are capped. Lenders cannot input an interest rate above 15%',
-                                    textStyle: PLTypography.textTitleLargeStyle,
-                                    textColor: PLColors.appGrayText,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textStyle: NovaTypography.textTitleLargeStyle,
+                                    textColor: NovaColors.appGrayText,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   ),
                                 ),
                               ],
                             ).paddingSymmetric(horizontal: 16, vertical: 16),
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                           Container(
                             decoration: BoxDecoration(
-                              color: PLColors.appWhiteColor,
-                              borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                              color: NovaColors.appWhiteColor,
+                              borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                             ),
                             child: Column(
                               children: [
                                 Center(
-                                  child: PLTextWidget(
+                                  child: NovaTextWidget(
                                     title: "Interest rates are capped at 15%",
-                                    textColor: PLColors.appGrayText,
+                                    textColor: NovaColors.appGrayText,
                                     fontWeight: FontWeight.w600,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   ),
                                 ),
-                                PLVSpace(10),
+                                NovaVSpace(10),
                                 Row(
                                   children: [
                                     InkWell(
                                       onTap: (){
                                         loanWatcher.changeInterest(true);
                                       },
-                                      child: PLImageSvg(
-                                        svgPath: PLAssets.minusIcon,
+                                      child: NovaImageSvg(
+                                        svgPath: NovaAssets.minusIcon,
                                         width: 36.w,
                                         height: 36.h,
                                       ),
                                     ),
-                                    PLHSpace(8),
+                                    NovaHSpace(8),
                                     Expanded(
-                                      child: PLPrimaryTextField(
+                                      child: NovaPrimaryTextField(
                                         textInputType: TextInputType.number,
                                         controller: loanWatcher.interestRate,
                                         textAlign: TextAlign.center,
@@ -110,13 +109,13 @@ class MakeOfferScreen extends StatelessWidget {
                                         onChange: (val) => loanWatcher.listenForInterestChanges(),
                                       ),
                                     ),
-                                    PLHSpace(16),
+                                    NovaHSpace(16),
                                     InkWell(
                                       onTap: () {
                                         loanWatcher.changeInterest(false);
                                       },
-                                      child: PLImageSvg(
-                                        svgPath: PLAssets.plusIcon,
+                                      child: NovaImageSvg(
+                                        svgPath: NovaAssets.plusIcon,
                                         width: 36.w,
                                         height: 36.h,
                                       ),
@@ -157,15 +156,15 @@ class MakeOfferScreen extends StatelessWidget {
                           //         child: const Icon(Icons.info_outline, color: PLColors.appPrimaryColorMain500, size: 15,))
                           //   ],
                           // ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                         ],
                       ),
                       Column(
                         children: [
-                          PLButtonRound(
+                          NovaButtonRound(
                             textTitle: strNext,
                             borderRadius:
-                            PLDecorations.borderRadiusGeometryCircular8,
+                            NovaDecorations.borderRadiusGeometryCircular8,
                             loadingString: loanWatcher.loadingString,
                             isFormValidated: loanWatcher.isFormValidated,
                             isLoader: loanWatcher.isLoading,
@@ -173,7 +172,7 @@ class MakeOfferScreen extends StatelessWidget {
                               loanWatcher.calculateLoan(marketplaceLoan.loanId, loanWatcher.interestRate.text, marketplaceLoan);
                               },
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                         ],
                       ),
                     ],

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/wallet/exports.dart';
+part of 'package:nova/modules/wallet/exports.dart';
 
 
 class BillsPaymentPopup extends StatelessWidget {
@@ -15,46 +15,46 @@ class BillsPaymentPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PLPaddedWidget(
+    return NovaPaddedWidget(
       child: Column(
         children: [
-          PLVSpace(12),
-          const PLImageSvg(svgPath: PLAssets.warningIcon),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(12),
+          const NovaImageSvg(svgPath: NovaAssets.warningIcon),
+          NovaVSpace(24),
+          NovaTextWidget(
             title: 'You are about to fund your wallet with',
-            textSize: PLTypography.fontLabelMedium,
+            textSize: NovaTypography.fontLabelMedium,
             textAlign: TextAlign.center,
-            textColor: PLColors.appGrayText,
+            textColor: NovaColors.appGrayText,
           ),
-          PLVSpace(4),
-          PLTextWidget(
+          NovaVSpace(4),
+          NovaTextWidget(
             title: amount.toString().formatWithCommasAndDecimals(),
-            textStyle: PLTypography.textTitleSmallStyle,
-            textSize: PLTypography.fontBodyMedium,
+            textStyle: NovaTypography.textTitleSmallStyle,
+            textSize: NovaTypography.fontBodyMedium,
             fontWeight: FontWeight.w600,
-            textColor: PLColors.appPrimaryText,
+            textColor: NovaColors.appPrimaryText,
             maxLines: 1,
             isCurrency: true,
           ),
-          PLVSpace(24),
+          NovaVSpace(24),
           Row(
             children: [
               Expanded(
                 child: PLButtonOutline(
-                  borderColor: PLColors.appPrimaryColorMain500,
-                  borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                  borderColor: NovaColors.appPrimaryColorMain500,
+                  borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                   textTitle: "No cancel",
                   functionToRun: () {
                     Navigator.pop(context);
                   },
                 ),
               ),
-              PLHSpace(16),
+              NovaHSpace(16),
               Expanded(
-                child: PLButtonRound(
+                child: NovaButtonRound(
                     textTitle: "Yes pay",
-                    borderRadius: PLDecorations.borderRadiusGeometryCircular8,
+                    borderRadius: NovaDecorations.borderRadiusGeometryCircular8,
                     functionToRun: () {
                       Navigator.pop(context);
 

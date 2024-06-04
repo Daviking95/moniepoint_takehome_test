@@ -1,4 +1,4 @@
-part of 'package:peerlendly/core/utils/helper_functions/exports.dart';
+part of 'package:nova/core/utils/helper_functions/exports.dart';
 
 const keySize = 32; // 32 byte key for AES-256
 const iterationCount = 2;
@@ -9,10 +9,7 @@ final passPhrase = dotenv.env['PASS_PHRASE'];
 Future<String> cryptString(String text) async {
   String encryptedString = "";
 
-  final mStrPassPhrase = toUtf8(passPhrase);
-
   encryptedString = encryptRequest(text);
-      // AesHelper.encrypt(mStrPassPhrase, toUtf8(text), mode: AesHelper.cbcMode);
 
   return encryptedString;
 }

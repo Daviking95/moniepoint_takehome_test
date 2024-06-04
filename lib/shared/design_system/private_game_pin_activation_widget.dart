@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
 class PrivateGamePinActivationWidget extends StatelessWidget {
   final BuildContext? prevContext;
@@ -14,21 +14,21 @@ class PrivateGamePinActivationWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PLVSpace(8),
-          PLBackIcon(onTap: () => Navigator.pop(context), isBtmNavWithNoTitle: true),
-          PLVSpace(24),
-          PLTextWidget(
+          NovaVSpace(8),
+          NovaBackIcon(onTap: () => Navigator.pop(context), isBtmNavWithNoTitle: true),
+          NovaVSpace(24),
+          NovaTextWidget(
             title: "Enter code",
             isTitle: true,
-            textStyle: PLTypography.textHeadlineSmallStyle,
+            textStyle: NovaTypography.textHeadlineSmallStyle,
           ),
-          PLVSpace(8),
-          PLTextWidget(
+          NovaVSpace(8),
+          NovaTextWidget(
             title: "This is a private game. Kindly enter the game pin to view it",
-            textSize: PLTypography.fontBodySmall,
-            textColor: PLColors.appSecondaryText,
+            textSize: NovaTypography.fontBodySmall,
+            textColor: NovaColors.appSecondaryText,
           ),
-          PLVSpace(24),
+          NovaVSpace(24),
           SizedBox(
             width: context.width,
             child: PinTextField(
@@ -45,7 +45,7 @@ class PrivateGamePinActivationWidget extends StatelessWidget {
               validation: (val) => val.validateString(strFieldRequiredError),
             ),
           ),
-          PLVSpace(8),
+          NovaVSpace(8),
         ],
       ),
     );

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class CardAccountsList extends StatefulWidget {
   const CardAccountsList({Key? key}) : super(key: key);
@@ -30,7 +30,6 @@ class _CardAccountsListState extends State<CardAccountsList> {
   @override
   Widget build(BuildContext context) {
     final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -38,10 +37,10 @@ class _CardAccountsListState extends State<CardAccountsList> {
         onWillPop: () => Navigator.canPop(context)
             ? Future.value(true)
             : Future.value(false),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: RefreshIndicator(
                   onRefresh: () {
                     return myProvider.getCardDetails();
@@ -52,47 +51,47 @@ class _CardAccountsListState extends State<CardAccountsList> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PLVSpace(48),
-                        PLBackIcon(
+                        NovaVSpace(48),
+                        NovaBackIcon(
                           onTap: () => Navigator.pop(context),
                         ),
-                        PLVSpace(8),
-                        PLTextWidget(
+                        NovaVSpace(8),
+                        NovaTextWidget(
                           title: "Cards",
                           isTitle: true,
-                          textStyle: PLTypography.textHeadlineMediumStyle,
-                          textSize: PLTypography.fontHeadlineSmall,
+                          textStyle: NovaTypography.textHeadlineMediumStyle,
+                          textSize: NovaTypography.fontHeadlineSmall,
                         ),
                         for (var i = 0;
                             i < profileWatcher.cardDetail.length;
                             i++) ...[
-                          PLVSpace(24),
+                          NovaVSpace(24),
                           Stack(
                             children: [
                               Container(
                                 decoration: BoxDecoration(
                                     // boxShadow: [PLDecorations.customShadow],
                                     borderRadius:
-                                        PLDecorations.borderRadiusGeometryCircular8,
-                                    color: PLColors.appWhiteColor),
+                                        NovaDecorations.borderRadiusGeometryCircular8,
+                                    color: NovaColors.appWhiteColor),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    PLVSpace(16),
-                                    PLImagePng(imgPath: PLAssets.chipCard),
-                                    PLVSpace(40),
-                                    PLTextWidget(
+                                    NovaVSpace(16),
+                                    NovaImagePng(imgPath: NovaAssets.chipCard),
+                                    NovaVSpace(40),
+                                    NovaTextWidget(
                                       title:
                                       "**** **** **** ${profileWatcher
                                           .cardDetail[i].cardNumber.substring(profileWatcher
                                           .cardDetail[i].cardNumber.length - 6, profileWatcher
                                           .cardDetail[i].cardNumber.length, )}",
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryText,
-                                      textSize: PLTypography.fontBodyMedium,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryText,
+                                      textSize: NovaTypography.fontBodyMedium,
                                       fontWeight: FontWeight.w700,
                                     ),
-                                    PLVSpace(12),
+                                    NovaVSpace(12),
                                     Row(
                                       // crossAxisAlignment: CrossAxisAlignment.end,
                                       mainAxisAlignment:
@@ -102,21 +101,21 @@ class _CardAccountsListState extends State<CardAccountsList> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            PLTextWidget(
+                                            NovaTextWidget(
                                               title: "Card Holder",
                                               textStyle:
-                                                  PLTypography.textTitleLargeStyle,
-                                              textColor: PLColors.appGrayText,
-                                              textSize: PLTypography.fontLabelSmall,
+                                                  NovaTypography.textTitleLargeStyle,
+                                              textColor: NovaColors.appGrayText,
+                                              textSize: NovaTypography.fontLabelSmall,
                                               fontWeight: FontWeight.w400,
                                             ),
-                                            PLTextWidget(
+                                            NovaTextWidget(
                                               title: profileWatcher
                                                   .cardDetail[i].cardName,
                                               textStyle:
-                                                  PLTypography.textTitleLargeStyle,
-                                              textColor: PLColors.appGrayText,
-                                              textSize: PLTypography.fontBodyMedium,
+                                                  NovaTypography.textTitleLargeStyle,
+                                              textColor: NovaColors.appGrayText,
+                                              textSize: NovaTypography.fontBodyMedium,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ],
@@ -125,21 +124,21 @@ class _CardAccountsListState extends State<CardAccountsList> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                           children: [
-                                            PLTextWidget(
+                                            NovaTextWidget(
                                               title: "Card Holder",
                                               textStyle:
-                                                  PLTypography.textTitleLargeStyle,
-                                              textColor: PLColors.appGrayText,
-                                              textSize: PLTypography.fontLabelSmall,
+                                                  NovaTypography.textTitleLargeStyle,
+                                              textColor: NovaColors.appGrayText,
+                                              textSize: NovaTypography.fontLabelSmall,
                                               fontWeight: FontWeight.w400,
                                             ),
-                                            PLTextWidget(
+                                            NovaTextWidget(
                                               title: profileWatcher
                                                   .cardDetail[i].expiryDate,
                                               textStyle:
-                                                  PLTypography.textTitleLargeStyle,
-                                              textColor: PLColors.appGrayText,
-                                              textSize: PLTypography.fontBodyMedium,
+                                                  NovaTypography.textTitleLargeStyle,
+                                              textColor: NovaColors.appGrayText,
+                                              textSize: NovaTypography.fontBodyMedium,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ],
@@ -163,14 +162,14 @@ class _CardAccountsListState extends State<CardAccountsList> {
                                     },
                                     child: const Icon(
                                       Icons.cancel_rounded,
-                                      color: PLColors.appPrimaryColorMain500,
+                                      color: NovaColors.appPrimaryColorMain500,
                                       size: 25,
                                     ),
                                   ))
                             ],
                           ),
                         ],
-                        PLVSpace(24),
+                        NovaVSpace(24),
                         InkWell(
                             onTap: () {
                               PersistentNavBarNavigator.pushNewScreen(
@@ -182,8 +181,8 @@ class _CardAccountsListState extends State<CardAccountsList> {
                               );
                             },
                             child:
-                                const PLImagePng(imgPath: PLAssets.addCardAccount)),
-                        PLVSpace(24),
+                                const NovaImagePng(imgPath: NovaAssets.addCardAccount)),
+                        NovaVSpace(24),
                       ],
                     ),
                   ),

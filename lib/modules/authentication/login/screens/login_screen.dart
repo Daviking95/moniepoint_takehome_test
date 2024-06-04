@@ -1,188 +1,139 @@
-part of 'package:peerlendly/modules/authentication/login/exports.dart';
+part of 'package:nova/modules/authentication/login/exports.dart';
 
 class LoginScreen extends StatelessWidget {
   final bool isSwitchAccount;
   final String otp;
   final String email;
+
   const LoginScreen(
       {Key? key, this.isSwitchAccount = false, this.otp = "", this.email = ""})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    // test1@yopmail.com
-
     return BaseView<LoginProvider>(
-      vmBuilder: (context) =>
-          LoginProvider(context: context, shouldInitialize: true),
+      vmBuilder: (context) => LoginProvider(context: context),
       builder: _buildScreen,
     );
   }
 
   Widget _buildScreen(BuildContext context, LoginProvider model) {
-    return AppBaseWidget(
-      iconSet: PLImagePng(
-        imgPath: PLAssets.phoneWalletInHand,
-        width: 150.w,
-        height: 180.h,
-        boxFit: BoxFit.contain,
-      ),
-      buildWidget: PLOverlayLoader(
-          startLoader: model.isLoading,
-          loadingString: model.loadingString,
-          child: LoginWidget(model, isSwitchAccount, otp, email)),
-      topHeight: 250.h,
-    );
-  }
-}
+    final loginWatcher = context.watch<LoginProvider>();
 
-class LoginWidget extends StatefulWidget {
-  final LoginProvider model;
-
-  final bool isSwitchAccount;
-  final String otp;
-  final String email;
-
-  const LoginWidget(this.model, this.isSwitchAccount, this.otp, this.email,
-      {super.key});
-
-  @override
-  State<LoginWidget> createState() => _LoginWidgetState();
-}
-
-class _LoginWidgetState extends State<LoginWidget> {
-
-  TextEditingController activityPin = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: Scaffold(
-          backgroundColor: PLColors.appWhiteColor,
+        child: NovaScaffold(
+          backgroundColor: NovaColors.appPrimaryColorMain500,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle.light,
+            value: SystemUiOverlayStyle.light,
+            child: NovaPaddedWidget(
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    PLVSpace(16),
-                    PLBackIcon(
-                      onTap: () =>
-                          Navigator.pushNamed(context, AppRoutes.onboarding),
-                      isCancel: true,
-                      isBtmNavWithNoTitle: true,
-                    ),
-                    PLVSpace(40),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
                       children: [
-                        PLTextWidget(
-                          title: "Security Pin",
-                          isTitle: true,
-                          textStyle: PLTypography.textHeadlineMediumStyle,
-                          textSize: PLTypography.fontHeadlineSmall,
+                        NovaVSpace(60),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              NovaImagePng(
+                                imgPath: NovaAssets.logoWhitePng,
+                                width: 150.w,
+                                height: 50.h,
+                              ),
+                              NovaVSpace(2),
+                              NovaImagePng(
+                                imgPath: NovaAssets.licenceImageWhite,
+                                width: 120.w,
+                                height: 15.h,
+                              ),
+                            ],
+                          ),
                         ),
-                        if (AppPreferences.isFingerPrintAllowedAtLogin &&
-                            AppPreferences.userHasActivityPin &&
-                            AppPreferences.activityPin.isNotEmpty &&
-                            AppPreferences.returnDetails.isNotEmpty &&
-                            !widget.isSwitchAccount) ...[
-                          GestureDetector(
-                            onTap: () => widget.model.startBiometricAuth(context),
-                            child: const PLImageSvg(
-                              svgPath: PLAssets.biometricsIcon,
+                        NovaVSpace(32),
+                        NovaTextWidget(
+                          title: "Sign In",
+                          fontFamily: NovaTypography.fontFamilyBold,
+                          textStyle: NovaTypography.textHeadlineMediumStyle,
+                          textSize: NovaTypography.fontDisplaySmall,
+                          textColor: NovaColors.appWhiteColor,
+                        ),
+                        NovaVSpace(32),
+                        NovaPrimaryTextField(
+                          textInputType: TextInputType.text,
+                          controller: loginWatcher.username,
+                          textColor: NovaColors.appWhiteColor,
+                          onChange: (val) => loginWatcher.listenForChanges(),
+                          validation: (val) =>
+                              val.validateString(strEmailError),
+                          hintText: "Username",
+                          innerHintText: "",
+                        ),
+                        NovaPasswordTextField(
+                          controller: model.password,
+                          textInputTitle: strPassword,
+                          hintText: strPassword,
+                          textColor: NovaColors.appWhiteColor,
+                          onChange: (val) => loginWatcher.listenForChanges(),
+                          validation: (value) => value!.passwordError(),
+                          textInputAction: TextInputAction.next,
+                        ),
+                        NovaVSpace(8),
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, AppRoutes.forgotPassword),
+                              child: NovaTextWidget(
+                                title: strForgotPassword,
+                                textColor: Color(0xff25215E),
+                                textSize: NovaTypography.fontTitleSmall,
+                                fontFamily: NovaTypography.fontFamilyMedium,
+                              ).paddingAll(5),
                             ),
-                          )
-                        ],
+                          ],
+                        ),
                       ],
                     ),
-                    PLVSpace(6),
-                    if (AppPreferences.returnDetails.isNotEmpty) ...[
-                      PLTextWidget(
-                        title: "Welcome back ${AppData.getUserProfileResponseModel?.fullName ?? ""} ?",
-                      ),
-                      PLVSpace(6),
-                    ],
-                    PLTextWidget(
-                      title: "Kindly enter your 4-digit code ",
-                      textColor: PLColors.appGrayText,
-                      textSize: PLTypography.fontLabelMedium,
-                    ),
-                    PLVSpace(48),
-                    SizedBox(
-                      width: context.width,
-                      child: PinTextField(
-                        obscureText: false,
-                        fieldCount: 4,
-                        controller: activityPin,
-                        onChange: (value) {
-                          if (value.length == 4) {
-                            FocusManager.instance.primaryFocus?.unfocus();
-
-                            if (widget.isSwitchAccount) {
-                              widget.model.verifySwitchAccountForm(
-                                  context, widget.email, widget.otp, activityPin.text);
-                            } else {
-                              widget.model.validateLoginForm(context, activityPin);
-                            }
-                          }
-                        },
-                        validation: (val) =>
-                            val.validateString(strFieldRequiredError),
-                      ),
-                    ),
-                    PLVSpace(32),
-                    GestureDetector(
-                      onTap: () => Navigator.pushNamed(
-                          context, AppRoutes.forgotPassword),
-                      child: Center(
-                        child: PLTextWidget(
-                          title: strForgotPassword,
-                          textColor: PLColors.appPrimaryColorMain500,
-                          textSize: PLTypography.fontLabelMedium,
-                        ),
-                      ).paddingAll(5),
-                    ),
-                    PLVSpace(4),
-                    GestureDetector(
-                      onTap: () {
-                        AppPreferences.isUserDocumentVerified = false;
-                        AppPreferences.isUserPhotoTaken = false;
-                        AppPreferences.isUserBvnVerified = false;
-                        AppPreferences.userHasActivityPin = false;
-                        AppPreferences.isReturningCustomer = false;
-                        AppPreferences.userLoggedInData = "";
-                        AppPreferences.bearerToken = "";
-                        AppPreferences.returnDetails = "";
-                        AppPreferences.activityPin = "";
-
-                        AppNavigator.push(const SwitchAccountLoginScreen());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          if (!widget.isSwitchAccount) ...[
-                            const PLTextWidget(
-                              title: "Not your account ?",
+                    Column(
+                      children: [
+                        NovaVSpace(12),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: NovaButtonRound(
+                                  textTitle: "Log In",
+                                  bgColor: Color(0xff25215E),
+                                  loadingString: model.loadingString,
+                                  isLoader: model.isLoading,
+                                  // isFormValidated: model.isDetailsSetupFormValidated,
+                                  functionToRun: () {
+                                    // loginWatcher.openNovaAccount(context);
+                                  }),
                             ),
-                            PLHSpace(4),
+                            NovaHSpace(8),
+                            NovaImageSvg(
+                              svgPath: NovaAssets.biometricsIcon,
+                              width: 65.w,
+                              height: 65.h,
+                            ),
+
                           ],
-                          const PLTextWidget(
-                            title: "Switch Account",
-                            textColor: PLColors.appPrimaryColorMain500,
-                          ),
-                        ],
-                      ).paddingAll(5),
-                    ),
-                    PLVSpace(14),
+                        ),
+                        NovaVSpace(32)
+                      ],
+                    )
                   ],
                 ),
-              )),
+              ),
+            ),
+          ),
         ),
       ),
     );

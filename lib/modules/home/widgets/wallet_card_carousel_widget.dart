@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 class WalletCardCarouselWidget extends StatefulWidget {
   const WalletCardCarouselWidget({Key? key}) : super(key: key);
@@ -9,7 +9,6 @@ class WalletCardCarouselWidget extends StatefulWidget {
 }
 
 class _WalletCardCarouselWidgetState extends State<WalletCardCarouselWidget> {
-  final CarouselController _controller = CarouselController();
   int _currentIndex = 0;
 
   @override
@@ -24,7 +23,6 @@ class _WalletCardCarouselWidgetState extends State<WalletCardCarouselWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final dashboardWatcher = Provider.of<DashboardProvider>(context);
 
     return Column(
       children: [
@@ -66,11 +64,11 @@ class _WalletCardCarouselWidgetState extends State<WalletCardCarouselWidget> {
         //     },
         //   ),
         // ),
-        PLVSpace(12),
+        NovaVSpace(12),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: buildPageIndicator(context, 2, _currentIndex,
-              PLColors.appPrimaryColorMain500, 30, false),
+              NovaColors.appPrimaryColorMain500, 30, false),
         ),
       ],
     );

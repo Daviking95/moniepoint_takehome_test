@@ -1,25 +1,25 @@
-part of 'package:peerlendly/shared/design_system/exports.dart';
+part of 'package:nova/shared/design_system/exports.dart';
 
 final ThemeData lightTheme = _buildLightTheme();
 final ThemeData darkTheme = _buildLightTheme();
 
 ThemeData _buildLightTheme() {
   final ColorScheme colorScheme = const ColorScheme.light().copyWith(
-    primary: PLColors.appPrimaryColorMain500,
-    secondary: PLColors.appSecondaryColorMain500,
+    primary: NovaColors.appPrimaryColorMain500,
+    secondary: NovaColors.appSecondaryColorMain500,
   );
   final ThemeData base = ThemeData(
     appBarTheme: const AppBarTheme(elevation: 0),
     brightness: Brightness.light,
     // useMaterial3: true,
-    primaryColor: PLColors.appPrimaryColorMain500,
-    primaryColorDark: PLColors.appPrimaryColorMain500,
-    indicatorColor: PLColors.appIndicatorColor,
+    primaryColor: NovaColors.appPrimaryColorMain500,
+    primaryColorDark: NovaColors.appPrimaryColorMain500,
+    indicatorColor: NovaColors.appIndicatorColor,
     splashColor: Colors.white24,
     splashFactory: InkRipple.splashFactory,
-    canvasColor: PLColors.appWhiteColor,
-    scaffoldBackgroundColor: PLColors.appBackgroundColor,
-    focusColor: PLColors.appFocusColor,
+    canvasColor: NovaColors.appWhiteColor,
+    scaffoldBackgroundColor: NovaColors.appBackgroundColor,
+    focusColor: NovaColors.appFocusColor,
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
@@ -31,31 +31,31 @@ ThemeData _buildLightTheme() {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(4)),
         )),
-    fontFamily: PLTypography.fontFamilyRegular,
+    fontFamily: NovaTypography.fontFamilyRegular,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedLabelStyle: TextStyle(
-        fontFamily: PLTypography.fontFamilyRegular,
+        fontFamily: NovaTypography.fontFamilyRegular,
       ),
       unselectedLabelStyle: TextStyle(
-        fontFamily: PLTypography.fontFamilyRegular,
+        fontFamily: NovaTypography.fontFamilyRegular,
       ),
     ),
     textTheme: TextTheme(
-      headlineSmall: PLTypography.textHeadlineSmallStyle,
-      headlineMedium: PLTypography.textHeadlineMediumStyle,
-      headlineLarge: PLTypography.textHeadlineLargeStyle,
-      titleSmall: PLTypography.textTitleSmallStyle,
-      titleMedium: PLTypography.textTitleMediumStyle,
-      titleLarge: PLTypography.textTitleLargeStyle,
-      bodySmall: PLTypography.textBodySmallStyle,
-      bodyMedium: PLTypography.textBodyMediumStyle,
-      bodyLarge: PLTypography.textBodyLargeStyle,
-      labelSmall: PLTypography.textLabelSmallStyle,
-      labelMedium: PLTypography.textLabelMediumStyle,
-      labelLarge: PLTypography.textLabelLargeStyle,
-      displaySmall: PLTypography.textDisplaySmallStyle,
-      displayMedium: PLTypography.textDisplayMediumStyle,
-      displayLarge: PLTypography.textDisplayLargeStyle
+      headlineSmall: NovaTypography.textHeadlineSmallStyle,
+      headlineMedium: NovaTypography.textHeadlineMediumStyle,
+      headlineLarge: NovaTypography.textHeadlineLargeStyle,
+      titleSmall: NovaTypography.textTitleSmallStyle,
+      titleMedium: NovaTypography.textTitleMediumStyle,
+      titleLarge: NovaTypography.textTitleLargeStyle,
+      bodySmall: NovaTypography.textBodySmallStyle,
+      bodyMedium: NovaTypography.textBodyMediumStyle,
+      bodyLarge: NovaTypography.textBodyLargeStyle,
+      labelSmall: NovaTypography.textLabelSmallStyle,
+      labelMedium: NovaTypography.textLabelMediumStyle,
+      labelLarge: NovaTypography.textLabelLargeStyle,
+      displaySmall: NovaTypography.textDisplaySmallStyle,
+      displayMedium: NovaTypography.textDisplayMediumStyle,
+      displayLarge: NovaTypography.textDisplayLargeStyle
     ),
     radioTheme: RadioThemeData(
       fillColor: MaterialStateProperty.resolveWith<Color?>(
@@ -64,7 +64,7 @@ ThemeData _buildLightTheme() {
           return null;
         }
         if (states.contains(MaterialState.selected)) {
-          return PLColors.appSecondaryColorMain500;
+          return NovaColors.appSecondaryColorMain500;
         }
         return null;
       }),
@@ -76,7 +76,7 @@ ThemeData _buildLightTheme() {
           return null;
         }
         if (states.contains(MaterialState.selected)) {
-          return PLColors.appSecondaryColorMain500;
+          return NovaColors.appSecondaryColorMain500;
         }
         return null;
       }),

@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
-import 'package:peerlendly/core/exports.dart';
+import 'package:nova/core/exports.dart';
 
 import '../../../core/network/exports.dart';
 import '../../../core/utils/helper_functions/exports.dart';
@@ -137,8 +136,6 @@ class PLProfileRepository extends PLProfileService {
 
       // var decryptedResponse = await decryptString(responseData);
 
-      Uint8List decodedImage = base64.decode(responseData);
-
       return Right(
           GenericResponseModel(message: responseData, success: true));
     } catch (e) {
@@ -168,13 +165,11 @@ class PLProfileRepository extends PLProfileService {
 
       "requestData $encryptedData $requestData".log();
 
-      var responseData = await NetworkService.post(
-          url: NetworkConstants.forgotPinUrl, data: encryptedData);
 
       return Right(GenericResponseModel(
           message: "Pin change is successful", success: true));
     } catch (e) {
-      "OnboardCustomerError $e".logger();
+      "ForgotPinError $e".logger();
 
       return Left(ErrorResponseModel(
         isSuccess: false,
@@ -424,9 +419,13 @@ class PLProfileRepository extends PLProfileService {
     // TODO: implement getNigeriaBanksService
     try {
       var responseData =
-          await NetworkService.get(url: NetworkConstants.getNigeriaBanksUrl, customBaseUrl: "");
+          await NetworkService.get(url: NetworkConstants.getNigeriaBanksUrl);
 
-      List<NigeriaBankResponseModel> nigeriaBanks = jsonDecode(responseData)
+      var decryptedResponse = await decryptString(responseData);
+
+      "decryptedResponse $decryptedResponse".logger();
+
+      List<NigeriaBankResponseModel> nigeriaBanks = jsonDecode(decryptedResponse)
           .map<NigeriaBankResponseModel>((data) => NigeriaBankResponseModel.fromJson(data))
           .toList();
 
@@ -643,4 +642,6 @@ class PLProfileRepository extends PLProfileService {
       ));
     }
   }
+
+
 }

@@ -9,13 +9,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart';
 import 'package:intl/intl.dart';
-import 'package:peerlendly/modules/loan/models/LoanApplyRequestModel.dart';
-import 'package:peerlendly/modules/loan/models/LoogedInUserLoanResponseModel.dart';
-import 'package:peerlendly/modules/loan/models/MakeLoanOfferRequestModel.dart';
-import 'package:peerlendly/modules/loan/services/loan_services.dart';
-import 'package:peerlendly/modules/profile/exports.dart';
+import 'package:nova/modules/loan/models/LoanApplyRequestModel.dart';
+import 'package:nova/modules/loan/models/LoogedInUserLoanResponseModel.dart';
+import 'package:nova/modules/loan/models/MakeLoanOfferRequestModel.dart';
+import 'package:nova/modules/loan/services/loan_services.dart';
+import 'package:nova/modules/profile/exports.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/enums/exports.dart';

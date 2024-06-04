@@ -1,9 +1,9 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 List<Widget> buildPageIndicator(
     BuildContext context, int pageNumber, int currentPage,
-    [Color bgColor = PLColors.appPrimaryColorMain500,
-    double indicatorWidth = 30,
+    [Color bgColor = NovaColors.appPrimaryColorMain500,
+    double indicatorWidth = 10,
     bool isExpanded = false,
     bool isProgressBar = false]) {
   List<Widget> list = [];
@@ -15,7 +15,7 @@ List<Widget> buildPageIndicator(
                 : indicator(context, false, bgColor, indicatorWidth)))
         : list.add(i == currentPage
             ? indicator(context, true, bgColor, indicatorWidth)
-            : indicator(context, false, PLColors.appSliderColor, 15));
+            : indicator(context, false, NovaColors.appSliderColor, 10));
   }
   return list;
 }
@@ -25,7 +25,7 @@ Widget indicator(
   return AnimatedContainer(
     duration: const Duration(milliseconds: 150),
     margin: const EdgeInsets.symmetric(horizontal: 4.0),
-    height: 3.0,
+    height: 7.5,
     width: indicatorWidth,
     // isActive ? 50 : 5,
     decoration: BoxDecoration(

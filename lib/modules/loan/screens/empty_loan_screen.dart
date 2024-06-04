@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/loan/exports.dart';
+part of 'package:nova/modules/loan/exports.dart';
 
 class EmptyLoanScreen extends StatelessWidget {
   const EmptyLoanScreen({Key? key}) : super(key: key);
@@ -8,17 +8,17 @@ class EmptyLoanScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        PLVSpace(20),
+        NovaVSpace(20),
         Column(
           children: [
-            PLImagePng(imgPath: PLAssets.emptyLoan, width: 111.w, height: 129.h,),
-            PLVSpace(16),
-            PLTextWidget(
+            NovaImagePng(imgPath: NovaAssets.emptyLoan, width: 111.w, height: 129.h,),
+            NovaVSpace(16),
+            NovaTextWidget(
               title: "No Investment Available",
-              textSize: PLTypography.fontBodyLarge,
+              textSize: NovaTypography.fontBodyLarge,
             ),
-            PLVSpace(24),
-            PLButtonRound(
+            NovaVSpace(24),
+            NovaButtonRound(
               textTitle: "Go to marketplace",
               functionToRun: () {
 
@@ -27,7 +27,7 @@ class EmptyLoanScreen extends StatelessWidget {
             )
           ],
         ),
-        PLVSpace(20),
+        NovaVSpace(20),
       ],
     );
   }
@@ -43,18 +43,18 @@ class EmptyLoanScreenWithTextOnly extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        PLVSpace(20),
+        NovaVSpace(20),
         Column(
           children: [
-            PLImagePng(imgPath: PLAssets.emptyLoan, width: 111.w, height: 129.h,),
-            PLVSpace(16),
-            PLTextWidget(
+            NovaImagePng(imgPath: NovaAssets.emptyLoan, width: 111.w, height: 129.h,),
+            NovaVSpace(16),
+            NovaTextWidget(
               title: text,
-              textSize: PLTypography.fontBodyLarge,
+              textSize: NovaTypography.fontBodyLarge,
             ),
           ],
         ),
-        PLVSpace(20),
+        NovaVSpace(20),
       ],
     );
 

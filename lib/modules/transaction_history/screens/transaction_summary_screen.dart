@@ -1,21 +1,19 @@
-part of 'package:peerlendly/modules/transaction_history/exports.dart';
+part of 'package:nova/modules/transaction_history/exports.dart';
 
 class TransactionSummaryScreen extends StatelessWidget {
   const TransactionSummaryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final transactionWatcher = context.watch<TransactionProvider>();
-    final transactionReader = context.read<TransactionProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,198 +22,198 @@ class TransactionSummaryScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PLVSpace(48),
-                          PLBackIcon(
+                          NovaVSpace(48),
+                          NovaBackIcon(
                             onTap: () => Navigator.pop(context),
                           ),
-                          PLVSpace(16),
+                          NovaVSpace(16),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              PLTextWidget(
+                              NovaTextWidget(
                                 title: "Loan Transaction",
-                                textStyle: PLTypography.textTitleLargeStyle,
-                                textColor: PLColors.appPrimaryText,
+                                textStyle: NovaTypography.textTitleLargeStyle,
+                                textColor: NovaColors.appPrimaryText,
                                 fontWeight: FontWeight.w700,
-                                textSize: PLTypography.fontTitleLarge,
+                                textSize: NovaTypography.fontTitleLarge,
                               ),
                               InkWell(
                                 onTap: () {},
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: PLDecorations
+                                      borderRadius: NovaDecorations
                                           .borderRadiusGeometryCircular16,
-                                      color: PLColors.appPrimaryColorMain500),
-                                  child: PLTextWidget(
+                                      color: NovaColors.appPrimaryColorMain500),
+                                  child: NovaTextWidget(
                                     title: "Share",
-                                    textColor: PLColors.appWhiteColor,
-                                    textSize: PLTypography.fontLabelSmall,
+                                    textColor: NovaColors.appWhiteColor,
+                                    textSize: NovaTypography.fontLabelSmall,
                                   ).paddingSymmetric(horizontal: 12, vertical: 8),
                                 ),
                               )
                             ],
                           ),
-                          PLVSpace(8),
-                          PLTextWidget(
+                          NovaVSpace(8),
+                          NovaTextWidget(
                             title: DateTime.now().formatDate(),
-                            textStyle: PLTypography.textLabelSmallStyle,
-                            textSize: PLTypography.fontLabelSmall,
+                            textStyle: NovaTypography.textLabelSmallStyle,
+                            textSize: NovaTypography.fontLabelSmall,
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                           Container(
                             decoration: BoxDecoration(
                                 borderRadius:
-                                    PLDecorations.borderRadiusGeometryCircular8,
-                                color: PLColors.appWhiteColor),
+                                    NovaDecorations.borderRadiusGeometryCircular8,
+                                color: NovaColors.appWhiteColor),
                             child: Column(
                               children: [
                                 _loanDetailsItem(
                                     'Amount',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: 98900
                                           .toString()
                                           .formatWithCommasAndDecimals(),
-                                      textStyle: PLTypography.textTitleSmallStyle,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textStyle: NovaTypography.textTitleSmallStyle,
+                                      textSize: NovaTypography.fontLabelSmall,
                                       fontWeight: FontWeight.w600,
-                                      textColor: PLColors.appPrimaryText,
+                                      textColor: NovaColors.appPrimaryText,
                                       maxLines: 1,
                                       isCurrency: true,
                                     )),
                                 _loanDetailsItem(
                                     'Interest Rate',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: "15%",
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryText,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryText,
                                       fontWeight: FontWeight.w600,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textSize: NovaTypography.fontLabelSmall,
                                     )),
                                 _loanDetailsItem(
                                     'Duration (Days)',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: "30 Days",
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryText,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryText,
                                       fontWeight: FontWeight.w600,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textSize: NovaTypography.fontLabelSmall,
                                     )),
                                 _loanDetailsItem(
                                     'Purpose',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: "School Fees",
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryText,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryText,
                                       fontWeight: FontWeight.w600,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textSize: NovaTypography.fontLabelSmall,
                                     )),
 
                                 // todo : This is for other transactions like bill payment, funding and withdraw
 
                                 _loanDetailsItem(
                                     'Name',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: "MTN NG VTU 81739821732",
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryText,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryText,
                                       fontWeight: FontWeight.w600,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textSize: NovaTypography.fontLabelSmall,
                                     )),
                                 _loanDetailsItem(
                                     'Description',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: "Airtime Purchase 8072193",
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryText,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryText,
                                       fontWeight: FontWeight.w600,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textSize: NovaTypography.fontLabelSmall,
                                     )),
                                 // todo: end
 
                                 Divider(
-                                  color: PLColors.appGrayText.withOpacity(.6),
+                                  color: NovaColors.appGrayText.withOpacity(.6),
                                 ),
 
                                 // todo : This is for other transactions like bill payment, funding and withdraw
                                 _loanDetailsItem(
                                     'Payment Method',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: "Airtime",
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryText,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryText,
                                       fontWeight: FontWeight.w600,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textSize: NovaTypography.fontLabelSmall,
                                     )),
 
                                 _loanDetailsItem(
                                     'Transaction Reference',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: "eljkljekj232323",
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryText,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryText,
                                       fontWeight: FontWeight.w600,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textSize: NovaTypography.fontLabelSmall,
                                     )),
                                 // todo: end
 
                                 _loanDetailsItem(
                                     'Interest Value',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: 98900
                                           .toString()
                                           .formatWithCommasAndDecimals(),
-                                      textStyle: PLTypography.textTitleSmallStyle,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textStyle: NovaTypography.textTitleSmallStyle,
+                                      textSize: NovaTypography.fontLabelSmall,
                                       fontWeight: FontWeight.w600,
-                                      textColor: PLColors.appPrimaryText,
+                                      textColor: NovaColors.appPrimaryText,
                                       maxLines: 1,
                                       isCurrency: true,
                                     )),
                                 _loanDetailsItem(
                                     'Protection Fee',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: 98900
                                           .toString()
                                           .formatWithCommasAndDecimals(),
-                                      textStyle: PLTypography.textTitleSmallStyle,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textStyle: NovaTypography.textTitleSmallStyle,
+                                      textSize: NovaTypography.fontLabelSmall,
                                       fontWeight: FontWeight.w600,
-                                      textColor: PLColors.appPrimaryText,
+                                      textColor: NovaColors.appPrimaryText,
                                       maxLines: 1,
                                       isCurrency: true,
                                     )),
                                 _loanDetailsItem(
                                     'Platform Fee',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: 98900
                                           .toString()
                                           .formatWithCommasAndDecimals(),
-                                      textStyle: PLTypography.textTitleSmallStyle,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textStyle: NovaTypography.textTitleSmallStyle,
+                                      textSize: NovaTypography.fontLabelSmall,
                                       fontWeight: FontWeight.w600,
-                                      textColor: PLColors.appPrimaryText,
+                                      textColor: NovaColors.appPrimaryText,
                                       maxLines: 1,
                                       isCurrency: true,
                                     )),
                                 _loanDetailsItem(
                                     'Final Repayment Date',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: DateTime.now().formatDate(),
-                                      textStyle: PLTypography.textTitleLargeStyle,
-                                      textColor: PLColors.appPrimaryText,
+                                      textStyle: NovaTypography.textTitleLargeStyle,
+                                      textColor: NovaColors.appPrimaryText,
                                       fontWeight: FontWeight.w600,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textSize: NovaTypography.fontLabelSmall,
                                     )),
                                 _loanDetailsItem(
                                     'Total Payable',
-                                    PLTextWidget(
+                                    NovaTextWidget(
                                       title: 98900
                                           .toString()
                                           .formatWithCommasAndDecimals(),
-                                      textStyle: PLTypography.textTitleSmallStyle,
-                                      textSize: PLTypography.fontLabelSmall,
+                                      textStyle: NovaTypography.textTitleSmallStyle,
+                                      textSize: NovaTypography.fontLabelSmall,
                                       fontWeight: FontWeight.w600,
-                                      textColor: PLColors.appPrimaryText,
+                                      textColor: NovaColors.appPrimaryText,
                                       maxLines: 1,
                                       isCurrency: true,
                                     )),
@@ -225,23 +223,23 @@ class TransactionSummaryScreen extends StatelessWidget {
                                       children: [
                                         const CircleAvatar(
                                           maxRadius: 4,
-                                          backgroundColor: PLColors.appSuccessColor,
+                                          backgroundColor: NovaColors.appSuccessColor,
                                         ),
-                                        PLHSpace(4),
-                                        PLTextWidget(
+                                        NovaHSpace(4),
+                                        NovaTextWidget(
                                           title: "Successful",
                                           textStyle:
-                                              PLTypography.textTitleLargeStyle,
-                                          textColor: PLColors.appPrimaryText,
+                                              NovaTypography.textTitleLargeStyle,
+                                          textColor: NovaColors.appPrimaryText,
                                           fontWeight: FontWeight.w600,
-                                          textSize: PLTypography.fontLabelSmall,
+                                          textSize: NovaTypography.fontLabelSmall,
                                         ),
                                       ],
                                     )),
                               ],
                             ).paddingSymmetric(horizontal: 16, vertical: 16),
                           ),
-                          PLVSpace(32),
+                          NovaVSpace(32),
                         ],
                       ),
                       Column(
@@ -255,32 +253,32 @@ class TransactionSummaryScreen extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius:
-                                  PLDecorations.borderRadiusGeometryCircular8,
-                                  color: PLColors.appWhiteColor),
+                                  NovaDecorations.borderRadiusGeometryCircular8,
+                                  color: NovaColors.appWhiteColor),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
-                                      PLImageSvg(
-                                          svgPath: PLAssets.infoIconRed, width: 40.w, height: 40.h,),
-                                      PLHSpace(16),
+                                      NovaImageSvg(
+                                          svgPath: NovaAssets.infoIconRed, width: 40.w, height: 40.h,),
+                                      NovaHSpace(16),
                                       Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          PLTextWidget(
+                                          NovaTextWidget(
                                             title: 'Report Transaction',
-                                            textStyle: PLTypography.textTitleLargeStyle,
-                                            textColor: PLColors.appErrorColor,
+                                            textStyle: NovaTypography.textTitleLargeStyle,
+                                            textColor: NovaColors.appErrorColor,
                                             fontWeight: FontWeight.w700,
-                                            textSize: PLTypography.fontBodyMedium,
+                                            textSize: NovaTypography.fontBodyMedium,
                                           ),
-                                          PLVSpace(4),
-                                          PLTextWidget(
+                                          NovaVSpace(4),
+                                          NovaTextWidget(
                                             title: 'Report an issue with this transaction',
-                                            textStyle: PLTypography.textTitleLargeStyle,
-                                            textColor: PLColors.appGrayText,
-                                            textSize: PLTypography.fontLabelSmall,
+                                            textStyle: NovaTypography.textTitleLargeStyle,
+                                            textColor: NovaColors.appGrayText,
+                                            textSize: NovaTypography.fontLabelSmall,
                                           ),
                                         ],
                                       ),
@@ -288,14 +286,14 @@ class TransactionSummaryScreen extends StatelessWidget {
                                   ),
                                   const Icon(
                                     Icons.arrow_forward_ios,
-                                    color: PLColors.appPrimaryText,
+                                    color: NovaColors.appPrimaryText,
                                     size: 18,
                                   )
                                 ],
                               ).paddingSymmetric(horizontal: 16, vertical: 16),
                             ),
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                         ],
                       )
                     ],
@@ -311,11 +309,11 @@ class TransactionSummaryScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        PLTextWidget(
+        NovaTextWidget(
           title: title,
-          textStyle: PLTypography.textTitleLargeStyle,
-          textColor: PLColors.appGrayText,
-          textSize: PLTypography.fontLabelSmall,
+          textStyle: NovaTypography.textTitleLargeStyle,
+          textColor: NovaColors.appGrayText,
+          textSize: NovaTypography.fontLabelSmall,
         ),
         child
       ],

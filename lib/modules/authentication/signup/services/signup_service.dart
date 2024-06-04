@@ -1,17 +1,20 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:peerlendly/core/exports.dart';
-import 'package:peerlendly/modules/authentication/login/models/SwitchAccountRequestModel.dart';
-import 'package:peerlendly/shared/models/generic_response_model.dart';
+import 'package:nova/core/exports.dart';
+import 'package:nova/shared/models/generic_response_model.dart';
 
 import '../../../../core/network/exports.dart';
 import '../../../../shared/models/error_response_model.dart';
+import '../models/CreateWalletResponseModel.dart';
 import '../models/OnboardCustomerRequestModel.dart';
 import '../models/VerifyBvnResponseModel.dart';
 import '../models/VerifyCustomerDetailsRequestModel.dart';
 
 abstract class PLSignupService {
+  Future<Either<ErrorResponseModel, GenericResponseModel>> confirmEmailDoesNotExistService(
+      String emailAddress);
+
   Future<Either<ErrorResponseModel, GenericResponseModel>> getOtpService(
       String emailAddress);
 
@@ -25,12 +28,50 @@ abstract class PLSignupService {
   Future<Either<ErrorResponseModel, GenericResponseModel>>
       verifyCustomerDetailsService(
           VerifyCustomerDetailsRequestModel verifyCustomerDetailsRequestModel);
+
+  Future<Either<ErrorResponseModel, CreateWalletResponseModel>>
+      createWalletService(String accountName, String email);
 }
 
 class PLSignupRepository extends PLSignupService {
   PLSignupRepository._();
 
   static PLSignupRepository instance = PLSignupRepository._();
+
+  @override
+  Future<Either<ErrorResponseModel, GenericResponseModel>> confirmEmailDoesNotExistService(
+      String emailAddress) async {
+    // TODO: implement confirmEmailDoesNotExistService
+    try {
+      final Map<String, dynamic> requestData = {"emailAddress": emailAddress};
+
+      final Map<String, dynamic> encryptedData = {
+        "requestBody": await cryptString(json.encode(requestData))
+      };
+
+      "requestData $encryptedData".log();
+
+      var responseData = await NetworkService.post(
+          url: NetworkConstants.emailEExistUrl, data: encryptedData);
+
+      "responseDatagConfirmEmailIsUniqueService ${await decryptString(responseData)}"
+          .log();
+
+      var decryptedResponse = await decryptString(responseData);
+
+      return Right(
+          GenericResponseModel(message: decryptedResponse, success: true));
+    } catch (e) {
+      "confirmEmailDoesNotExistServiceError $e".logger();
+      var decryptedResponse = await decryptString(e.toString());
+
+      "confirmEmailDoesNotExistServiceError $decryptedResponse".logger();
+      return Left(ErrorResponseModel(
+        isSuccess: false,
+        message: decryptedResponse,
+      ));
+    }
+  }
 
   @override
   Future<Either<ErrorResponseModel, GenericResponseModel>> getOtpService(
@@ -56,7 +97,7 @@ class PLSignupRepository extends PLSignupService {
       return Right(
           GenericResponseModel(message: decryptedResponse, success: true));
     } catch (e) {
-      "loginUserError $e".logger();
+      "getOtpServiceError $e".logger();
 
       Map<String, dynamic> error = e as Map<String, dynamic>;
 
@@ -130,7 +171,6 @@ class PLSignupRepository extends PLSignupService {
           VerifyBvnResponseModel.fromJson(jsonDecode(decryptedResponse));
 
       return Right(getUserProfileResponseModel.copyWith(message: getUserProfileResponseModel.otp)
-          // GenericResponseModel(message: decryptedResponse, success: true)
           );
     } catch (e) {
       "VerifyBVNError $e".logger();
@@ -175,6 +215,46 @@ class PLSignupRepository extends PLSignupService {
           GenericResponseModel(message: decryptedResponse, success: true));
     } catch (e) {
       "VerifyCustomerDetailsError $e".logger();
+
+      var decryptedResponse = await decryptString(e.toString());
+
+      return Left(ErrorResponseModel(
+        isSuccess: false,
+        message: decryptedResponse,
+      ));
+    }
+  }
+
+  @override
+  Future<Either<ErrorResponseModel, CreateWalletResponseModel>> createWalletService(String accountName, String email) async{
+
+    // TODO: implement createWalletService
+    try {
+      final Map<String, dynamic> requestData = {
+        "accountName": accountName,
+        "email": email,
+      };
+
+      final Map<String, dynamic> encryptedData = {
+        "requestBody": await cryptString(json.encode(requestData))
+      };
+
+      "requestData $encryptedData $requestData".log();
+
+      var responseData = await NetworkService.post(
+          url: NetworkConstants.createWalletUrl, data: encryptedData);
+
+      "responseDataVerifyCustomerDetailsService ${await decryptString(responseData)}"
+          .log();
+
+      var decryptedResponse = await decryptString(responseData);
+
+      CreateWalletResponseModel createWalletResponseModel =
+      CreateWalletResponseModel.fromJson(jsonDecode(decryptedResponse));
+
+      return Right(createWalletResponseModel);
+    } catch (e) {
+      "createWalletServiceError $e".logger();
 
       var decryptedResponse = await decryptString(e.toString());
 

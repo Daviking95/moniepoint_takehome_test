@@ -1,6 +1,6 @@
-part of 'package:peerlendly/modules/onboarding/exports.dart';
+part of 'package:nova/modules/onboarding/exports.dart';
 
-class OnboardingProvider extends ChangeNotifier{
+class OnboardingProvider extends BaseViewModel{
 
   int _currentPageIndex = 0;
   late Timer timer;
@@ -24,6 +24,21 @@ class OnboardingProvider extends ChangeNotifier{
 
   static List<OnBoardingModel> onboardingList =
       OnBoardingModel().onboardingList;
+
+  FutureOr<void> disposeState() {
+    // TODO: implement disposeState
+    _animationController.dispose();
+    pageController.dispose();
+  }
+
+  bool _isTermsChecked = false;
+
+  bool get isTermsChecked => _isTermsChecked;
+
+  set isTermsChecked(bool value) {
+    _isTermsChecked = value;
+    notifyListeners();
+  }
 
   void setAnimationController(_OnboardingScreenState onboardingScreenState) {
     _animationController = AnimationController(
@@ -59,15 +74,14 @@ class OnboardingProvider extends ChangeNotifier{
     Future.delayed(const Duration(seconds: 2), () async {
       "returningCustomer $returningCustomer".logger();
 
-      // returningCustomer != null && returningCustomer != ""
-      AppPreferences.isOnboardingCarouselSeenOnce
-          ?
-      AppPreferences.isReturningCustomer && AppPreferences.returnDetails.isNotEmpty
-          ?
-      Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (route) => false)
-          :
-      Navigator.pushNamedAndRemoveUntil(context, AppRoutes.signUp, (route) => false)
-          :
+      // AppPreferences.isOnboardingCarouselSeenOnce
+      //     ?
+      // AppPreferences.isReturningCustomer && AppPreferences.returnDetails.isNotEmpty
+      //     ?
+      // Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (route) => false)
+      //     :
+      // Navigator.pushNamedAndRemoveUntil(context, AppRoutes.signUp, (route) => false)
+      //     :
       Navigator.pushNamedAndRemoveUntil(context, AppRoutes.onboarding, (route) => false); // onboarding
     });
   }

@@ -1,6 +1,6 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
-class PLBackIcon extends StatelessWidget {
+class NovaBackIcon extends StatelessWidget {
   final Function onTap;
   final String? title;
   final bool isBtmNavWithNoTitle;
@@ -9,7 +9,7 @@ class PLBackIcon extends StatelessWidget {
 
   final bool isCancel;
 
-  const PLBackIcon({required this.onTap, this.title, this.isBtmNavWithNoTitle = false, this.titleColor, this.extraWidget, this.isCancel = false, super.key});
+  const NovaBackIcon({required this.onTap, this.title, this.isBtmNavWithNoTitle = false, this.titleColor, this.extraWidget, this.isCancel = false, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class PLBackIcon extends StatelessWidget {
               child: Divider(
                 height: 2,
                 thickness: 4,
-                color: PLColors.neutralColor400.withOpacity(.5),
+                color: NovaColors.neutralColor400.withOpacity(.5),
               ),
             ),
           )
@@ -29,29 +29,29 @@ class PLBackIcon extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () => onTap(),
-                child: isCancel ? PLImageSvg(svgPath: PLAssets.closeIcon, width: 15.w, height: 15.h,) : CircleAvatar(
+                child: isCancel ? NovaImageSvg(svgPath: NovaAssets.closeIcon, width: 15.w, height: 15.h,) : CircleAvatar(
                   backgroundColor: const Color(0x4CD9E1FC), // PLColors.neutralColor300.withOpacity(.2),
                   maxRadius: 20,
                   child: Icon(
                     LineIcons.alternateLongArrowLeft,
-                    color: titleColor ?? PLColors.neutralColor600,
+                    color: titleColor ?? NovaColors.neutralColor600,
                     size: 30,
                   ),
                 ).marginOnly(top: 8, right: 8, bottom: 8),
               ),
               if (title != null && title!.isNotEmpty) ...[
-                PLHSpace(22),
+                NovaHSpace(22),
                 Expanded(
-                  child: PLTextWidget(
+                  child: NovaTextWidget(
                     title: title.toString().toTitleCase,
                     isTitle: true,
                     textColor: titleColor,
-                    textStyle: PLTypography.textHeadlineMediumStyle,
-                    textSize: PLTypography.fontTitleMedium,
+                    textStyle: NovaTypography.textHeadlineMediumStyle,
+                    textSize: NovaTypography.fontTitleMedium,
                   ),
                 ),
               ],
-              extraWidget ?? PLHSpace(80)
+              extraWidget ?? NovaHSpace(80)
             ],
           );
   }
@@ -66,8 +66,8 @@ class PLForwardIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => onTap(),
-      child: PLImageSvg(
-        svgPath: PLAssets.forwardArrowIcon,
+      child: NovaImageSvg(
+        svgPath: NovaAssets.forwardArrowIcon,
         width: 8.w,
       ).marginOnly(top: 8, right: 8, bottom: 8),
     );

@@ -1,46 +1,44 @@
-part of 'package:peerlendly/modules/profile/exports.dart';
+part of 'package:nova/modules/profile/exports.dart';
 
 class HelpAndSupport extends StatelessWidget {
   const HelpAndSupport({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final profileWatcher = context.watch<ProfileProvider>();
-    final profileReader = context.read<ProfileProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
-              child: PLPaddedWidget(
+              child: NovaPaddedWidget(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PLVSpace(48),
-                    PLBackIcon(
+                    NovaVSpace(48),
+                    NovaBackIcon(
                       onTap: () => Navigator.pop(context),
                     ),
-                    PLVSpace(8),
-                    PLTextWidget(
+                    NovaVSpace(8),
+                    NovaTextWidget(
                       title: "Get Help",
                       isTitle: true,
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontHeadlineSmall,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontHeadlineSmall,
                     ),
-                    PLVSpace(4),
-                    PLTextWidget(
+                    NovaVSpace(4),
+                    NovaTextWidget(
                       title: "Get support or send feedback",
-                      textStyle: PLTypography.textHeadlineMediumStyle,
-                      textSize: PLTypography.fontLabelSmall,
+                      textStyle: NovaTypography.textHeadlineMediumStyle,
+                      textSize: NovaTypography.fontLabelSmall,
                     ),
-                    PLVSpace(24),
+                    NovaVSpace(24),
                     ProfileItemCard(profileItems: [
                       ProfileItem(
-                          icon: PLAssets.callUs,
+                          icon: NovaAssets.callUs,
                           title: "Call Us",
                           desc: strAppSecurityDesc,
                           func: () {
@@ -54,7 +52,7 @@ class HelpAndSupport extends StatelessWidget {
                     ]),
                     ProfileItemCard(profileItems: [
                       ProfileItem(
-                          icon: PLAssets.chatUs,
+                          icon: NovaAssets.chatUs,
                           title: "Chat With Us",
                           desc: strAppSecurityDesc,
                           func: () {
@@ -68,15 +66,15 @@ class HelpAndSupport extends StatelessWidget {
                     ]),
                     ProfileItemCard(profileItems: [
                       ProfileItem(
-                          icon: PLAssets.faq,
+                          icon: NovaAssets.faq,
                           title: "FAQs",
                           desc: strAppSecurityDesc,
                           func: () {
-                            // https://peerlendly.com/faqs/
+                            // https://nova.com/faqs/
 
                             PersistentNavBarNavigator.pushNewScreen(
                               context,
-                              screen: WebViewWidget("https://peerlendly.com/faqs/", "FAQs"),
+                              screen: WebViewWidget("https://nova.com/faqs/", "FAQs"),
                               withNavBar: false,
                               pageTransitionAnimation: PageTransitionAnimation.cupertino,
                             );

@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class CameraScreen extends StatefulWidget {
   final List<CameraDescription> camera;
@@ -46,7 +46,7 @@ class _CameraScreenState extends State<CameraScreen> {
                 Positioned(
                   top: 0,
                   child: Container(
-                    decoration: BoxDecoration(color: PLColors.appBlackColor.withOpacity(.4)),
+                    decoration: BoxDecoration(color: NovaColors.appBlackColor.withOpacity(.4)),
                     width: context.width,
                     height: context.height / 4,
                   ),
@@ -54,7 +54,7 @@ class _CameraScreenState extends State<CameraScreen> {
                 Positioned(
                   bottom: 0,
                   child: Container(
-                    decoration: BoxDecoration(color: PLColors.appBlackColor.withOpacity(.4)),
+                    decoration: BoxDecoration(color: NovaColors.appBlackColor.withOpacity(.4)),
                     width: context.width,
                     height: context.height / 4,
                   ),
@@ -64,7 +64,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   top: 189.5,
                   child: Center(
                     child: Container(
-                      decoration: BoxDecoration(color: PLColors.appBlackColor.withOpacity(.4)),
+                      decoration: BoxDecoration(color: NovaColors.appBlackColor.withOpacity(.4)),
                       width: context.width / 5,
                       height: context.height / 2,
                     ),
@@ -75,7 +75,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   top: 189.5,
                   child: Center(
                     child: Container(
-                      decoration: BoxDecoration(color: PLColors.appBlackColor.withOpacity(.4)),
+                      decoration: BoxDecoration(color: NovaColors.appBlackColor.withOpacity(.4)),
                       width: context.width / 5,
                       height: context.height / 2,
                     ),
@@ -88,29 +88,29 @@ class _CameraScreenState extends State<CameraScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        PLTextWidget(
+                        NovaTextWidget(
                           title: "Take a picture of yourself and make sure your face is visible.",
-                          textColor: PLColors.appWhiteColor,
-                          textStyle: PLTypography.textLabelSmallStyle,
-                          textSize: PLTypography.fontLabelSmall,
+                          textColor: NovaColors.appWhiteColor,
+                          textStyle: NovaTypography.textLabelSmallStyle,
+                          textSize: NovaTypography.fontLabelSmall,
                         ),
-                        PLVSpace(15),
+                        NovaVSpace(15),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             GestureDetector(
                               onTap: _switchTouch,
-                              child: const Icon(Icons.flash_on, color: PLColors.appWhiteColor, size: 30,).paddingAll(15),
+                              child: const Icon(Icons.flash_on, color: NovaColors.appWhiteColor, size: 30,).paddingAll(15),
                             ),
-                            PLHSpace(10),
+                            NovaHSpace(10),
                             GestureDetector(
                               onTap: _capture,
-                              child: const Icon(Icons.camera, color: PLColors.appWhiteColor, size: 30,).paddingAll(15),
+                              child: const Icon(Icons.camera, color: NovaColors.appWhiteColor, size: 30,).paddingAll(15),
                             ),
-                            PLHSpace(10),
+                            NovaHSpace(10),
                             GestureDetector(
                               onTap: _switchCamera,
-                              child: const Icon(Icons.switch_access_shortcut, color: PLColors.appWhiteColor, size: 30,).paddingAll(15),
+                              child: const Icon(Icons.switch_access_shortcut, color: NovaColors.appWhiteColor, size: 30,).paddingAll(15),
                             )
                           ],
                         )

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/base_module/exports.dart';
+part of 'package:nova/modules/base_module/exports.dart';
 
 class BaseView<T extends BaseViewModel> extends StatelessWidget {
   final T Function(BuildContext) vmBuilder;

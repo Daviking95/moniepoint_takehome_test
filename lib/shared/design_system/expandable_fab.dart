@@ -1,5 +1,5 @@
 
-part of "package:peerlendly/shared/design_system/exports.dart";
+part of "package:nova/shared/design_system/exports.dart";
 
 // Inspired by this article.
 // https://docs.flutter.dev/cookbook/effects/expandable-fab

@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/transaction_history/exports.dart';
+part of 'package:nova/modules/transaction_history/exports.dart';
 
 class TransactionScreen extends StatelessWidget {
   const TransactionScreen({super.key});
@@ -13,18 +13,17 @@ class TransactionScreen extends StatelessWidget {
 
   Widget _buildScreen(BuildContext context, TransactionProvider model) {
     final transactionWatcher = context.watch<TransactionProvider>();
-    final transactionReader = context.read<TransactionProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Navigator.canPop(context) ? Future.value(true) : Future.value(false),
-        child: PLScaffold(
+        child: NovaScaffold(
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
-                child: PLPaddedWidget(
+                child: NovaPaddedWidget(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
@@ -33,24 +32,24 @@ class TransactionScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PLVSpace(48),
-                          PLBackIcon(
+                          NovaVSpace(48),
+                          NovaBackIcon(
                             onTap: () => Navigator.canPop(context) ? Navigator.pop(context) : AppNavigator.pushAndRemoveUtil(const PersistentTab()),
                             title: "Transaction History",
                             extraWidget: Row(
                               children: [
                                 InkWell(
                                     onTap: transactionWatcher.toggleFilterVisibility,
-                                    child:  const PLImageSvg(
-                                      svgPath: PLAssets.filterIcon,
+                                    child:  const NovaImageSvg(
+                                      svgPath: NovaAssets.filterIcon,
                                       height: 15,
                                       width: 25,
                                     )),
-                                PLHSpace(8),
+                                NovaHSpace(8),
                               ],
                             ),
                           ),
-                          PLVSpace(24),
+                          NovaVSpace(24),
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -89,11 +88,11 @@ class TransactionScreen extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(bottom: 5),
-            child: PLTextWidget(
+            child: NovaTextWidget(
               title: dateCreated.formatDate(),
-              textSize: PLTypography.fontLabelSmall,
+              textSize: NovaTypography.fontLabelSmall,
               fontWeight: FontWeight.w600,
-              textColor: PLColors.appGrayText,
+              textColor: NovaColors.appGrayText,
             ),
             // Text(),
           ),

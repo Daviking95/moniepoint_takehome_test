@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 showSnackAtTheTop({
   String message = "",
@@ -13,7 +13,7 @@ showSnackAtTheTop({
           message,
           softWrap: true,
           maxLines: 3,
-          style: PLTypography.textBodyMediumStyle.copyWith(color: PLColors.appWhiteColor),
+          style: NovaTypography.textBodyMediumStyle.copyWith(color: NovaColors.appWhiteColor),
           overflow: TextOverflow.ellipsis,
         )
       ],

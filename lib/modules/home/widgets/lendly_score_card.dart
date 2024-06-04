@@ -1,11 +1,11 @@
-part of 'package:peerlendly/modules/home/exports.dart';
+part of 'package:nova/modules/home/exports.dart';
 
 class LendlyScoreCard extends StatelessWidget {
   final int score;
   final Color bgColor;
 
   const LendlyScoreCard(
-      {Key? key, required this.score, this.bgColor = PLColors.appWhiteColor})
+      {Key? key, required this.score, this.bgColor = NovaColors.appWhiteColor})
       : super(key: key);
 
   @override
@@ -18,10 +18,10 @@ class LendlyScoreCard extends StatelessWidget {
       child: Text(
         score.toString(),
         style: TextStyle(
-          color: bgColor == PLColors.appWhiteColor ? PLColors.appPrimaryColorMain500 : PLColors.appWhiteColor,
+          color: bgColor == NovaColors.appWhiteColor ? NovaColors.appPrimaryColorMain500 : NovaColors.appWhiteColor,
           fontWeight: FontWeight.bold,
           // fontFamily: PLTypography.fontFamilyBold,
-          fontSize: PLTypography.fontHeadlineSmall,
+          fontSize: NovaTypography.fontHeadlineSmall,
         ),
       )
           // PLTextWidget(

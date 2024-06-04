@@ -1,4 +1,4 @@
-part of "package:peerlendly/shared/widgets/exports.dart";
+part of "package:nova/shared/widgets/exports.dart";
 
 class CustomTabRounded extends StatefulWidget {
   final List<String> tabTitleStringList;
@@ -63,18 +63,18 @@ class _CustomTabRoundedState extends State<CustomTabRounded>
                       margin: const EdgeInsets.symmetric(horizontal: 4),
                       child: TabBar(
                         indicator: BoxDecoration(
-                            color: PLColors.appPrimaryColorMain500,
+                            color: NovaColors.appPrimaryColorMain500,
                             borderRadius: BorderRadius.circular(8.0)),
                         labelColor:  Colors.white,
                         unselectedLabelColor: Colors.black,
                         controller: _tabController,
-                        indicatorColor: PLColors.appWhiteColor,
+                        indicatorColor: NovaColors.appWhiteColor,
                         padding: EdgeInsets.zero,
                         indicatorPadding: EdgeInsets.zero,
                         labelPadding: EdgeInsets.zero,
-                        labelStyle: PLTypography.textBodySmallStyle.copyWith(color: PLColors.appSecondaryColorMain500, fontWeight: FontWeight.w600),
+                        labelStyle: NovaTypography.textBodySmallStyle.copyWith(color: NovaColors.appSecondaryColorMain500, fontWeight: FontWeight.w600),
                         unselectedLabelStyle:
-                        PLTypography.textBodyMediumStyle.copyWith(fontSize: PLTypography.fontBodySmall),
+                        NovaTypography.textBodyMediumStyle.copyWith(fontSize: NovaTypography.fontBodySmall),
                         onTap: (value) {
                           if(widget.callBack != null) {
                             widget.callBack!(_activeIndex);

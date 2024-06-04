@@ -1,4 +1,4 @@
-part of 'package:peerlendly/modules/authentication/login/exports.dart';
+part of 'package:nova/modules/authentication/login/exports.dart';
 
 class LoginProvider extends BaseViewModel {
   final BuildContext? context;
@@ -108,7 +108,7 @@ class LoginProvider extends BaseViewModel {
     String emailAddress = "";
 
     if (AppPreferences.returnDetails.isNotEmpty) {
-      emailAddress = AppPreferences.returnDetails ?? "";
+      emailAddress = AppPreferences.returnDetails;
     }
 
     "emailAddress $emailAddress".log();
@@ -218,7 +218,7 @@ class LoginProvider extends BaseViewModel {
     //   AppNavigator.push(const SetActivityPinScreen());
     // } else
       if (!AppPreferences.userHasWatchedTutorial) {
-      AppNavigator.push(const AppTutorialScreen());
+      // AppNavigator.push(const AppTutorialScreen());
     } else {
       AppNavigator.push(const PersistentTab());
     }
@@ -256,12 +256,12 @@ class LoginProvider extends BaseViewModel {
 
       return showErrorWidgetDialog(
           context: context,
-          title: "biometrics-first-time-text".i18n(),
-          message: "biometrics-first-time-desc-text".i18n(),
+          title: "biometrics-first-time-text",
+          message: "biometrics-first-time-desc-text",
           canClick: true,
           dialogHeight: 170,
           hasBtn: true,
-          btnTitle: "ok-text".i18n(),
+          btnTitle: "ok-text",
           functionToRun: () {});
     }
 

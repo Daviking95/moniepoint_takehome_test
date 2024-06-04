@@ -1,4 +1,4 @@
 # nova
 
-Lend and Borrow Peering
+Experience Nova Banking
 

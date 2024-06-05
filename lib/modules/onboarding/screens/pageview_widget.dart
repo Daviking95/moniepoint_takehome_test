@@ -62,8 +62,9 @@ class PageviewWidget extends StatelessWidget {
                                 fontFamily: NovaTypography.fontFamilyMedium),
                         bgColor: Color(0xff25215E),
                         isAllCaps: true,
-                        functionToRun: () =>
-                            Navigator.pushNamed(context, AppRoutes.signUp),
+                        functionToRun: () {
+                          AppNavigator.push(const HaveAnAccountScreen());
+                        }
                       ),
                       NovaVSpace(20),
                     ],

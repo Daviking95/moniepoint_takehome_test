@@ -88,7 +88,7 @@ class NovaPrimaryTextField extends StatelessWidget {
             decoration: buildInputDecoration(context, label, suffixIcon, hintText, enabled, borderRadius, fillColor, suffixText, prefixIcon, innerHintText),
             style: context.textTheme.bodyMedium!.copyWith(
               color: AppNavigator.appContext?.textTheme.labelSmall!.color,
-              fontSize: fontSize,
+              fontSize: 18.sp,
               fontWeight: FontWeight.w400,
             ),
             cursorColor: context.textTheme.bodyMedium!.color,

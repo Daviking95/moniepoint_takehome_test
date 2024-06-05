@@ -3,10 +3,11 @@ part of "package:nova/shared/widgets/exports.dart";
 class ProfileImageWidget extends StatelessWidget {
   final String? imageFile;
   final String? memoryImage;
+  final String? fallBackImage;
   final double size;
 
   const ProfileImageWidget(
-      {super.key, this.imageFile, this.memoryImage, required this.size});
+      {super.key, this.imageFile, this.memoryImage, this.fallBackImage, required this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class ProfileImageWidget extends StatelessWidget {
           child: imageFile!.isNotEmpty && imageFile! != "N/A"
               ? Image.memory(base64.decode(imageFile ?? ""))
               : NovaImageNetwork(
-                  networkPath: imageFile ?? "", memoryImage: memoryImage),
+                  networkPath: imageFile ?? "", memoryImage: memoryImage, fallBackImage: fallBackImage),
           // child: PLImageNetwork(networkPath: imageFile ?? "", memoryImage: memoryImage)),
         ));
   }

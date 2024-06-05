@@ -20,16 +20,43 @@ class NovaAssets {
   static const String onboardingMenuBvn = "assets/icons_svg/onboarding_menu_bvn.svg";
   static const String onboardingMenuPhoto = "assets/icons_svg/onboarding_menu_photo.svg";
   static const String buttonImg = "assets/icons_svg/button_img.svg";
+  static const String dashboardImg = "assets/images/dashboard_img.png";
   static const String dateIcon = "assets/icons_svg/date_icon.svg";
   static const String accountTypeIcon = "assets/icons_svg/account_type_icon.svg";
   static const String emailIcon = "assets/icons_svg/email_icon.svg";
   static const String accountOpenSuccess = "assets/images/account_open_success.png";
+  static const String existingAccountOpenSuccess = "assets/images/existing_account_open_success.png";
+  static const String passwordEye = "assets/images/password_eye.png";
+  static const String passwordEyeSlash = "assets/images/password_eye_slash.png";
+  static const String defaultProfile = "assets/images/default_profile.png";
+  static const String btmPayment = "assets/icons_svg/btm_payment.svg";
+  static const String btmPaymentInactive = "assets/icons_svg/btm_payment_inactive.svg";
+  static const String btmHome = "assets/icons_svg/btm_home.svg";
+  static const String btmHomeInactive = "assets/icons_svg/btm_home_inactive.svg";
+  static const String btmCard = "assets/icons_svg/btm_card.svg";
+  static const String btmCardInactive = "assets/icons_svg/btm_card_inactive.svg";
+  static const String btmNotification = "assets/icons_svg/btm_notification.svg";
+  static const String btmNotificationInactive = "assets/icons_svg/btm_notification_inactive.svg";
+  static const String btmCheque = "assets/icons_svg/btm_cheque_inactive.svg";
+  static const String btmChequeInactive = "assets/icons_svg/btm_cheque_inactive.svg";
+  static const String showBalanceWhite = "assets/icons_svg/show_balance_white.svg";
+  static const String copyWhite = "assets/icons_svg/copy_white.svg";
 
+  static const String transferIcon = "assets/icons_svg/transfer_icon.svg";
 
-
-
-
-
+  static const String airtimeBillsIcon = "assets/icons_svg/airtime_bills_icon.svg";
+  static const String payBillsIcon = "assets/icons_svg/pay_bills_icon.svg";
+  static const String utilityIcon = "assets/icons_svg/utility_icon.svg";
+  static const String quickLoanIcon = "assets/icons_svg/quick_loan_icon.svg";
+  static const String statementIcon = "assets/icons_svg/statement_icon.svg";
+  static const String scanToPayIcon = "assets/icons_svg/scan_to_pay_icon.svg";
+  static const String eventsIcon = "assets/icons_svg/events_icon.svg";
+  static const String completeVerifyIcon = "assets/icons_svg/complete_verify_icon.svg";
+  static const String referIcon = "assets/icons_svg/refer_icon.svg";
+  static const String arrorRight = "assets/icons_svg/arrow_right_icon.svg";
+  static const String upgradeIcon = "assets/icons_svg/upgrade_icon.svg";
+  static const String notiWalletFunded = "assets/icons_svg/noti_wallet_funded.svg";
+  static const String notiWalletWithdraw = "assets/icons_svg/noti_wallet_withdrawal.svg";
 
 
 
@@ -60,24 +87,11 @@ class NovaAssets {
   static const String verifyIdIcon = "assets/images/verify_id.png";
   static const String profileCardIcon = "assets/images/profile_card.png";
   static const String walletCardBg = "assets/images/wallet_card_bg.png";
-  static const String showBalance = "assets/icons_svg/show_balance.svg";
-  static const String copyWhite = "assets/icons_svg/copy_white.svg";
-
   static const String copyBlue = "assets/icons_svg/copy_blue.svg";
-  static const String fundWalletIcon = "assets/icons_svg/fund_wallet.svg";
   static const String getALoanIcon = "assets/icons_svg/get_a_loan_icon.svg";
   static const String marketplaceIcon = "assets/icons_svg/marketplace_icon.svg";
-  static const String airtimeBillsIcon = "assets/icons_svg/airtime_bills_icon.svg";
-  static const String btmTransactions = "assets/icons_svg/btm_transactions.svg";
-  static const String btmTransactionsInactive = "assets/icons_svg/btm_transactions_inactive.svg";
-  static const String btmHome = "assets/icons_svg/btm_home.svg";
-  static const String btmHomeInactive = "assets/icons_svg/btm_home_inactive.svg";
-  static const String btmProfile = "assets/icons_svg/btm_profile.svg";
-  static const String btmProfileInactive = "assets/icons_svg/btm_profile_inactive.svg";
   static const String notiLoanAccepted = "assets/icons_svg/noti_loan_accepted.svg";
   static const String notiLoanCharges = "assets/icons_svg/noti_loan_charges.svg";
-  static const String notiWalletFunded = "assets/icons_svg/noti_wallet_funded.svg";
-  static const String notiWalletWithdraw = "assets/icons_svg/noti_wallet_withdrawal.svg";
   static const String takeSelfie = "assets/images/take_selfie.png";
   static const String captureDocument = "assets/images/capture_document.png";
   static const String signatureDocument = "assets/images/signature_document.png";
@@ -104,7 +118,6 @@ class NovaAssets {
   static const String buyElectricityIcon = "assets/icons_svg/buy_electricity.svg";
 
   static const String phoneContactIcon = "assets/icons_svg/phone_contact_icon.svg";
-  static const String arrorRight = "assets/icons_svg/arrow_right_icon.svg";
   static const String vectorDown = "assets/icons_svg/vector_down.svg";
   static const String photoChange = "assets/icons_svg/photo_change.svg";
   static const String bankAccountIcon = "assets/icons_svg/bank_account_icon.svg";

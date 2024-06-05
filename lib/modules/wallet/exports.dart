@@ -14,14 +14,14 @@ import 'package:nova/modules/wallet/widgets/select_phone_contact.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/enums/exports.dart';
 import '../../core/navigation/exports.dart';
 import '../../core/utils/constants/exports.dart';
 import '../../shared/design_system/exports.dart';
 import '../../shared/widgets/exports.dart';
-import '../authentication/complete_account_setup/exports.dart';
 import '../base_module/exports.dart';
-import '../loan/exports.dart';
 import '../profile/exports.dart';
+import '../transaction_history/exports.dart';
 
 part 'provider/wallet_provider.dart';
 part 'screens/airtime_screen.dart';
@@ -40,3 +40,4 @@ part 'screens/bills_payment_options_screen.dart';
 part 'widgets/bills_payment_popup.dart';
 part 'widgets/update_profile_pop_up.dart';
 part 'widgets/existing_loan_pop_up.dart';
+part 'widgets/recent_transaction_widget.dart';

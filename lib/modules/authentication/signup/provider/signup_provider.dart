@@ -47,6 +47,7 @@ class SignupProvider extends BaseViewModel {
   TextEditingController lastName = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController bvn = TextEditingController();
+  TextEditingController novaAccountNumber = TextEditingController();
   TextEditingController accountType = TextEditingController();
   TextEditingController emailOtpCode = TextEditingController();
   TextEditingController dateOfBirth = TextEditingController();
@@ -111,7 +112,43 @@ class SignupProvider extends BaseViewModel {
   }
 
   signupNewAccount(BuildContext context) async {
-    AppNavigator.push(const VerifyEmailAddress());
+    AppNavigator.push(const VerifyEmailAddressScreen());
+    return;
+
+    if (formKeyEmail.currentState!.validate()) {
+      await changeLoaderStatus(true, "Confirming email");
+      notifyListeners();
+
+      final dartz.Either<ErrorResponseModel, GenericResponseModel>
+          responseData = await PLSignupRepository.instance
+              .confirmEmailDoesNotExistService(email.text);
+
+      "responseDataSignUp $responseData".logger();
+
+      return responseData.fold((errorResponse) async {
+        showSnackAtTheTop(
+          message: errorResponse.message,
+        );
+
+        await changeLoaderStatus(false, "");
+        notifyListeners();
+
+        return;
+      }, (successResponse) async {
+        if (successResponse.message == "Email Already exist") {
+          showSnackAtTheTop(message: successResponse.message);
+          await changeLoaderStatus(false, "");
+          return;
+        }
+        // showSnackAtTheTop(message: successResponse.message, isSuccess: true);
+        // await changeLoaderStatus(false, "");
+
+      });
+    }
+  }
+
+  signupExistingAccount(BuildContext context) async {
+    AppNavigator.push(const VerifyEmailAddressForExistingCustomerScreen());
     return;
 
     if (formKeyEmail.currentState!.validate()) {
@@ -173,7 +210,43 @@ class SignupProvider extends BaseViewModel {
         // if(successResponse.is)
         showSnackAtTheTop(message: successResponse.message, isSuccess: true);
 
-        AppNavigator.push(VerifyEmailAddress(emailAddress: email.text));
+        AppNavigator.push(VerifyEmailAddressScreen(emailAddress: email.text));
+
+        // Navigator.pushNamed(context, AppRoutes.verifyEmailAddress);
+
+        await changeLoaderStatus(false, "");
+      });
+    }
+  }
+
+  verifyEmailAddressForExistingCustomer(BuildContext context) async {
+    AppNavigator.push(const SetupDetailsScreen(isExisting: true));
+    return;
+
+    if (formKeyEmail.currentState!.validate()) {
+      await changeLoaderStatus(true, "Creating account");
+      notifyListeners();
+
+      final dartz.Either<ErrorResponseModel, GenericResponseModel>
+          responseData =
+          await PLSignupRepository.instance.getOtpService(email.text);
+
+      "responseDataSignUp $responseData".logger();
+
+      return responseData.fold((errorResponse) async {
+        showSnackAtTheTop(
+          message: errorResponse.message,
+        );
+
+        await changeLoaderStatus(false, "");
+        notifyListeners();
+
+        return;
+      }, (successResponse) async {
+        // if(successResponse.is)
+        showSnackAtTheTop(message: successResponse.message, isSuccess: true);
+
+        AppNavigator.push(VerifyEmailAddressScreen(emailAddress: email.text));
 
         // Navigator.pushNamed(context, AppRoutes.verifyEmailAddress);
 
@@ -209,7 +282,7 @@ class SignupProvider extends BaseViewModel {
         // if(successResponse.is)
         showSnackAtTheTop(message: successResponse.message, isSuccess: true);
 
-        AppNavigator.push(VerifyEmailAddress(emailAddress: email.text));
+        AppNavigator.push(VerifyEmailAddressScreen(emailAddress: email.text));
 
         // Navigator.pushNamed(context, AppRoutes.verifyEmailAddress);
 
@@ -218,10 +291,10 @@ class SignupProvider extends BaseViewModel {
     }
   }
 
-  openNovaAccount(BuildContext context) async {
+  openNovaAccount(BuildContext context, bool isExisting) async {
     AppNavigator.push( NovaSuccessScreen(
-      imgPath: NovaAssets.accountOpenSuccess,
-      titleText: "Congratulations!",
+      imgPath: isExisting ? NovaAssets.existingAccountOpenSuccess : NovaAssets.accountOpenSuccess,
+      titleText: isExisting ? "All Done" : "Congratulations!",
       onPressed: () {
         AppNavigator.pushAndRemoveUtil(LoginScreen());
       },
@@ -275,7 +348,7 @@ class SignupProvider extends BaseViewModel {
         // if(successResponse.is)
         showSnackAtTheTop(message: successResponse.message, isSuccess: true);
 
-        AppNavigator.push(VerifyEmailAddress(emailAddress: email.text));
+        AppNavigator.push(VerifyEmailAddressScreen(emailAddress: email.text));
 
         // Navigator.pushNamed(context, AppRoutes.verifyEmailAddress);
 
@@ -316,6 +389,18 @@ class SignupProvider extends BaseViewModel {
         phoneNumber.text.isNotEmpty &&
         bvn.text.isNotEmpty &&
         accountType.text.isNotEmpty &&
+        dateOfBirth.text.isNotEmpty) {
+      _isSignupFormValidated = true;
+    } else {
+      _isSignupFormValidated = false;
+    }
+
+    notifyListeners();
+  }
+
+  void listenForExistingAccountChanges() {
+    if (novaAccountNumber.text.isNotEmpty &&
+        bvn.text.isNotEmpty &&
         dateOfBirth.text.isNotEmpty) {
       _isSignupFormValidated = true;
     } else {

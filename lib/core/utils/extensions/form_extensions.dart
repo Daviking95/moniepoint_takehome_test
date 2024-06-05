@@ -60,7 +60,7 @@ extension AddNaira on Text {
     return Wrap(
       children: [
         Text("$strCurrency ",
-            style: TextStyle(fontFamily: '', color: color, fontSize: size)),
+            style: TextStyle(fontFamily: '', color: color.withOpacity(.6), fontSize: size)),
         Text(data ?? "", style: style),
       ],
     );

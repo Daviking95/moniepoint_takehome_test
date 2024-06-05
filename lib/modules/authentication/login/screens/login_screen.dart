@@ -49,8 +49,8 @@ class LoginScreen extends StatelessWidget {
                               NovaVSpace(2),
                               NovaImagePng(
                                 imgPath: NovaAssets.licenceImageWhite,
-                                width: 120.w,
-                                height: 15.h,
+                                width: 140.w,
+                                height: 20.h,
                               ),
                             ],
                           ),
@@ -85,7 +85,34 @@ class LoginScreen extends StatelessWidget {
                         ),
                         NovaVSpace(8),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            Row(children: [
+                              SizedBox(
+                                height: 25.h,
+                                width: 25.w,
+                                child: Checkbox(
+                                  value: loginWatcher.rememberMe,
+                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  activeColor: NovaColors.appPrimaryColorMain500,
+                                  checkColor: Color(0xffE0E0E0),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      NovaDecorations.borderRadiusGeometryCircular4),
+                                  onChanged: (bool? value) {
+                                    loginWatcher.rememberMe =
+                                    !loginWatcher.rememberMe;
+                                  },
+                                ),
+                              ),
+                              NovaHSpace(8),
+                              NovaTextWidget(
+                                title: "Remember Me",
+                                textColor: Color(0xff25215E),
+                                textSize: NovaTypography.fontTitleSmall,
+                                fontFamily: NovaTypography.fontFamilyMedium,
+                              )
+                            ],),
                             GestureDetector(
                               onTap: () => Navigator.pushNamed(
                                   context, AppRoutes.forgotPassword),
@@ -94,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                                 textColor: Color(0xff25215E),
                                 textSize: NovaTypography.fontTitleSmall,
                                 fontFamily: NovaTypography.fontFamilyMedium,
-                              ).paddingAll(5),
+                              ),
                             ),
                           ],
                         ),
@@ -114,14 +141,19 @@ class LoginScreen extends StatelessWidget {
                                   isLoader: model.isLoading,
                                   // isFormValidated: model.isDetailsSetupFormValidated,
                                   functionToRun: () {
-                                    // loginWatcher.openNovaAccount(context);
+                                    loginWatcher.validateLoginForm(context);
                                   }),
                             ),
                             NovaHSpace(8),
-                            NovaImageSvg(
-                              svgPath: NovaAssets.biometricsIcon,
-                              width: 65.w,
-                              height: 65.h,
+                            InkWell(
+                              onTap: () {
+                                loginWatcher.startBiometricAuth(context);
+                              },
+                              child: NovaImageSvg(
+                                svgPath: NovaAssets.biometricsIcon,
+                                width: 65.w,
+                                height: 65.h,
+                              ),
                             ),
 
                           ],

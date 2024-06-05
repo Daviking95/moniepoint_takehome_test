@@ -104,6 +104,12 @@ class AppPreferences {
   static set isFingerPrintAllowedAtLogin(bool value) =>
       _sharedPrefs.setBool(PrefsConstants.isFingerPrintAllowedAtLogin, value);
 
+  static bool get userHasLoggedIn =>
+      _sharedPrefs.getBool(PrefsConstants.userHasLoggedIn) ?? true;
+
+  static set userHasLoggedIn(bool value) =>
+      _sharedPrefs.setBool(PrefsConstants.userHasLoggedIn, value);
+
   static String get imageProfileFile =>
       _sharedPrefs.getString(PrefsConstants.imageProfileFile) ?? "";
 

@@ -7,71 +7,46 @@ class ProfileCompletionCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        PersistentNavBarNavigator.pushNewScreen(
-          context,
-          screen: const CompleteAccountScreen(),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        // PersistentNavBarNavigator.pushNewScreen(
+        //   context,
+        //   screen: const CompleteAccountScreen(),
+        //   withNavBar: false,
+        //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        // );
       },
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: NovaDecorations.borderRadiusGeometryCircular16,
-            color: NovaColors.appWhiteColor),
+            borderRadius: NovaDecorations.borderRadiusGeometryCircular4,
+            color: Color(0xffF7F7F7)),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              flex: 2,
-              child: Container(
-                  color: NovaColors.appWhiteColor,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      NovaTextWidget(
-                        title: "Profile Completion",
-                        textSize: NovaTypography.fontBodyMedium,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      NovaVSpace(2),
-                      NovaTextWidget(
-                        title:
-                            "You need to complete \nyour profile to unlock all our features",
-                        textSize: NovaTypography.fontLabelSmall,
-                      ),
-                      NovaVSpace(4),
-                      NovaTextWidget(
-                        title: "70%",
-                        textSize: NovaTypography.fontHeadlineSmall,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      NovaVSpace(10),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          NovaTextWidget(
-                            title:
-                            "Complete Verification",
-                            textSize: NovaTypography.fontLabelSmall,
-                            textColor: NovaColors.appPrimaryColorMain500,
-                          ),
-                          NovaHSpace(4),
-                          const Icon(Icons.arrow_forward, color: NovaColors.appPrimaryColorMain500, size: 13,)
-                        ],
-                      ),
-                    ],
-                  )).paddingSymmetric(horizontal: 16),
+            Row(
+              children: [
+                NovaImageSvg(
+                  svgPath: NovaAssets.upgradeIcon,
+                  width: 14.w,
+                  height: 17.h,
+                ),
+                NovaHSpace(6),
+                NovaTextWidget(
+                  title: "Upgrade your KYC to earn more access",
+                  textSize: NovaTypography.fontBodyMedium,
+                  fontWeight: FontWeight.w600,
+                ),
+              ],
             ),
             ClipRRect(
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(16),
                     bottomRight: Radius.circular(16)),
-                child: NovaImagePng(
-                  imgPath: NovaAssets.profileCardIcon,
-                  width: 118.w,
-                  height: 132.h,
+                child: NovaImageSvg(
+                  svgPath: NovaAssets.arrorRight,
+                  width: 12.w,
+                  height: 12.h,
                 ))
           ],
-        ),
+        ).paddingSymmetric(horizontal: 8, vertical: 8),
       ),
     );
   }

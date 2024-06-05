@@ -26,5 +26,4 @@ part 'screens/login_screen.dart';
 part 'provider/login_provider.dart';
 part 'screens/biometric_screen.dart';
 part 'provider/biometric_provider.dart';
-part 'screens/switch_account_login_screen.dart';
 part 'screens/switch_account_verify_otp_screen.dart';

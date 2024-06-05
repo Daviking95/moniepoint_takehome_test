@@ -82,15 +82,6 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                                     textColor: NovaColors.appGrayText,
                                     maxLines: 1,
                                   ),
-                                  NovaVSpace(4),
-                                  InkWell(
-                                    onTap: () {},
-                                    child: LendlyScoreCard(
-                                      score:
-                                      AppData.lendlyScoreResponseModel?.lendlyScore ?? 0,
-                                      bgColor: NovaColors.appGreenColor,
-                                    ),
-                                  )
                                 ],
                               )
                             ],

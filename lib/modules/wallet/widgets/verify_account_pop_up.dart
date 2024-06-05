@@ -21,12 +21,12 @@ class VerifyAccountPopUp extends StatelessWidget {
           NovaButtonRound(
               textTitle: "Verify Account",
               functionToRun: () {
-                PersistentNavBarNavigator.pushNewScreen(
-                  context,
-                  screen: const CompleteAccountScreen(),
-                  withNavBar: false,
-                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                );
+                // PersistentNavBarNavigator.pushNewScreen(
+                //   context,
+                //   screen: const CompleteAccountScreen(),
+                //   withNavBar: false,
+                //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                // );
               })
         ],
       ),

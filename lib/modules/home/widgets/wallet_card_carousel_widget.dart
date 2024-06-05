@@ -29,9 +29,6 @@ class _WalletCardCarouselWidgetState extends State<WalletCardCarouselWidget> {
         CarouselSlider(
             items: [
               const WalletCardWidget().marginOnly(right: 12),
-              if(AppData.loogedInUserLoan != null) ...[
-                const LoanCardWidget(),
-              ]
             ],
             options: CarouselOptions(
               height: 150.h,

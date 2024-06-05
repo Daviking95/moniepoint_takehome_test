@@ -20,13 +20,11 @@ class DashboardProvider extends BaseViewModel {
     if(shouldLoadDashboardData){
       WalletProvider walletProvider = Provider.of<WalletProvider>(context!, listen: false);
       ProfileProvider profileProvider = Provider.of<ProfileProvider>(context!, listen: false);
-      LoanProvider loanProvider = Provider.of<LoanProvider>(context!, listen: false);
 
       loadData();
       walletProvider.getShowBalance();
       profileProvider.getNigeriaBanks();
       profileProvider.getBankDetails();
-      loanProvider.getUserLoanDetails();
     }
   }
 
@@ -140,4 +138,6 @@ class DashboardProvider extends BaseViewModel {
     });
 
   }
+
+  refreshDashboard() {}
 }

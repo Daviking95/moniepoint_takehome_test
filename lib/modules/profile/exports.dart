@@ -34,7 +34,6 @@ import '../../shared/models/error_response_model.dart';
 import '../../shared/models/generic_response_model.dart';
 import '../../shared/widgets/credit_card_widget.dart';
 import '../../shared/widgets/exports.dart';
-import '../authentication/complete_account_setup/exports.dart';
 import '../authentication/login/exports.dart';
 import '../home/exports.dart';
 import 'package:dartz/dartz.dart' as dartz;

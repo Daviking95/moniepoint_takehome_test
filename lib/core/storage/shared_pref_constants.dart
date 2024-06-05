@@ -23,5 +23,6 @@ class PrefsConstants {
   static const String userEmail = "USER_EMAIL";
 
   static const String isFingerPrintAllowedAtLogin = "FINGERPRINT_ALLOWED";
+  static const String userHasLoggedIn = "USER_HAS_LOGGED_IN";
   static const String isReturningCustomer = "IS_RETURNING_CUSTOMER";
 }

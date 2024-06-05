@@ -11,8 +11,6 @@ class RouteGenerator {
         return buildRoute(const OnboardingScreen(), settings: settings);
       case AppRoutes.login:
         return buildRoute(const LoginScreen(), settings: settings);
-      case AppRoutes.switchAccountLogin:
-        return buildRoute(const SwitchAccountLoginScreen(), settings: settings);
       case AppRoutes.signUp:
         return buildRoute(const SignupScreen(), settings: settings);
       case AppRoutes.forgotPassword:
@@ -24,9 +22,7 @@ class RouteGenerator {
       case AppRoutes.createNewPassword:
         return buildRoute(const CreateNewPasswordScreen(), settings: settings);
       case AppRoutes.verifyEmailAddress:
-        return buildRoute(const VerifyEmailAddress(), settings: settings);
-      case AppRoutes.addBvn:
-        return buildRoute(const AddBvnScreen(), settings: settings);
+        return buildRoute(const VerifyEmailAddressScreen(), settings: settings);
       case AppRoutes.dashboard:
         return buildRoute(const DashboardScreen(), settings: settings);
       case AppRoutes.persistentTab:

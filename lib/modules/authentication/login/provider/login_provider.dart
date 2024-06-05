@@ -74,6 +74,15 @@ class LoginProvider extends BaseViewModel {
     notifyListeners();
   }
 
+  bool _rememberMe = false;
+
+  bool get rememberMe => _rememberMe;
+
+  set rememberMe(bool value) {
+    _rememberMe = value;
+    notifyListeners();
+  }
+
   bool _isFormValidated = false;
 
   bool get isFormValidated => _isFormValidated;
@@ -102,6 +111,11 @@ class LoginProvider extends BaseViewModel {
   }
 
   validateLoginForm(BuildContext context, [TextEditingController? activityPin]) async {
+
+    AppPreferences.userHasLoggedIn = true;
+    AppPreferences.returnDetails = "content";
+    AppNavigator.pushAndRemoveUtil(const PersistentTab());
+    return;
     await changeLoaderStatus(true, "Validating account");
     notifyListeners();
 
@@ -149,70 +163,6 @@ class LoginProvider extends BaseViewModel {
     });
   }
 
-  validateSwitchAccountForm(BuildContext context) async {
-    await changeLoaderStatus(true, "Sending OTP");
-    notifyListeners();
-
-    final dartz.Either<ErrorResponseModel, GenericResponseModel>
-    responseData =
-    await PLSignupRepository.instance.getOtpService(switchAccountEmail.text);
-
-    "responseDataSwitchAccount $responseData".logger();
-
-    return responseData.fold((errorResponse) async {
-      showSnackAtTheTop(
-        message: errorResponse.message,
-      );
-
-      await changeLoaderStatus(false, "");
-      notifyListeners();
-
-      return;
-    }, (successResponse) async {
-      // showSnackAtTheTop(message: successResponse.message, isSuccess: true);
-
-      AppNavigator.push(
-          SwitchAccountVerifyOtpScreen(email: switchAccountEmail.text,));
-
-      await changeLoaderStatus(false, "");
-    });
-  }
-
-  verifySwitchAccountForm(BuildContext context, String email, String otp,
-      String activityPin) async {
-    await changeLoaderStatus(true, "Validating account");
-    notifyListeners();
-
-    SwitchAccountRequestModel switchAccountRequestModel = SwitchAccountRequestModel(
-        securityPin: activityPin, emailAddress: email, otpCode: otp);
-
-    final dartz.Either<ErrorResponseModel, GenericResponseModel>
-    responseData =
-    await PLLoginRepository.instance.switchAccountService(
-        switchAccountRequestModel);
-
-    "responseDataVerifySwitchAccount $responseData".logger();
-
-    return responseData.fold((errorResponse) async {
-      showSnackAtTheTop(
-        message: errorResponse.message,
-      );
-
-      await changeLoaderStatus(false, "");
-      notifyListeners();
-
-      return;
-    }, (successResponse) async {
-      showSnackAtTheTop(message: successResponse.message, isSuccess: true);
-
-      AppPreferences.isReturningCustomer = true;
-      AppPreferences.returnDetails = email;
-      loginConditions();
-
-      await changeLoaderStatus(false, "");
-    });
-  }
-
   void loginConditions() {
     // if (!AppPreferences.userHasActivityPin) {
     //   AppNavigator.push(const SetActivityPinScreen());
@@ -220,7 +170,7 @@ class LoginProvider extends BaseViewModel {
       if (!AppPreferences.userHasWatchedTutorial) {
       // AppNavigator.push(const AppTutorialScreen());
     } else {
-      AppNavigator.push(const PersistentTab());
+      AppNavigator.pushAndRemoveUtil(const PersistentTab());
     }
   }
 
@@ -256,8 +206,8 @@ class LoginProvider extends BaseViewModel {
 
       return showErrorWidgetDialog(
           context: context,
-          title: "biometrics-first-time-text",
-          message: "biometrics-first-time-desc-text",
+          title: "First Time Login",
+          message: "You need to login at least once to activate biometrics",
           canClick: true,
           dialogHeight: 170,
           hasBtn: true,

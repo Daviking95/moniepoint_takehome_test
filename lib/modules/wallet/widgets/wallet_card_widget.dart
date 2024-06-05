@@ -7,122 +7,134 @@ class WalletCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final walletWatcher = context.watch<WalletProvider>();
 
-    return Container(
-      decoration: BoxDecoration(
-        color: NovaColors.appPrimaryColorMain500,
-        image: const DecorationImage(
-            image: AssetImage(NovaAssets.walletCardBg),
-            alignment: Alignment.topLeft,
-            fit: BoxFit.contain),
-        borderRadius: NovaDecorations.borderRadiusGeometryCircular20,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  NovaTextWidget(
-                    title: strAccountBalance,
-                    textStyle: NovaTypography.textBodySmallStyle,
-                    textSize: NovaTypography.fontBodySmall,
-                    textColor: NovaColors.appWhiteColor,
-                    maxLines: 1,
-                  ),
-                  NovaVSpace(8),
-                  Row(
-                    children: [
-                      NovaTextWidget(
-                        title: 4000000
-                            .toString()
-                            .formatWithCommasAndDecimals()
-                            .hideOrShowBalance(context),
-                        textStyle: NovaTypography.textTitleSmallStyle,
-                        textSize: NovaTypography.fontTitleLarge,
-                        fontFamily: NovaTypography.fontFamilyMedium,
-                        fontWeight: FontWeight.w700,
-                        textColor: NovaColors.appWhiteColor,
-                        maxLines: 1,
-                        isCurrency: true,
-                      ),
-                      NovaHSpace(10),
-                      GestureDetector(
-                          onTap: () async {
-                            walletWatcher.toggleShowBalance();
-                          },
-                          child: const NovaImageSvg(svgPath: NovaAssets.showBalance)),
-                    ],
-                  ),
-                ],
-              ),
-              if(AppPreferences.isUserBvnVerified)
-              GestureDetector(
-                onTap: () {
-                  showAlertDialog(context, "", const LendlyScoreSnippet(), context.theme.scaffoldBackgroundColor);
-
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        NovaTextWidget(
+          title: "Total Balance",
+          textStyle: NovaTypography.textBodySmallStyle,
+          textSize: NovaTypography.fontBodyMedium,
+          textColor: NovaColors.appWhiteColor,
+          maxLines: 1,
+        ),
+        NovaVSpace(16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            NovaTextWidget(
+              title: 7454434
+                  .toString()
+                  .formatWithCommasAndDecimals()
+                  .hideOrShowBalance(context),
+              textStyle: NovaTypography.textBodyMediumStyleBold,
+              textSize: NovaTypography.fontHeadlineLarge,
+              fontFamily: NovaTypography.fontFamilyMedium,
+              fontWeight: FontWeight.w700,
+              textColor: NovaColors.appWhiteColor,
+              maxLines: 1,
+              isCurrency: true,
+            ),
+            NovaHSpace(10),
+            GestureDetector(
+                onTap: () async {
+                  walletWatcher.toggleShowBalance();
                 },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    NovaTextWidget(
-                      title: "Lendly Score",
-                      textStyle: NovaTypography.textBodySmallStyle,
-                      textSize: NovaTypography.fontLabelSmall,
-                      textColor: NovaColors.appWhiteColor,
-                      maxLines: 1,
-                    ),
-                    NovaVSpace(4),
-                    LendlyScoreCard(
-                      score:
-                      AppData.lendlyScoreResponseModel?.lendlyScore ?? 0,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          NovaVSpace(16),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+                child: const NovaImageSvg(
+                  svgPath: NovaAssets.showBalanceWhite,
+                )),
+          ],
+        ),
+        NovaVSpace(12),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            NovaTextWidget(
+              title: "08011882288",
+              textStyle: NovaTypography.textTitleSmallStyle,
+              textSize: NovaTypography.fontBodySmall,
+              textColor: NovaColors.appWhiteColor.withOpacity(.7),
+              maxLines: 1,
+            ),
+            NovaHSpace(10),
+            GestureDetector(
+                onTap: () {
+                  copyAccountNumber("07011992288");
+                },
+                child: const NovaImageSvg(svgPath: NovaAssets.copyWhite))
+          ],
+        ),
+        NovaVSpace(16),
+        Container(
+          decoration: BoxDecoration(
+            color: NovaColors.appWhiteColor.withOpacity(.3),
+              borderRadius: NovaDecorations.borderRadiusGeometryCircular16),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               NovaTextWidget(
-                title: AppPreferences.isUserBvnVerified ? "08011882288" : "xxxxxxxxxx",
+                title: "Savings Account",
                 textStyle: NovaTypography.textTitleSmallStyle,
                 textSize: NovaTypography.fontBodySmall,
                 textColor: NovaColors.appWhiteColor,
+                fontFamily: NovaTypography.fontFamilyMedium,
                 maxLines: 1,
               ),
               NovaHSpace(4),
-              NovaTextWidget(
-                title: "-",
-                textStyle: NovaTypography.textBodySmallStyle,
-                textSize: NovaTypography.fontBodySmall,
-                textColor: NovaColors.appWhiteColor,
-                maxLines: 1,
-              ),
-              NovaHSpace(4),
-              NovaTextWidget(
-                title: "Stanbic IBTC",
-                textStyle: NovaTypography.textBodySmallStyle,
-                textSize: NovaTypography.fontBodySmall,
-                textColor: NovaColors.appWhiteColor,
-                maxLines: 1,
-              ),
-              NovaHSpace(10),
-              GestureDetector(
-                  onTap: () {
-                    copyAccountNumber("07011992288");
-                  },
-                  child: const NovaImageSvg(svgPath: NovaAssets.copyWhite))
+              Icon(
+                Icons.arrow_drop_down_outlined,
+                color: NovaColors.appWhiteColor,
+                size: 15,
+              )
             ],
-          )
-        ],
-      ).paddingSymmetric(vertical: 24, horizontal: 16),
+          ).paddingSymmetric(horizontal: 16, vertical: 8),
+        ),
+        NovaVSpace(32),
+      ],
     );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        NovaVSpace(16),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            NovaTextWidget(
+              title: AppPreferences.isUserBvnVerified
+                  ? "08011882288"
+                  : "xxxxxxxxxx",
+              textStyle: NovaTypography.textTitleSmallStyle,
+              textSize: NovaTypography.fontBodySmall,
+              textColor: NovaColors.appWhiteColor,
+              maxLines: 1,
+            ),
+            NovaHSpace(4),
+            NovaTextWidget(
+              title: "-",
+              textStyle: NovaTypography.textBodySmallStyle,
+              textSize: NovaTypography.fontBodySmall,
+              textColor: NovaColors.appWhiteColor,
+              maxLines: 1,
+            ),
+            NovaHSpace(4),
+            NovaTextWidget(
+              title: "Stanbic IBTC",
+              textStyle: NovaTypography.textBodySmallStyle,
+              textSize: NovaTypography.fontBodySmall,
+              textColor: NovaColors.appWhiteColor,
+              maxLines: 1,
+            ),
+            NovaHSpace(10),
+            GestureDetector(
+                onTap: () {
+                  copyAccountNumber("07011992288");
+                },
+                child: const NovaImageSvg(svgPath: NovaAssets.copyWhite))
+          ],
+        )
+      ],
+    ).paddingSymmetric(vertical: 24, horizontal: 16);
   }
 }

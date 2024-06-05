@@ -74,14 +74,13 @@ class OnboardingProvider extends BaseViewModel{
     Future.delayed(const Duration(seconds: 2), () async {
       "returningCustomer $returningCustomer".logger();
 
-      // AppPreferences.isOnboardingCarouselSeenOnce
-      //     ?
+      AppPreferences.userHasLoggedIn ?
       // AppPreferences.isReturningCustomer && AppPreferences.returnDetails.isNotEmpty
       //     ?
       // Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (route) => false)
       //     :
-      // Navigator.pushNamedAndRemoveUntil(context, AppRoutes.signUp, (route) => false)
-      //     :
+      Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (route) => false)
+          :
       Navigator.pushNamedAndRemoveUntil(context, AppRoutes.onboarding, (route) => false); // onboarding
     });
   }

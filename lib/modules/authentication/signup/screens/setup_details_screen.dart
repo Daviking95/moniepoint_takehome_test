@@ -1,7 +1,8 @@
 part of 'package:nova/modules/authentication/signup/exports.dart';
 
 class SetupDetailsScreen extends StatelessWidget {
-  const SetupDetailsScreen({Key? key}) : super(key: key);
+  final bool isExisting;
+  const SetupDetailsScreen({Key? key, this.isExisting = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -133,13 +134,13 @@ class SetupDetailsScreen extends StatelessWidget {
                       children: [
                         NovaVSpace(40),
                         NovaButtonRound(
-                            textTitle: "Open Account",
+                            textTitle: isExisting ? "Continue" : "Open Account",
                             loadingString: model.loadingString,
                             isLoader: model.isLoading,
                             hasBgImg: true,
                             // isFormValidated: model.isDetailsSetupFormValidated,
                             functionToRun: () {
-                              signUpWatcher.openNovaAccount(context);
+                              signUpWatcher.openNovaAccount(context, isExisting);
                             }),
                         NovaVSpace(32)
                       ],

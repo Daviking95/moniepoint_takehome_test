@@ -1,4 +1,3 @@
-import 'package:nova/modules/authentication/complete_account_setup/exports.dart';
 import 'package:nova/modules/authentication/reset_password/exports.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

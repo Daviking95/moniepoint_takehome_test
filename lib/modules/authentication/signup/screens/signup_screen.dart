@@ -107,7 +107,7 @@ class SignupScreen extends StatelessWidget {
                           new LengthLimitingTextInputFormatter(11)
                         ],
                         innerHintText: "11111111111",
-                        hintText: "BVN Number"),
+                        hintText: "Bank Verification Number"),
 
                     PLDropDownButtonWithIcon(
                       list: const [

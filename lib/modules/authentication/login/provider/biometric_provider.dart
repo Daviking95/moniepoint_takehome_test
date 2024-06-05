@@ -63,8 +63,8 @@ class BiometricProvider extends ChangeNotifier{
       if ((await AppPreferencesUtils.readFromPref(PrefsConstants.userEmail) && !await AppPreferencesUtils.readFromPref(PrefsConstants.isFingerPrintAllowedAtLogin))) {
         return showErrorWidgetDialog(
             context: context,
-            title: "biometrics-setup-text",
-            message: "biometrics-setup-desc-text",
+            title: "Biometrics Setup Needed",
+            message: "You can go to your profile settings to setup your fingerprint login",
             canClick: true,
             dialogHeight: 170,
             hasBtn: true,
@@ -74,8 +74,8 @@ class BiometricProvider extends ChangeNotifier{
       if (!await startBiometricLogin()) {
         return showErrorWidgetDialog(
             context: context,
-            title: "biometrics-first-time-text",
-            message: "biometrics-first-time-desc-text",
+            title: "First Time Login",
+            message: "You need to login at least once to activate biometrics",
             canClick: true,
             dialogHeight: 170,
             hasBtn: true,
@@ -84,8 +84,8 @@ class BiometricProvider extends ChangeNotifier{
       } else if (!await getBiometricsSupport()) {
         return showErrorWidgetDialog(
             context: context,
-            title: "biometrics-not-supported-text",
-            message: "biometrics-not-supported-desc-text",
+            title: "Biometrics not supported",
+            message: "Your device does not support fingerprint authentication",
             canClick: true,
             dialogHeight: 170,
             hasBtn: true,
@@ -98,8 +98,8 @@ class BiometricProvider extends ChangeNotifier{
       } else {
         return showErrorWidgetDialog(
             context: context,
-            title: "unknown-error-text",
-            message: "biometrics-unknown-error-desc-text",
+            title: "Unknown Error",
+            message: "An unknown error occurred while trying to authenticate you",
             canClick: true,
             dialogHeight: 170,
             hasBtn: true,

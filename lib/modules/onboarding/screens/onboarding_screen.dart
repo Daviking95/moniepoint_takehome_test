@@ -28,7 +28,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   @override
   void dispose() {
     // onboardingReader.animationController.dispose();
-    onboardingReader.pageController.dispose();
+    // onboardingReader.pageController.dispose();
     super.dispose();
   }
 

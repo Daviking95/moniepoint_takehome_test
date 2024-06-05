@@ -14,15 +14,15 @@ class NovaPasswordTextField extends StatefulWidget {
 
   NovaPasswordTextField(
       {this.textInputTitle = "Password",
-        this.controller,
-        this.textInputAction = TextInputAction.next,
-        this.color,
-        this.hintText = "",
-        this.validation,
-        this.onChange,
-        this.textColor,
-        this.isThereNoBottomPadding = false,
-        this.labelText = ""});
+      this.controller,
+      this.textInputAction = TextInputAction.next,
+      this.color,
+      this.hintText = "",
+      this.validation,
+      this.onChange,
+      this.textColor,
+      this.isThereNoBottomPadding = false,
+      this.labelText = ""});
 
   @override
   _NovaPasswordTextFieldState createState() => _NovaPasswordTextFieldState();
@@ -46,8 +46,10 @@ class _NovaPasswordTextFieldState extends State<NovaPasswordTextField> {
           child: TextFormField(
             obscureText: _obscureText,
             keyboardType: TextInputType.visiblePassword,
-            style: context.textTheme.bodyLarge!.copyWith(
+            style: context.textTheme.bodyMedium!.copyWith(
               color: AppNavigator.appContext?.textTheme.labelSmall!.color,
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w400,
             ),
             validator: widget.validation,
             controller: widget.controller,
@@ -62,19 +64,24 @@ class _NovaPasswordTextFieldState extends State<NovaPasswordTextField> {
               copy: true,
               selectAll: true,
             ),
-            decoration: buildInputDecoration(context, widget.labelText, null, widget.hintText)
-            .copyWith(
+            decoration: buildInputDecoration(
+                    context, widget.labelText, null, widget.hintText)
+                .copyWith(
               suffixIconConstraints: const BoxConstraints(
                 minWidth: 20,
                 minHeight: 20,
               ),
               suffixIcon: GestureDetector(
                   onTap: _toggle,
-                  child: Icon(_obscureText ? Icons.remove_red_eye_outlined : Icons.dnd_forwardslash)
-                  // NovaTextWidget(
-                  //   title: _obscureText ? strShow : strHide,
-                  // )
-                      .paddingSymmetric(horizontal: 10)),
+                  child:
+                      // Icon(_obscureText ? Icons.remove_red_eye_outlined : Icons.dnd_forwardslash)
+                      NovaImagePng(
+                    imgPath: _obscureText
+                        ? NovaAssets.passwordEye
+                        : NovaAssets.passwordEyeSlash,
+                        width: 25.w,
+                        height: 25.h,
+                  ).paddingSymmetric(horizontal: 10)),
             ),
           ),
         ),

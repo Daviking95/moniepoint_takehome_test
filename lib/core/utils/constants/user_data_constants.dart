@@ -29,13 +29,6 @@ class AppData {
   static LendlyScoreResponseModel? lendlyScoreResponseModel;
 
   static String profilePicture = "";
-
-  static List<MarketplaceResponseModelLoanDetail> marketplaceLoans = [];
-
-  static LoogedInUserLoanResponseModel? loogedInUserLoan;
-
-  static List<LenderOffersResponseModelLoanDetail> loanOffersFromLenders = [];
-
   static Mixpanel? mixpanel;
 
   static int currentIndex = 0;

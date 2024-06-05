@@ -28,7 +28,6 @@ class _PersistentTabState extends State<PersistentTab> {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      navBarHeight: 80,
       backgroundColor: Colors.white, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
@@ -57,6 +56,7 @@ class _PersistentTabState extends State<PersistentTab> {
 
         });
       },
+      navBarHeight: 60,
       navBarStyle: NavBarStyle.style3, // Choose the nav bar style with this property.
     );
   }
@@ -66,6 +66,8 @@ class _PersistentTabState extends State<PersistentTab> {
       DashboardScreen(currentIndex: AppData.currentIndex),
       const TransactionScreen(),
       const ProfileScreen(),
+      const ProfileScreen(),
+      const ProfileScreen(),
     ];
   }
 
@@ -74,22 +76,36 @@ class _PersistentTabState extends State<PersistentTab> {
       PersistentBottomNavBarItem(
         icon: const NovaImageSvg(svgPath: NovaAssets.btmHome),
         inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmHomeInactive),
-        iconSize: 30,
+        iconSize: 40,
         title: ("Home"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const NovaImageSvg(svgPath: NovaAssets.btmTransactions),
-        inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmTransactionsInactive),
-        title: ("History"),
+        icon: const NovaImageSvg(svgPath: NovaAssets.btmPayment),
+        inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmPaymentInactive),
+        title: ("Payments"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const NovaImageSvg(svgPath: NovaAssets.btmProfile),
-        inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmProfileInactive),
-        title: ("Profile"),
+        icon: const NovaImageSvg(svgPath: NovaAssets.btmCard),
+        inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmCardInactive),
+        title: ("Cards"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const NovaImageSvg(svgPath: NovaAssets.btmCheque),
+        inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmChequeInactive),
+        title: ("Cheques"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const NovaImageSvg(svgPath: NovaAssets.btmNotification),
+        inactiveIcon: const NovaImageSvg(svgPath: NovaAssets.btmNotificationInactive),
+        title: ("Notification"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

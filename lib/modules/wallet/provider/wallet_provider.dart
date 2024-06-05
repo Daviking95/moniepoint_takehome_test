@@ -67,7 +67,6 @@ class WalletProvider extends BaseViewModel {
   final GlobalKey<FormState> formKeyForData = GlobalKey<FormState>();
   final GlobalKey<FormState> formKeyForBillsPayment = GlobalKey<FormState>();
 
-
   TextEditingController get amount => _amount;
 
   set amount(TextEditingController value) {
@@ -118,6 +117,15 @@ class WalletProvider extends BaseViewModel {
 
     "isFormValidated $_isFormValidated".logger();
     notifyListeners();
+  }
+
+  int _airtimeIndexSelected = -1;
+
+
+  int get airtimeIndexSelected => _airtimeIndexSelected;
+
+  set airtimeIndexSelected(int value) {
+    _airtimeIndexSelected = value;
   }
 
   bool _isFormValidated = false;
@@ -221,7 +229,6 @@ class WalletProvider extends BaseViewModel {
   }
 
   validateBillPaymentForm(BuildContext context) {
-    if (formKeyForBillsPayment.currentState!.validate()) {
       modalBottomSheet(
           context,
           TransferPinActivationWidget(
@@ -232,7 +239,6 @@ class WalletProvider extends BaseViewModel {
           ),
           true,
           context.height / 1.5);
-    }
   }
 
   // validateTransactionPin(BuildContext context, Function func) {
@@ -319,12 +325,16 @@ class WalletProvider extends BaseViewModel {
       showSnackAtTheTop(message: "Success", isSuccess: true);
       await changeLoaderStatus(false, "");
 
-      AppNavigator.push(const SuccessWidget(
+      AppNavigator.pushAndRemoveUtil( SuccessWidget(
         navigateToWidgetOnDone: PersistentTab(),
         hasPrimaryBtn: true,
-        primaryBtnText: "Back to Home",
-        message: "Successful",
-        desc: "",
+        primaryBtnText: "Done",
+        message: "Electricity bill payment successfully.",
+        desc: "Transaction ID: #26347878",
+        extraBtnTitle: "Share Receipt",
+        extraBtnFunc: () {},
+        extraBtnTitle2: "Download Receipt",
+        extraBtnFunc2: () {},
       ));
     });
   }

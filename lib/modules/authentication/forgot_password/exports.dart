@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nova/core/exports.dart';
 import 'package:nova/modules/authentication/login/exports.dart';
+import 'package:nova/modules/authentication/signup/exports.dart';
 import 'package:nova/shared/models/generic_response_model.dart';
 
 import '../../../shared/models/error_response_model.dart';

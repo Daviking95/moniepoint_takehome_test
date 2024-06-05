@@ -46,9 +46,31 @@ class ChangePasswordProvider  extends BaseViewModel {
 
 
   validateForm(BuildContext context) {
-    if (formKey.currentState!.validate()) {
-      Navigator.pushNamed(context, AppRoutes.login);
-    }
+    AppNavigator.push( NovaSuccessScreen(
+      imgPath: NovaAssets.existingAccountOpenSuccess,
+      titleText: "All Done",
+      onPressed: () {
+        AppNavigator.pushAndRemoveUtil(LoginScreen());
+      },
+      buttonTitle: "Login",
+      description: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+                text: "Your password has been changed. Please login with your new details ",
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: NovaTypography.fontLabelLarge,
+                    fontFamily:
+                    NovaTypography.fontFamilyLight)),
+          ],
+        ),
+        textAlign: TextAlign.center,
+        softWrap: true,
+        maxLines: 2,
+      ),
+    ));
+
   }
 
   void listenForChanges() {

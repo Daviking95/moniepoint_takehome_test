@@ -41,9 +41,7 @@ class NovaAssets {
   static const String btmChequeInactive = "assets/icons_svg/btm_cheque_inactive.svg";
   static const String showBalanceWhite = "assets/icons_svg/show_balance_white.svg";
   static const String copyWhite = "assets/icons_svg/copy_white.svg";
-
   static const String transferIcon = "assets/icons_svg/transfer_icon.svg";
-
   static const String airtimeBillsIcon = "assets/icons_svg/airtime_bills_icon.svg";
   static const String payBillsIcon = "assets/icons_svg/pay_bills_icon.svg";
   static const String utilityIcon = "assets/icons_svg/utility_icon.svg";
@@ -57,14 +55,27 @@ class NovaAssets {
   static const String upgradeIcon = "assets/icons_svg/upgrade_icon.svg";
   static const String notiWalletFunded = "assets/icons_svg/noti_wallet_funded.svg";
   static const String notiWalletWithdraw = "assets/icons_svg/noti_wallet_withdrawal.svg";
+  static const String buyAirtimeIcon = "assets/icons_svg/buy_airtime.svg";
+  static const String buyEducationIcon = "assets/icons_svg/buy_education.svg";
+  static const String buyInternetIcon = "assets/icons_svg/buy_internet.svg";
+  static const String buyBettingIcon = "assets/icons_svg/betting.svg";
+  static const String buyTvIcon = "assets/icons_svg/buy_tv.svg";
+  static const String buyElectricityIcon = "assets/icons_svg/buy_electricity.svg";
+  static const String buyWaterBillIcon = "assets/icons_svg/buy_water_bill.svg";
+  static const String sampleElectIcon = "assets/images/sample_elect_loan.png";
+  static const String cancelIcon = "assets/icons_svg/cancel_icon.svg";
+  static const String successIcon = "assets/icons_svg/success_icon.svg";
+
+  static const String mtnIcon = "assets/images/mtn_icon.png";
+  static const String gloIcon = "assets/images/glo_icon.png";
+  static const String airtelIcon = "assets/images/airtel_icon.png";
+  static const String nineMobileIcon = "assets/images/nine_mobile_icon.png";
+  static const String phoneContactIcon = "assets/icons_svg/phone_contact_icon.svg";
 
 
 
 
 
-
-
-  static const String emptyLoan = "assets/images/empty_loan.png";
   static const String phoneWalletInHand = "assets/images/phone_wallet_in_hand.png";
   static const String handOk = "assets/images/hand_ok.png";
   static const String verifyBvnBank = "assets/images/verify_bvn_bank.png";
@@ -111,13 +122,7 @@ class NovaAssets {
   static const String lendlyProtection = "assets/images/lendly_protection.png";
 
   static const String marketplaceCardIcon = "assets/images/marketplace_card_icon.png";
-  static const String buyAirtimeIcon = "assets/icons_svg/buy_airtime.svg";
-  static const String buyInternetIcon = "assets/icons_svg/buy_internet.svg";
-  static const String buyBettingIcon = "assets/icons_svg/betting.svg";
-  static const String buyTvIcon = "assets/icons_svg/buy_tv.svg";
-  static const String buyElectricityIcon = "assets/icons_svg/buy_electricity.svg";
 
-  static const String phoneContactIcon = "assets/icons_svg/phone_contact_icon.svg";
   static const String vectorDown = "assets/icons_svg/vector_down.svg";
   static const String photoChange = "assets/icons_svg/photo_change.svg";
   static const String bankAccountIcon = "assets/icons_svg/bank_account_icon.svg";
@@ -149,16 +154,10 @@ class NovaAssets {
   static const String addBankAccount = "assets/images/acc_bank_account.png";
   static const String addCardAccount = "assets/images/acc_card_account.png";
 
-  static const String mtnIcon = "assets/images/mtn_icon.png";
-  static const String gloIcon = "assets/images/glo_icon.png";
-  static const String airtelIcon = "assets/images/airtel_icon.png";
-  static const String nineMobileIcon = "assets/images/nine_mobile_icon.png";
-
   static const String promoSample = "assets/images/promo_sample.png";
 
   // todo: Below Not In Use ======================================
 
-  static const String successIcon = "assets/images/success_icon.png";
   static const String appChangePasswordIcon = "assets/images/change_password_icon.png";
   static const String appChangePinIcon = "assets/images/change_pin_icon.png";
   static const String appChangePhoneNumberIcon = "assets/images/app_security_icon.png";

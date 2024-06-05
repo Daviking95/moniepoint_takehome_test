@@ -49,27 +49,23 @@ class QuickActionsWidget extends StatelessWidget {
               }),
               _singleServiceIcon(context, NovaAssets.airtimeBillsIcon, "Airtime/Data",
                   const Color(0xff5D07CD), () {
-                // if (!_isUserBVNValidated(context)) return;
-                //
-                // if (_isLoanActive(context)) return;
-                //
-                // PersistentNavBarNavigator.pushNewScreen(
-                //   context,
-                //   screen: const LoanApplyScreen(),
-                //   withNavBar: false,
-                //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                // );
+
+                PersistentNavBarNavigator.pushNewScreen(
+                  context,
+                  screen: const AirtimeScreen(),
+                  withNavBar: false,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
               }),
               _singleServiceIcon(context, NovaAssets.payBillsIcon,
                   "Pay Bill", NovaColors.appSecondaryText, () {
-                // if (!_isUserBVNValidated(context)) return;
-                //
-                // PersistentNavBarNavigator.pushNewScreen(
-                //   context,
-                //   screen: const MarketplaceScreen(),
-                //   withNavBar: false,
-                //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                // );
+
+                PersistentNavBarNavigator.pushNewScreen(
+                  context,
+                  screen: const PersistentTab(selectedTab: 1),
+                  withNavBar: false,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
               }),
               _singleServiceIcon(context, NovaAssets.utilityIcon,
                   "Utility", NovaColors.appSecondaryColorMain500, () {

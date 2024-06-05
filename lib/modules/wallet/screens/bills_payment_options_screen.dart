@@ -11,6 +11,7 @@ class BillsPaymentOptionsScreen extends StatelessWidget {
       child: WillPopScope(
         onWillPop: () => Future.value(true),
         child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
               child: SingleChildScrollView(
@@ -22,35 +23,36 @@ class BillsPaymentOptionsScreen extends StatelessWidget {
                       NovaVSpace(48),
                       NovaBackIcon(
                         onTap: () => Navigator.pop(context),
-                      ),
-                      NovaVSpace(16),
-                      NovaTextWidget(
-                        title: "Airtime and Bills",
-                        textStyle: NovaTypography.textTitleLargeStyle,
-                        textColor: NovaColors.appPrimaryText,
-                        fontWeight: FontWeight.w700,
-                        textSize: NovaTypography.fontTitleLarge,
+                        title: "Bills Payment",
                       ),
                       NovaVSpace(24),
-                      billsPaymentOptionItemWidget(NovaAssets.buyAirtimeIcon,
-                          "Buy Airtime", () {
-                            AppNavigator.push(const AirtimeScreen());
-                          }),
-                      billsPaymentOptionItemWidget(NovaAssets.buyInternetIcon,
-                          "Internet", () {
-                            AppNavigator.push(const PayBillsScreen(title: "Internet"));
-                          }),
-                      billsPaymentOptionItemWidget(NovaAssets.buyBettingIcon,
-                          "Betting", () {
-                            AppNavigator.push(const PayBillsScreen(title: "Betting"));
-                          }),
-                      billsPaymentOptionItemWidget(NovaAssets.buyTvIcon,
-                          "TV", () {
-                            AppNavigator.push(const PayBillsScreen(title: "TV"));
-                          }),
+
                       billsPaymentOptionItemWidget(NovaAssets.buyElectricityIcon,
                           "Electricity", () {
                             AppNavigator.push(const PayBillsScreen(title: "Electricity"));
+                          }),
+
+                      billsPaymentOptionItemWidget(NovaAssets.buyTvIcon,
+                          "Cable TV", () {
+                            AppNavigator.push(const PayBillsScreen(title: "Cable TV"));
+                          }),
+                      billsPaymentOptionItemWidget(NovaAssets.buyWaterBillIcon,
+                          "Water Bill", () {
+                            AppNavigator.push(const PayBillsScreen(title: "Water Bill"));
+                          }),
+
+                      billsPaymentOptionItemWidget(NovaAssets.buyBettingIcon,
+                          "Sport Betting", () {
+                            AppNavigator.push(const PayBillsScreen(title: "Sport Betting"));
+                          }),
+
+                      billsPaymentOptionItemWidget(NovaAssets.buyInternetIcon,
+                          "Internet Bill", () {
+                            AppNavigator.push(const PayBillsScreen(title: "Internet Bill"));
+                          }),
+                      billsPaymentOptionItemWidget(NovaAssets.buyEducationIcon,
+                          "Education", () {
+                            AppNavigator.push(const PayBillsScreen(title: "Education"));
                           }),
                       NovaVSpace(24),
                     ],
@@ -82,8 +84,8 @@ class BillsPaymentOptionsScreen extends StatelessWidget {
                       color: const Color(0xffFAFCFE)),
                   child: NovaImageSvg(
                     svgPath: assetString,
-                    width: 24.w,
-                    height: 24.h,
+                    width: 50.w,
+                    height: 50.h,
                   ).paddingAll(5),
                 ),
                 NovaHSpace(12),
@@ -91,7 +93,7 @@ class BillsPaymentOptionsScreen extends StatelessWidget {
                   title: title,
                   textStyle: NovaTypography.textTitleLargeStyle,
                   textColor: NovaColors.appPrimaryText,
-                  textSize: NovaTypography.fontBodyMedium,
+                  textSize: NovaTypography.fontBodyLarge,
                   fontWeight: FontWeight.w700,
                 ),
               ],
@@ -102,7 +104,7 @@ class BillsPaymentOptionsScreen extends StatelessWidget {
               size: 18,
             )
           ],
-        ).paddingSymmetric(horizontal: 16, vertical: 16),
+        ),
       ),
     ).marginSymmetric(vertical: 8);
   }

@@ -12,28 +12,6 @@ class ForgotPasswordScreen extends StatelessWidget {
   }
 
   Widget _buildScreen(BuildContext context, ForgotPasswordProvider model) {
-    return AppBaseWidget(
-      iconSet: NovaImagePng(
-        imgPath: NovaAssets.phoneWalletInHand,
-        width: 150.w,
-        height: 150.h,
-        boxFit: BoxFit.contain,
-      ),
-      buildWidget: ForgotPasswordWidget(model: model),
-      hasBackButton: true,
-      topHeight: 200.h,
-    );
-
-  }
-}
-
-class ForgotPasswordWidget extends StatelessWidget {
-  final ForgotPasswordProvider model;
-
-  const ForgotPasswordWidget({super.key, required this.model});
-
-  @override
-  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
@@ -42,43 +20,62 @@ class ForgotPasswordWidget extends StatelessWidget {
           backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle.light,
-            child: SingleChildScrollView(
-              child: Form(
-                key: model.formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    NovaVSpace(40),
-                    NovaTextWidget(
-                      title: "Recover PIN",
-                      isTitle: true,
-                      textStyle: NovaTypography.textHeadlineMediumStyle,
-                      textSize: NovaTypography.fontHeadlineMedium,
-                    ),
-                    NovaVSpace(10),
-                    NovaTextWidget(
-                      title: "Enter your email and we’ll send you a link to reset your PIN.",
-                      textColor: NovaColors.appGrayText,
-                      textSize: NovaTypography.fontLabelMedium,
-                    ),
-                    NovaVSpace(32),
-                    NovaPrimaryTextField(
-                      textInputType: TextInputType.emailAddress,
-                      controller: model.email,
-                      onChange: (val) => model.listenForChanges(),
-                      validation: (val) => val.validateEmail(strEmailError),
-                      hintText: strEmail,
-                    ),
-                    NovaVSpace(40),
-                    NovaButtonRound(
-                      textTitle: "Reset",
-                      isLoader: model.isLoading,
-                      loadingString: model.loadingString,
-                      isFormValidated: model.isFormValidated,
-                      functionToRun: () => model.validateForm(context),
-                    ),
-                  ],
-                ),
+            child: NovaPaddedWidget(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      NovaVSpace(60),
+                      NovaBackIcon(
+                        onTap: () => Navigator.pop(context),
+                      ),
+                      NovaVSpace(4),
+                      NovaImagePng(
+                        imgPath: NovaAssets.logoPng,
+                        width: 98.w,
+                        height: 31.h,
+                      ),
+                      NovaVSpace(32),
+                      const NovaTitleHeader(
+                        title: "Forgot Password",
+                      ),
+                      NovaVSpace(16),
+                      NovaTextWidget(
+                        title: "No worries! Enter your email address below and we will send you a code to reset password.",
+                        textColor: NovaColors.appBlackColor,
+                        textSize: NovaTypography.fontLabelLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                      NovaVSpace(32),
+                      NovaPrimaryTextField(
+                        textInputType: TextInputType.emailAddress,
+                        controller: model.email,
+                        onChange: (val) => model.listenForChanges(),
+                        validation: (val) => val.validateEmail(strEmailError),
+                        hintText: strEmail,
+                        textInputAction: TextInputAction.done,
+
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      NovaVSpace(40),
+                      NovaButtonRound(
+                          textTitle: "Send Code",
+                          loadingString: model.loadingString,
+                          isLoader: model.isLoading,
+                          hasBgImg: true,
+                          isFormValidated: model.isFormValidated,
+                          functionToRun: () {
+                            model.validateForm(context);
+                          }
+                      ),
+                      NovaVSpace(32)
+                    ],
+                  )
+                ],
               ),
             ),
           ),

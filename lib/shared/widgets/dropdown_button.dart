@@ -107,6 +107,7 @@ class PLDropDownButtonWithIcon extends StatelessWidget {
   final bool isNetworkImage;
   final TextEditingController value;
   final Widget? prefixIcon;
+  final bool showIconToTheLeft;
   final Function(String)? callBack;
 
   const PLDropDownButtonWithIcon(
@@ -116,6 +117,7 @@ class PLDropDownButtonWithIcon extends StatelessWidget {
         required this.value,
         this.prefixIcon,
         this.isNetworkImage = false,
+        this.showIconToTheLeft = true,
         this.callBack});
 
   @override
@@ -128,7 +130,7 @@ class PLDropDownButtonWithIcon extends StatelessWidget {
       fillColor: NovaColors.appWhiteColor,
       validation: (val) => val.validateString(strFieldRequiredError),
       onTapFunction: () {
-        selectFromDropDown(context, list, value, title, callBack);
+        selectFromDropDown(context, list, value, title, callBack, showIconToTheLeft);
       },
       suffixIcon: const Icon(
         Icons.arrow_drop_down,
@@ -140,12 +142,13 @@ class PLDropDownButtonWithIcon extends StatelessWidget {
 }
 
 void selectFromDropDown(BuildContext context, List<Map<String, dynamic>> list,
-    TextEditingController value, String label, Function(String)? callBack) {
+    TextEditingController value, String label, Function(String)? callBack, bool showIconToTheLeft) {
   modalBottomSheet(
       context,
       NovaDropDownSearch(
           list: list,
           title: label,
+          showIconToTheLeft: showIconToTheLeft,
           callBack: (val) {
             value.text = val;
 

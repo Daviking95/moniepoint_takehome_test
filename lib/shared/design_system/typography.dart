@@ -10,6 +10,7 @@ class NovaTypography {
 
   static double fontTitle = 32.0.sp;
   static double fontDesc16 = 16.0.sp;
+  static double fontDesc18 = 18.0.sp;
   static double fontDesc14 = 14.0.sp;
   static double fontDesc20 = 20.0.sp;
 

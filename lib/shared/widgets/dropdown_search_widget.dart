@@ -4,9 +4,10 @@ class NovaDropDownSearch extends StatefulWidget {
   final List<Map<String, dynamic>> list;
   final String title;
   final bool isNetworkImage;
+  final bool showIconToTheLeft;
   final Function(String) callBack;
 
-  const NovaDropDownSearch({super.key, required this.list, required this.title, required this.callBack, this.isNetworkImage = false});
+  const NovaDropDownSearch({super.key, required this.list, required this.title, required this.callBack, this.isNetworkImage = false, this.showIconToTheLeft = false});
 
   @override
   _NovaDropDownSearchState createState() => _NovaDropDownSearchState();
@@ -69,35 +70,37 @@ class _NovaDropDownSearchState extends State<NovaDropDownSearch> {
                         padding: const EdgeInsets.all(14),
                         child: Row(
                           children: [
-                            widget.isNetworkImage && results[index].keys.first.isNotEmpty
-                                ? CircleAvatar(
-                                    backgroundColor: Colors.transparent,
-                                    child: Image.network(
-                                      results[index].keys.first.isNotEmpty ? widget.list[index].keys.first : NovaAssets.logoPng,
-                                      height: 35,
-                                    ),
-                                  )
-                                : results[index].keys.first.isNotEmpty
-                                    ? results[index].keys.first.endsWith(".png")
-                                        ? Image.asset(
-                                            results[index].keys.first.isNotEmpty ? widget.list[index].keys.first : NovaAssets.logoPng,
-                                            height: 35,
-                                          )
-                                        : Image.asset(
-                                            results[index].keys.first.isNotEmpty ? widget.list[index].keys.first : NovaAssets.logoPng,
-                                            height: 35,
-                                          )
-                                    : results[index].values.first.toString().length > 2 ? CircleAvatar(
-                                        backgroundColor: NovaColors.appPrimaryColorMain500,
-                                        radius: 20,
-                                        child: Text(
-                                          results[index].values.first.substring(0, 2).toUpperCase(),
-                                          style: context.textTheme.bodyMedium!.copyWith(color: NovaColors.appWhiteColor),
-                                        ),
-                                      ) : Container(),
-                            const SizedBox(
-                              width: 18,
-                            ),
+                            if(widget.showIconToTheLeft) ...[
+                              widget.isNetworkImage && results[index].keys.first.isNotEmpty
+                                  ? CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                child: Image.network(
+                                  results[index].keys.first.isNotEmpty ? widget.list[index].keys.first : NovaAssets.logoPng,
+                                  height: 35,
+                                ),
+                              )
+                                  : results[index].keys.first.isNotEmpty
+                                  ? results[index].keys.first.endsWith(".png")
+                                  ? Image.asset(
+                                results[index].keys.first.isNotEmpty ? widget.list[index].keys.first : NovaAssets.logoPng,
+                                height: 35,
+                              )
+                                  : Image.asset(
+                                results[index].keys.first.isNotEmpty ? widget.list[index].keys.first : NovaAssets.logoPng,
+                                height: 35,
+                              )
+                                  : results[index].values.first.toString().length > 2 ? CircleAvatar(
+                                backgroundColor: NovaColors.appPrimaryColorMain500,
+                                radius: 20,
+                                child: Text(
+                                  results[index].values.first.substring(0, 2).toUpperCase(),
+                                  style: context.textTheme.bodyMedium!.copyWith(color: NovaColors.appWhiteColor),
+                                ),
+                              ) : Container(),
+                              const SizedBox(
+                                width: 18,
+                              ),
+                            ],
                             Expanded(
                               child: NovaTextWidget(
                                 title: results[index].values.first,

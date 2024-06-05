@@ -7,6 +7,7 @@ import 'package:nova/core/navigation/exports.dart';
 import 'package:nova/core/utils/extensions/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nova/modules/wallet/exports.dart';
 import 'package:nova/shared/widgets/exports.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'dart:math' as math;

@@ -17,8 +17,6 @@ class RouteGenerator {
         return buildRoute(const ForgotPasswordScreen(), settings: settings);
       case AppRoutes.biometrics:
         return buildRoute(const BiometricScreen(), settings: settings);
-      case AppRoutes.resetPassword:
-        return buildRoute(const ResetPasswordScreen(), settings: settings);
       case AppRoutes.createNewPassword:
         return buildRoute(const CreateNewPasswordScreen(), settings: settings);
       case AppRoutes.verifyEmailAddress:

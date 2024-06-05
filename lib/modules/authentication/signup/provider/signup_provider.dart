@@ -219,8 +219,8 @@ class SignupProvider extends BaseViewModel {
     }
   }
 
-  verifyEmailAddressForExistingCustomer(BuildContext context) async {
-    AppNavigator.push(const SetupDetailsScreen(isExisting: true));
+  verifyEmailAddressForExistingCustomer(BuildContext context, bool isForgotPassword) async {
+    isForgotPassword ? AppNavigator.push(const CreateNewPasswordScreen()) : AppNavigator.push(const SetupDetailsScreen(isExisting: true));
     return;
 
     if (formKeyEmail.currentState!.validate()) {

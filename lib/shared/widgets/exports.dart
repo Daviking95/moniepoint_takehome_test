@@ -76,3 +76,4 @@ part 'date_picker_text_field.dart';
 part 'inactivity_handler.dart';
 part 'nova_scaffold.dart';
 part 'nova_title_header.dart';
+part 'account_balance_snippet.dart';

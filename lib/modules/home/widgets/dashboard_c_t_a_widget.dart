@@ -15,6 +15,7 @@ class DashboardCTAWidget extends StatelessWidget {
     return InkWell(
       onTap: () => actionToTake(),
       child: Container(
+        height: 170.h,
         decoration: BoxDecoration(
             borderRadius: NovaDecorations.borderRadiusGeometryCircular16,
             color: Color(0xffF7F7F7)),

@@ -34,6 +34,9 @@ class ForgotPasswordProvider extends BaseViewModel {
   }
 
   validateForm(BuildContext context) async{
+
+    AppNavigator.push(const VerifyEmailAddressForExistingCustomerScreen(isForgotPassword: true));
+    return;
     if (formKey.currentState!.validate()) {
       await changeLoaderStatus(true, "Processing request");
       notifyListeners();
@@ -61,7 +64,7 @@ class ForgotPasswordProvider extends BaseViewModel {
             hasPrimaryBtn: true,
             primaryBtnFunc: (){
               openMailApps(context);
-              AppNavigator.push(const LoginScreen());
+              AppNavigator.push(const VerifyEmailAddressForExistingCustomerScreen(isForgotPassword: true));
             },
             message: "We have sent an email link to your email ${email.text}",
           ));
@@ -72,7 +75,7 @@ class ForgotPasswordProvider extends BaseViewModel {
   }
 
   void listenForChanges() {
-    if (email.text.isNotEmpty && formKey.currentState!.validate()) {
+    if (email.text.isNotEmpty) {
       _isFormValidated = true;
     } else {
       _isFormValidated = false;

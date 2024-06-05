@@ -27,3 +27,4 @@ part 'widgets/transactions_card_widget.dart';
 part 'widgets/get_notification_image.dart';
 part 'screens/transaction_summary_screen.dart';
 part 'widgets/report_transaction_popup.dart';
+part 'widgets/recent_purchase_card_widget.dart';

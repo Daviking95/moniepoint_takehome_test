@@ -11,76 +11,105 @@ class CreateNewPasswordScreen extends StatelessWidget {
   }
 
   Widget _buildScreen(BuildContext context, ChangePasswordProvider model) {
+    final changePasswordWatcher = context.watch<ChangePasswordProvider>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: WillPopScope(
         onWillPop: () => Future.value(true),
         child: NovaScaffold(
+          backgroundColor: NovaColors.appWhiteColor,
           body: AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle.light,
-              child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                          NovaAssets.loginBgPng,
+            value: SystemUiOverlayStyle.light,
+            child: NovaPaddedWidget(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        NovaVSpace(60),
+                        NovaBackIcon(
+                          onTap: () => Navigator.pop(context),
                         ),
-                        fit: BoxFit.cover)),
-                child: NovaPaddedWidget(
-                  child: Form(
-                    key: model.formKey,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          NovaVSpace(86),
-                          NovaTextWidget(
-                            title: strCreateNewPassword,
-                            isTitle: true,
-                            textColor: NovaColors.appWhiteColor,
-                            textStyle: NovaTypography.textHeadlineSmallStyle,
+                        NovaVSpace(4),
+                        NovaImagePng(
+                          imgPath: NovaAssets.logoPng,
+                          width: 98.w,
+                          height: 31.h,
+                        ),
+                        NovaVSpace(32),
+                        const NovaTitleHeader(
+                          title: "Create New Password",
+                        ),
+                        NovaVSpace(16),
+                        NovaTextWidget(
+                          title: "Please enter and confirm your new password.",
+                          textColor: NovaColors.appBlackColor,
+                          textSize: NovaTypography.fontLabelLarge,
+                          textAlign: TextAlign.center,
+                        ),
+                        NovaTextWidget(
+                          title: "You will need to login after you reset.",
+                          textColor: NovaColors.appBlackColor,
+                          textSize: NovaTypography.fontLabelLarge,
+                          textAlign: TextAlign.center,
+                        ),
+                        NovaVSpace(32),
+                        NovaPasswordTextField(
+                          controller: model.password,
+                          textInputTitle: strPassword,
+                          hintText: strPassword,
+                          onChange: (val) =>
+                              changePasswordWatcher.listenForChanges(),
+                          validation: (value) => value!.passwordError(),
+                          textInputAction: TextInputAction.next,
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: NovaTextWidget(
+                            title: "Must contain 8 characters",
+                            textColor: NovaColors.appBlackColor,
+                            textSize: NovaTypography.fontLabelSmall,
+                            fontFamily: NovaTypography.fontFamilyMedium,
                           ),
-                          const SizedBox(height: 10.0),
-                          NovaTextWidget(
-                            title: strCreateNewPasswordDesc,
-                            textColor: NovaColors.appWhiteColor,
-                          ),
-                          NovaVSpace(24),
-                          NovaPasswordTextField(
-                            controller: model.password,
-                            textInputTitle: strPassword,
-                            hintText: strPassword,
-                            onChange: (val) => model.listenForChanges(),
-                            validation: (value) => value!.passwordError(),
-                            textInputAction: TextInputAction.done,
-                          ),
-                          NovaPasswordTextField(
-                            controller: model.confirmPassword,
-                            textInputTitle: strConfirmPassword,
-                            hintText: strConfirmPassword,
-                            onChange: (val) => model.listenForChanges(),
-                            validation: (value) => value!.comparePassword(model.password.text),
-                            textInputAction: TextInputAction.done,
-                          ),
-                          NovaVSpace(32),
-                          NovaButtonRound(
-                            textTitle: strCreate,
-                            isLoader: model.isLoading,
-                            loadingString: model.loadingString,
-                            isFormValidated: model.isFormValidated,
-                            functionToRun: () => model.validateForm(context),
-                          )
-                        ],
-                      ),
+                        ),
+                        NovaVSpace(16),
+                        NovaPasswordTextField(
+                          controller: model.confirmPassword,
+                          textInputTitle: strConfirmPassword,
+                          hintText: strConfirmPassword,
+                          onChange: (val) =>
+                              changePasswordWatcher.listenForChanges(),
+                          validation: (value) =>
+                              value!.comparePassword(model.password.text),
+                          textInputAction: TextInputAction.done,
+                        ),
+                      ],
                     ),
-                  ),
+                    Column(
+                      children: [
+                        NovaVSpace(40),
+                        NovaButtonRound(
+                            textTitle: "Reset Password",
+                            loadingString: model.loadingString,
+                            isLoader: model.isLoading,
+                            hasBgImg: true,
+                            // isFormValidated: model.isDetailsSetupFormValidated,
+                            functionToRun: () {
+                              changePasswordWatcher.validateForm(context);
+                            }),
+                        NovaVSpace(32)
+                      ],
+                    )
+                  ],
                 ),
-              )),
+              ),
+            ),
+          ),
         ),
       ),
     );
+
   }
 }

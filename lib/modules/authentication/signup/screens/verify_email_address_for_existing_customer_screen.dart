@@ -3,8 +3,9 @@ part of 'package:nova/modules/authentication/signup/exports.dart';
 
 class VerifyEmailAddressForExistingCustomerScreen extends StatelessWidget {
   final String emailAddress;
+  final bool isForgotPassword;
 
-  const VerifyEmailAddressForExistingCustomerScreen({Key? key, this.emailAddress = ""})
+  const VerifyEmailAddressForExistingCustomerScreen({Key? key, this.emailAddress = "", this.isForgotPassword = false})
       : super(key: key);
 
   @override
@@ -108,7 +109,7 @@ class VerifyEmailAddressForExistingCustomerScreen extends StatelessWidget {
                           hasBgImg: true,
                           isFormValidated: model.isEmailVerifyFormValidated,
                           functionToRun: () {
-                            signUpWatcher.verifyEmailAddressForExistingCustomer(context);
+                            signUpWatcher.verifyEmailAddressForExistingCustomer(context, isForgotPassword);
                           }),
                       NovaVSpace(32)
                     ],

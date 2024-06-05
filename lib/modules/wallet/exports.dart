@@ -39,5 +39,5 @@ part 'screens/withdraw_wallet_amount_screen.dart';
 part 'screens/bills_payment_options_screen.dart';
 part 'widgets/bills_payment_popup.dart';
 part 'widgets/update_profile_pop_up.dart';
-part 'widgets/existing_loan_pop_up.dart';
 part 'widgets/recent_transaction_widget.dart';
+part 'widgets/recent_purchases_widget.dart';

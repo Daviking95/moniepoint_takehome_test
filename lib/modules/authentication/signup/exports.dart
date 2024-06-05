@@ -8,6 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nova/core/exports.dart';
 import 'package:nova/modules/authentication/login/exports.dart';
+import 'package:nova/modules/authentication/reset_password/exports.dart';
 import 'package:nova/modules/authentication/signup/services/signup_service.dart';
 import 'package:nova/shared/models/generic_response_model.dart';
 import 'package:provider/provider.dart';

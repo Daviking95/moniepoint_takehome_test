@@ -64,7 +64,7 @@ class _PersistentTabState extends State<PersistentTab> {
   List<Widget> _buildScreens() {
     return [
       DashboardScreen(currentIndex: AppData.currentIndex),
-      const TransactionScreen(),
+      const BillsPaymentOptionsScreen(),
       const ProfileScreen(),
       const ProfileScreen(),
       const ProfileScreen(),

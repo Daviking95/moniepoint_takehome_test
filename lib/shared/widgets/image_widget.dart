@@ -1,38 +1,13 @@
-part of "package:nova/shared/widgets/exports.dart";
+part of "package:moniepoint_mobile/shared/widgets/exports.dart";
 
-class NovaImageSvg extends StatelessWidget {
-  final String svgPath;
-  final double? width;
-  final double? height;
-
-  const NovaImageSvg({super.key, required this.svgPath, this.height, this.width});
-
-  @override
-  Widget build(BuildContext context) {
-    assert(svgPath.isNotEmpty);
-    if (width != null && height != null) {
-      return SvgPicture.asset(
-        svgPath,
-        width: width,
-        height: height,
-      );
-    } else {
-      return SvgPicture.asset(
-        svgPath,
-      );
-    }
-  }
-}
-
-class NovaImagePng extends StatelessWidget {
-  final String imgPath;
+class MonieEstateImagePng extends StatelessWidget {final String imgPath;
   final double? width;
   final double? height;
   final Color? color;
 
   final BoxFit? boxFit;
 
-  const NovaImagePng({super.key, required this.imgPath, this.height, this.width, this.color, this.boxFit});
+  const MonieEstateImagePng({super.key, required this.imgPath, this.height, this.width, this.color, this.boxFit});
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +30,14 @@ class NovaImagePng extends StatelessWidget {
   }
 }
 
-class NovaImageNetwork extends StatelessWidget {
+class MonieEstateImageNetwork extends StatelessWidget {
   final String networkPath;
   final double? width;
   final double? height;
   final String? fallBackImage;
   final String? memoryImage;
 
-  const NovaImageNetwork({super.key, required this.networkPath, this.height, this.width, this.fallBackImage, this.memoryImage});
+  const MonieEstateImageNetwork({super.key, required this.networkPath, this.height, this.width, this.fallBackImage, this.memoryImage});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +55,7 @@ class NovaImageNetwork extends StatelessWidget {
                       width: width,
                     )
                   : Image.asset(
-                      fallBackImage ?? NovaAssets.editProfileIcon,
+                      fallBackImage ?? MonieEstateAssets.defaultProfile,
                       fit: BoxFit.cover,
                       width: width,
                     );
@@ -93,7 +68,7 @@ class NovaImageNetwork extends StatelessWidget {
                 width: width,
               )
             : Image.asset(
-                fallBackImage ?? NovaAssets.editProfileIcon,
+                fallBackImage ?? MonieEstateAssets.defaultProfile,
                 fit: BoxFit.cover,
                 width: width,
               );

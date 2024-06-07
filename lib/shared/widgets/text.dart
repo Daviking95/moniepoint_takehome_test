@@ -1,6 +1,6 @@
-part of "package:nova/shared/widgets/exports.dart";
+part of "package:moniepoint_mobile/shared/widgets/exports.dart";
 
-class NovaTextWidget extends StatelessWidget {
+class MonieEstateTextWidget extends StatelessWidget {
   final String? title;
   final bool? isCenter;
   final bool? isTitle;
@@ -16,7 +16,7 @@ class NovaTextWidget extends StatelessWidget {
   final TextStyle? textStyle;
   final int? maxLines;
 
-  const NovaTextWidget(
+  const MonieEstateTextWidget(
       {Key? key,
       required this.title,
       this.isCenter = false,
@@ -42,7 +42,7 @@ class NovaTextWidget extends StatelessWidget {
     Color? _txtColor;
     String? _fontFamily;
 
-    _fontFamily = fontFamily ?? (isTitle! ? NovaTypography.fontFamilyBold : NovaTypography.fontFamilyLight);
+    _fontFamily = fontFamily ?? (isTitle! ? MonieEstateTypography.fontFamilyBold : MonieEstateTypography.fontFamilyLight);
 
     _fontWeight = isTitle! ? FontWeight.bold : fontWeight!;
 

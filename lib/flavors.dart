@@ -11,26 +11,12 @@ class F {
   static String get title {
     switch (appFlavor) {
       case Flavor.pilot:
-        return 'Nova Poc';
+        return 'MoniepointMobile Poc';
       case Flavor.prod:
-        return 'Nova';
+        return 'MoniepointMobile';
       default:
-        return 'Nova';
+        return 'title';
     }
   }
 
-  static String get appVersion {
-    return "1.0";
-  }
-
-  static String get baseUrl {
-    switch (appFlavor) {
-      case Flavor.pilot:
-        return 'http://ndyknight-001-site1.itempurl.com/api/';
-      case Flavor.prod:
-        return 'http://ndyknight-001-site1.itempurl.com/api/';
-      default:
-        return 'http://ndyknight-001-site1.itempurl.com/api/';
-    }
-  }
 }

@@ -1,4 +1,5 @@
-part of 'package:nova/core/navigation/exports.dart';
+part of 'package:moniepoint_mobile/core/navigation/exports.dart';
+
 
 class RouteGenerator {
   static const String initialRoute = AppRoutes.splash;
@@ -7,24 +8,10 @@ class RouteGenerator {
     switch (settings.name) {
       case AppRoutes.splash:
         return buildRoute(const SplashScreen(), settings: settings);
-      case AppRoutes.onboarding:
-        return buildRoute(const OnboardingScreen(), settings: settings);
-      case AppRoutes.login:
-        return buildRoute(const LoginScreen(), settings: settings);
-      case AppRoutes.signUp:
-        return buildRoute(const SignupScreen(), settings: settings);
-      case AppRoutes.forgotPassword:
-        return buildRoute(const ForgotPasswordScreen(), settings: settings);
-      case AppRoutes.biometrics:
-        return buildRoute(const BiometricScreen(), settings: settings);
-      case AppRoutes.createNewPassword:
-        return buildRoute(const CreateNewPasswordScreen(), settings: settings);
-      case AppRoutes.verifyEmailAddress:
-        return buildRoute(const VerifyEmailAddressScreen(), settings: settings);
       case AppRoutes.dashboard:
-        return buildRoute(const DashboardScreen(), settings: settings);
+        return buildRoute(const HomeScreen(), settings: settings);
       case AppRoutes.persistentTab:
-        return buildRoute(const PersistentTab(), settings: settings);
+        return buildRoute(const FloatingTab(), settings: settings);
       default:
         return buildRoute(const SplashScreen(), settings: settings);
     }

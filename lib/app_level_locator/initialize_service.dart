@@ -1,4 +1,4 @@
-part of 'package:nova/app_level_locator/exports.dart';
+part of 'package:moniepoint_mobile/app_level_locator/exports.dart';
 
 class InitializeServices {
   static setupFunctions() async {
@@ -7,13 +7,7 @@ class InitializeServices {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-    await AppPreferences.init();
-
-    NetworkService.refreshToken();
-
-    await Firebase.initializeApp();
-
-    await dotenv.load(fileName: ".env");
+    // await dotenv.load(fileName: ".env");
 
   }
 }

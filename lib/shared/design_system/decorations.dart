@@ -1,12 +1,15 @@
-part of "package:nova/shared/design_system/exports.dart";
+part of "package:moniepoint_mobile/shared/design_system/exports.dart";
 
-class NovaDecorations {
-  NovaDecorations._();
+class MonieEstateDecorations {
+  MonieEstateDecorations._();
 
   static BorderRadius borderRadiusGeometryCircular100 =
       BorderRadius.circular(100);
   static BorderRadius borderRadiusGeometryCircular20 =
       BorderRadius.circular(20);
+
+  static BorderRadius borderRadiusGeometryCircular24 =
+      BorderRadius.circular(24);
   static BorderRadius borderRadiusGeometryCircularTop20 =
       const BorderRadius.only(
           topLeft: Radius.circular(20), topRight: Radius.circular(20));

@@ -1,44 +1,45 @@
-part of 'package:nova/modules/home/exports.dart';
+part of 'package:moniepoint_mobile/modules/home/exports.dart';
 
 class TopRowWidget extends StatelessWidget {
   const TopRowWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              color: MonieEstateColors.appWhiteColor,
+              borderRadius:
+                  MonieEstateDecorations.borderRadiusGeometryCircular8),
+          child: Row(
             children: [
-              NovaTextWidget(
-                title: "Welcome",
-                textStyle: NovaTypography.textTitleLargeStyle,
-                textColor: NovaColors.appWhiteColor.withOpacity(.6),
-                textSize: NovaTypography.fontBodyMedium,
+              MonieEstateImagePng(
+                imgPath: MonieEstateAssets.location,
+                color: MonieEstateColors.appSecondaryColor,
+                height: 15.h,
+                width: 15.w,
               ),
-              NovaTextWidget(
-                title: "Olaoluwa",
-                textStyle: NovaTypography.textTitleLargeStyle,
-                textColor: NovaColors.appWhiteColor,
-                textSize: NovaTypography.fontHeadlineSmall,
-                fontWeight: FontWeight.w600,
+              MonieEstateHSpace(6),
+              const MonieEstateTextWidget(
+                title: "Saint Pertersburg",
+                textColor: MonieEstateColors.appSecondaryColor,
               ),
             ],
-          ),
-          GestureDetector(
-            onTap: () {
-              // PersistentNavBarNavigator.pushNewScreen(
-              //   context,
-              //   screen: const ProfileScreen(),
-              //   withNavBar: false,
-              //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              // );
-            },
-            child: ProfileImageWidget(imageFile: AppData.profilePicture, size: 40, fallBackImage: NovaAssets.defaultProfile,),
-          )
-        ],
-      );
+          ).paddingSymmetric(horizontal: 16, vertical: 8).animate().fade(
+                duration: const Duration(milliseconds: 1500),
+                delay: const Duration(milliseconds: 800),
+              ),
+        ).animate().slideX(
+              duration: const Duration(milliseconds: 1200),
+            ),
+        const ProfileImageWidget(
+          imageFile: "",
+          size: 50,
+          fallBackImage: MonieEstateAssets.defaultProfile,
+        ).animate().fade(duration: const Duration(milliseconds: 1200)).scale()
+      ],
+    );
   }
 }

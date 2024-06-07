@@ -1,12 +1,12 @@
-part of "package:nova/shared/design_system/exports.dart";
+part of "package:moniepoint_mobile/shared/design_system/exports.dart";
 
-NovaVSpace(double height) {
+MonieEstateVSpace(double height) {
   return SizedBox(
     height: height.h,
   );
 }
 
-NovaHSpace(double width) {
+MonieEstateHSpace(double width) {
   return SizedBox(
     width: width.w,
   );

@@ -1,4 +1,4 @@
-part of 'package:nova/core/utils/helper_functions/exports.dart';
+part of 'package:moniepoint_mobile/core/utils/helper_functions/exports.dart';
 
 class SizingExtension {
   static getHeightOrWidth({isHeight = true}) {

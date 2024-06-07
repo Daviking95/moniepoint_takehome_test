@@ -1,4 +1,4 @@
-part of 'package:nova/core/utils/extensions/exports.dart';
+part of 'package:moniepoint_mobile/core/utils/extensions/exports.dart';
 
 extension FlowContextExtension on BuildContext {
   ThemeData get theme => Theme.of(this);

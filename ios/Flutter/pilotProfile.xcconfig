@@ -2,5 +2,5 @@
 
 FLUTTER_TARGET=lib/main_pilot.dart
 ASSET_PREFIX=pilot
-BUNDLE_NAME=Nova Poc
-BUNDLE_DISPLAY_NAME=Nova Poc
+BUNDLE_NAME=MoniepointMobile Poc
+BUNDLE_DISPLAY_NAME=MoniepointMobile Poc

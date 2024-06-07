@@ -1,4 +1,4 @@
-part of "package:nova/shared/widgets/exports.dart";
+part of "package:moniepoint_mobile/shared/widgets/exports.dart";
 
 class ProfileImageWidget extends StatelessWidget {
   final String? imageFile;
@@ -15,16 +15,16 @@ class ProfileImageWidget extends StatelessWidget {
         width: size,
         height: size,
         decoration: BoxDecoration(
-            borderRadius: NovaDecorations.borderRadiusGeometryCircular100,
+            borderRadius: MonieEstateDecorations.borderRadiusGeometryCircular100,
             border: Border.all(
-              color: NovaColors.neutralColor300,
+              color: MonieEstateColors.neutralColor300,
               width: 1.0,
             )),
         child: ClipRRect(
-          borderRadius: NovaDecorations.borderRadiusGeometryCircular100,
+          borderRadius: MonieEstateDecorations.borderRadiusGeometryCircular100,
           child: imageFile!.isNotEmpty && imageFile! != "N/A"
               ? Image.memory(base64.decode(imageFile ?? ""))
-              : NovaImageNetwork(
+              : MonieEstateImageNetwork(
                   networkPath: imageFile ?? "", memoryImage: memoryImage, fallBackImage: fallBackImage),
           // child: PLImageNetwork(networkPath: imageFile ?? "", memoryImage: memoryImage)),
         ));

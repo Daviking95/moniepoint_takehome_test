@@ -2,5 +2,5 @@
 
 FLUTTER_TARGET=lib/main_prod.dart
 ASSET_PREFIX=prod
-BUNDLE_NAME=Nova
-BUNDLE_DISPLAY_NAME=Nova
+BUNDLE_NAME=MoniepointMobile
+BUNDLE_DISPLAY_NAME=MoniepointMobile

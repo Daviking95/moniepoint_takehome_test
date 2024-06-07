@@ -1,25 +1,25 @@
-part of 'package:nova/shared/design_system/exports.dart';
+part of 'package:moniepoint_mobile/shared/design_system/exports.dart';
 
 final ThemeData lightTheme = _buildLightTheme();
 final ThemeData darkTheme = _buildLightTheme();
 
 ThemeData _buildLightTheme() {
   final ColorScheme colorScheme = const ColorScheme.light().copyWith(
-    primary: NovaColors.appPrimaryColorMain500,
-    secondary: NovaColors.appSecondaryColorMain500,
+    primary: MonieEstateColors.appPrimaryColor,
+    secondary: MonieEstateColors.appSecondaryColor,
   );
   final ThemeData base = ThemeData(
     appBarTheme: const AppBarTheme(elevation: 0),
     brightness: Brightness.light,
     // useMaterial3: true,
-    primaryColor: NovaColors.appPrimaryColorMain500,
-    primaryColorDark: NovaColors.appPrimaryColorMain500,
-    indicatorColor: NovaColors.appIndicatorColor,
+    primaryColor: MonieEstateColors.appPrimaryColor,
+    primaryColorDark: MonieEstateColors.appPrimaryColor,
+    indicatorColor: MonieEstateColors.appIndicatorColor,
     splashColor: Colors.white24,
     splashFactory: InkRipple.splashFactory,
-    canvasColor: NovaColors.appWhiteColor,
-    scaffoldBackgroundColor: NovaColors.appBackgroundColor,
-    focusColor: NovaColors.appFocusColor,
+    canvasColor: MonieEstateColors.appWhiteColor,
+    scaffoldBackgroundColor: MonieEstateColors.appBackgroundColor,
+    focusColor: MonieEstateColors.appFocusColor,
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.android: CupertinoPageTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
@@ -31,31 +31,31 @@ ThemeData _buildLightTheme() {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(4)),
         )),
-    fontFamily: NovaTypography.fontFamilyRegular,
+    fontFamily: MonieEstateTypography.fontFamilyRegular,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedLabelStyle: TextStyle(
-        fontFamily: NovaTypography.fontFamilyRegular,
+        fontFamily: MonieEstateTypography.fontFamilyRegular,
       ),
       unselectedLabelStyle: TextStyle(
-        fontFamily: NovaTypography.fontFamilyRegular,
+        fontFamily: MonieEstateTypography.fontFamilyRegular,
       ),
     ),
     textTheme: TextTheme(
-      headlineSmall: NovaTypography.textHeadlineSmallStyle,
-      headlineMedium: NovaTypography.textHeadlineMediumStyle,
-      headlineLarge: NovaTypography.textHeadlineLargeStyle,
-      titleSmall: NovaTypography.textTitleSmallStyle,
-      titleMedium: NovaTypography.textTitleMediumStyle,
-      titleLarge: NovaTypography.textTitleLargeStyle,
-      bodySmall: NovaTypography.textBodySmallStyle,
-      bodyMedium: NovaTypography.textBodyMediumStyle,
-      bodyLarge: NovaTypography.textBodyLargeStyle,
-      labelSmall: NovaTypography.textLabelSmallStyle,
-      labelMedium: NovaTypography.textLabelMediumStyle,
-      labelLarge: NovaTypography.textLabelLargeStyle,
-      displaySmall: NovaTypography.textDisplaySmallStyle,
-      displayMedium: NovaTypography.textDisplayMediumStyle,
-      displayLarge: NovaTypography.textDisplayLargeStyle
+      headlineSmall: MonieEstateTypography.textHeadlineSmallStyle,
+      headlineMedium: MonieEstateTypography.textHeadlineMediumStyle,
+      headlineLarge: MonieEstateTypography.textHeadlineLargeStyle,
+      titleSmall: MonieEstateTypography.textTitleSmallStyle,
+      titleMedium: MonieEstateTypography.textTitleMediumStyle,
+      titleLarge: MonieEstateTypography.textTitleLargeStyle,
+      bodySmall: MonieEstateTypography.textBodySmallStyle,
+      bodyMedium: MonieEstateTypography.textBodyMediumStyle,
+      bodyLarge: MonieEstateTypography.textBodyLargeStyle,
+      labelSmall: MonieEstateTypography.textLabelSmallStyle,
+      labelMedium: MonieEstateTypography.textLabelMediumStyle,
+      labelLarge: MonieEstateTypography.textLabelLargeStyle,
+      displaySmall: MonieEstateTypography.textDisplaySmallStyle,
+      displayMedium: MonieEstateTypography.textDisplayMediumStyle,
+      displayLarge: MonieEstateTypography.textDisplayLargeStyle
     ),
     radioTheme: RadioThemeData(
       fillColor: MaterialStateProperty.resolveWith<Color?>(
@@ -64,7 +64,7 @@ ThemeData _buildLightTheme() {
           return null;
         }
         if (states.contains(MaterialState.selected)) {
-          return NovaColors.appSecondaryColorMain500;
+          return MonieEstateColors.appSecondaryColor;
         }
         return null;
       }),
@@ -76,7 +76,7 @@ ThemeData _buildLightTheme() {
           return null;
         }
         if (states.contains(MaterialState.selected)) {
-          return NovaColors.appSecondaryColorMain500;
+          return MonieEstateColors.appSecondaryColor;
         }
         return null;
       }),

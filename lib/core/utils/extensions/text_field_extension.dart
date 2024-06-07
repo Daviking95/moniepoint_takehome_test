@@ -1,4 +1,4 @@
-part of 'package:nova/core/utils/extensions/exports.dart';
+part of 'package:moniepoint_mobile/core/utils/extensions/exports.dart';
 
 extension TextfieldValidator on String? {
   String? validateEmail(String errorString) {
@@ -28,8 +28,9 @@ extension TextfieldValidator on String? {
     RegExp regExp = RegExp(r'^[0-9]*$');
 
     if (this == null || this == "") return errorString;
-    if (this == null && int.parse(this ?? "0") > number)
+    if (this == null && int.parse(this ?? "0") > number) {
       return "You cannot input more than $number";
+    }
     if (regExp.hasMatch(this!)) {
       return null;
     } else {
@@ -98,25 +99,3 @@ extension TextfieldValidator on String? {
   }
 }
 
-class Validators {
-  static String? validateAmount(
-      dynamic value, String errorString, double maxAmount) {
-    String amount =
-        value.replaceAll(strCurrency2, "").replaceAll(",", "").trim();
-
-    if (amount.toString().trim().isEmpty) return errorString;
-
-    if (amount.startsWith("0")) {
-      return "Amount field cannot be 0";
-    }
-
-    if (maxAmount > 0 && (double.parse(amount) < 5000)) {
-      return "Minimum borrowing amount ${5000.toString().formatWithCommasAndDecimals().formatToNairaCurrency()}";
-    }
-    if (maxAmount > 0 && (double.parse(amount) > maxAmount)) {
-      return "Amount field cannot be more than ${maxAmount.toString().formatWithCommasAndDecimals().formatToNairaCurrency()}";
-    } else {
-      return null;
-    }
-  }
-}

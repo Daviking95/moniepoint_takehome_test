@@ -1,12 +1,12 @@
-part of "package:nova/shared/widgets/exports.dart";
+part of "package:moniepoint_mobile/shared/widgets/exports.dart";
 
-class NovaPaddedWidget extends StatelessWidget {
+class MonieEstatePaddedWidget extends StatelessWidget {
   final Widget child;
 
-  const NovaPaddedWidget({super.key, required this.child});
+  const MonieEstatePaddedWidget({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    return child.paddingSymmetric(horizontal: 25);
+    return child.paddingSymmetric(horizontal: 20);
   }
 }

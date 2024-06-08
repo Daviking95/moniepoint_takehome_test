@@ -36,6 +36,7 @@ cd your-repo-name
 
 ```bash
 flutter pub get
+flutter create .
 ```
 
 

@@ -29,7 +29,7 @@ class TopSectionWidget extends StatelessWidget {
             const GreetingsWidget(),
             MonieEstateVSpace(32),
             const BuyAndRentWidget(),
-            MonieEstateVSpace(24),
+            // MonieEstateVSpace(24),
           ],
         ),
       ),

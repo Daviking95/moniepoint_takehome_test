@@ -1,6 +1,0 @@
-#include "Generated.xcconfig"
-
-FLUTTER_TARGET=lib/main_pilot.dart
-ASSET_PREFIX=pilot
-BUNDLE_NAME=MoniepointMobile Poc
-BUNDLE_DISPLAY_NAME=MoniepointMobile Poc

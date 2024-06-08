@@ -52,5 +52,5 @@ flutter run
 This will start the app on your connected device or emulator.
 
 ### Built With
-Flutter - The framework used
-Dart - Programming language
+- Flutter - The framework used
+- Dart - Programming language

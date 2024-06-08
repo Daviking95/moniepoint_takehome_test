@@ -33,7 +33,22 @@ Make sure you have the following installed on your system:
 ```bash
 git clone https://github.com/Daviking95/moniepoint_takehome_test.git
 cd your-repo-name
+```
+
+2. **Install dependencies**
+
+```bash
 flutter pub get
+```
+
+
+### Running the App
+Connect a device or start an emulator
+
+Make sure you have an Android or iOS device connected, or an emulator running.
+
+Run the app
+
+```bash
 flutter run
-
-
+```

@@ -9,9 +9,6 @@ A take-home test app
 - [Installation](#installation)
 - [Running the App](#running-the-app)
 - [Built With](#built-with)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
 
 ## Getting Started
 
@@ -52,3 +49,8 @@ Run the app
 ```bash
 flutter run
 ```
+This will start the app on your connected device or emulator.
+
+### Built With
+Flutter - The framework used
+Dart - Programming language

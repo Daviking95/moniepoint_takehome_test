@@ -39,10 +39,11 @@ class EstateCardSection extends StatelessWidget {
                       flex: 2,
                       child: Text(
                         address,
+                        maxLines: 1,
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                          // fontWeight: FontWeight.bold,
                         ),
                       ).animate().fade(
                             duration: const Duration(milliseconds: 1500),

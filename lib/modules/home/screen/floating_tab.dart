@@ -153,19 +153,20 @@ class NavBar extends StatelessWidget {
 
   Widget navItem(String icon, bool selected, {Function()? onTap}) {
     return Expanded(
-      child: CircleAvatar(
-        maxRadius: 25,
-        backgroundColor: selected
-            ? MonieEstateColors.appPrimaryColor
-            : MonieEstateColors.appBlackColor,
-        child: InkWell(
-            onTap: onTap,
-            child: MonieEstateImagePng(
+      child: InkWell(
+        onTap: onTap,
+        child: CircleAvatar(
+          maxRadius: 25,
+          backgroundColor: selected
+              ? MonieEstateColors.appPrimaryColor
+              : MonieEstateColors.appBlackColor,
+          child: MonieEstateImagePng(
               imgPath: icon,
               color: MonieEstateColors.appWhiteColor,
               width: 20.w,
               height: 20.h,
-            )),
+            ),
+        ),
       ),
     );
   }

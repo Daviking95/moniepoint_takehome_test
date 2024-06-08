@@ -1,11 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:moniepoint_mobile/app_level_locator/exports.dart';
 
-import 'bootstrap.dart';
-import 'flavors.dart';
-
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  F.appFlavor = Flavor.prod;
-  Bootstrap.load();
+FutureOr<void> main() async {
+  runApp(const MonieEstateApp());
 }

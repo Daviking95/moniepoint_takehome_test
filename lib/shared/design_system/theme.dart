@@ -41,21 +41,6 @@ ThemeData _buildLightTheme() {
       ),
     ),
     textTheme: TextTheme(
-      headlineSmall: MonieEstateTypography.textHeadlineSmallStyle,
-      headlineMedium: MonieEstateTypography.textHeadlineMediumStyle,
-      headlineLarge: MonieEstateTypography.textHeadlineLargeStyle,
-      titleSmall: MonieEstateTypography.textTitleSmallStyle,
-      titleMedium: MonieEstateTypography.textTitleMediumStyle,
-      titleLarge: MonieEstateTypography.textTitleLargeStyle,
-      bodySmall: MonieEstateTypography.textBodySmallStyle,
-      bodyMedium: MonieEstateTypography.textBodyMediumStyle,
-      bodyLarge: MonieEstateTypography.textBodyLargeStyle,
-      labelSmall: MonieEstateTypography.textLabelSmallStyle,
-      labelMedium: MonieEstateTypography.textLabelMediumStyle,
-      labelLarge: MonieEstateTypography.textLabelLargeStyle,
-      displaySmall: MonieEstateTypography.textDisplaySmallStyle,
-      displayMedium: MonieEstateTypography.textDisplayMediumStyle,
-      displayLarge: MonieEstateTypography.textDisplayLargeStyle
     ),
     radioTheme: RadioThemeData(
       fillColor: MaterialStateProperty.resolveWith<Color?>(

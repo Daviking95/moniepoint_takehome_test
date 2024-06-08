@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           const SliverAppBar(
-            expandedHeight: 450.0,
+            expandedHeight: 430.0,
             flexibleSpace: FlexibleSpaceBar(
               background: IntrinsicHeight(
                 child: TopSectionWidget(),

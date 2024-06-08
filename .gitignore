@@ -61,5 +61,3 @@ app.*.map.json
 /ios
 
 **/*.env
-**/peerssh
-**/peerssh.pub

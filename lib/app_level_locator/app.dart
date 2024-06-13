@@ -17,6 +17,7 @@ class MonieEstateApp extends StatelessWidget {
               darkTheme: darkTheme,
               theme: lightTheme,
               themeMode: ThemeMode.system,
+              home: const SplashScreen(),
               // initialRoute: RouteGenerator.initialRoute,
               onGenerateRoute: RouteGenerator.generateRoute,
               debugShowCheckedModeBanner: false,
